@@ -1,0 +1,128 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[round]{natbib}
+
+\title{Dissertation}
+\author{Michael Gallagher}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\section{Introduction}
+
+\subsection{Background}
+
+\subsubsection{Volatility}
+
+Volatility in financial markets (huge discussion on volatility, why it happens, why prices doesn't behave around the mean as expected etc)...
+
+\subsubsection{Foreign Exchange}
+
+In the past 30 years the foreign exchange markets has grown from an exclusive, locked down market to one of the most actively traded and liquid markets today. The market has many interesting properties compared to the more historically significant stock market, such as 24 hour trading, and the price being a good general reflection on the state of a country or unions economy. However, due to the recent surge in interest in this market it has not had the same level of study as the traditionally popular markets despite showing some interesting behaviours that may be of interest...
+
+\subsubsection{Technical Analysis}
+
+The study and use of technical analysis in predicting the change in price of traded derivatives has never been wholly agreed upon...
+
+\subsubsection{Fuzzy Logic}
+
+Some of the greatest difficulties with detecting certain patterns in technical analysis is determining whether a price is a valid part of a pattern when it is 'kind of' part of a pattern and 'kind of' not. Studies on technical analysis often define crisp ranges to group together prices, such as in \citep{foundations} where prices are seen to be equal in a pattern if they are within 1.5\% of their averages. This of course leaves us with the issue that prices within 1.49\% are observered as being part of a pattern but prices within 1.51\% are discarded in the same manner as a price that differs dramatically...
+
+\subsection{Objectives}
+
+\subsubsection{Benefits of Fuzzy Pattern Matching}
+
+Fuzzy logic is still a new field of interest but with a wide range of applications. There is still much room for research that demonstrates the differences in performance between using a fuzzy logic system and using a traditional crisp logic system... (Need to actually do both then!)
+
+\subsubsection{Applying Stock Market Analysis to Foreign Exchange Markets}
+
+The methods described in this paper have been shown to be effective at predicting the price movement of companies on the Stock Exchange. There appears to be significant differences in the behaviour of the foreign exchange market and the Stock exchange, as told by ...
+
+\subsubsection{Predictive Capability of Technical Analysis}
+
+There is still much debate as to whether analysis of previous price action can be used to determine future price performance...
+
+\subsubsection{Using Statistical Techniques to Analyse Price Movement}
+
+I'm not sure where to throw this in, but it's important. This is essentially the only way the method my dissertation differs to previous work, so I need to justify it. (ie. I'm grouping the price using z-scores)...
+
+\section{State of the art}
+
+AIM: Write for someone not familiar with the subject
+
+\subsection{Technical analysis}
+
+Where did it start. Who uses it. Research for \& against. Papers: Foundations of technical analysis, candlestick trading, in defence of ta, fib retracement.
+
+\subsection{Time-Series analysis}
+
+Discussion of the various papers that this is inspired from. The TAIEX paper, the univeristy enrollment paper,  the various dual factor fuzzy logic time series papers.
+
+\section{Method}
+
+AIM: To leave no doubt in the reader that I have done this correctly, and covered all bases.
+
+\subsection{Acquiring Data}
+
+Data used was publicly available data obtained from [...]. The data was verified against several sources, and verified that data was complete. Data used was daily opening...
+
+\subsection{Statistical Analysis of Data}
+
+A clear picture was desired as to the significance of price movement. The use of z-scores in identifying price patterns was... (NB. This is different to previous papers that I am comparing to which makes comparisons difficult).
+
+\subsection{Time Series Methodology}
+
+How time series analysis works, taken largely from other papers...
+
+\subsection{Crisp Logic System Implementation}
+
+Essentially how I applied the time series analysis to what I have right now (using rolling window, using time series methodology). This section may not be necessary.
+
+\subsection{Fuzzy Logic Inference System}
+
+\subsubsection{Justification of Design}
+
+Why I did mandami for example (nb. not yet decided).
+
+\subsubsection{Implementation}
+
+Step by step fuzzy logic system - fuzzification, inference, aggregation, defuzzification...
+
+\section{Results \& Evaluation}
+Stand back and evaluate what you have achieved and how well you have met the objectives. Evaluate your achievements against your objectives in section 1.2. Demonstrate that you have tackled the project in a professional manner. 
+
+\subsection{RMSE Performance Indicator}
+
+Outline how it has been used in other papers. Outline how we can draw direct comparisons...
+
+\subsection{Results}
+
+Results of the analysis of data. Show that the average price movement comes to approximately 0, as expected. Show the patterns discovered, show the significance of these using statistical analysis...
+
+\subsubsection{Statistical significance of patterns}
+
+Show the significance of certain patterns statistically using survey sampling techniques \& confidence interval...
+
+\subsection{Forward testing}
+
+See the error when testing against data that was not used to train the program...
+
+\subsection{Comparisons}
+
+Compare the results to previous papers.
+
+\section{Conclusion}
+
+Analysis of results against objectives...
+
+\section{Future work}
+
+What went well, what could be improved...
+
+\bibliographystyle{plainnat}
+\bibliography{dissertation}
+
+\end{document}
