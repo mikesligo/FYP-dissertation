@@ -13,47 +13,39 @@
 
 \section{Introduction}
 
-\subsection{Background}
-
-\subsubsection{Volatility}
-
-Volatility in financial markets (huge discussion on volatility, why it happens, why prices doesn't behave around the mean as expected etc)...	
-
-\subsubsection{Foreign Exchange}
-
-In the past 30 years the foreign exchange markets has grown from an exclusive, locked down market to one of the most actively traded and liquid markets today. The market has many interesting properties compared to the more historically significant stock market, such as 24 hour trading, and the price being a good general reflection on the state of a country or unions economy. However, due to the recent surge in interest in this market it has not had the same level of study as the traditionally popular markets despite showing some interesting behaviours that may be of interest...
-
-\cite{taprofitability} also found that different markets were better suited to Technical Analysis, with Foreign Exchange used in just under a third of the studies listed, and just under half of the modern studies listed. Interestingly they find that profits in this market seem to gradually decrease over time. This is also found by \cite{ttrp2006}, who suggest that the Foreign Exchange market has become more efficient in recent times.
-
-\subsubsection{Fuzzy Logic}
-
-Some of the greatest difficulties with detecting certain patterns in technical analysis is determining whether a price is a valid part of a pattern when it is 'kind of' part of a pattern and 'kind of' not. Studies on technical analysis often define crisp ranges to group together prices, such as in \citep{foundations} where prices are seen to be equal in a pattern if they are within 1.5\% of their averages. This of course leaves us with the issue that prices within 1.49\% are observered as being part of a pattern but prices within 1.51\% are discarded in the same manner as a price that differs dramatically...
-
 \subsection{Objectives}
 
-\subsubsection{Benefits of Fuzzy Pattern Matching}
+fuzzy vs crisp. EMH. TA. different time periods. Different securities
+
+\subsubsection{Fuzzy Pattern Matching}
 
 Fuzzy logic is still a new field of interest but with a wide range of applications. There is still much room for research that demonstrates the differences in performance between using a fuzzy logic system and using a traditional crisp logic system... (Need to actually do both then!)
 
-\subsubsection{Applying Stock Market Analysis to Foreign Exchange Markets}
-
-The methods described in this paper have been shown to be effective at predicting the price movement of companies on the Stock Exchange. There appears to be significant differences in the behaviour of the foreign exchange market and the Stock exchange, as told by ...
-
-\subsubsection{Predictive Capability of Technical Analysis}
+\subsubsection{Technical Analysis}
 
 There is still much debate as to whether analysis of previous price action can be used to determine future price performance...
 
-\subsubsection{Using Statistical Techniques to Analyse Price Movement}
-
-I'm not sure where to throw this in, but it's important. This is essentially the only way the method my dissertation differs to previous work, so I need to justify it. (ie. I'm grouping the price using z-scores)...
-
-\section{State of the art}
+\section{Background}
 
 AIM: Write for someone not familiar with the subject
 
+\subsection{Volatility}
+
+Volatility in financial markets (huge discussion on volatility, why it happens, why prices doesn't behave around the mean as expected etc)...	
+
+\subsection{Foreign Exchange}
+
+In the past 30 years the foreign exchange markets has grown from an exclusive, locked down market to one of the most actively traded an qd liquid markets today. The market has many interesting properties compared to the more historically significant stock market, such as 24 hour trading, and the price being a good general reflection on the state of a country or unions economy. However, due to the recent surge in interest in this market it has not had the same level of study as the traditionally popular markets despite showing some interesting behaviours that may be of interest...
+
+\cite{taprofitability} also found that different markets were better suited to Technical Analysis, with Foreign Exchange used in just under a third of the studies listed, and just under half of the modern studies listed. Interestingly they find that profits in this market seem to gradually decrease over time. This is also found by \cite{ttrp2006}, who suggest that the Foreign Exchange market has become more efficient in recent times.
+
+\subsection{Fuzzy Logic}
+
+Some of the greatest difficulties with detecting certain patterns in technical analysis is determining whether a price is a valid part of a pattern when it is 'kind of' part of a pattern and 'kind of' not. Studies on technical analysis often define crisp ranges to group together prices, such as in \citep{foundations} where prices are seen to be equal in a pattern if they are within 1.5\% of their averages. This of course leaves us with the issue that prices within 1.49\% are observered as being part of a pattern but prices within 1.51\% are discarded in the same manner as a price that differs dramatically...
+
 \subsection{Technical Analysis}
 
-Technical Analysis is a form of financial analysis where past price behaviour is used to predict future price behaviour in financial markets. Proponents of this system claim that the movement of price, or change in some other factor such as volume, can be subject to recurring patterns, which can be used to predict future changes in price. Examples of this form of analysis include identifying trends in a graph of price movement, or concluding that a price is unlikely to go lower than the 52-week low.
+Technical Analysis is a form of financial analysis where past price behaviour is used to predict future price behaviour in financial markets \cite{foundations} say that ``the general goal of Technical Analysis is to identify regularities in the time series of prices by extracting non-linear patterns from noisy data''. Examples of this form of analysis include identifying trends in a graph of price movement, or concluding that a price is unlikely to go lower than the 52-week low.
 
 \subsubsection{History}
 
@@ -102,7 +94,7 @@ perform statistical tests with either conventional statistical tests or more sop
 
 But the question still remains, with so much positive evidence and theoretical explanations, why is the use of Technical Analysis still such a controversial issue among Professionals and Academics? 
 
-In the professional world, it could be due to the difficulty in experimentally verifying some Technical Analysis techniques, many of which rely on visual cues in the eyes on an Expert. This subjectivity as to the existence of a pattern can sometimes lead to experts viewing differently or disagreeing about certain patterns, fuelling a controversy that Technical Analysis is nothing more than pseudo-analysis. Also with most studies finding some technical trading strategies successful and many unsuccessful, it might be perceived as safer to ignore Technical Analysis altogether.
+In the professional world, it could be due to the difficulty in experimentally verifying some Technical Analysis techniques, many of which rely on visual cues in the eyes of an Expert. This subjectivity as to the existence of a pattern can sometimes lead to experts viewing differently or disagreeing about certain patterns, fuelling a controversy that Technical Analysis is nothing more than pseudo-analysis. Also with most studies finding some technical trading strategies successful and many unsuccessful, it might be perceived as safer to ignore Technical Analysis altogether.
 
 In the Academic world, \cite{taprofitability} point to \cite{assetpricing} who says that ``trading rules that reliably survive transactions costs and do not implicitly expose the investor to risk have not yet been reliably demonstrated''. They interpret this to mean that the scepticism is due to data snooping problems, and insignificant profits after taking adjustments for transaction costs and risk.
 
@@ -110,27 +102,39 @@ Data snooping is a difficult issue to address, but studies more recent than thos
 
 [Discussion of studies since 2004]
 
-\subsection{Time-Series analysis}
+\subsection{Techniques}
 
-Discussion of the various papers that this is inspired from. The TAIEX paper, the univeristy enrollment paper,  the various dual factor fuzzy logic time series papers.
+There are many trading strategies that use Technical Analysis. Almost any strategy that uses past price movement or behaviour as an indicator for future price counts as a technical trading strategy, but there are several techniques and styles in particular that have become prominent tools in Technical Analysis. 
 
-\section{Method}
+\begin{itemize}
+\item Moving averages are graph lines that indicate the average price over a fixed period. Different functions can also be used such as calculating a weighted moving average. Its purpose is to smooth the noise in a graph and to identify a trend. A moving average cross is where 2 moving averages are used on a graph, generally with one having a short period indicating current trend and one having a long period indicating overall trend. When the line of the short period crosses the line of the long period it is an indication of a change in trend \citep{brock1992}. Moving averages have been used in many studies on technical trading strategies, with generally positive performance. \cite{taprofitability} found moving average rules showed consistently profitable results in the foreign exchange and futures market, and the most reliable performance in the stock market out of the methods tested.
+
+\item Candlestick patterns
+
+\item Oscillators
+
+\item Pivot points, Support and Resistance price levels which are very commonly calculated in industry but have not received significant academic attention \citep[p. 55]{osler2000support}. According to \cite{murphy1999technical}, a support level is ``a level or area on the chart under the market where buying interest is sufficiently strong to overcome selling pressure. As a result, a decline is halted and prices turn back up again''. Resistance is the opposite of support. Often they are levels where the price has had difficulty breaking before, either as static price points (such as the weekly low price) or points where the price meets a trend line that it appears to be bounding off.
+\end{itemize}
+
+\section{Design}
 
 AIM: To leave no doubt in the reader that I have done this correctly, and covered all bases.
 
-\subsection{Acquiring Data}
+\subsection{Motivations}
 
-Data used was publicly available data obtained from [...]. The data was verified against several sources, and verified that data was complete. Data used was daily opening...
+Very few visual chart pattern studies done, which is essentially what I'm finding. Fuzzy logic very applicable
+
+
+
+\subsection{Time-Series analysis}
+
+Discussion of the various papers that this is inspired from. The TAIEX paper, the univeristy enrollment paper,  the various dual factor fuzzy logic time series papers.
 
 \subsection{Statistical Analysis of Data}
 
 A clear picture was desired as to the significance of price movement. The use of z-scores in identifying price patterns was... (NB. This is different to previous papers that I am comparing to which makes comparisons difficult).
 
-\subsection{Time Series Methodology}
-
-How time series analysis works, taken largely from other papers...
-
-\subsection{Crisp Logic System Implementation}
+\subsection{Crisp Design}
 
 Essentially how I applied the time series analysis to what I have right now (using rolling window, using time series methodology). This section may not be necessary.
 
@@ -142,7 +146,15 @@ Why I did mandami for example (nb. not yet decided).
 
 \subsubsection{Implementation}
 
+\subsection{Acquiring Data}
+
+Data used was publicly available data obtained from [...]. The data was verified against several sources, and verified that data was complete. Data used was daily opening...
+
 Step by step fuzzy logic system - fuzzification, inference, aggregation, defuzzification...
+
+\section{Implementation}
+
+...
 
 \section{Results \& Evaluation}
 Stand back and evaluate what you have achieved and how well you have met the objectives. Evaluate your achievements against your objectives in section 1.2. Demonstrate that you have tackled the project in a professional manner. 
