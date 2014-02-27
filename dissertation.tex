@@ -25,23 +25,19 @@ Fuzzy logic is still a new field of interest but with a wide range of applicatio
 
 There is still much debate as to whether analysis of previous price action can be used to determine future price performance...
 
-\section{Background}
+\section{State of the Art}
 
 AIM: Write for someone not familiar with the subject
 
-\subsection{Volatility}
+\subsection{Fuzzy Time Series}
 
-Volatility in financial markets (huge discussion on volatility, why it happens, why prices doesn't behave around the mean as expected etc)...	
+Fuzzy time series is modelling a time series of data, such as a graph of price, and using fuzzy set theory to group and find relations between points on the time series. According to \cite{chen1996forecasting}, "the main difference between a a fuzzy time series and conventional time series is that the values of the former are fuzzy sets and the latter are real numbers". The concept of fuzzy time series was proposed by by \cite{song1993forecasting} when they proposed a model to forecast enrolment at the University of Alabama. 
 
-\subsection{Foreign Exchange}
 
-In the past 30 years the foreign exchange markets has grown from an exclusive, locked down market to one of the most actively traded an qd liquid markets today. The market has many interesting properties compared to the more historically significant stock market, such as 24 hour trading, and the price being a good general reflection on the state of a country or unions economy. However, due to the recent surge in interest in this market it has not had the same level of study as the traditionally popular markets despite showing some interesting behaviours that may be of interest...
 
-\cite{taprofitability} also found that different markets were better suited to Technical Analysis, with Foreign Exchange used in just under a third of the studies listed, and just under half of the modern studies listed. Interestingly they find that profits in this market seem to gradually decrease over time. This is also found by \cite{ttrp2006}, who suggest that the Foreign Exchange market has become more efficient in recent times.
+The model is defined as follows:
 
-\subsection{Fuzzy Logic}
 
-Some of the greatest difficulties with detecting certain patterns in technical analysis is determining whether a price is a valid part of a pattern when it is 'kind of' part of a pattern and 'kind of' not. Studies on technical analysis often define crisp ranges to group together prices, such as in \citep{foundations} where prices are seen to be equal in a pattern if they are within 1.5\% of their averages. This of course leaves us with the issue that prices within 1.49\% are observered as being part of a pattern but prices within 1.51\% are discarded in the same manner as a price that differs dramatically...
 
 \subsection{Technical Analysis}
 
@@ -102,14 +98,14 @@ Data snooping is a difficult issue to address, but studies more recent than thos
 
 [Discussion of studies since 2004]
 
-\subsection{Techniques}
+\subsubsection{Techniques}
 
 There are many trading strategies that use Technical Analysis. Almost any strategy that uses past price movement or behaviour as an indicator for future price counts as a technical trading strategy. Discussed here are 3 techniques that are seen to be widely used in technical trading strategies.
 
 \begin{itemize}
 \item Moving averages are graph lines that indicate the average price over a fixed period. Different functions can also be used such as calculating a weighted moving average. Its purpose is to smooth the noise in a graph and to identify a trend. A moving average cross is where 2 moving averages are used on a graph, generally with one having a short period indicating current trend and one having a long period indicating overall trend. When the line of the short period crosses the line of the long period it is an indication of a change in trend \citep{brock1992}. Moving averages have been used in many studies on technical trading strategies, with generally positive performance. \cite{taprofitability} found moving average rules showed consistently profitable results in the foreign exchange and futures market, and the most reliable performance in the stock market out of the methods tested.
 
-\item Technical Patterns are visual patterns that appear in a graph of price movement. A Head-and-Shoulders pattern is one where the price represents a persons head an shoulders, where the price shows an approximately symmetrical sequence of five local extrema which correspond to 2 shoulders, 2 necks and a head. The outcome of this pattern is that the price moves down. \cite{foundations} examined 10 of these patterns and found overwhelming significance for the indicators when applied to the Nasdaq stock index. \cite{chang1999methodical} also find a Head-and-Shoulders pattern was profitable, but was outperformed by simpler trading rules such as a moving average indicator.
+\item Technical Patterns are visual patterns that appear in a graph of price movement. A Head-and-Shoulders pattern is one where the price represents a persons head an shoulders, where the price shows an approximately symmetrical sequence of five local extrema which correspond to 2 shoulders, 2 necks and a head. The outcome of this pattern is that the price moves down. \cite{foundations} examined 10 of these patterns and found overwhelming significance for the indicators when applied to the Nasdaq stock index. \cite{chang1999methodical} also find a Head-and-Shoulders pattern was profitable, but was outperformed by simpler trading rules such as a moving average indicator. Japanese Candlestick charting is considered to be identifying technical patterns.
 
 \item Pivot points, Support and Resistance price levels which are very commonly calculated in industry but have not received significant academic attention \citep[p. 55]{osler2000support}. According to \cite{murphy1999technical}, a support level is ``a level or area on the chart under the market where buying interest is sufficiently strong to overcome selling pressure. As a result, a decline is halted and prices turn back up again''. Resistance is the opposite of support. Often they are levels where the price has had difficulty breaking before, either as static price points (such as the weekly low price) or points where the price meets a trend line that it appears to be bounding off. \cite{brock1992} found strong support for this style of trading strategy.
 
@@ -125,7 +121,14 @@ Very few visual chart pattern studies done, which is essentially what I'm findin
 
 There are relatively few Technical Analysis studies which identify visual patterns and attempt to evaluate their significance. This is an unexpected phenomenon as so many technical trader rely on visual pattern recognition in their strategy. One reason for this outlined by \cite{2020} is the challenge of ``automatic detection of technical patterns that would be similarly deducted by expert investors''. They make the point that the automated process would need to capture human cognitive abilities, even intuition...
 
+idea: get fuzzy membership to each stdev and use that to determine significance. a pattern could belong to 2 patterns but the outcome will have a fuzzy membership value as dictated by the patterns belongingness to the fuzzy sequence. nb does increase patterns that would be recognised by 2n squared.
+hmmmmm I could adapt the trend weighted model
 
+severe limitation of my method is ignoring high and low, thus eliminating candlestick visual pattern significance
+
+pattern discovery in time series uses bayes rule to determine probability
+
+I am NOT doing the standard fts method, as I am analysing n patterns to results, instead of just 1 -> outcome - though perhaps some did it this way
 
 \subsection{Time-Series analysis}
 
@@ -144,6 +147,12 @@ Essentially how I applied the time series analysis to what I have right now (usi
 \subsubsection{Justification of Design}
 
 Why I did mandami for example (nb. not yet decided).
+
+\subsection{Foreign Exchange}
+
+In the past 30 years the foreign exchange markets has grown from an exclusive, locked down market to one of the most actively traded an qd liquid markets today. The market has many interesting properties compared to the more historically significant stock market, such as 24 hour trading, and the price being a good general reflection on the state of a country or unions economy. However, due to the recent surge in interest in this market it has not had the same level of study as the traditionally popular markets despite showing some interesting behaviours that may be of interest...
+
+\cite{taprofitability} also found that different markets were better suited to Technical Analysis, with Foreign Exchange used in just under a third of the studies listed, and just under half of the modern studies listed. Interestingly they find that profits in this market seem to gradually decrease over time. This is also found by \cite{ttrp2006}, who suggest that the Foreign Exchange market has become more efficient in recent times.
 
 \subsubsection{Implementation}
 
