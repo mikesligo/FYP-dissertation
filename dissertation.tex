@@ -37,14 +37,33 @@ AIM: Write for someone not familiar with the subject
 
 Fuzzy time series is modelling a time series of data, such as a graph of price, and using fuzzy set theory to group and find relations between points on the time series. According to \cite{chen1996forecasting}, "the main difference between a a fuzzy time series and conventional time series is that the values of the former are fuzzy sets and the latter are real numbers". The concept of fuzzy time series was proposed by by \cite{song1993forecasting} when they proposed a model to forecast enrolment at the University of Alabama. 
 
+\subsubsection{Chen's Model}
+
 \cite{chen1996forecasting} later proposed a fuzzy time series model using simplified arithmetic operations instead of a complicated max-min composition. The model is defined as follows:
 
-\newtheorem{chendef}{Definition}
-\begin{chendef}
+\newtheorem{ftsdef}{Definition}
+\begin{ftsdef}
 Let $Y(t)(t= \ldots,0,1,2, \ldots)$, a subset of $\mathbb{R}$, be the universe of discourse on which fuzzy sets $f_i(t)(i=1,2,\ldots)$ are defined and let $F(t)$ be a collection of $f_i(t)(i=1,2,\ldots)$. Then $F(t)$ is called a fuzzy time series on $Y(t)(t= \ldots,0,1,2, \ldots)$.
 
-In this definition, $Y(t)$ represents a time series, with the function returning a value at different points along time $t$. The range of values of this time series at time $t$ represents a universe of discourse at time $t$. A set of linguistic variables are defined over this universe of discourse. $f_i(t)$ are the fuzzy sets of these linguistic variables, that is the membership of the linguistic variables in each fuzzy set $f_i(t)$ which was defined over the universe of discourse. $F(t)$ is the collection of all of these fuzzy sets. This collection of fuzzy sets at any point $t$ on a time series is called a fuzzy time series.
-\end{chendef}
+In this definition, $Y(t)$ represents a time series, with the function returning a value at different points along time $t$. The range of values in this time series is called the universe of discourse, over which a set of linguistic terms are defined. $f_i(t)$ are fuzzy sets of these linguistic terms, consisting of the all the linguistic terms and the membership of each term in that fuzzy set. $F(t)$ is the collection of all of these fuzzy sets. This collection of fuzzy sets at any point $t$ on a time series is called a fuzzy time series.
+
+As an example, consider a graph of the the daily closing stock price for a company. $Y(t)$ is the closing stock price at any day $t$. The universe of discourse is the range of values you are considering at this time, so if your model was considering the prices over the past 100 days, then your universe of discourse would be the range of numbers between the highest and lowest points in the past 100 days. 
+
+This example considers one linguistic variable which indicates the performance of a stock. The universe of discourse is partitioned into separate intervals, $u_1, u_2,\ldots,u_k$. For example, if the universe of discourse was the range in dollars $[100, 200]$, 5 intervals might be used where $u_1 = [100 \ldots 120]$, $u_2 = [120 \ldots 140]$, $u_3 = [140 \ldots 160]$, $u_4 = [160 \ldots 180]$ and $u_5 = [180 \ldots 200]$. Fuzzy sets are then defined which are the linguistic values of the linguistic variable ``performance". For example, 5 fuzzy sets are defined, $very\_low$, $low$, $mid$, $high$ and $very\_high$. These fuzzy sets consist of the grade of membership of each interval in the fuzzy set. For example:
+\begin{description}
+\item[] $very\_low = 1/u_1 + 0.5/u_2 + 0/u_3 + 0/u_4 + 0/u_5$
+\item[] $low = 0.5/u_1 + 1/u_2 + 0.5/u_3 + 0/u_4 + 0/u_5$
+\item[] $med = 0/u_1 + 0.5/u_2 + 1/u_3 + 0.5/u_4 + 0/u_5$
+\item[] $high = 0/u_1 + 0/u_2 + 0.5/u_3 + 1/u_4 + 0.5/u_5$
+\item[] $very\_high = 0/u_1 + 0/u_2 + 0/u_3 + 0.5/u_4 + 1/u_5$
+\end{description}
+
+
+\end{ftsdef}
+
+\begin{ftsdef}
+Let $F(t)$ be a fuzzy time series. If for any time $t$, $F(t) = F(t-1)$ and $F(t)$ only has finite elements, then $F(t)$ is called a time-invariant fuzzy time series. Otherwise it is called a time-variant fuzzy time series.
+\end{ftsdef}
 
 \subsection{Technical Analysis}
 
