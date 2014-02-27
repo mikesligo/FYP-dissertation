@@ -5,6 +5,7 @@
 \usepackage{amssymb}
 \theoremstyle{definition}
 
+
 \title{Dissertation}
 \author{Michael Gallagher}
 
@@ -35,17 +36,17 @@ AIM: Write for someone not familiar with the subject
 
 \subsection{Fuzzy Time Series}
 
-Fuzzy time series is modelling a time series of data, such as a graph of price, and using fuzzy set theory to group and find relations between points on the time series. According to \cite{chen1996forecasting}, "the main difference between a a fuzzy time series and conventional time series is that the values of the former are fuzzy sets and the latter are real numbers". The concept of fuzzy time series was proposed by by \cite{song1993forecasting} when they proposed a model to forecast enrolment at the University of Alabama. 
+Fuzzy time series is modelling a time series of data, such as a graph of price, and using fuzzy set theory to group and find relations between points on the time series. According to \cite{chen1996forecasting}, "the main difference between a a fuzzy time series and conventional time series is that the values of the former are fuzzy sets and the latter are real numbers". The concept of fuzzy time series was proposed by by \cite{song1993forecasting} when they proposed a model to forecast enrolment at the University of Alabama, and improved by \cite{chen1996forecasting} who proposed a model which used simplified arithmetic operations instead of a complicated max-min composition. Many modifications to the model have been published.
+
+The following model is proposed by \cite{chen2002forecasting}. It models a higher order fuzzy time series, which takes better account of the history of data in the time series which has been shown to reduce error. 
 
 \subsubsection{Chen's Model}
-
-\cite{chen1996forecasting} later proposed a fuzzy time series model using simplified arithmetic operations instead of a complicated max-min composition. The model is defined as follows:
 
 \newtheorem{ftsdef}{Definition}
 \begin{ftsdef}
 Let $Y(t)(t= \ldots,0,1,2, \ldots)$, a subset of $\mathbb{R}$, be the universe of discourse on which fuzzy sets $f_i(t)(i=1,2,\ldots)$ are defined and let $F(t)$ be a collection of $f_i(t)(i=1,2,\ldots)$. Then $F(t)$ is called a fuzzy time series on $Y(t)(t= \ldots,0,1,2, \ldots)$.
-
-In this definition, $Y(t)$ represents a time series, with the function returning a value at different points along time $t$. The range of values in this time series is called the universe of discourse, over which a set of linguistic terms are defined. $f_i(t)$ are fuzzy sets of these linguistic terms, consisting of the all the linguistic terms and the membership of each term in that fuzzy set. $F(t)$ is the collection of all of these fuzzy sets. This collection of fuzzy sets at any point $t$ on a time series is called a fuzzy time series.
+\end{ftsdef}
+In this definition, $Y(t)$ represents a time series, returning a value at different points along time $t$. The range of values in this time series is called the universe of discourse. $f_i(t)$ are fuzzy sets over the universe of discourse, consisting of the all the linguistic terms defined in the universe and the membership of each term in that fuzzy set. $F(t)$ is the collection of all of these fuzzy sets. This collection of fuzzy sets at any point $t$ on a time series is called a fuzzy time series.
 
 As an example, consider a graph of the the daily closing stock price for a company. $Y(t)$ is the closing stock price at any day $t$. The universe of discourse is the range of values you are considering at this time, so if your model was considering the prices over the past 100 days, then your universe of discourse would be the range of numbers between the highest and lowest points in the past 100 days. 
 
@@ -58,7 +59,10 @@ This example considers one linguistic variable which indicates the performance o
 \item[] $very\_high = 0/u_1 + 0/u_2 + 0/u_3 + 0.5/u_4 + 1/u_5$
 \end{description}
 
+$F(t)$ the time series of these fuzzy sets.
 
+\begin{ftsdef}[First order model]
+Suppose $F(t)$ is affected by $F(t-1)$ only, then the fuzzy relation can be expressed by $F(t)=F(t-1) \circ R(t,t-1)$, where $R(t,t-1)$ is the fuzzy relationship between $F(t-1)$ and $F(t)$. And the model $F(t)=F(t-1) \circ R(t,t-1)$ is called the first order model $F(t)$
 \end{ftsdef}
 
 \begin{ftsdef}
