@@ -37,11 +37,13 @@ AIM: Write for someone not familiar with the subject
 
 Fuzzy time series is modelling a time series of data, such as a graph of price, and using fuzzy set theory to group and find relations between points on the time series. According to \cite{chen1996forecasting}, "the main difference between a a fuzzy time series and conventional time series is that the values of the former are fuzzy sets and the latter are real numbers". The concept of fuzzy time series was proposed by by \cite{song1993forecasting} when they proposed a model to forecast enrolment at the University of Alabama. 
 
-\cite{chang1999methodical} later proposed a fuzzy time series model using simplified arithmetic operations instead of a complicated max-min composition. The model is defined as follows:
+\cite{chen1996forecasting} later proposed a fuzzy time series model using simplified arithmetic operations instead of a complicated max-min composition. The model is defined as follows:
 
 \newtheorem{chendef}{Definition}
 \begin{chendef}
 Let $Y(t)(t= \ldots,0,1,2, \ldots)$, a subset of $\mathbb{R}$, be the universe of discourse on which fuzzy sets $f_i(t)(i=1,2,\ldots)$ are defined and let $F(t)$ be a collection of $f_i(t)(i=1,2,\ldots)$. Then $F(t)$ is called a fuzzy time series on $Y(t)(t= \ldots,0,1,2, \ldots)$.
+
+In this definition, $Y(t)$ represents a time series, with the function returning a value at different points along time $t$. The range of values of this time series at time $t$ represents a universe of discourse at time $t$. A set of linguistic variables are defined over this universe of discourse. $f_i(t)$ are the fuzzy sets of these linguistic variables, that is the membership of the linguistic variables in each fuzzy set $f_i(t)$ which was defined over the universe of discourse. $F(t)$ is the collection of all of these fuzzy sets. This collection of fuzzy sets at any point $t$ on a time series is called a fuzzy time series.
 \end{chendef}
 
 \subsection{Technical Analysis}
