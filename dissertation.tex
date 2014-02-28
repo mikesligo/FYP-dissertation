@@ -32,13 +32,13 @@ There is still much debate as to whether analysis of previous price action can b
 
 \section{State of the Art}
 
-AIM: Write for someone not familiar with the subject
-
 \subsection{Fuzzy Time Series}
 
-Fuzzy time series is modelling a time series of data, such as a graph of price, and using fuzzy set theory to group and find relations between points on the time series. According to \cite{chen1996forecasting}, "the main difference between a a fuzzy time series and conventional time series is that the values of the former are fuzzy sets and the latter are real numbers". The concept of fuzzy time series was proposed by by \cite{song1993forecasting} when they proposed a model to forecast enrolment at the University of Alabama, and improved by \cite{chen1996forecasting} who proposed a model which used simplified arithmetic operations instead of a complicated max-min composition. Many modifications to the model have been published.
+Fuzzy time series is modelling a time series of data, such as a graph of price, and using fuzzy set theory to group and find relations between points on the time series. According to \cite{chen1996forecasting}, "the main difference between a a fuzzy time series and conventional time series is that the values of the former are fuzzy sets and the latter are real numbers". The concept of fuzzy time series was proposed by by \cite{song1993forecasting, song1994forecasting} when they proposed a model to forecast enrolment at the University of Alabama. Their motivation was to ``find ways of modelling a special dynamic process whose observations are linguistic values instead of numerical ones''. 
 
-The following definitions for a first order fuzzy timer series model are provided by \cite{chen1996forecasting}, \cite{chen1996forecasting} and \cite{chu2009fuzzy}.
+\subsubsection{Definitions}
+
+The following definitions for a first order fuzzy time series model are provided by \cite{chen1996forecasting}, \cite{chen1996forecasting} and \cite{chu2009fuzzy}.
 
 \begin{ftsdef}
 Let $Y(t)(t= \ldots,0,1,2, \ldots)$, a subset of $\mathbb{R}$, be the universe of discourse on which fuzzy sets $f_i(t)(i=1,2,\ldots)$ are defined and let $F(t)$ be a collection of $f_i(t)(i=1,2,\ldots)$. Then $F(t)$ is called a fuzzy time series on $Y(t)(t= \ldots,0,1,2, \ldots)$.
@@ -70,7 +70,21 @@ This means that there is a relationship between the linguistic value for $F(t)$ 
 All fuzzy logical relationships in the fuzzy time series can be further grouped together into fuzzy logical relationship groups according to the same left-hand sides of the fuzzy logical relationship.
 \end{ftsdef}
 
-This definition states that for every fuzzy logical relationship between $F(t)$ and $F(t-1)$, as in Definition 2, the relationships over the time series may be grouped in relationships where $F(t-1)$ are the same. Following from the previous example, if there are 4 fuzzy logical relationships, $low \rightarrow high$, $low \rightarrow med$, $low \rightarrow low$ and $low \rightarrow med$, these can be grouped into the fuzzy logic relationship group $low \rightarrow high,med,low$.
+This definition states that for every fuzzy logical relationship between $F(t)$ and $F(t-1)$, as in Definition 2, the relationships over the time series may be grouped in relationships where $F(t-1)$ are the same. Following from the previous example, if the values for $F(t)$ for a sequence of points on a time series are $low$, $high$, $med$, $low$, $low$ and $very\_high$, then the fuzzy logic relationships are $low \rightarrow high$, $high \rightarrow med$, $med \rightarrow low$, $low \rightarrow low$ and $low \rightarrow very\_high$. These can then be grouped into fuzzy logical relationship groups:
+
+show fuzzy logic relations in seperate table
+
+\begin{table}[h]
+	\center
+	\begin{tabular}{ c c c c }
+  	Group 1: & $low$ & $\rightarrow$ & $high, low, very\_high$ \\
+  	Group 2: & $high$ & $\rightarrow$ & $med$ \\
+  	Group 3: & $med$ & $\rightarrow$ & $low$ \\
+	\end{tabular}
+	\caption{Fuzzy Logical Relationship Groups}
+\end{table}
+
+These relationships are then used to forecast observations in time. Taking $t$ as the point in time to be forecast, we can predict $F(t)$ using the fuzzy logic relationship grouping for $F(t-1)$. If there is only 1 fuzzy logic relationship for $F(t-1)$, then that relationship is used for the forecast. Continuing from the example, if $F(t-1)$ is $high$, then Group 2 is referenced, and the only right-hand side value, $med$, is used as the forecast. Various solutions have been proposed in the case that there is more than one outcome on the right-hand side of a fuzzy logical relationship group, as with Group 1, including max-min composition as proposed by \cite{song1993forecasting} and simple arithmethic operations as proposed by \cite{chen1996forecasting}.
 
 \begin{ftsdef}
 Suppose $R(t,t-1)$ is a first order model of $F(t)$. If for any $t$, $R(t,t-1)$ is independent of $t$, that is for any $t$, $R(t,t-1) = R(t-1,t-2)$, then $F(t)$ is called a time-invariant fuzzy time series or else it is called a time-variant fuzzy time series.
@@ -79,6 +93,8 @@ Suppose $R(t,t-1)$ is a first order model of $F(t)$. If for any $t$, $R(t,t-1)$ 
 This definition defines a time invariant and a time-variant fuzzy time series. By this definition a time-variant fuzzy time series is one where the relation between values $F(t)$ and $F(t-1)$ is never the same as the relation between $F(t-1)$ and $F(t-2)$. Combining this with Definition 2, a time-variant fuzzy time series is one in which $F(t)$ and $F(t-1)$ never have the same fuzzy values.
 
 Practically, most sufficiently large fuzzy time series will have consecutive fuzzy values, and as such will be time-invariant fuzzy time series. \cite{song1993forecasting} provides a theorem that implies that ``in the case of a time-invariant, it is very easy and convenient to calculate the first order model''.
+
+\subsubsection{Dual Factor}
 
 \subsection{Technical Analysis}
 
@@ -110,7 +126,7 @@ So why is Technical Analysis still widely used if it contradicts popular financi
 
 \subsubsection{Human Perception}
 
-One of several explanations by \cite[p.45-71]{aronson2011evidence} is that humans suffer cognitive biases when determining the significance of visual patterns in their analysis. Many experts believe they can spot visual patterns such as price trends on a graph, and would take the claim that these trends are irrelevant as ridiculous. Technical Analysts take the significance of these patterns for granted. However when developing or practising a trading system based on patterns, they can succumb to confirmation bias by giving a higher significance to evidence that supports the pattern they're looking for as opposed to evidence for other patterns that might be available. Also when determining the efficacy of these systems based on past data, hindsight bias can lead to certain patterns appearing obvious after their formation. This leads an expert to think this pattern is easily detectable, even though while the pattern was forming the evidence for that particular pattern was indecisive, and possibly pointed to other, contradictory patterns \cite[p.62]{aronson2011evidence}.
+One of several explanations by \cite[p.45-71]{aronson2011evidence} is that humans suffer cognitive biases when determining the significance of visual patterns in their analysis. Many experts believe they can spot visual pa	tterns such as price trends on a graph, and would take the claim that these trends are irrelevant as ridiculous. Technical Analysts take the significance of these patterns for granted. However when developing or practising a trading system based on patterns, they can succumb to confirmation bias by giving a higher significance to evidence that supports the pattern they're looking for as opposed to evidence for other patterns that might be available. Also when determining the efficacy of these systems based on past data, hindsight bias can lead to certain patterns appearing obvious after their formation. This leads an expert to think this pattern is easily detectable, even though while the pattern was forming the evidence for that particular pattern was indecisive, and possibly pointed to other, contradictory patterns \cite[p.62]{aronson2011evidence}.
 
 Another explanation is that Technical Analysis appeals to behavioural psychology. If a large amount of investors are searching for similar patterns, then the outcome following these patterns may become a self-fulfilling prophecy. A study by \cite{examininguse1997} finds that 49\% of Foreign-Exchange Technical Analysts explicitly cite this as a reason. These points are disputed by Malkiel however, stating "The problem is that once such a regularity is known to market participants, people will act in a way that prevents it from happening in the future" \cite[p.162]{randomwalk2012}.
 
