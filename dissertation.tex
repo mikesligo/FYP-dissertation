@@ -64,15 +64,26 @@ Suppose $F(t)$ is caused by $F(t-1)$ only, then this fuzzy relation can be expre
 
 Definition 1 shows that $F(t)$ is a linguistic variable with linguistic values $f_i(t) (i=1,2,\ldots)$. Definition 2 states that, for a first order fuzzy time series, for every linguistic value in the $F(t)$, there is a relationship $R$ between $F(t-1)$ and $F(t)$. 
 
-This means that there is a relationship between the linguistic value for $F(t)$ at every point in time and the next point in time. Following from the previous example, if the linguistic value for $F(1)$ was $low$ and the value for $F(2)$ was $high$, then there exists a relation $low \rightarrow high$, which indicates that $high$ followed $low$ in the fuzzy time series. This fuzzy relationship can be found for all consecutive points in time.
+This means that there is a relationship between the linguistic value for $F(t)$ at every point in time and the next point in time. Following from the previous example, consider the fuzzy time series $F(t)(t=1,2,\ldots,6)$ where $f(1)=low$, $f(2)=high$, $f(3)=med$, $f(4)=low$, $f(5)=low$ and $f(6)=very\_high$, then the fuzzy logic relationships can be shown as follows: 
+
+
+\begin{table}[h]
+	\center
+	\begin{tabular}{ l l l}
+  	$low \rightarrow high$  \\
+  	$high \rightarrow med$ \\
+  	$med \rightarrow low$ \\
+  	$low \rightarrow low$ \\
+  	$low \rightarrow very\_high$ \\
+	\end{tabular}
+	\caption{Fuzzy Logical Relationships}
+\end{table}
 
 \begin{ftsdef}
 All fuzzy logical relationships in the fuzzy time series can be further grouped together into fuzzy logical relationship groups according to the same left-hand sides of the fuzzy logical relationship.
 \end{ftsdef}
 
-This definition states that for every fuzzy logical relationship between $F(t)$ and $F(t-1)$, as in Definition 2, the relationships over the time series may be grouped in relationships where $F(t-1)$ are the same. Following from the previous example, if the values for $F(t)$ for a sequence of points on a time series are $low$, $high$, $med$, $low$, $low$ and $very\_high$, then the fuzzy logic relationships are $low \rightarrow high$, $high \rightarrow med$, $med \rightarrow low$, $low \rightarrow low$ and $low \rightarrow very\_high$. These can then be grouped into fuzzy logical relationship groups:
-
-show fuzzy logic relations in seperate table
+This definition states that for every fuzzy logical relationship between $F(t)$ and $F(t-1)$, as in Definition 2, the relationships over the time series may be grouped in relationships where $F(t-1)$ are the same. The fuzzy logical relationship groups for the example can be shown as follows:
 
 \begin{table}[h]
 	\center
