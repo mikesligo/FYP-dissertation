@@ -110,13 +110,17 @@ Practically, most sufficiently large fuzzy time series will have consecutive fuz
 
 The typical use of a fuzzy time series is to forecast observations on the time series using historical data. Studies using fuzzy time series have been carried out on forecasting university enrolment \citep{song1993forecasting, song1994forecasting, chen1996forecasting, chen2002forecasting, chen2004new, cheng2006trend, lee2006pattern, huarng2006ratio, tsaur2012fuzzy}, Stock Market price \citep{huarng2005type, cheng2006trend, lee2006pattern, huarng2006ratio, Chen2007fib, chu2009fuzzy}, Foreign-Exchange rates \citep{tsaur2012fuzzy} and temperature \citep{temperatureprediction2000, lee2006pattern}.
 
-\cite{song1993forecasting} pioneered the fuzzy time series model providing the definitions for the concept and a method for modelling a time invariant fuzzy time series for forecasting student enrolments. The method was shown to be better than the Linear Regression Method for forecasting these enrolments. It followed a similar series of steps as the example provided with the definitions, but has the key difference of defining relations between fuzzy values using matrices. They also use a simple defuzzification algorithm to interpret the results, to which they claim ``it is not difficult to jump to the conclusion that in the interpretation of the output results, experience knowledge is still needed''. The process is as follows:
+\cite{song1993forecasting} pioneered the fuzzy time series model providing the definitions for the concept and a method for modelling a time invariant fuzzy time series. The method was shown to be better than the Linear Regression Method for forecasting student enrolments at the University of Alabama. It followed a similar series of steps as the example provided with the definitions, but has the key difference of defining relations between fuzzy values using max-min composition, and thus matrix operations. They also use a simple defuzzification algorithm to interpret the results, to which they claim ``it is not difficult to jump to the conclusion that in the interpretation of the output results, experience knowledge is still needed''. The process is as follows:
 
-\begin{itemize}
+\begin{enumerate}
  \item If the membership of an output has only one maximum, then select the midpoint of the interval corresponding to the maximum as the output value
  \item If the membership of an output has two or more consecutive maximums, then select the midpoint of the corresponding conjunct intervals as the output
  \item Otherwise, use the standardised membership and the midpoint of each interval to calculate the ``mean'' using $\sum S_i M_i$ where $S_i$ is the standardised membership and $M_i$ the midpoint of interval $i$. This mean will be taken as the output value
- \end{itemize} 
+\end{enumerate} 
+ 
+\cite{chen1996forecasting} made improvements to the model used by \cite{song1993forecasting} by using simplified mathematical operations instead of computationally expensive max-min composition for defining fuzzy relations. 
+
+[define the composition Song did according to section 3 of chen, then talk about the simplified method, and possibly give the step by step for the whole thing - have to do it somewhere, and cheng seems to think it's a good base model to define]
 
 \subsection{Technical Analysis}
 
