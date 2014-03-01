@@ -69,7 +69,7 @@ This means that there is a relationship between the linguistic value for $F(t)$ 
 
 \begin{table}[h]
 	\center
-	\begin{tabular}{ l l l}
+	\begin{tabular}{ l l l }
   	$low \rightarrow high$  \\
   	$high \rightarrow med$ \\
   	$med \rightarrow low$ \\
@@ -101,11 +101,15 @@ These relationships are then used to forecast observations in time. Taking $t$ a
 Suppose $R(t,t-1)$ is a first order model of $F(t)$. If for any $t$, $R(t,t-1)$ is independent of $t$, that is for any $t$, $R(t,t-1) = R(t-1,t-2)$, then $F(t)$ is called a time-invariant fuzzy time series or else it is called a time-variant fuzzy time series.
 \end{ftsdef}
 
-This definition defines a time invariant and a time-variant fuzzy time series. By this definition a time-variant fuzzy time series is one where the relation between values $F(t)$ and $F(t-1)$ is never the same as the relation between $F(t-1)$ and $F(t-2)$. Combining this with Definition 2, a time-variant fuzzy time series is one in which $F(t)$ and $F(t-1)$ never have the same fuzzy values.
+This definition defines a time invariant and a time-variant fuzzy time series. By this definition a time-variant fuzzy time series is one where the relation between values $F(t)$ and $F(t-1)$ is never the same as the relation between $F(t-1)$ and $F(t-2)$. Combining this with Definition 2, a time-variant fuzzy time series is one in which $F(t)$ and $F(t-1)$ never have the same fuzzy values. 
 
 Practically, most sufficiently large fuzzy time series will have consecutive fuzzy values, and as such will be time-invariant fuzzy time series. \cite{song1993forecasting} provides a theorem that implies that ``in the case of a time-invariant, it is very easy and convenient to calculate the first order model''.
 
-\subsubsection{Dual Factor}
+\subsubsection{Proposed Models}
+
+The typical use of a fuzzy time series is to forecast observations on the time series using historical data. Studies using fuzzy time series have been carried out on forecasting university enrolment \citep{song1993forecasting, song1994forecasting, chen1996forecasting, cheng2006trend, tsaur2012fuzzy, lee2006pattern, chen2002forecasting, chen2004new, huarng2006ratio}, Stock Market price \citep{chu2009fuzzy, cheng2006trend, lee2006pattern, Chen2007fib, huarng2005type, huarng2006ratio}, Foreign-Exchange rates \citep{tsaur2012fuzzy} and temperature {temperatureprediction2000, lee2006pattern}.
+
+The concept assumes that previous relations on the time series are likely to happen again. Also if there are multiple fuzzy logical relationships for an observation $F(t-1)$ when trying to forecast $F(t)$, there are methods for fuzzy composition and defuzzification which produce accurate results.
 
 \subsection{Technical Analysis}
 
