@@ -34,7 +34,9 @@ There is still much debate as to whether analysis of previous price action can b
 
 \subsection{Fuzzy Time Series}
 
-Fuzzy time series is modelling a time series of data, such as a graph of price, and using fuzzy set theory to group and find relations between points on the time series. According to \cite{chen1996forecasting}, "the main difference between a a fuzzy time series and conventional time series is that the values of the former are fuzzy sets and the latter are real numbers". The concept of fuzzy time series was proposed by by \cite{song1993forecasting, song1994forecasting} when they proposed a model to forecast enrolment at the University of Alabama. Their motivation was to ``find ways of modelling a special dynamic process whose observations are linguistic values instead of numerical ones''. 
+\cite{box2013time} describes a time series as ``a sequence of observations taken sequentially in time''. A graph of stock price, the inventory of an item at a warehouse, the height of a river or the temperature for an area could be considered a time series of data. A core feature of a time series is that typically adjacent observations are dependent, such that the value of the observation at time $t$ is somewhat dependent on the value at time $t-1$. The practical implications of this feature is that through time series analysis it is possible to model a time series and use this model to forecast observations.
+
+A fuzzy time series is a model of a time series that uses fuzzy set theory to find relationships between points on the time series and use these relationships to forecast observations. According to \cite{chen1996forecasting}, "the main difference between a a fuzzy time series and conventional time series is that the values of the former are fuzzy sets and the latter are real numbers". The concept of fuzzy time series was proposed by by \cite{song1993forecasting, song1994forecasting} when they proposed a model to forecast enrolment at the University of Alabama. Their motivation was to ``find ways of modelling a special dynamic process whose observations are linguistic values instead of numerical ones''. 
 
 \subsubsection{Definitions}
 
@@ -107,9 +109,11 @@ Practically, most sufficiently large fuzzy time series will have consecutive fuz
 
 \subsubsection{Proposed Models}
 
-The typical use of a fuzzy time series is to forecast observations on the time series using historical data. Studies using fuzzy time series have been carried out on forecasting university enrolment \citep{song1993forecasting, song1994forecasting, chen1996forecasting, cheng2006trend, tsaur2012fuzzy, lee2006pattern, chen2002forecasting, chen2004new, huarng2006ratio}, Stock Market price \citep{chu2009fuzzy, cheng2006trend, lee2006pattern, Chen2007fib, huarng2005type, huarng2006ratio}, Foreign-Exchange rates \citep{tsaur2012fuzzy} and temperature {temperatureprediction2000, lee2006pattern}.
+The typical use of a fuzzy time series is to forecast observations on the time series using historical data. Studies using fuzzy time series have been carried out on forecasting university enrolment \citep{song1993forecasting, song1994forecasting, chen1996forecasting, cheng2006trend, tsaur2012fuzzy, lee2006pattern, chen2002forecasting, chen2004new, huarng2006ratio}, Stock Market price \citep{chu2009fuzzy, cheng2006trend, lee2006pattern, Chen2007fib, huarng2005type, huarng2006ratio}, Foreign-Exchange rates \citep{tsaur2012fuzzy} and temperature \citep{temperatureprediction2000, lee2006pattern}.
 
 The concept assumes that previous relations on the time series are likely to happen again. Also if there are multiple fuzzy logical relationships for an observation $F(t-1)$ when trying to forecast $F(t)$, there are methods for fuzzy composition and defuzzification which produce accurate results.
+
+
 
 \subsection{Technical Analysis}
 
