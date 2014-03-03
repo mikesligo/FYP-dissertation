@@ -38,6 +38,8 @@ There is still much debate as to whether analysis of previous price action can b
 
 A fuzzy time series is a model of a time series that uses fuzzy set theory to find relationships between points on the time series and use these relationships to forecast observations. According to \cite{chen1996forecasting}, "the main difference between a a fuzzy time series and conventional time series is that the values of the former are fuzzy sets and the latter are real numbers". The concept of fuzzy time series was proposed by by \cite{song1993forecasting, song1994forecasting} when they proposed a model to forecast enrolment at the University of Alabama. Their motivation was to ``find ways of modelling a special dynamic process whose observations are linguistic values instead of numerical ones''. 
 
+The typical use of a fuzzy time series is to forecast observations on the time series using historical data. Studies using fuzzy time series have been carried out on forecasting university enrolment \citep{song1993forecasting, song1994forecasting, chen1996forecasting, chen2002forecasting, chen2004new, cheng2006trend, lee2006pattern, huarng2006ratio, tsaur2012fuzzy}, Stock Market price \citep{huarng2005type, cheng2006trend, lee2006pattern, huarng2006ratio, Chen2007fib, chu2009fuzzy}, Foreign-Exchange rates \citep{tsaur2012fuzzy} and temperature \citep{temperatureprediction2000, lee2006pattern}.
+
 \subsubsection{Definitions}
 
 The following definitions for a first order fuzzy time series model are provided by \cite{chen1996forecasting}, \cite{chen1996forecasting} and \cite{chu2009fuzzy}.
@@ -106,9 +108,7 @@ This definition defines a time invariant and a time-variant fuzzy time series. B
 
 Practically, most sufficiently large fuzzy time series will have consecutive fuzzy values, and as such will be time-invariant fuzzy time series. \cite{song1993forecasting} provides a theorem that implies that ``in the case of a time-invariant, it is very easy and convenient to calculate the first order model''.
 
-\subsubsection{Proposed Models}
-
-The typical use of a fuzzy time series is to forecast observations on the time series using historical data. Studies using fuzzy time series have been carried out on forecasting university enrolment \citep{song1993forecasting, song1994forecasting, chen1996forecasting, chen2002forecasting, chen2004new, cheng2006trend, lee2006pattern, huarng2006ratio, tsaur2012fuzzy}, Stock Market price \citep{huarng2005type, cheng2006trend, lee2006pattern, huarng2006ratio, Chen2007fib, chu2009fuzzy}, Foreign-Exchange rates \citep{tsaur2012fuzzy} and temperature \citep{temperatureprediction2000, lee2006pattern}.
+\subsubsection{Early Models}
 
 \cite{song1993forecasting} pioneered the fuzzy time series model providing the definitions for the concept and a method for modelling a time invariant fuzzy time series. The method was shown to be better than the Linear Regression Method for forecasting student enrolments at the University of Alabama. It followed a similar series of steps as the example provided with the definitions, but has the key difference of defining relations between fuzzy values using max-min composition, and thus matrix operations. They also use a simple defuzzification algorithm to interpret the results, to which they claim ``it is not difficult to jump to the conclusion that in the interpretation of the output results, experience knowledge is still needed''. The process is as follows:
 
@@ -118,9 +118,21 @@ The typical use of a fuzzy time series is to forecast observations on the time s
  \item Otherwise, use the standardised membership and the midpoint of each interval to calculate the ``mean'' using $\sum S_i M_i$ where $S_i$ is the standardised membership and $M_i$ the midpoint of interval $i$. This mean will be taken as the output value
 \end{enumerate} 
  
-\cite{chen1996forecasting} made improvements to the model used by \cite{song1993forecasting} by using simplified mathematical operations instead of computationally expensive max-min composition for defining fuzzy relations. 
+\cite{chen1996forecasting} made improvements this model by using simplified mathematical operations instead of computationally expensive max-min composition for defining fuzzy relations. This method, while being more efficient, was also shown to be more accurate than the original method proposed by \cite{song1993forecasting}. Many future studies follow the proposed method, changing some individual steps in order to improve accuracy. To aid explanation of future studies, the proposed algorithm is summarised as follows:
 
-[define the composition Song did according to section 3 of chen, then talk about the simplified method, and possibly give the step by step for the whole thing - have to do it somewhere, and cheng seems to think it's a good base model to define]
+\begin{description}
+\item[Step 1] Define a universe of discourse over the maximum and minimum values of observations on the time series and partition it into several intervals
+\item[Step 2] Define fuzzy sets on the universe of discourse. These fuzzy sets are composed of each of the defined intervals and their membership in that fuzzy set. Fuzzify the time series into these fuzzy sets
+\item[Step 3] Calculate the maximum membership of the fuzzified data and form fuzzy logical relationships between the fuzzy values of neighbouring observations on the time series
+\item[Step 4] Group the fuzzy logical relationships into groups such that relationships defined as $R(t,t-1)$ have the same fuzzy value for $t-1$. That is, the relationships have the same fuzzy value on the left hand side. These groups are called fuzzy logical relationship groups
+\item[Step 5] Forecast observations. Let the fuzzy value of $F(t)$ be $A_i$. This step is concerned with forecasting the fuzzy value of $F(t+1)$
+\begin{enumerate}
+\item If  $A_i \rightarrow A_k$ is the only fuzzy logical relationship in the fuzzy logical relationship group associated with $A_t$, then $F(t+1)$ is forecast as $A_k$ 
+\item If there are multiple fuzzy logical relationships associated with $A_i$, such that with fuzzy logical relationship group $A_i \rightarrow A_{i}, A_{j}, \ldots, A_{k}$, then $F(t+1)$ is forecast as $A_{i}, A_{j}, \ldots, A_{k}$
+\item If there are no fuzzy logical relationships associated with $A_i$, then $F(t+1)$ is forecast as $A_i$
+\end{enumerate}
+\item[Step 6] Defuzzify the forecast fuzzy set using the Centroid method. Practically, this involves calculating the average of the midpoints of each interval which has a maximum membership in a fuzzy set that is forecast for $F(t+1)$
+\end{description}
 
 \subsection{Technical Analysis}
 
@@ -221,12 +233,6 @@ Discussion of the various papers that this is inspired from. The TAIEX paper, th
 
 A clear picture was desired as to the significance of price movement. The use of z-scores in identifying price patterns was... (NB. This is different to previous papers that I am comparing to which makes comparisons difficult).
 
-\subsection{Crisp Design}
-
-Essentially how I applied the time series analysis to what I have right now (using rolling window, using time series methodology). This section may not be necessary.
-
-\subsection{Fuzzy Logic Inference System}
-
 \subsubsection{Justification of Design}
 
 Why I did mandami for example (nb. not yet decided).
@@ -249,6 +255,8 @@ Step by step fuzzy logic system - fuzzification, inference, aggregation, defuzzi
 
 ...
 
+\subsection{Optimisation}
+
 \section{Results \& Evaluation}
 Stand back and evaluate what you have achieved and how well you have met the objectives. Evaluate your achievements against your objectives in section 1.2. Demonstrate that you have tackled the project in a professional manner. 
 
@@ -257,6 +265,8 @@ alleviate data snooping by considering a diverse set of technical trading system
 \subsection{RMSE Performance Indicator}
 
 Outline how it has been used in other papers. Outline how we can draw direct comparisons...
+
+\subsection{Performance}
 
 \subsection{Results}
 
