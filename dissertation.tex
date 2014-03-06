@@ -3,6 +3,7 @@
 \usepackage[round]{natbib}
 \usepackage{amsthm}
 \usepackage{amssymb}
+\usepackage{float}
 \theoremstyle{definition}
 \newtheorem{ftsdef}{Definition}
 
@@ -84,21 +85,13 @@ This definition states that for every fuzzy logical relationship between $F(t)$ 
 	\caption{Fuzzy Logical Relationship Groups}
 \end{table}
 
-These relationships are then used to forecast observations in time. Taking $t$ as the point in time to be forecast, we can predict $F(t)$ using the fuzzy logic relationship grouping for $F(t-1)$. If there is only 1 fuzzy logic relationship for $F(t-1)$, then that relationship is used for the forecast. Continuing from the example, if $F(t-1)$ is $high$, then Group 2 is referenced, and the only right-hand side value, $med$, is used as the forecast. Various solutions have been proposed in the case that there is more than one outcome on the right-hand side of a fuzzy logical relationship group, as with Group 1, including max-min composition as proposed by \cite{song1993forecasting} and simple arithmethic operations as proposed by \cite{chen1996forecasting}.
-
-\begin{ftsdef}
-Suppose $F(t)$ is caused by $F(t-1),F(t-2),\ldots,F(t-n)$ simultaneously, then the fuzzy logical relationship for $F(t)$ can be represented by $F(t-n),\ldots, F(t-2),F(t-1) \rightarrow F(t)$. This is called an $n$th-order fuzzy time series.
-\end{ftsdef}
-
-An $n$th-order or higher-order fuzzy time series, introduced by \cite{chen2002forecasting}, is one where where there is a simultaneous relationship between multiple points on the time series, not just adjacent observations. [TODO: come back to this]
+These relationships are then used to forecast observations in time. Taking $t$ as the point in time to be forecast, we can predict $F(t)$ using the fuzzy logic relationship grouping for $F(t-1)$. If there is only 1 fuzzy logic relationship for $F(t-1)$, then that relationship is used for the forecast. Continuing from the example, if $F(t-1)$ is $high$, then Group 2 is referenced, and the only right-hand side value, $med$, is used as the forecast. Various solutions have been proposed in the case that there is more than one outcome on the right-hand side of a fuzzy logical relationship group, as with Group 1, including max-min composition as proposed by \cite{song1993forecasting} and simple arithmetic operations as proposed by \cite{chen1996forecasting}.
 
 \begin{ftsdef}
 Suppose $R(t,t-1)$ is a first order model of $F(t)$. If for any $t$, $R(t,t-1)$ is independent of $t$, that is for any $t$, $R(t,t-1) = R(t-1,t-2)$, then $F(t)$ is called a time-invariant fuzzy time series or else it is called a time-variant fuzzy time series.
 \end{ftsdef}
 
-This definition defines a time invariant and a time-variant fuzzy time series. By this definition a time-variant fuzzy time series is one where the relation between values $F(t)$ and $F(t-1)$ is never the same as the relation between $F(t-1)$ and $F(t-2)$. Combining this with Definition 2, a time-variant fuzzy time series is one in which $F(t)$ and $F(t-1)$ never have the same fuzzy values. 
-
-Practically, most sufficiently large fuzzy time series will have consecutive fuzzy values, and as such will be time-invariant fuzzy time series. \cite{song1993forecasting} provides a theorem that implies that ``in the case of a time-invariant, it is very easy and convenient to calculate the first order model''.
+This definition defines a time invariant and a time-variant fuzzy time series. By this definition a time-variant fuzzy time series is one where the relation between values $F(t)$ and $F(t-1)$ is never the same as the relation between $F(t-1)$ and $F(t-2)$. Combining this with Definition 2, a time-variant fuzzy time series is one in which $F(t)$ and $F(t-1)$ never have the same fuzzy values. \cite{song1993forecasting} provides a theorem that implies that ``in the case of a time-invariant, it is very easy and convenient to calculate the first order model''.
 
 \subsubsection{Early Models}
 
@@ -126,13 +119,64 @@ Practically, most sufficiently large fuzzy time series will have consecutive fuz
 \item[Step 6] Defuzzify the forecast fuzzy set using the Centroid method. Practically, this involves calculating the average of the midpoints of each interval which has a maximum membership in a fuzzy set that is forecast for $F(t+1)$
 \end{description}
 
-\subsubsection{Interval Selection}
+\subsubsection{Higher-Order Models}
 
-\cite{lee2006pattern} studies candlestick patterns over a fuzzy time series...
+An $n$th-order or higher-order fuzzy time series is one where where there is a simultaneous relationship between multiple points on the time series, not just adjacent observations.
+
+\begin{ftsdef}
+Suppose $F(t)$ is caused by $F(t-1),F(t-2),\ldots,F(t-n)$ simultaneously, then the fuzzy logical relationship, $R$, for $F(t)$ can be represented by $F(t-n),\ldots, F(t-2),F(t-1) \rightarrow F(t)$. This is called an $n$th-order fuzzy time series.
+\end{ftsdef}
+
+This definition does not define the relationship between the points on the time series, which can be defined in various ways. \cite{tsai1999study} developed a straightforward procedure which maintains the captures of higher-order time series while maintaining the simplicity of first-order calculations.
+
+On an $m$-order fuzzy time series, $F(t)$ is caused by $F(t-1)$, $F(t-2)$, $\ldots$, and $F(t-m)$ simultaneously. The $m$ fuzzy logical relationships for $F(t)$ are obtained in the same manner as a first-order model. The relationships can be represented as follows:
+
+\begin{table}[H]
+	\center
+	\begin{tabular}{ c }
+  	$F(t-1) \rightarrow F(t)$ \\
+  	$F(t-2) \rightarrow F(t)$ \\
+  	\vdots \\
+  	$F(t-m) \rightarrow F(t)$ \\
+	\end{tabular}
+	\caption{Higher-Order Fuzzy Logical Relationships}
+\end{table}
+
+The relational function for an expression $F(t-k) \rightarrow F(t)$ is shown as $R^{m}_{k}(t)$. In an $m$-order fuzzy time series for any forecast $F(t)$ there are $m$ relational functions $R^{m}_{\ \ 1}, R^{m}_{\ \ 2}, \ldots, R^{m}_{\ \ m}$, where $R^{m}_{\ \ k}=R(t,t-k)$. In $R^{m}_{\ \ k}$, the $m$ indicates what order model the relation is for the $i$ represents the first-order fuzzy relation between $F(t-k)$ and $F(k)$, for all $k={1,2,\ldots,m}$. For example, the relational matrix representing the fuzzy logical relationships between observations 2 points in time apart on a third-order fuzzy time series could be shown as:
+
+\begin{table}[H]
+	\center
+	\begin{tabular}{ c }
+  	$R^{3}_{\ \ 2}(1) = F(1) \times F(3)$ \\
+  	$R^{3}_{\ \ 2}(2) = F(2) \times F(4)$ \\
+  	\vdots \\
+  	$R^{3}_{\ \ 2}(k) = F(k) \times F(k-2)$ \\
+	\end{tabular}
+	\caption{Second-Order Fuzzy Logical Relationships}
+\end{table}
+
+Once all relations are obtained the forecast values for $F(i)$ for each order model can be shown:
+
+\begin{table}[H]
+	\center
+	\begin{tabular}{ c }
+  	$F_{i1} = F_{i-1} \circ R^{m}_{\ \ 1}$ \\
+  	$F_{i2} = F_{i-2} \circ R^{m}_{\ \ 2}$ \\
+  	\vdots \\
+  	$F_{im} = F_{i-m} \circ R^{m}_{\ \ m}$ \\
+	\end{tabular}
+	\caption{Forecast Values for $F(i)$}
+\end{table}
+
+Where $F_{im}$ is the $m$th possible fuzzy value for $F(i)$. There are up to $m$ possible values as there will be up to $m$ first-order relations. Since the above relations happen simultaneously, the forecast for $F(i)$ is the intersection of all $F_{ik}$.
+
+\cite{chen2002forecasting, tsai1999study}
+
+\subsubsection{Interval Selection}
 
 Deciding on the size and number of interval partitions on the universe of discourse is an important issue. More intervals imply more accurate fuzzy logical relationships, and thus model the time series more precisely. More intervals also result in each fuzzy value representing a small range of values, which result in a more accurate crisp value during defuzzification. However, too many intervals can result in a model which conforms to historical data too closely, as each fuzzy logical relationship group is likely to have fewer relations. Also, too many intervals will not be recognised by an expert which negates some of the benefits of using fuzzy logic.
 
-Many studies use the same, arbitrarily picked interval size such as $1000$ \citep{song1993forecasting, song1994forecasting, chen1996forecasting, chen2002forecasting, chen2004new}. However, several studies have demonstrated that using more intervals can improve accuracy. \citep{chen2002forecasting} shows that when modelling a higher-order fuzzy time series, increasing the number of intervals dramatically improved results. They found that by increasing the number of intervals from $7$ to $19$, the root mean square error of the forecast results fell from $609.22$ to $199.32$. \cite{chen2004new} proposed a method for forecasting university enrolments which used 13 intervals instead of the usual 7, and an extra step which further divided each interval into 4 parts in order to detect a trend of movement. This method demonstrated significantly improved forecasting accuracy, although this can not be attributed solely to increasing the number of intervals.
+Many studies use the same, arbitrarily picked interval size such as $1000$ \citep{song1993forecasting, song1994forecasting, chen1996forecasting, chen2002forecasting, chen2004new}. However, several studies have demonstrated that using more intervals can improve accuracy. \citep{chen2002forecasting} shows that when modelling a higher-order fuzzy time series, increasing the number of intervals dramatically improved results. They found that by increasing the number of intervals from $7$ to $19$, the root mean square error of the forecast results fell from $609.22$ to $199.32$. \cite{tsai1999study} also found a similar improvement when increasing the number of intervals, for both first-order and higher-order time series. \cite{chen2004new} proposed a method for forecasting university enrolments which used 13 intervals instead of the usual 7, and an extra step which further divided each interval into 4 parts in order to detect a trend of movement. Although this can not be attributed solely to increasing the number of intervals, it also demonstrated significantly improved forecasting accuracy.
 
 , as increasing the number of intervals has been shown to improve results \citep{chen2004new}, particularly in higher-order fuzzy time series \citep{chen2002forecasting}. However, increasing the amount by too much loses some of the benefits of fuzzy logic [citation somewhere]. \cite{huarng2006ratio} suggest that ratios, instead of equal length intervals, are more capable of representing the intervals among observations.
 
