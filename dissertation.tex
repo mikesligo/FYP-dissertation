@@ -7,6 +7,7 @@
 \usepackage{tabularx}
 \theoremstyle{definition}
 \newtheorem{ftsdef}{Definition}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}%
 
 \title{Dissertation}
 \author{Michael Gallagher}
@@ -27,11 +28,11 @@
 
 A fuzzy time series is a model of a time series that uses fuzzy set theory to find relationships between points on the time series and use these relationships to forecast observations. According to \cite{chen1996forecasting}, "the main difference between a a fuzzy time series and conventional time series is that the values of the former are fuzzy sets and the latter are real numbers". The concept of fuzzy time series was proposed by by \cite{song1993forecasting, song1994forecasting} when they proposed a model to forecast enrolment at the University of Alabama. Their motivation was to ``find ways of modelling a special dynamic process whose observations are linguistic values instead of numerical ones''. 
 
-The typical use of a fuzzy time series is to forecast observations on the time series using historical data. Studies using fuzzy time series have been carried out on forecasting university enrolment \citep{song1993forecasting, song1994forecasting, chen1996forecasting, chen2002forecasting, chen2004new, cheng2006trend, lee2006pattern, huarng2006ratio, tsaur2012fuzzy}, Stock Market price \citep{huarng2005type, cheng2006trend, lee2006pattern, huarng2006ratio, Chen2007fib, chu2009fuzzy}, Foreign-Exchange rates \citep{tsaur2012fuzzy}, population change \citep{tsai1999study} and temperature \citep{temperatureprediction2000, lee2006pattern}.
+The typical use of a fuzzy time series is to forecast observations on the time series using historical data. Studies using fuzzy time series have been carried out on forecasting university enrolment \citep{song1993forecasting, song1994forecasting, chen1996forecasting, tsai2000forecasting, chen2004new, cheng2006trend, lee2006pattern, huarng2006ratio, tsaur2012fuzzy}, Stock Market price \citep{huarng2005type, cheng2006trend, lee2006pattern, huarng2006ratio, Chen2007fib, chu2009fuzzy}, Foreign-Exchange rates \citep{tsaur2012fuzzy}, population change \citep{tsai1999study} and temperature \citep{temperatureprediction2000, lee2006pattern}.
 
 \subsubsection{Definitions}
 
-The following definitions describe a general model of a fuzzy time series and are provided by \cite{song1993forecasting}, \cite{chen1996forecasting}, \cite{chen2002forecasting} and \cite{chu2009fuzzy}.
+The following definitions describe a general model of a fuzzy time series and are provided by \cite{song1993forecasting}, \cite{chen1996forecasting} and \cite{chu2009fuzzy}.
 
 \begin{ftsdef}
 Let $Y(t)(t= \ldots,0,1,2, \ldots)$, a subset of $\mathbb{R}$, be the universe of discourse on which fuzzy sets $f_i(t)(i=1,2,\ldots)$ are defined and let $F(t)$ be a collection of $f_i(t)(i=1,2,\ldots)$. Then $F(t)$ is called a fuzzy time series on $Y(t)(t= \ldots,0,1,2, \ldots)$.
@@ -122,9 +123,7 @@ This definition defines a time invariant and a time-variant fuzzy time series. B
 
 \subsubsection{Higher-Order Models}
 
-[TODO: Change chen2002forecasting to the correct tsai reference!]
-
-An $n$th-order or higher-order fuzzy time series is one where where there is a simultaneous relationship between multiple points on the time series, not just adjacent observations. \cite{tsai1999study} found that a second-order fuzzy time series lead to more accurate predictions when forecasting population, particularly when the number of intervals on the fuzzy time series was increased. \cite{chen2002forecasting} compared the performance of 5 higher order time series models on predicting university enrolments, and found the higher-order models to be more accurate, with the model increasing in accuracy with every increase in the order of the time series, up to a fifth-order time series.
+An $n$th-order or higher-order fuzzy time series is one where where there is a simultaneous relationship between multiple points on the time series, not just adjacent observations. \cite{tsai1999study} found that a second-order fuzzy time series lead to more accurate predictions when forecasting population, particularly when the number of intervals on the fuzzy time series was increased. \cite{tsai2000forecasting} compared the performance of 5 higher order time series models on predicting university enrolments, and found the higher-order models to be more accurate, with the model increasing in accuracy with every increase in the order of the time series, up to a fifth-order time series.
 
 \begin{ftsdef}
 Suppose $F(t)$ is caused by $F(t-1),F(t-2),\ldots,F(t-n)$ simultaneously, then the fuzzy logical relationship, $R$, for $F(t)$ can be represented by $F(t-n),\ldots, F(t-2),F(t-1) \rightarrow F(t)$. This is called an $n$th-order fuzzy time series.
@@ -177,11 +176,10 @@ Where $F_{im}$ is the $m$th possible fuzzy value for $F(i)$. There are up to $m$
 
 Deciding on the size and number of interval partitions on the universe of discourse is an important issue \citep{Huarng2001effective,  huarng2006ratio}. If there are too few intervals, there will be fewer fluctuations in the fuzzy time series \citep{Huarng2001effective}, which results in less precise fuzzy logical relationships. More intervals also result in each fuzzy value representing a small range of values, which result in a more accurate crisp value during defuzzification. However, too many intervals will not be recognised by an expert which negates some of the benefits of using fuzzy logic.
 
-Many studies use the same, arbitrarily picked interval size such as $1000$ \citep{song1993forecasting, song1994forecasting, chen1996forecasting, chen2002forecasting, chen2004new}. However, several studies have demonstrated that using more intervals can improve accuracy. \citep{chen2002forecasting} shows that when modelling a higher-order fuzzy time series, increasing the number of intervals dramatically improved results. They found that by increasing the number of intervals from $7$ to $19$, the root mean square error of the forecast results fell from $609.22$ to $199.32$. \cite{tsai1999study} also found a similar improvement when increasing the number of intervals, for both first-order and higher-order time series. \cite{chen2004new} proposed a method for forecasting university enrolments which used 13 intervals instead of the usual 7, and an extra step which further divided each interval into 4 parts in order to detect a trend of movement. Although this can not be attributed solely to increasing the number of intervals, it also demonstrated significantly improved forecasting accuracy. 
+Many studies use the same, arbitrarily picked interval size such as $1000$ \citep{song1993forecasting, song1994forecasting, chen1996forecasting, tsai2000forecasting, chen2004new}. However, several studies have demonstrated that using more intervals can improve accuracy. \citep{tsai2000forecasting} shows that when modelling a higher-order fuzzy time series, increasing the number of intervals dramatically improved results. They found that by increasing the number of intervals from $7$ to $19$, the root mean square error of the forecast results fell from $609.22$ to $199.32$. \cite{tsai1999study} also found a similar improvement when increasing the number of intervals, for both first-order and higher-order time series. \cite{chen2004new} proposed a method for forecasting university enrolments which used 13 intervals instead of the usual 7, and an extra step which further divided each interval into 4 parts in order to detect a trend of movement. Although this can not be attributed solely to increasing the number of intervals, it also demonstrated significantly improved forecasting accuracy. 	
 
 \cite{Huarng2001effective} empirically study how the length of intervals affects the forecasting results of a fuzzy time series. They examine two approaches, distribution- and average-based interval length. Both of these approaches are derived using the absolute difference, of any two consecutive observations, called the first differences, and ensure that at least half of the first differences in the time series are reflected by the intervals. 
 
-\newcolumntype{R}{>{\raggedleft\arraybackslash}X}%
 \begin{table}[H]
 	\center
 	\begin{tabularx}{0.5\textwidth}{ X R }
@@ -198,7 +196,9 @@ Many studies use the same, arbitrarily picked interval size such as $1000$ \cite
 
 Both methods utilise a mapping table to approximate the base of the interval based on the average first difference. The distribution-based approach plots the distribution of the first differences using an interval that is derived from the mapping table. The interval on the distribution containing the largest first difference that is at smaller than atleast half the distributions is chosen as the interval for the fuzzy time series. The average-based approach involves deriving the base from the mapping table, calculating half of the average first difference, rounding this value to the derived base and using this value as the interval.
 
-, as increasing the number of intervals has been shown to improve results \citep{chen2004new}, particularly in higher-order fuzzy time series \citep{chen2002forecasting}. However, increasing the amount by too much loses some of the benefits of fuzzy logic [citation somewhere]. \cite{huarng2006ratio} suggest that ratios, instead of equal length intervals, are more capable of representing the intervals among observations.
+\citep{Huarng2001effective} found that these approaches improved the accuracy over the arbitrarily selected interval used in prior studies, with the average-based approach performing better than the distributions based approach. They compared the results of these approaches with 9 arbitrarily chosen but small interval lengths, and found that the average-based approach resulted in the best and second best predictions for university enrolments and TAIEX price respectively. They also found that smaller interval lengths did not always result in a more accurate prediction.
+
+\cite{huarng2006ratio} followed a similar method except used the ratio between the relative differences of points instead of the first differences. Nb my method will probably do this but with zscores, seems to solve the current issues
 
 [TODO: a higher order fuzzy time series model for internet stock trading] used entropy partitioning.
 
