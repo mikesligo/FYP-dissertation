@@ -212,7 +212,9 @@ Both methods utilise a mapping table to approximate the base of the interval bas
 	\caption{Base Mapping Table for Ratios}
 \end{table}
 
-\cite{huarng2006ratio} explored using the ratios between the absolute differences to define intervals. The proposed method follows similar steps to the distribution-based approach for interval selection, and is summarised as follows
+\cite{huarng2006ratio} explored using the ratios between the absolute differences to define intervals. The rationale behind using ratios to determine intervals was that the momentum of the time series oscillates more or less depending on the context. The same source of data, such as a stock price, may have different optimal interval lengths depending on the amount of activity of the time series at that time. Using interval lengths that reflect the relative difference between observations takes this into account without using a secondary data source such as volume.
+
+The proposed method follows similar steps to the distribution-based approach for interval selection, and is summarised as follows
 
 \begin{description}
 \item[Step 1] Calculate the relative difference between adjacent observations such that $r_t=|x_t-x_{t-1}|/x_{t-1}$ for all $t$
@@ -233,17 +235,7 @@ Both methods utilise a mapping table to approximate the base of the interval bas
 The beginning of the first interval, $lower_1$, is set to MIN$(x_t)-c$ where MIN$(x_t)$ is the lowest observation and c is some small constant. The $interval\_length$ for the time series is set to $lower_1 \times ratio$. The upper bound of the first interval, $upper_1$, is set to $lower_1 + interval\_length$. The remaining intervals are calculated using the formula $[lower_k,upper_k]=[lower_{k-1}+interval\_length+c, upper_{k-1}+interval\_length+c]$ for all $k=(2,3,\ldots)$
 \end{description}
 
-Nb my method will probably do this but with zscores, seems to solve the current issues.
-
-[TODO: a higher order fuzzy time series model for internet stock trading] used entropy partitioning.
-
-\subsubsection{Type 2 Models}
-
-Type 2, or two-factors, fuzzy time series models take multiple factors into account when forecasting observations. \cite{temperatureprediction2000} first proposed the method by considering both temperature and cloud density when forecasting the weather. 
-
-\cite{huarng2005type} used type 2 fuzzy time series to...
-
-Recently, \cite{chu2009fuzzy} have...
+\cite{huarng2006ratio} compared the approach to the average- and distribution-based approaches as well as several arbitrarily chosen similarly sized intervals. The ratio based approach resulted in the best accuracy for the methods tested when forecasting university enrolment, TAIEX price and inventory stock. They also found that the optimal interval length changed between data sets from the same data source, and that the ratio based approach was effective at approximating the optimal length.
 
 \subsection{Technical Analysis}
 
