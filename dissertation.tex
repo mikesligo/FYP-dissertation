@@ -7,7 +7,7 @@
 \usepackage{tabularx}
 \theoremstyle{definition}
 \newtheorem{ftsdef}{Definition}
-\newcolumntype{R}{>{\raggedleft\arraybackslash}X}%
+\newcolumntype{R}{>{\raggedleft\arraybackslash}l}%
 
 \title{Dissertation}
 \author{Michael Gallagher}
@@ -191,14 +191,49 @@ Many studies use the same, arbitrarily picked interval size such as $1000$ \cite
   	$11-100$ & $10$ \\
   	$101-1000$ & $100$ \\
 	\end{tabularx}
-	\caption{Base Mapping Table}
+	\caption{Base Mapping Table for First Differences}
 \end{table}
 
 Both methods utilise a mapping table to approximate the base of the interval based on the average first difference. The distribution-based approach plots the distribution of the first differences using an interval that is derived from the mapping table. The interval on the distribution containing the largest first difference that is at smaller than atleast half the distributions is chosen as the interval for the fuzzy time series. The average-based approach involves deriving the base from the mapping table, calculating half of the average first difference, rounding this value to the derived base and using this value as the interval.
 
 \citep{Huarng2001effective} found that these approaches improved the accuracy over the arbitrarily selected interval used in prior studies, with the average-based approach performing better than the distributions based approach. They compared the results of these approaches with 9 arbitrarily chosen but small interval lengths, and found that the average-based approach resulted in the best and second best predictions for university enrolments and TAIEX price respectively. They also found that smaller interval lengths did not always result in a more accurate prediction.
 
-\cite{huarng2006ratio} followed a similar method except used the ratio between the relative differences of points instead of the first differences. Nb my method will probably do this but with zscores, seems to solve the current issues
+\begin{table}[H]
+	\center
+	\begin{tabularx}{0.5\textwidth}{ X R }
+  	MIN$(r_1,\ldots,r_{n-1})$ & Base\\
+  	\hline 
+  	\noalign{\smallskip}
+	$\leq 0.05\%$ & $0.01\%$ \\
+	$\leq 0.5\%$ & $0.1\%$ \\
+	$\leq 5.0\%$ & $1\%$ \\
+	\ldots & \ldots
+	\end{tabularx}
+	\caption{Base Mapping Table for Ratios}
+\end{table}
+
+\cite{huarng2006ratio} explored using the ratios between the absolute differences to define intervals. The proposed method follows similar steps to the distribution-based approach for interval selection, and is summarised as follows
+
+\begin{description}
+\item[Step 1] Calculate the relative difference between adjacent observations such that $r_t=|x_t-x_{t-1}|/x_{t-1}$ for all $t$
+\item[Step 2] Determine the $base$ by mapping MIN$(r_1,\ldots,r_{n-1})$ to the base mapping table
+\item[Step 3] Plot the distribution for all $r_t$ according to the determined $base$
+\item[Step 4] Choose a sample percentile $\alpha$, such as $\alpha=50\%$. Select a $ratio$ which is the smallest relative difference that is larger than $\alpha$
+\item[Step 5] Calculate the intervals 
+
+\begin{table}[H]
+	\center
+	\begin{tabular}{ c }
+	  	$u_1 = [lower_1, upper_1]$ \\
+	  	$u_2 = [lower_2, upper_2]$ \\
+	  	\vdots \\
+	\end{tabular}
+\end{table}
+
+The beginning of the first interval, $lower_1$, is set to MIN$(x_t)-c$ where MIN$(x_t)$ is the lowest observation and c is some small constant. The $interval\_length$ for the time series is set to $lower_1 \times ratio$. The upper bound of the first interval, $upper_1$, is set to $lower_1 + interval\_length$. The remaining intervals are calculated using the formula $[lower_k,upper_k]=[lower_{k-1}+interval\_length+c, upper_{k-1}+interval\_length+c]$ for all $k=(2,3,\ldots)$
+\end{description}
+
+Nb my method will probably do this but with zscores, seems to solve the current issues.
 
 [TODO: a higher order fuzzy time series model for internet stock trading] used entropy partitioning.
 
