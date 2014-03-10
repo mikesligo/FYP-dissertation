@@ -5,6 +5,7 @@
 \usepackage{amssymb}
 \usepackage{float}
 \usepackage{tabularx}
+\usepackage[toc,page]{appendix}
 \theoremstyle{definition}
 \newtheorem{ftsdef}{Definition}
 \newcolumntype{R}{>{\raggedleft\arraybackslash}l}%
@@ -22,13 +23,68 @@
 
 \section{Motivation and Literature Review}
 
+\subsection{Emperical Analysis}
+
+Technical Analysis is a form of financial analysis where past price behaviour is used to predict future price behaviour in financial markets \cite{foundations} say that ``the general goal of Technical Analysis is to identify regularities in the time series of prices by extracting non-linear patterns from noisy data''. Examples of this form of analysis include identifying trends in a graph of price movement, or concluding that a price is unlikely to go lower than the 52-week low.
+
+\subsubsection{History}
+
+The use of this form of analysis has been documented for several hundred years. One of the first uses of Technical Analysis dates back to Japan in the 18th Century AD. In 1710 Japan's rice market had matured enough to begin use rice coupons instead of trading physical rice. Their receipts were traded constituting the first Futures trades ever recorded \citep[p.15]{jcct1991}. 
+
+Munehisa Homma was a rice merchant in Japan, who amassed great wealth trading these rice coupons and is sometimes credited as the Father of Japanese Candlestick Charting. Although it is unclear whether Homma actually used Japanese Candlestick Charting techniques, it is recorded that he used the history of price movement to gauge the emotions of the market at the time, ``When all are bearish, there is cause for prices to rise. When everyone is bullish, there is cause for the price to fall''. Following Homma different charting techniques were introduced, until the introduction and popularisation of Japanese Candlestick Charting for Technical Analysis in the mid 19th Century \citep[p.18]{jcct1994}.
+
+In the west, Dow Theory was developed and expanded on in the early 20th Century, leading to works \citep{edwards2012technical} that directly influence Technical Analysis today.
+
+Even with such a diverse history the use of Technical Analysis is still a hotly debated topic. Experts and Academics are divided in its use \citep{foundations}, the influential \textit{A Random Walk down Wall Street} concluding it is as valid as Alchemy when put under scientific scrutiny \cite[p.159]{randomwalk2012}. Nonetheless, it appears a significant number of analysts incorporate Technical Analysis, with a study by \cite{examininguse1997} finding a mean importance of 35\% was given to Technical Analysis by respondents in various investment banks, and \cite{cheung2000currency} characterising 30\% of Foreign-Exchange traders as Technical Traders. 
+
+\subsubsection{Research}
+
+\cite{taprofitability} performed a survey of 95 studies of technical trading strategies from between 1988 and 2004. Among these, 56 found positive results, 20 obtained negative results and 19 indicated mixed results. Although there is a significant number of studies before this date, they note that prior to \cite{lukac1988} studies suffered from a number of problems, which \cite{brock1992} summarises as:
+\begin{enumerate}
+\item Relatively short time periods being examined 
+\item Studies generally not computing significance levels 
+\item Studies suffering from data snooping bias by being designed and tested on the same data
+\end{enumerate}
+
+\cite{taprofitability} say modern studies improve on this as they ``typically
+increase the number of trading systems tested, assess risks of trading rules,
+perform statistical tests with either conventional statistical tests or more sophisticated bootstrap methods, or both, and conduct parameter optimization and out-of-sample verification''.
+
+But the question still remains, with so much positive evidence and theoretical explanations, why is the use of Technical Analysis still such a controversial issue among Professionals and Academics? 
+
+In the professional world, it could be due to the difficulty in experimentally verifying some Technical Analysis techniques, many of which rely on visual cues in the eyes of an Expert. This subjectivity as to the existence of a pattern can sometimes lead to experts viewing differently or disagreeing about certain patterns, fuelling a controversy that Technical Analysis is nothing more than pseudo-analysis. Also with most studies finding some technical trading strategies successful and many unsuccessful, it might be perceived as safer to ignore Technical Analysis altogether.
+
+In the Academic world, \cite{taprofitability} point to \cite{assetpricing} who says that ``trading rules that reliably survive transactions costs and do not implicitly expose the investor to risk have not yet been reliably demonstrated''. They interpret this to mean that the scepticism is due to data snooping problems, and insignificant profits after taking adjustments for transaction costs and risk.
+
+Data snooping is a difficult issue to address, but studies more recent than those surveyed by \cite{taprofitability} have addressed this issue to some extent.
+
+[Discussion of studies since 2004]
+
+\subsubsection{Econometrical Time Series Analysis}
+
+The Efficient Market Hypothesis claims that the price of a security is extremely efficient at reflecting the information about that security. When news becomes public the market will very efficiently arrive at a price for the security that reflects the impact of the news. This claim has major consequences, such that both Technical Analysis and Fundamental Analysis, which is analysing the health of a security by viewing information such as company earnings, are unable to help an investor achieve a greater profit than if a random selection of securities were invested in \citep{emhAndCritics}. 
+
+While there is still a lot of support for this model, strict adherence to it does not offer the complete picture. If the markets were perfectly efficient then the price would simply jump between points as individual news was released. In reality there is a large amount of noise, volatility and uncertainty in the market. Very often it is not clear what impact some news should have. And of course the accuracy of market information and the availability of the information to the public add further uncertainty to the price movement.
+
+The Random Walk Hypothesis says that even with these movements in price the market is still informationally efficient. It proposes that the price of a security represents a 'random walk' around its intrinsic value, and consequently that price movements can not be predicted. \cite{lo1988} reject this hypothesis however, but note that ``this rejection does not necessarily imply the inefficiency of stock-price formulation''.
+
+One theory is that these uncertainties in price movement allow Technical Analysis to be utilised. \cite{indefenseof} show that past prices combined with other information, such as non-public information, can achieve unusual profit. They claim that non-price information creates opportunity that can be efficiently exploited using Technical Analysis. As non-public information is revealed to an investor, it is unclear as to the extent that this information has been revealed. If the investor knows the behaviour that a market would demonstrate if this information was widely distributed, he or she could examine the past price movements and determine a probability that the information has been revealed, and thus determine if there is still opportunity for a profitable investment.
+
+While this demonstrates a use for past price data, it only demonstrates use when combined with other valuable information, and thus does not contradict the Efficient Market Hypothesis which only states that attempting to make profits by exploiting currently available information is futile \citep{taprofitability}.
+
+\subsubsection{Human Perception}
+
+One of several explanations by \cite[p.45-71]{aronson2011evidence} is that humans suffer cognitive biases when determining the significance of visual patterns in their analysis. Many experts believe they can spot visual pa	tterns such as price trends on a graph, and would take the claim that these trends are irrelevant as ridiculous. Technical Analysts take the significance of these patterns for granted. However when developing or practising a trading system based on patterns, they can succumb to confirmation bias by giving a higher significance to evidence that supports the pattern they're looking for as opposed to evidence for other patterns that might be available. Also when determining the efficacy of these systems based on past data, hindsight bias can lead to certain patterns appearing obvious after their formation. This leads an expert to think this pattern is easily detectable, even though while the pattern was forming the evidence for that particular pattern was indecisive, and possibly pointed to other, contradictory patterns \cite[p.62]{aronson2011evidence}.
+
+Another explanation is that Technical Analysis appeals to behavioural psychology. If a large amount of investors are searching for similar patterns, then the outcome following these patterns may become a self-fulfilling prophecy. A study by \cite{examininguse1997} finds that 49\% of Foreign-Exchange Technical Analysts explicitly cite this as a reason. These points are disputed by Malkiel however, stating "The problem is that once such a regularity is known to market participants, people will act in a way that prevents it from happening in the future" \cite[p.162]{randomwalk2012}.
+
 \subsection{Fuzzy Time Series}
 
 \cite{box2013time} describes a time series as ``a sequence of observations taken sequentially in time''. A graph of stock price, the inventory of an item at a warehouse, the height of a river or the temperature for an area could be considered a time series of data. A core feature of a time series is that typically adjacent observations are dependent, such that the value of the observation at time $t$ is somewhat dependent on the value at time $t-1$. The practical implications of this feature is that through time series analysis it is possible to model a time series and use this model to forecast observations.
 
-A fuzzy time series is a model of a time series that uses fuzzy set theory to find relationships between points on the time series and use these relationships to forecast observations. According to \cite{chen1996forecasting}, "the main difference between a a fuzzy time series and conventional time series is that the values of the former are fuzzy sets and the latter are real numbers". The concept of fuzzy time series was proposed by by \cite{song1993forecasting, song1994forecasting} when they proposed a model to forecast enrolment at the University of Alabama. Their motivation was to ``find ways of modelling a special dynamic process whose observations are linguistic values instead of numerical ones''. 
+A fuzzy time series is a model of a time series that uses fuzzy set theory to find relationships between points on the time series and use these relationships to forecast observations. According to \cite{chen1996forecasting}, "the main difference between a a fuzzy time series and conventional time series is that the values of the former are fuzzy sets and the latter are real numbers". \cite{song1993forecasting} were the first to provide definitions for a fuzzy time series, when they proposed a model to forecast enrolment at the University of Alabama. Their motivation was to ``find ways of modelling a special dynamic process whose observations are linguistic values instead of numerical ones''. 
 
-The typical use of a fuzzy time series is to forecast observations on the time series using historical data. Studies using fuzzy time series have been carried out on forecasting university enrolment \citep{song1993forecasting, song1994forecasting, chen1996forecasting, tsai2000forecasting, chen2004new, cheng2006trend, lee2006pattern, huarng2006ratio, tsaur2012fuzzy}, Stock Market price \citep{huarng2005type, cheng2006trend, lee2006pattern, huarng2006ratio, Chen2007fib, chu2009fuzzy}, Foreign-Exchange rates \citep{tsaur2012fuzzy}, population change \citep{tsai1999study} and temperature \citep{temperatureprediction2000, lee2006pattern}.
+The typical use of a fuzzy time series is to forecast observations on the time series using historical data. Studies using fuzzy time series have been carried out on forecasting university enrolment \citep{song1993forecasting, song1994forecasting, chen1996forecasting, tsai2000forecasting, chen2004new, cheng2006trend, lee2006pattern, huarng2006ratio, tsaur2012fuzzy}, Stock Market price \citep{huarng2005type, cheng2006trend, lee2006pattern, huarng2006ratio, Chen2007fib, chu2009fuzzy}, Foreign-Exchange rates \citep{tsaur2012fuzzy}, population change \citep{tsai1999study} and temperature \citep{temperatureprediction2000, lee2006pattern}. 
 
 \subsubsection{Definitions}
 
@@ -95,7 +151,7 @@ Suppose $R(t,t-1)$ is a first order model of $F(t)$. If for any $t$, $R(t,t-1)$ 
 
 This definition defines a time invariant and a time-variant fuzzy time series. By this definition a time-variant fuzzy time series is one where the relation between values $F(t)$ and $F(t-1)$ is never the same as the relation between $F(t-1)$ and $F(t-2)$. Combining this with Definition 2, a time-variant fuzzy time series is one in which $F(t)$ and $F(t-1)$ never have the same fuzzy values. \cite{song1993forecasting} provides a theorem that implies that ``in the case of a time-invariant, it is very easy and convenient to calculate the first order model''.
 
-\subsubsection{Early Models}
+\subsubsection{Basic Model}
 
 \cite{song1993forecasting} pioneered the fuzzy time series model providing the definitions for the concept and a method for modelling a time invariant fuzzy time series. The method was shown to be better than the Linear Regression Method for forecasting student enrolments at the University of Alabama. It followed a similar series of steps as the example provided with the definitions, but has the key difference of defining relations between fuzzy values using max-min composition, and thus matrix operations. They also use a simple defuzzification algorithm to interpret the results, to which they claim ``it is not difficult to jump to the conclusion that in the interpretation of the output results, experience knowledge is still needed''. The process is as follows:
 
@@ -237,77 +293,6 @@ The beginning of the first interval, $lower_1$, is set to MIN$(x_t)-c$ where MIN
 
 \cite{huarng2006ratio} compared the approach to the average- and distribution-based approaches as well as several arbitrarily chosen similarly sized intervals. The ratio based approach resulted in the best accuracy for the methods tested when forecasting university enrolment, TAIEX price and inventory stock. They also found that the optimal interval length changed between data sets from the same data source, and that the ratio based approach was effective at approximating the optimal length.
 
-\subsection{Technical Analysis}
-
-Technical Analysis is a form of financial analysis where past price behaviour is used to predict future price behaviour in financial markets \cite{foundations} say that ``the general goal of Technical Analysis is to identify regularities in the time series of prices by extracting non-linear patterns from noisy data''. Examples of this form of analysis include identifying trends in a graph of price movement, or concluding that a price is unlikely to go lower than the 52-week low.
-
-\subsubsection{History}
-
-The use of this form of analysis has been documented for several hundred years. One of the first uses of Technical Analysis dates back to Japan in the 18th Century AD. In 1710 Japan's rice market had matured enough to begin use rice coupons instead of trading physical rice. Their receipts were traded constituting the first Futures trades ever recorded \citep[p.15]{jcct1991}. 
-
-Munehisa Homma was a rice merchant in Japan, who amassed great wealth trading these rice coupons and is sometimes credited as the Father of Japanese Candlestick Charting. Although it is unclear whether Homma actually used Japanese Candlestick Charting techniques, it is recorded that he used the history of price movement to gauge the emotions of the market at the time, ``When all are bearish, there is cause for prices to rise. When everyone is bullish, there is cause for the price to fall''. Following Homma different charting techniques were introduced, until the introduction and popularisation of Japanese Candlestick Charting for Technical Analysis in the mid 19th Century \citep[p.18]{jcct1994}.
-
-In the west, Dow Theory was developed and expanded on in the early 20th Century, leading to works \citep{edwards2012technical} that directly influence Technical Analysis today.
-
-Even with such a diverse history the use of Technical Analysis is still a hotly debated topic. Experts and Academics are divided in its use \citep{foundations}, the influential \textit{A Random Walk down Wall Street} concluding it is as valid as Alchemy when put under scientific scrutiny \cite[p.159]{randomwalk2012}. Nonetheless, it appears a significant number of analysts incorporate Technical Analysis, with a study by \cite{examininguse1997} finding a mean importance of 35\% was given to Technical Analysis by respondents in various investment banks, and \cite{cheung2000currency} characterising 30\% of Foreign-Exchange traders as Technical Traders. 
-
-\subsubsection{Efficient Market Hypothesis}
-
-One explanation for this debate is that Technical Analysis appears to contradict the widely accepted Efficient Market Hypothesis. The Efficient Market Hypothesis claims that the price of a security is extremely efficient at reflecting the information about that security. When news becomes public the market will very efficiently arrive at a price for the security that reflects the impact of the news. This claim has major consequences, such that both Technical Analysis and Fundamental Analysis, which is analysing the health of a security by viewing information such as company earnings, are unable to help an investor achieve a greater profit than if a random selection of securities were invested in \citep{emhAndCritics}. 
-
-While there is still a lot of support for this model, strict adherence to it does not offer the complete picture. If the markets were perfectly efficient then the price would simply jump between points as individual news was released. In reality there is a large amount of noise, volatility and uncertainty in the market. Very often it is not clear what impact some news should have. And of course the accuracy of market information and the availability of the information to the public add further uncertainty to the price movement.
-
-The Random Walk Hypothesis says that even with these movements in price the market is still informationally efficient. It proposes that the price of a security represents a 'random walk' around its intrinsic value, and consequently that price movements can not be predicted. \cite{lo1988} reject this hypothesis however, but note that ``this rejection does not necessarily imply the inefficiency of stock-price formulation''.
-
-One theory is that these uncertainties in price movement allow Technical Analysis to be utilised. \cite{indefenseof} show that past prices combined with other information, such as non-public information, can achieve unusual profit. They claim that non-price information creates opportunity that can be efficiently exploited using Technical Analysis. As non-public information is revealed to an investor, it is unclear as to the extent that this information has been revealed. If the investor knows the behaviour that a market would demonstrate if this information was widely distributed, he or she could examine the past price movements and determine a probability that the information has been revealed, and thus determine if there is still opportunity for a profitable investment.
-
-While this demonstrates a use for past price data, it only demonstrates use when combined with other valuable information, and thus does not contradict the Efficient Market Hypothesis which only states that attempting to make profits by exploiting currently available information is futile \citep{taprofitability}.
-
-So why is Technical Analysis still widely used if it contradicts popular financial theory? There are many possible explanations for this, as while there may be a lack of strong statistical evidence for its effectiveness, it is also far from debunked. 	
-
-\subsubsection{Human Perception}
-
-One of several explanations by \cite[p.45-71]{aronson2011evidence} is that humans suffer cognitive biases when determining the significance of visual patterns in their analysis. Many experts believe they can spot visual pa	tterns such as price trends on a graph, and would take the claim that these trends are irrelevant as ridiculous. Technical Analysts take the significance of these patterns for granted. However when developing or practising a trading system based on patterns, they can succumb to confirmation bias by giving a higher significance to evidence that supports the pattern they're looking for as opposed to evidence for other patterns that might be available. Also when determining the efficacy of these systems based on past data, hindsight bias can lead to certain patterns appearing obvious after their formation. This leads an expert to think this pattern is easily detectable, even though while the pattern was forming the evidence for that particular pattern was indecisive, and possibly pointed to other, contradictory patterns \cite[p.62]{aronson2011evidence}.
-
-Another explanation is that Technical Analysis appeals to behavioural psychology. If a large amount of investors are searching for similar patterns, then the outcome following these patterns may become a self-fulfilling prophecy. A study by \cite{examininguse1997} finds that 49\% of Foreign-Exchange Technical Analysts explicitly cite this as a reason. These points are disputed by Malkiel however, stating "The problem is that once such a regularity is known to market participants, people will act in a way that prevents it from happening in the future" \cite[p.162]{randomwalk2012}.
-
-\subsubsection{Academic Research}
-
-These explanations aren't really enough to justify such widespread acceptance, but they do demonstrate factors that might encourage someone to adopt a technical trading strategy. Fortunately in recent years academics have produced a significant amount of literature on the subject.
-
-\cite{taprofitability} performed a survey of 95 studies of technical trading strategies from between 1988 and 2004. Among these, 56 found positive results, 20 obtained negative results and 19 indicated mixed results. Although there is a significant number of studies before this date, they note that prior to \cite{lukac1988} studies suffered from a number of problems, which \cite{brock1992} summarises as:
-\begin{enumerate}
-\item Relatively short time periods being examined 
-\item Studies generally not computing significance levels 
-\item Studies suffering from data snooping bias by being designed and tested on the same data
-\end{enumerate}
-
-\cite{taprofitability} say modern studies improve on this as they ``typically
-increase the number of trading systems tested, assess risks of trading rules,
-perform statistical tests with either conventional statistical tests or more sophisticated bootstrap methods, or both, and conduct parameter optimization and out-of-sample verification''.
-
-But the question still remains, with so much positive evidence and theoretical explanations, why is the use of Technical Analysis still such a controversial issue among Professionals and Academics? 
-
-In the professional world, it could be due to the difficulty in experimentally verifying some Technical Analysis techniques, many of which rely on visual cues in the eyes of an Expert. This subjectivity as to the existence of a pattern can sometimes lead to experts viewing differently or disagreeing about certain patterns, fuelling a controversy that Technical Analysis is nothing more than pseudo-analysis. Also with most studies finding some technical trading strategies successful and many unsuccessful, it might be perceived as safer to ignore Technical Analysis altogether.
-
-In the Academic world, \cite{taprofitability} point to \cite{assetpricing} who says that ``trading rules that reliably survive transactions costs and do not implicitly expose the investor to risk have not yet been reliably demonstrated''. They interpret this to mean that the scepticism is due to data snooping problems, and insignificant profits after taking adjustments for transaction costs and risk.
-
-Data snooping is a difficult issue to address, but studies more recent than those surveyed by \cite{taprofitability} have addressed this issue to some extent.
-
-[Discussion of studies since 2004]
-
-\subsubsection{Techniques}
-
-There are many trading strategies that use Technical Analysis. Almost any strategy that uses past price movement or behaviour as an indicator for future price counts as a technical trading strategy. Discussed here are 3 techniques that are seen to be widely used in technical trading strategies.
-
-\begin{itemize}
-\item Moving averages are graph lines that indicate the average price over a fixed period. Different functions can also be used such as calculating a weighted moving average. Its purpose is to smooth the noise in a graph and to identify a trend. A moving average cross is where 2 moving averages are used on a graph, generally with one having a short period indicating current trend and one having a long period indicating overall trend. When the line of the short period crosses the line of the long period it is an indication of a change in trend \citep{brock1992}. Moving averages have been used in many studies on technical trading strategies, with generally positive performance. \cite{taprofitability} found moving average rules showed consistently profitable results in the foreign exchange and futures market, and the most reliable performance in the stock market out of the methods tested.
-
-\item Technical Patterns are visual patterns that appear in a graph of price movement. A Head-and-Shoulders pattern is one where the price represents a persons head an shoulders, where the price shows an approximately symmetrical sequence of five local extrema which correspond to 2 shoulders, 2 necks and a head. The outcome of this pattern is that the price moves down. \cite{foundations} examined 10 of these patterns and found overwhelming significance for the indicators when applied to the Nasdaq stock index. \cite{chang1999methodical} also find a Head-and-Shoulders pattern was profitable, but was outperformed by simpler trading rules such as a moving average indicator. Japanese Candlestick charting is considered to be identifying technical patterns.
-
-\item Pivot points, Support and Resistance price levels which are very commonly calculated in industry but have not received significant academic attention \citep[p. 55]{osler2000support}. According to \cite{murphy1999technical}, a support level is ``a level or area on the chart under the market where buying interest is sufficiently strong to overcome selling pressure. As a result, a decline is halted and prices turn back up again''. Resistance is the opposite of support. Often they are levels where the price has had difficulty breaking before, either as static price points (such as the weekly low price) or points where the price meets a trend line that it appears to be bounding off. \cite{brock1992} found strong support for this style of trading strategy.
-
-\end{itemize}
 
 \section{Design}
 
@@ -396,6 +381,22 @@ Analysis of results against objectives...
 \section{Future work}
 
 What went well, what could be improved...
+
+\appendix
+
+\section{Technical Analysis Techniques}
+
+There are many trading strategies that use Technical Analysis. Almost any strategy that uses past price movement or behaviour as an indicator for future price counts as a technical trading strategy. Discussed here are 3 techniques that are seen to be widely used in technical trading strategies.
+
+\subsection{Trend Identification}
+Moving averages are graph lines that indicate the average price over a fixed period. Different functions can also be used such as calculating a weighted moving average. Its purpose is to smooth the noise in a graph and to identify a trend. A moving average cross is where 2 moving averages are used on a graph, generally with one having a short period indicating current trend and one having a long period indicating overall trend. When the line of the short period crosses the line of the long period it is an indication of a change in trend \citep{brock1992}. Moving averages have been used in many studies on technical trading strategies, with generally positive performance. \cite{taprofitability} found moving average rules showed consistently profitable results in the foreign exchange and futures market, and the most reliable performance in the stock market out of the methods tested.
+
+\subsection{Pattern Identification}
+Technical Patterns are visual patterns that appear in a graph of price movement. A Head-and-Shoulders pattern is one where the price represents a persons head an shoulders, where the price shows an approximately symmetrical sequence of five local extrema which correspond to 2 shoulders, 2 necks and a head. The outcome of this pattern is that the price moves down. \cite{foundations} examined 10 of these patterns and found overwhelming significance for the indicators when applied to the Nasdaq stock index. \cite{chang1999methodical} also find a Head-and-Shoulders pattern was profitable, but was outperformed by simpler trading rules such as a moving average indicator. Japanese Candlestick charting is considered to be identifying technical patterns.
+
+\subsection{Price Levels}
+Pivot points, Support and Resistance price levels which are very commonly calculated in industry but have not received significant academic attention \citep[p. 55]{osler2000support}. According to \cite{murphy1999technical}, a support level is ``a level or area on the chart under the market where buying interest is sufficiently strong to overcome selling pressure. As a result, a decline is halted and prices turn back up again''. Resistance is the opposite of support. Often they are levels where the price has had difficulty breaking before, either as static price points (such as the weekly low price) or points where the price meets a trend line that it appears to be bounding off. \cite{brock1992} found strong support for this style of trading strategy.
+
 
 \bibliographystyle{apa}
 \bibliography{dissertation}
