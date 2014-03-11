@@ -7,7 +7,6 @@
 \usepackage{tabularx}
 \usepackage[toc,page]{appendix}
 \usepackage{cleveref}
-\usepackage[hidelinks]{hyperref}
 \usepackage{graphicx}
 \theoremstyle{definition}
 \newtheorem{ftsdef}{Definition}
@@ -20,11 +19,41 @@
 
 \maketitle
 
+%\listoffigures
+
+%\listoftables
+
 \tableofcontents
 
 \section{Introduction}
 
-\section{Motivation and Literature Review}
+\subsection{Motivation}
+
+The aim of this project is to explore the applicability of fuzzy logic for time series analysis. This paper studies the efficacy of the various models proposed in the literature and proposes a confidence-weighted model which will be evaluated against other time series models as well as other technical trading strategies. The paper also tests the efficiency of several financial markets. 
+
+The debate over the usefulness of Technical Analysis is still up in the air. There are many studies demonstrating excess returns compared to a uninformed strategies such as buy and hold, even after transaction costs. As shown in the literature review, many aspects and techniques of Technical Analysis have been studied including visual patterns such as ``Head \& Shoulders'', trend lines, moving averages, Japanese Candlestick Charting and neural networks. Many explanations for the existence of Technical Analysis have been proposed including market psychology, market inefficiencies, insider trading and the prevalence of the Golden Mean. The more recent studies have used well regarded statistical techniques, out of sample verification, parameter optimisation and account for transaction costs.
+
+Yet the results of these studies, and the perception of Technical Analysis among experts, varies significantly. The empirical nature of Technical Analysis makes conclusive evaluation difficult. Data snooping is a concern in many studies. In a study of 100 random technical patterns, 5 of them will generate statistically significant excess returns. This risk can be reduced by testing the trading strategy against a sample set of data, but the question often remains as to why one technical trading strategy is more effective than another and why is it effective on some sample data but not all. Indeed the studies that demonstrate insignificant returns or losses may have been tested against a dataset to which technical analysis doesn't apply, or on the contrary, strategies that demonstrated profit such as a moving average cross may have been tested in a time when the market was significantly bullish or bearish and featured significant trends which the moving average indicator is suited to.
+
+This paper takes a different approach to performing technical analysis. Many studies have been carried out on technical trading strategies that are actively in the financial industry. Often these strategies have been in use for several decades, and discovered out of empirical observation of visual data at a time before it was possible to verify the techniques computationally. However, the market conditions and behaviour may have changed since the discovery of these techniques. Newer markets may have characteristics not reflected by traditional technical analysis.
+
+Technical analysis is built on the principle that past price can provide information that can be used to forecast future price. This paper proposes a model of financial data which aims to identify statistically significant regularities. 
+
+The model implements fuzzy time series analysis, which identifies fuzzy relationships between points on a time series and uses these to forecast observations. A fuzzy time series model identifies fluctuations in a time series as relationships between points in time, such that when similar points in the time series reappear the history of fuzzy logical relationship can be used to forecast observations.
+
+Fuzzy logic
+
+fuzzy logic accounts for the less stringent
+
+%Very few visual chart pattern studies done, which is essentially what I'm finding. Fuzzy logic very applicable
+
+%There are relatively few Technical Analysis studies which identify visual patterns and attempt to evaluate their significance. This is an unexpected phenomenon as so many technical trader rely on visual pattern recognition in their strategy. One reason for this outlined by \cite{2020} is the challenge of ``automatic detection of technical patterns that would be similarly deducted by expert investors''. They make the point that the automated process would need to capture human cognitive abilities, even intuition...
+
+%pattern discovery in time series uses bayes rule to determine probability 
+
+%\cite{taprofitability} also found that different markets were better suited to Technical Analysis, with Foreign Exchange used in just under a third of the studies listed, and just under half of the modern studies listed. Interestingly they find that profits in this market seem to gradually decrease over time. This is also found by \cite{ttrp2006}, who suggest that the Foreign Exchange market has become more efficient in recent times.
+
+\section{Literature Review}
 
 \subsection{Emperical Analysis}
 
@@ -34,7 +63,7 @@
     \caption{Moving-Average Cross Indicator}
 \end{figure}
 
-Technical Analysis is a form of financial analysis where past price behaviour is used to predict future price behaviour in financial markets \cite{foundations} say that ``the general goal of Technical Analysis is to identify regularities in the time series of prices by extracting non-linear patterns from noisy data''. Examples of this form of analysis include identifying trends in a graph of price movement, or concluding that a price is unlikely to go lower than the 52-week low. Specific techniques are discussed in \cref{tatechniques}.
+Technical Analysis is a form of financial analysis where past price behaviour is used to predict future price behaviour in financial markets. \cite{foundations} say that ``the general goal of Technical Analysis is to identify regularities in the time series of prices by extracting non-linear patterns from noisy data''. Examples of this form of analysis include identifying trends in a graph of price movement, or concluding that a price is unlikely to go lower than the 52-week low. Specific techniques are discussed in \Cref{app:tatechniques}.
 
 \subsubsection{History}
 
@@ -61,7 +90,7 @@ perform statistical tests with either conventional statistical tests or more sop
 
 But the question still remains, with so much positive evidence and theoretical explanations, why is the use of Technical Analysis still such a controversial issue among Professionals and Academics? 
 
-In the professional world, it could be due to the difficulty in experimentally verifying some Technical Analysis techniques, many of which rely on visual cues in the eyes of an Expert. This subjectivity as to the existence of a pattern can sometimes lead to experts viewing differently or disagreeing about certain patterns, fuelling a controversy that Technical Analysis is nothing more than pseudo-analysis. Also with most studies finding some technical trading strategies successful and many unsuccessful, it might be perceived as safer to ignore Technical Analysis altogether.
+In the professional world, it could be due to the difficulty in experimentally verifying some Technical Analysis techniques, many of which rely on visual cues in the eyes of an Expert. This subjectivity as to the existence of a pattern can lead to experts looking at the same data disagreeing about certain patterns, fuelling a controversy that Technical Analysis is nothing more than pseudo-analysis. Also with most studies finding some technical trading strategies successful and many unsuccessful, it might be perceived as safer to ignore Technical Analysis altogether.
 
 In the Academic world, \cite{taprofitability} point to \cite{assetpricing} who says that ``trading rules that reliably survive transactions costs and do not implicitly expose the investor to risk have not yet been reliably demonstrated''. They interpret this to mean that the scepticism is due to data snooping problems, and insignificant profits after taking adjustments for transaction costs and risk.
 
@@ -200,9 +229,10 @@ The beginning of the first interval, $lower_1$, is set to MIN$(x_t)-c$ where MIN
 The following definitions describe a general model of a fuzzy time series and are provided by \cite{song1993forecasting}, \cite{chen1996forecasting} and \cite{chu2009fuzzy}.
 
 \begin{ftsdef}
+\label{def1}
 Let $Y(t)(t= \ldots,0,1,2, \ldots)$, a subset of $\mathbb{R}$, be the universe of discourse on which fuzzy sets $f_i(t)(i=1,2,\ldots)$ are defined and let $F(t)$ be a collection of $f_i(t)(i=1,2,\ldots)$. Then $F(t)$ is called a fuzzy time series on $Y(t)(t= \ldots,0,1,2, \ldots)$.
 \end{ftsdef}
-In this definition, $Y(t)$ represents a time series, returning a value at different points along time $t$. The range of values in this time series is called the universe of discourse. $f_i(t)$ are fuzzy sets over the universe of discourse, consisting of the all the linguistic terms defined in the universe and the membership of each term in that fuzzy set. $F(t)$ is the collection of all of these fuzzy sets. This collection of fuzzy sets at any point $t$ on a time series is called a fuzzy time series.
+In \cref{def1}, $Y(t)$ represents a time series, returning a value at different points along time $t$. The range of values in this time series is called the universe of discourse. $f_i(t)$ are fuzzy sets over the universe of discourse, consisting of the all the linguistic terms defined in the universe and the membership of each term in that fuzzy set. $F(t)$ is the collection of all of these fuzzy sets. This collection of fuzzy sets at any point $t$ on a time series is called a fuzzy time series.
 
 As an example, consider a graph of the the daily closing stock price for a company. $Y(t)$ is the closing stock price at any day $t$. The universe of discourse is the range of values you are considering at this time, so if your model was considering the prices over the past 100 days, then your universe of discourse would be the range of numbers between the highest and lowest points in the past 100 days. 
 
@@ -217,10 +247,11 @@ This example considers one linguistic variable which indicates the performance o
 where the symbol $+$ denotes the union operator. $F(t)$ the time series of these fuzzy sets, and can be regarded as a linguistic variable.
 
 \begin{ftsdef}
+\label{def2}
 Suppose $F(t)$ is caused by $F(t-1)$ only, then this fuzzy relation can be expressed as $F(t)=F(t-1) \circ R(t,t-1)$, where $R(t,t-1)$ is the fuzzy relationship between $F(t-1)$ and $F(t)$. The model $F(t)=F(t-1) \circ R(t,t-1)$ is called the first order model $F(t)$.
 \end{ftsdef}
 
-Definition 1 shows that $F(t)$ is a linguistic variable with linguistic values $f_i(t) (i=1,2,\ldots)$. Definition 2 states that, for a first order fuzzy time series, for every linguistic value in the $F(t)$, there is a relationship $R$ between $F(t-1)$ and $F(t)$. 
+\Cref{def1} shows that $F(t)$ is a linguistic variable with linguistic values $f_i(t) (i=1,2,\ldots)$. \Cref{def2} states that, for a first order fuzzy time series, for every linguistic value in the $F(t)$, there is a relationship $R$ between $F(t-1)$ and $F(t)$. 
 
 This means that there is a relationship between the linguistic value for $F(t)$ at every point in time and the next point in time. Following from the previous example, consider the fuzzy time series $F(t)(t=1,2,\ldots,6)$ where $f(1)=low$, $f(2)=high$, $f(3)=med$, $f(4)=low$, $f(5)=low$ and $f(6)=very\_high$, then the fuzzy logic relationships can be shown as follows: 
 
@@ -237,6 +268,7 @@ This means that there is a relationship between the linguistic value for $F(t)$ 
 \end{table}
 
 \begin{ftsdef}
+\label{def3}
 All fuzzy logical relationships in the fuzzy time series can be further grouped together into fuzzy logical relationship groups according to the same left-hand sides of the fuzzy logical relationship.
 \end{ftsdef}
 
@@ -255,6 +287,7 @@ This definition states that for every fuzzy logical relationship between $F(t)$ 
 These relationships are then used to forecast observations in time. Taking $t$ as the point in time to be forecast, we can predict $F(t)$ using the fuzzy logic relationship grouping for $F(t-1)$. If there is only 1 fuzzy logic relationship for $F(t-1)$, then that relationship is used for the forecast. Continuing from the example, if $F(t-1)$ is $high$, then Group 2 is referenced, and the only right-hand side value, $med$, is used as the forecast. Various solutions have been proposed in the case that there is more than one outcome on the right-hand side of a fuzzy logical relationship group, as with Group 1, including max-min composition as proposed by \cite{song1993forecasting} and simple arithmetic operations as proposed by \cite{chen1996forecasting}.
 
 \begin{ftsdef}
+\label{def4}
 Suppose $R(t,t-1)$ is a first order model of $F(t)$. If for any $t$, $R(t,t-1)$ is independent of $t$, that is for any $t$, $R(t,t-1) = R(t-1,t-2)$, then $F(t)$ is called a time-invariant fuzzy time series or else it is called a time-variant fuzzy time series.
 \end{ftsdef}
 
@@ -262,6 +295,7 @@ This definition defines a time invariant and a time-variant fuzzy time series. B
 
 
 \begin{ftsdef}
+\label{def5}
 Suppose $F(t)$ is caused by $F(t-1),F(t-2),\ldots,F(t-n)$ simultaneously, then the fuzzy logical relationship, $R$, for $F(t)$ can be represented by $F(t-n),\ldots, F(t-2),F(t-1) \rightarrow F(t)$. This is called an $n$th-order fuzzy time series.
 \end{ftsdef}
 
@@ -308,18 +342,6 @@ Once all relations are obtained the forecast values for $F(i)$ for each order mo
 
 Where $F_{im}$ is the $m$th possible fuzzy value for $F(i)$. There are up to $m$ possible values as there will be up to $m$ first-order relations. Since the above relations happen simultaneously, the forecast for $F(i)$ is the intersection of all $F_{ik}$.
 
-\subsection{Motivations}
-
-This paper studies the applicability of fuzzy time series analysis. The proposed system is a higher-order time-invariant fuzzy time series of the changes in z-scores of a time series. It uses ratio-based intervals and implements a confidence weighting to determine whether fuzzy logical relationships are statistically significant. 
-
-%Very few visual chart pattern studies done, which is essentially what I'm finding. Fuzzy logic very applicable
-
-%There are relatively few Technical Analysis studies which identify visual patterns and attempt to evaluate their significance. This is an unexpected phenomenon as so many technical trader rely on visual pattern recognition in their strategy. One reason for this outlined by \cite{2020} is the challenge of ``automatic detection of technical patterns that would be similarly deducted by expert investors''. They make the point that the automated process would need to capture human cognitive abilities, even intuition...
-
-%pattern discovery in time series uses bayes rule to determine probability 
-
-%\cite{taprofitability} also found that different markets were better suited to Technical Analysis, with Foreign Exchange used in just under a third of the studies listed, and just under half of the modern studies listed. Interestingly they find that profits in this market seem to gradually decrease over time. This is also found by \cite{ttrp2006}, who suggest that the Foreign Exchange market has become more efficient in recent times.
-
 \section{Implementation}
 
 ...
@@ -340,7 +362,7 @@ alleviate data snooping by considering a diverse set of technical trading system
 
 \section{Technical Analysis Techniques}
 
-\label{tatechniques}
+\label{app:tatechniques}
 
 There are many trading strategies that use Technical Analysis. Almost any strategy that uses past price movement or behaviour as an indicator for future price counts as a technical trading strategy. Discussed here are 3 techniques that are seen to be widely used in technical trading strategies.
 
@@ -351,6 +373,13 @@ Moving averages are graph lines that indicate the average price over a fixed per
 Technical Patterns are visual patterns that appear in a graph of price movement. A Head-and-Shoulders pattern is one where the price represents a persons head an shoulders, where the price shows an approximately symmetrical sequence of five local extrema which correspond to 2 shoulders, 2 necks and a head. The outcome of this pattern is that the price moves down. \cite{foundations} examined 10 of these patterns and found overwhelming significance for the indicators when applied to the Nasdaq stock index. \cite{chang1999methodical} also find a Head-and-Shoulders pattern was profitable, but was outperformed by simpler trading rules such as a moving average indicator. Japanese Candlestick charting is considered to be identifying technical patterns.
 
 \subsection{Price Levels}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/uptrend.png}
+    \caption{Visual Support Line}
+\end{figure}
+
 Pivot points, Support and Resistance price levels which are very commonly calculated in industry but have not received significant academic attention \citep[p. 55]{osler2000support}. According to \cite{murphy1999technical}, a support level is ``a level or area on the chart under the market where buying interest is sufficiently strong to overcome selling pressure. As a result, a decline is halted and prices turn back up again''. Resistance is the opposite of support. Often they are levels where the price has had difficulty breaking before, either as static price points (such as the weekly low price) or points where the price meets a trend line that it appears to be bounding off. \cite{brock1992} found strong support for this style of trading strategy.
 
 
