@@ -6,6 +6,9 @@
 \usepackage{float}
 \usepackage{tabularx}
 \usepackage[toc,page]{appendix}
+\usepackage{cleveref}
+\usepackage[hidelinks]{hyperref}
+\usepackage{graphicx}
 \theoremstyle{definition}
 \newtheorem{ftsdef}{Definition}
 \newcolumntype{R}{>{\raggedleft\arraybackslash}l}%
@@ -25,11 +28,17 @@
 
 \subsection{Emperical Analysis}
 
-Technical Analysis is a form of financial analysis where past price behaviour is used to predict future price behaviour in financial markets \cite{foundations} say that ``the general goal of Technical Analysis is to identify regularities in the time series of prices by extracting non-linear patterns from noisy data''. Examples of this form of analysis include identifying trends in a graph of price movement, or concluding that a price is unlikely to go lower than the 52-week low.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/blackwhite.png}
+    \caption{Moving-Average Cross Indicator}
+\end{figure}
+
+Technical Analysis is a form of financial analysis where past price behaviour is used to predict future price behaviour in financial markets \cite{foundations} say that ``the general goal of Technical Analysis is to identify regularities in the time series of prices by extracting non-linear patterns from noisy data''. Examples of this form of analysis include identifying trends in a graph of price movement, or concluding that a price is unlikely to go lower than the 52-week low. Specific techniques are discussed in \cref{tatechniques}.
 
 \subsubsection{History}
 
-The use of this form of analysis has been documented for several hundred years. One of the first uses of Technical Analysis dates back to Japan in the 18th Century AD. In 1710 Japan's rice market had matured enough to begin use rice coupons instead of trading physical rice. Their receipts were traded constituting the first Futures trades ever recorded \citep[p.15]{jcct1991}. 
+The use of this form of analysis has been documented for several hundred years. One of the first uses of Technical Analysis dates back to Japan in the 18th Century. In 1710 Japan's rice market had matured enough to begin use rice coupons instead of trading physical rice. Their receipts were traded constituting the first Futures trades ever recorded \citep[p.15]{jcct1991}. 
 
 Munehisa Homma was a rice merchant in Japan, who amassed great wealth trading these rice coupons and is sometimes credited as the Father of Japanese Candlestick Charting. Although it is unclear whether Homma actually used Japanese Candlestick Charting techniques, it is recorded that he used the history of price movement to gauge the emotions of the market at the time, ``When all are bearish, there is cause for prices to rise. When everyone is bullish, there is cause for the price to fall''. Following Homma different charting techniques were introduced, until the introduction and popularisation of Japanese Candlestick Charting for Technical Analysis in the mid 19th Century \citep[p.18]{jcct1994}.
 
@@ -74,7 +83,7 @@ While this demonstrates a use for past price data, it only demonstrates use when
 
 \subsubsection{Human Perception}
 
-One of several explanations by \cite[p.45-71]{aronson2011evidence} is that humans suffer cognitive biases when determining the significance of visual patterns in their analysis. Many experts believe they can spot visual pa	tterns such as price trends on a graph, and would take the claim that these trends are irrelevant as ridiculous. Technical Analysts take the significance of these patterns for granted. However when developing or practising a trading system based on patterns, they can succumb to confirmation bias by giving a higher significance to evidence that supports the pattern they're looking for as opposed to evidence for other patterns that might be available. Also when determining the efficacy of these systems based on past data, hindsight bias can lead to certain patterns appearing obvious after their formation. This leads an expert to think this pattern is easily detectable, even though while the pattern was forming the evidence for that particular pattern was indecisive, and possibly pointed to other, contradictory patterns \cite[p.62]{aronson2011evidence}.
+Although the evidence supporting technical analysis is inconclusive, it is still regarded as an important forecasting tool by many analysts. One of several explanations by \cite[p.45-71]{aronson2011evidence} is that humans suffer cognitive biases when determining the significance of visual patterns in their analysis. Many experts believe they can spot visual pa	tterns such as price trends on a graph, and would take the claim that these trends are irrelevant as ridiculous. Technical Analysts take the significance of these patterns for granted. However when developing or practising a trading system based on patterns, they can succumb to confirmation bias by giving a higher significance to evidence that supports the pattern they're looking for as opposed to evidence for other patterns that might be available. Also when determining the efficacy of these systems based on past data, hindsight bias can lead to certain patterns appearing obvious after their formation. This leads an expert to think this pattern is easily detectable, even though while the pattern was forming the evidence for that particular pattern was indecisive, and possibly pointed to other, contradictory patterns \cite[p.62]{aronson2011evidence}.
 
 Another explanation is that Technical Analysis appeals to behavioural psychology. If a large amount of investors are searching for similar patterns, then the outcome following these patterns may become a self-fulfilling prophecy. A study by \cite{examininguse1997} finds that 49\% of Foreign-Exchange Technical Analysts explicitly cite this as a reason. These points are disputed by Malkiel however, stating "The problem is that once such a regularity is known to market participants, people will act in a way that prevents it from happening in the future" \cite[p.162]{randomwalk2012}.
 
@@ -85,71 +94,6 @@ Another explanation is that Technical Analysis appeals to behavioural psychology
 A fuzzy time series is a model of a time series that uses fuzzy set theory to find relationships between points on the time series and use these relationships to forecast observations. According to \cite{chen1996forecasting}, "the main difference between a a fuzzy time series and conventional time series is that the values of the former are fuzzy sets and the latter are real numbers". \cite{song1993forecasting} were the first to provide definitions for a fuzzy time series, when they proposed a model to forecast enrolment at the University of Alabama. Their motivation was to ``find ways of modelling a special dynamic process whose observations are linguistic values instead of numerical ones''. 
 
 The typical use of a fuzzy time series is to forecast observations on the time series using historical data. Studies using fuzzy time series have been carried out on forecasting university enrolment \citep{song1993forecasting, song1994forecasting, chen1996forecasting, tsai2000forecasting, chen2004new, cheng2006trend, lee2006pattern, huarng2006ratio, tsaur2012fuzzy}, Stock Market price \citep{huarng2005type, cheng2006trend, lee2006pattern, huarng2006ratio, Chen2007fib, chu2009fuzzy}, Foreign-Exchange rates \citep{tsaur2012fuzzy}, population change \citep{tsai1999study} and temperature \citep{temperatureprediction2000, lee2006pattern}. 
-
-\subsubsection{Definitions}
-
-The following definitions describe a general model of a fuzzy time series and are provided by \cite{song1993forecasting}, \cite{chen1996forecasting} and \cite{chu2009fuzzy}.
-
-\begin{ftsdef}
-Let $Y(t)(t= \ldots,0,1,2, \ldots)$, a subset of $\mathbb{R}$, be the universe of discourse on which fuzzy sets $f_i(t)(i=1,2,\ldots)$ are defined and let $F(t)$ be a collection of $f_i(t)(i=1,2,\ldots)$. Then $F(t)$ is called a fuzzy time series on $Y(t)(t= \ldots,0,1,2, \ldots)$.
-\end{ftsdef}
-In this definition, $Y(t)$ represents a time series, returning a value at different points along time $t$. The range of values in this time series is called the universe of discourse. $f_i(t)$ are fuzzy sets over the universe of discourse, consisting of the all the linguistic terms defined in the universe and the membership of each term in that fuzzy set. $F(t)$ is the collection of all of these fuzzy sets. This collection of fuzzy sets at any point $t$ on a time series is called a fuzzy time series.
-
-As an example, consider a graph of the the daily closing stock price for a company. $Y(t)$ is the closing stock price at any day $t$. The universe of discourse is the range of values you are considering at this time, so if your model was considering the prices over the past 100 days, then your universe of discourse would be the range of numbers between the highest and lowest points in the past 100 days. 
-
-This example considers one linguistic variable which indicates the performance of a stock. The universe of discourse is partitioned into separate intervals, $u_1, u_2,\ldots,u_k$. For example, if the universe of discourse was the range in dollars $[100, 200]$, 5 intervals might be used where $u_1 = [100 \ldots 120]$, $u_2 = [120 \ldots 140]$, $u_3 = [140 \ldots 160]$, $u_4 = [160 \ldots 180]$ and $u_5 = [180 \ldots 200]$. Fuzzy sets are then defined which are the linguistic values of the linguistic variable ``performance". For example, 5 fuzzy sets are defined, $very\_low$, $low$, $mid$, $high$ and $very\_high$. These fuzzy sets consist of the grade of membership of each interval in the fuzzy set. For example:
-\begin{description}
-\item[] $very\_low = 1/u_1 + 0.5/u_2 + 0/u_3 + 0/u_4 + 0/u_5$
-\item[] $low = 0.5/u_1 + 1/u_2 + 0.5/u_3 + 0/u_4 + 0/u_5$
-\item[] $med = 0/u_1 + 0.5/u_2 + 1/u_3 + 0.5/u_4 + 0/u_5$
-\item[] $high = 0/u_1 + 0/u_2 + 0.5/u_3 + 1/u_4 + 0.5/u_5$
-\item[] $very\_high = 0/u_1 + 0/u_2 + 0/u_3 + 0.5/u_4 + 1/u_5$
-\end{description}
-where the symbol $+$ denotes the union operator. $F(t)$ the time series of these fuzzy sets, and can be regarded as a linguistic variable.
-
-\begin{ftsdef}
-Suppose $F(t)$ is caused by $F(t-1)$ only, then this fuzzy relation can be expressed as $F(t)=F(t-1) \circ R(t,t-1)$, where $R(t,t-1)$ is the fuzzy relationship between $F(t-1)$ and $F(t)$. The model $F(t)=F(t-1) \circ R(t,t-1)$ is called the first order model $F(t)$.
-\end{ftsdef}
-
-Definition 1 shows that $F(t)$ is a linguistic variable with linguistic values $f_i(t) (i=1,2,\ldots)$. Definition 2 states that, for a first order fuzzy time series, for every linguistic value in the $F(t)$, there is a relationship $R$ between $F(t-1)$ and $F(t)$. 
-
-This means that there is a relationship between the linguistic value for $F(t)$ at every point in time and the next point in time. Following from the previous example, consider the fuzzy time series $F(t)(t=1,2,\ldots,6)$ where $f(1)=low$, $f(2)=high$, $f(3)=med$, $f(4)=low$, $f(5)=low$ and $f(6)=very\_high$, then the fuzzy logic relationships can be shown as follows: 
-
-\begin{table}[h]
-	\center
-	\begin{tabular}{ l l l }
-  	$low \rightarrow high$  \\
-  	$high \rightarrow med$ \\
-  	$med \rightarrow low$ \\
-  	$low \rightarrow low$ \\
-  	$low \rightarrow very\_high$ \\
-	\end{tabular}
-	\caption{Fuzzy Logical Relationships}
-\end{table}
-
-\begin{ftsdef}
-All fuzzy logical relationships in the fuzzy time series can be further grouped together into fuzzy logical relationship groups according to the same left-hand sides of the fuzzy logical relationship.
-\end{ftsdef}
-
-This definition states that for every fuzzy logical relationship between $F(t)$ and $F(t-1)$, as in Definition 2, the relationships over the time series may be grouped in relationships where $F(t-1)$ are the same. The fuzzy logical relationship groups for the example can be shown as follows:
-
-\begin{table}[h]
-	\center
-	\begin{tabular}{ c c c c }
-  	Group 1: & $low$ & $\rightarrow$ & $high, low, very\_high$ \\
-  	Group 2: & $high$ & $\rightarrow$ & $med$ \\
-  	Group 3: & $med$ & $\rightarrow$ & $low$ \\
-	\end{tabular}
-	\caption{Fuzzy Logical Relationship Groups}
-\end{table}
-
-These relationships are then used to forecast observations in time. Taking $t$ as the point in time to be forecast, we can predict $F(t)$ using the fuzzy logic relationship grouping for $F(t-1)$. If there is only 1 fuzzy logic relationship for $F(t-1)$, then that relationship is used for the forecast. Continuing from the example, if $F(t-1)$ is $high$, then Group 2 is referenced, and the only right-hand side value, $med$, is used as the forecast. Various solutions have been proposed in the case that there is more than one outcome on the right-hand side of a fuzzy logical relationship group, as with Group 1, including max-min composition as proposed by \cite{song1993forecasting} and simple arithmetic operations as proposed by \cite{chen1996forecasting}.
-
-\begin{ftsdef}
-Suppose $R(t,t-1)$ is a first order model of $F(t)$. If for any $t$, $R(t,t-1)$ is independent of $t$, that is for any $t$, $R(t,t-1) = R(t-1,t-2)$, then $F(t)$ is called a time-invariant fuzzy time series or else it is called a time-variant fuzzy time series.
-\end{ftsdef}
-
-This definition defines a time invariant and a time-variant fuzzy time series. By this definition a time-variant fuzzy time series is one where the relation between values $F(t)$ and $F(t-1)$ is never the same as the relation between $F(t-1)$ and $F(t-2)$. Combining this with Definition 2, a time-variant fuzzy time series is one in which $F(t)$ and $F(t-1)$ never have the same fuzzy values. \cite{song1993forecasting} provides a theorem that implies that ``in the case of a time-invariant, it is very easy and convenient to calculate the first order model''.
 
 \subsubsection{Basic Model}
 
@@ -180,53 +124,6 @@ This definition defines a time invariant and a time-variant fuzzy time series. B
 \subsubsection{Higher-Order Models}
 
 An $n$th-order or higher-order fuzzy time series is one where where there is a simultaneous relationship between multiple points on the time series, not just adjacent observations. \cite{tsai1999study} found that a second-order fuzzy time series lead to more accurate predictions when forecasting population, particularly when the number of intervals on the fuzzy time series was increased. \cite{tsai2000forecasting} compared the performance of 5 higher order time series models on predicting university enrolments, and found the higher-order models to be more accurate, with the model increasing in accuracy with every increase in the order of the time series, up to a fifth-order time series.
-
-\begin{ftsdef}
-Suppose $F(t)$ is caused by $F(t-1),F(t-2),\ldots,F(t-n)$ simultaneously, then the fuzzy logical relationship, $R$, for $F(t)$ can be represented by $F(t-n),\ldots, F(t-2),F(t-1) \rightarrow F(t)$. This is called an $n$th-order fuzzy time series.
-\end{ftsdef}
-
-This definition does not define the relationship between the points on the time series, which can be defined in various ways. \cite{tsai1999study} developed a straightforward procedure which maintains the captures of higher-order time series while maintaining the simplicity of first-order calculations.
-
-On an $m$-order fuzzy time series, $F(t)$ is caused by $F(t-1)$, $F(t-2)$, $\ldots$, and $F(t-m)$ simultaneously. The $m$ fuzzy logical relationships for $F(t)$ are obtained in the same manner as a first-order model. The relationships can be represented as follows:
-
-\begin{table}[H]
-	\center
-	\begin{tabular}{ c }
-  	$F(t-1) \rightarrow F(t)$ \\
-  	$F(t-2) \rightarrow F(t)$ \\
-  	\vdots \\
-  	$F(t-m) \rightarrow F(t)$ \\
-	\end{tabular}
-	\caption{Higher-Order Fuzzy Logical Relationships}
-\end{table}
-
-The relational function for an expression $F(t-k) \rightarrow F(t)$ is shown as $R^{m}_{k}(t)$. In an $m$-order fuzzy time series for any forecast $F(t)$ there are $m$ relational functions $R^{m}_{\ \ 1}, R^{m}_{\ \ 2}, \ldots, R^{m}_{\ \ m}$, where $R^{m}_{\ \ k}=R(t,t-k)$. In $R^{m}_{\ \ k}$, the $m$ indicates what order model the relation is for the $i$ represents the first-order fuzzy relation between $F(t-k)$ and $F(k)$, for all $k={1,2,\ldots,m}$. For example, the relational matrix representing the fuzzy logical relationships between observations 2 points in time apart on a third-order fuzzy time series could be shown as:
-
-\begin{table}[H]
-	\center
-	\begin{tabular}{ c }
-  	$R^{3}_{\ \ 2}(1) = F(1) \times F(3)$ \\
-  	$R^{3}_{\ \ 2}(2) = F(2) \times F(4)$ \\
-  	\vdots \\
-  	$R^{3}_{\ \ 2}(k) = F(k) \times F(k-2)$ \\
-	\end{tabular}
-	\caption{Second-Order Fuzzy Logical Relationships}
-\end{table}
-
-Once all relations are obtained the forecast values for $F(i)$ for each order model can be shown:
-
-\begin{table}[H]
-	\center
-	\begin{tabular}{ c }
-  	$F_{i1} = F_{i-1} \circ R^{m}_{\ \ 1}$ \\
-  	$F_{i2} = F_{i-2} \circ R^{m}_{\ \ 2}$ \\
-  	\vdots \\
-  	$F_{im} = F_{i-m} \circ R^{m}_{\ \ m}$ \\
-	\end{tabular}
-	\caption{Forecast Values for $F(i)$}
-\end{table}
-
-Where $F_{im}$ is the $m$th possible fuzzy value for $F(i)$. There are up to $m$ possible values as there will be up to $m$ first-order relations. Since the above relations happen simultaneously, the forecast for $F(i)$ is the intersection of all $F_{ik}$.
 
 \subsubsection{Interval Selection}
 
@@ -296,95 +193,154 @@ The beginning of the first interval, $lower_1$, is set to MIN$(x_t)-c$ where MIN
 
 \section{Design}
 
-I propose a higher-order confidence-weighted time-invariant fuzzy time series of z-score change using ratio-based intervals 
+%I propose a higher-order confidence-weighted time-invariant fuzzy time series of z-score change using ratio-based intervals 
+
+\subsection{Definitions}
+
+The following definitions describe a general model of a fuzzy time series and are provided by \cite{song1993forecasting}, \cite{chen1996forecasting} and \cite{chu2009fuzzy}.
+
+\begin{ftsdef}
+Let $Y(t)(t= \ldots,0,1,2, \ldots)$, a subset of $\mathbb{R}$, be the universe of discourse on which fuzzy sets $f_i(t)(i=1,2,\ldots)$ are defined and let $F(t)$ be a collection of $f_i(t)(i=1,2,\ldots)$. Then $F(t)$ is called a fuzzy time series on $Y(t)(t= \ldots,0,1,2, \ldots)$.
+\end{ftsdef}
+In this definition, $Y(t)$ represents a time series, returning a value at different points along time $t$. The range of values in this time series is called the universe of discourse. $f_i(t)$ are fuzzy sets over the universe of discourse, consisting of the all the linguistic terms defined in the universe and the membership of each term in that fuzzy set. $F(t)$ is the collection of all of these fuzzy sets. This collection of fuzzy sets at any point $t$ on a time series is called a fuzzy time series.
+
+As an example, consider a graph of the the daily closing stock price for a company. $Y(t)$ is the closing stock price at any day $t$. The universe of discourse is the range of values you are considering at this time, so if your model was considering the prices over the past 100 days, then your universe of discourse would be the range of numbers between the highest and lowest points in the past 100 days. 
+
+This example considers one linguistic variable which indicates the performance of a stock. The universe of discourse is partitioned into separate intervals, $u_1, u_2,\ldots,u_k$. For example, if the universe of discourse was the range in dollars $[100, 200]$, 5 intervals might be used where $u_1 = [100 \ldots 120]$, $u_2 = [120 \ldots 140]$, $u_3 = [140 \ldots 160]$, $u_4 = [160 \ldots 180]$ and $u_5 = [180 \ldots 200]$. Fuzzy sets are then defined which are the linguistic values of the linguistic variable ``performance". For example, 5 fuzzy sets are defined, $very\_low$, $low$, $mid$, $high$ and $very\_high$. These fuzzy sets consist of the grade of membership of each interval in the fuzzy set. For example:
+\begin{description}
+\item[] $very\_low = 1/u_1 + 0.5/u_2 + 0/u_3 + 0/u_4 + 0/u_5$
+\item[] $low = 0.5/u_1 + 1/u_2 + 0.5/u_3 + 0/u_4 + 0/u_5$
+\item[] $med = 0/u_1 + 0.5/u_2 + 1/u_3 + 0.5/u_4 + 0/u_5$
+\item[] $high = 0/u_1 + 0/u_2 + 0.5/u_3 + 1/u_4 + 0.5/u_5$
+\item[] $very\_high = 0/u_1 + 0/u_2 + 0/u_3 + 0.5/u_4 + 1/u_5$
+\end{description}
+where the symbol $+$ denotes the union operator. $F(t)$ the time series of these fuzzy sets, and can be regarded as a linguistic variable.
+
+\begin{ftsdef}
+Suppose $F(t)$ is caused by $F(t-1)$ only, then this fuzzy relation can be expressed as $F(t)=F(t-1) \circ R(t,t-1)$, where $R(t,t-1)$ is the fuzzy relationship between $F(t-1)$ and $F(t)$. The model $F(t)=F(t-1) \circ R(t,t-1)$ is called the first order model $F(t)$.
+\end{ftsdef}
+
+Definition 1 shows that $F(t)$ is a linguistic variable with linguistic values $f_i(t) (i=1,2,\ldots)$. Definition 2 states that, for a first order fuzzy time series, for every linguistic value in the $F(t)$, there is a relationship $R$ between $F(t-1)$ and $F(t)$. 
+
+This means that there is a relationship between the linguistic value for $F(t)$ at every point in time and the next point in time. Following from the previous example, consider the fuzzy time series $F(t)(t=1,2,\ldots,6)$ where $f(1)=low$, $f(2)=high$, $f(3)=med$, $f(4)=low$, $f(5)=low$ and $f(6)=very\_high$, then the fuzzy logic relationships can be shown as follows: 
+
+\begin{table}[h]
+	\center
+	\begin{tabular}{ l l l }
+  	$low \rightarrow high$  \\
+  	$high \rightarrow med$ \\
+  	$med \rightarrow low$ \\
+  	$low \rightarrow low$ \\
+  	$low \rightarrow very\_high$ \\
+	\end{tabular}
+	\caption{Fuzzy Logical Relationships}
+\end{table}
+
+\begin{ftsdef}
+All fuzzy logical relationships in the fuzzy time series can be further grouped together into fuzzy logical relationship groups according to the same left-hand sides of the fuzzy logical relationship.
+\end{ftsdef}
+
+This definition states that for every fuzzy logical relationship between $F(t)$ and $F(t-1)$, as in Definition 2, the relationships over the time series may be grouped in relationships where $F(t-1)$ are the same. The fuzzy logical relationship groups for the example can be shown as follows:
+
+\begin{table}[h]
+	\center
+	\begin{tabular}{ c c c c }
+  	Group 1: & $low$ & $\rightarrow$ & $high, low, very\_high$ \\
+  	Group 2: & $high$ & $\rightarrow$ & $med$ \\
+  	Group 3: & $med$ & $\rightarrow$ & $low$ \\
+	\end{tabular}
+	\caption{Fuzzy Logical Relationship Groups}
+\end{table}
+
+These relationships are then used to forecast observations in time. Taking $t$ as the point in time to be forecast, we can predict $F(t)$ using the fuzzy logic relationship grouping for $F(t-1)$. If there is only 1 fuzzy logic relationship for $F(t-1)$, then that relationship is used for the forecast. Continuing from the example, if $F(t-1)$ is $high$, then Group 2 is referenced, and the only right-hand side value, $med$, is used as the forecast. Various solutions have been proposed in the case that there is more than one outcome on the right-hand side of a fuzzy logical relationship group, as with Group 1, including max-min composition as proposed by \cite{song1993forecasting} and simple arithmetic operations as proposed by \cite{chen1996forecasting}.
+
+\begin{ftsdef}
+Suppose $R(t,t-1)$ is a first order model of $F(t)$. If for any $t$, $R(t,t-1)$ is independent of $t$, that is for any $t$, $R(t,t-1) = R(t-1,t-2)$, then $F(t)$ is called a time-invariant fuzzy time series or else it is called a time-variant fuzzy time series.
+\end{ftsdef}
+
+This definition defines a time invariant and a time-variant fuzzy time series. By this definition a time-variant fuzzy time series is one where the relation between values $F(t)$ and $F(t-1)$ is never the same as the relation between $F(t-1)$ and $F(t-2)$. Combining this with Definition 2, a time-variant fuzzy time series is one in which $F(t)$ and $F(t-1)$ never have the same fuzzy values. \cite{song1993forecasting} provides a theorem that implies that ``in the case of a time-invariant, it is very easy and convenient to calculate the first order model''.
+
+
+\begin{ftsdef}
+Suppose $F(t)$ is caused by $F(t-1),F(t-2),\ldots,F(t-n)$ simultaneously, then the fuzzy logical relationship, $R$, for $F(t)$ can be represented by $F(t-n),\ldots, F(t-2),F(t-1) \rightarrow F(t)$. This is called an $n$th-order fuzzy time series.
+\end{ftsdef}
+
+\cite{tsai1999study} developed a straightforward procedure which maintains the captures of higher-order time series while maintaining the simplicity of first-order calculations.
+
+On an $m$-order fuzzy time series, $F(t)$ is caused by $F(t-1)$, $F(t-2)$, $\ldots$, and $F(t-m)$ simultaneously. The $m$ fuzzy logical relationships for $F(t)$ are obtained in the same manner as a first-order model. The relationships can be represented as follows:
+
+\begin{table}[H]
+	\center
+	\begin{tabular}{ c }
+  	$F(t-1) \rightarrow F(t)$ \\
+  	$F(t-2) \rightarrow F(t)$ \\
+  	\vdots \\
+  	$F(t-m) \rightarrow F(t)$ \\
+	\end{tabular}
+	\caption{Higher-Order Fuzzy Logical Relationships}
+\end{table}
+
+The relational function for an expression $F(t-k) \rightarrow F(t)$ is shown as $R^{m}_{k}(t)$. In an $m$-order fuzzy time series for any forecast $F(t)$ there are $m$ relational functions $R^{m}_{\ \ 1}, R^{m}_{\ \ 2}, \ldots, R^{m}_{\ \ m}$, where $R^{m}_{\ \ k}=R(t,t-k)$. In $R^{m}_{\ \ k}$, the $m$ indicates what order model the relation is for the $i$ represents the first-order fuzzy relation between $F(t-k)$ and $F(k)$, for all $k={1,2,\ldots,m}$. For example, the relational matrix representing the fuzzy logical relationships between observations 2 points in time apart on a third-order fuzzy time series could be shown as:
+
+\begin{table}[H]
+	\center
+	\begin{tabular}{ c }
+  	$R^{3}_{\ \ 2}(1) = F(1) \times F(3)$ \\
+  	$R^{3}_{\ \ 2}(2) = F(2) \times F(4)$ \\
+  	\vdots \\
+  	$R^{3}_{\ \ 2}(k) = F(k) \times F(k-2)$ \\
+	\end{tabular}
+	\caption{Second-Order Fuzzy Logical Relationships}
+\end{table}
+
+Once all relations are obtained the forecast values for $F(i)$ for each order model can be shown:
+
+\begin{table}[H]
+	\center
+	\begin{tabular}{ c }
+  	$F_{i1} = F_{i-1} \circ R^{m}_{\ \ 1}$ \\
+  	$F_{i2} = F_{i-2} \circ R^{m}_{\ \ 2}$ \\
+  	\vdots \\
+  	$F_{im} = F_{i-m} \circ R^{m}_{\ \ m}$ \\
+	\end{tabular}
+	\caption{Forecast Values for $F(i)$}
+\end{table}
+
+Where $F_{im}$ is the $m$th possible fuzzy value for $F(i)$. There are up to $m$ possible values as there will be up to $m$ first-order relations. Since the above relations happen simultaneously, the forecast for $F(i)$ is the intersection of all $F_{ik}$.
 
 \subsection{Motivations}
 
 This paper studies the applicability of fuzzy time series analysis. The proposed system is a higher-order time-invariant fuzzy time series of the changes in z-scores of a time series. It uses ratio-based intervals and implements a confidence weighting to determine whether fuzzy logical relationships are statistically significant. 
 
-The motivation for this system is to explore the use of fuzzy time series analysis as well as determine the effectiveness of various models that have been proposed in the literature.
+%Very few visual chart pattern studies done, which is essentially what I'm finding. Fuzzy logic very applicable
 
-Very few visual chart pattern studies done, which is essentially what I'm finding. Fuzzy logic very applicable
+%There are relatively few Technical Analysis studies which identify visual patterns and attempt to evaluate their significance. This is an unexpected phenomenon as so many technical trader rely on visual pattern recognition in their strategy. One reason for this outlined by \cite{2020} is the challenge of ``automatic detection of technical patterns that would be similarly deducted by expert investors''. They make the point that the automated process would need to capture human cognitive abilities, even intuition...
 
-There are relatively few Technical Analysis studies which identify visual patterns and attempt to evaluate their significance. This is an unexpected phenomenon as so many technical trader rely on visual pattern recognition in their strategy. One reason for this outlined by \cite{2020} is the challenge of ``automatic detection of technical patterns that would be similarly deducted by expert investors''. They make the point that the automated process would need to capture human cognitive abilities, even intuition...
+%pattern discovery in time series uses bayes rule to determine probability 
 
-idea: get fuzzy membership to each stdev and use that to determine significance. a pattern could belong to 2 patterns but the outcome will have a fuzzy membership value as dictated by the patterns belongingness to the fuzzy sequence. nb does increase patterns that would be recognised by 2n squared.
-hmmmmm I could adapt the trend weighted model
-
-severe limitation of my method is ignoring high and low, thus eliminating candlestick visual pattern significance
-
-pattern discovery in time series uses bayes rule to determine probability
-
-I am NOT doing the standard fts method, as I am analysing n patterns to results, instead of just 1 -> outcome - though perhaps some did it this way
-
-\subsection{Time-Series Analysis}
-
-Discussion of the various papers that this is inspired from. The TAIEX paper, the univeristy enrollment paper,  the various dual factor fuzzy logic time series papers.
-
-\subsubsection{Justification of Design}
-
-Why I did mandami for example (nb. not yet decided).
-
-\subsection{Foreign Exchange}
-
-In the past 30 years the foreign exchange markets has grown from an exclusive, locked down market to one of the most actively traded an qd liquid markets today. The market has many interesting properties compared to the more historically significant stock market, such as 24 hour trading, and the price being a good general reflection on the state of a country or unions economy. However, due to the recent surge in interest in this market it has not had the same level of study as the traditionally popular markets despite showing some interesting behaviours that may be of interest...
-
-\cite{taprofitability} also found that different markets were better suited to Technical Analysis, with Foreign Exchange used in just under a third of the studies listed, and just under half of the modern studies listed. Interestingly they find that profits in this market seem to gradually decrease over time. This is also found by \cite{ttrp2006}, who suggest that the Foreign Exchange market has become more efficient in recent times.
-
-\subsubsection{Implementation}
-
-\subsection{Acquiring Data}
-
-Data used was publicly available data obtained from [...]. The data was verified against several sources, and verified that data was complete. Data used was daily opening...
-
-Step by step fuzzy logic system - fuzzification, inference, aggregation, defuzzification...
+%\cite{taprofitability} also found that different markets were better suited to Technical Analysis, with Foreign Exchange used in just under a third of the studies listed, and just under half of the modern studies listed. Interestingly they find that profits in this market seem to gradually decrease over time. This is also found by \cite{ttrp2006}, who suggest that the Foreign Exchange market has become more efficient in recent times.
 
 \section{Implementation}
 
 ...
 
-\subsection{Methodology}
-
 \subsection{Optimisation}
-
-\section{Results \& Evaluation}
-Stand back and evaluate what you have achieved and how well you have met the objectives. Evaluate your achievements against your objectives in section 1.2. Demonstrate that you have tackled the project in a professional manner. 
 
 alleviate data snooping by considering a diverse set of technical trading systems and conducting parameter optimisation and out of sample verification \citep{taprofitability}.
 
-\subsection{RMSE Performance Indicator}
+\section{Results}
 
-Outline how it has been used in other papers. Outline how we can draw direct comparisons...
-
-\subsection{Performance}
-
-\subsection{Results}
-
-Results of the analysis of data. Show that the average price movement comes to approximately 0, as expected. Show the patterns discovered, show the significance of these using statistical analysis...
-
-\subsubsection{Statistical significance of patterns}
-
-Show the significance of certain patterns statistically using survey sampling techniques \& confidence interval...
-
-\subsection{Forward testing}
-
-See the error when testing against data that was not used to train the program...
-
-\subsection{Comparisons}
-
-Compare the results to previous papers.
+\section{Evaluation}
 
 \section{Conclusion}
 
-Analysis of results against objectives...
-
 \section{Future work}
-
-What went well, what could be improved...
 
 \appendix
 
 \section{Technical Analysis Techniques}
+
+\label{tatechniques}
 
 There are many trading strategies that use Technical Analysis. Almost any strategy that uses past price movement or behaviour as an indicator for future price counts as a technical trading strategy. Discussed here are 3 techniques that are seen to be widely used in technical trading strategies.
 
