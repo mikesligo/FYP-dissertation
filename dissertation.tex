@@ -27,39 +27,29 @@
 
 \section{Introduction}
 
-\subsection{Motivation}
+The aim of this project is to explore the applicability of fuzzy logic to time series analysis. This paper studies the efficacy of the various fuzzy time series models proposed in the literature. It also proposes a confidence-weighted model which will be evaluated as a technical trading strategy. The paper also tests the efficiency of several financial markets. 
 
-The aim of this project is to explore the applicability of fuzzy logic for time series analysis. This paper studies the efficacy of the various models proposed in the literature and proposes a confidence-weighted model which will be evaluated against other time series models as well as other technical trading strategies. The paper also tests the efficiency of several financial markets. 
+The debate over the usefulness of Technical Analysis is still up in the air. There are many studies demonstrating excess returns compared to a uninformed strategies such as buy and hold, even after transaction costs. As shown in the literature review, many aspects and techniques of Technical Analysis have been studied including visual patterns such as ``Head \& Shoulders'', trend lines, moving averages, Japanese Candlestick Charting and neural networks. Many explanations justifying Technical Analysis have been proposed including market psychology, market inefficiencies, insider trading and the prevalence of the Golden Mean. The more recent studies have used well regarded statistical techniques, out of sample verification, parameter optimisation and account for transaction costs.
 
-The debate over the usefulness of Technical Analysis is still up in the air. There are many studies demonstrating excess returns compared to a uninformed strategies such as buy and hold, even after transaction costs. As shown in the literature review, many aspects and techniques of Technical Analysis have been studied including visual patterns such as ``Head \& Shoulders'', trend lines, moving averages, Japanese Candlestick Charting and neural networks. Many explanations for the existence of Technical Analysis have been proposed including market psychology, market inefficiencies, insider trading and the prevalence of the Golden Mean. The more recent studies have used well regarded statistical techniques, out of sample verification, parameter optimisation and account for transaction costs.
+Yet the results of these studies and the perception of Technical Analysis among experts varies significantly. The empirical nature of Technical Analysis makes conclusive evaluation difficult. Data snooping is a concern in many studies. In a study of 100 random technical patterns, 5 of them will generate statistically significant excess returns. This risk can be reduced by testing the trading strategy against a sample set of data, but the question can linger as to why one technical trading strategy is more effective than another and why is it effective on some sample data but not all. The studies that demonstrate insignificant returns or losses may have been tested against a dataset to which technical analysis doesn't apply, or on the contrary, strategies that demonstrated profit such as a moving average cross may have been tested in a time when the market featured significant trends which the moving average indicator is suited to.
 
-Yet the results of these studies, and the perception of Technical Analysis among experts, varies significantly. The empirical nature of Technical Analysis makes conclusive evaluation difficult. Data snooping is a concern in many studies. In a study of 100 random technical patterns, 5 of them will generate statistically significant excess returns. This risk can be reduced by testing the trading strategy against a sample set of data, but the question often remains as to why one technical trading strategy is more effective than another and why is it effective on some sample data but not all. Indeed the studies that demonstrate insignificant returns or losses may have been tested against a dataset to which technical analysis doesn't apply, or on the contrary, strategies that demonstrated profit such as a moving average cross may have been tested in a time when the market was significantly bullish or bearish and featured significant trends which the moving average indicator is suited to.
+This paper takes a different approach to performing technical analysis. Many studies have been carried out on technical trading strategies that are actively used in the financial industry. Often these strategies have been in use for several decades, discovered out of empirical observation of visual data at a time before it was possible to verify the techniques computationally. However, the market conditions and behaviour may have changed since the discovery of these techniques. Newer markets may have characteristics not reflected by traditional technical analysis. 
 
-This paper takes a different approach to performing technical analysis. Many studies have been carried out on technical trading strategies that are actively in the financial industry. Often these strategies have been in use for several decades, and discovered out of empirical observation of visual data at a time before it was possible to verify the techniques computationally. However, the market conditions and behaviour may have changed since the discovery of these techniques. Newer markets may have characteristics not reflected by traditional technical analysis.
+The model proposed in this paper aims to derive these characteristics by examining the historical price data of a security using fuzzy time series analysis and identifying statistically significant regularities. 
 
-Technical analysis is built on the principle that past price can provide information that can be used to forecast future price. This paper proposes a model of financial data which aims to identify statistically significant regularities. 
-
-The model implements fuzzy time series analysis, which identifies fuzzy relationships between points on a time series and uses these to forecast observations. A time series is a sequence of real numbers that change over time, a graph of price being an example. Fuzzy time series models examine a history of data and the change in price between one point in time and the next. These fluctuations are seen as relationships between those points in time. Fuzzy time series analysis supposes that fluctuations at certain points are likely to happen again, and that relationships obtained when examining past data can be used to predict changes.
+Fuzzy time series analysis identifies fuzzy relationships between points on a time series and uses these to forecast observations. A time series is a sequence of real numbers that change over time, a graph of price being an example. Fuzzy time series models examine a history of data and the change in price between one point in time and the next. These fluctuations are seen as relationships between those points in time. Fuzzy time series analysis supposes that fluctuations at certain points are likely to happen again, and that relationships obtained when examining past data can be used to predict changes.
 
 Modelling these relationships using crisp set theory is difficult. If the price goes from $\$100$ to $\$120$ on a time series, the relationship is recorded as $\$100 \rightarrow \$120$. If the price $\$100$ appears again we use this relationship to forecast $\$120$ as the next point on the time series. But if $\$99$ or $\$101$ appear, we don't have a relationship to apply. An ideal model would know to apply the $\$100 \rightarrow \$120$ relationship if the observation was \textit{around} $100$.
 
 Fuzzy logic allows for such approximate relationships. Data is grouped into fuzzy sets in which elements of the set have a different membership value of the set. Membership functions map crisp data to a linguistic value in the fuzzy set. In a fuzzy time series, all data in the time series is fuzzified into fuzzy sets. The relationships are then no longer between individual observations but between the fuzzy sets they belong to.
 
-In the previous example, the fuzzy set \textit{medium} might offer maximum membership to $\$100$ and $0\%$ membership for $\$90$ and $\$110$. Membership for observations between these two values might use a simple linear function, so $50\%$ membership for $\$95$ and $\$105$ . If a second fuzzy set \textit{medium\_high} was made with similar membership rules around value $\$120$, the relationship $\$100 \rightarrow \$120$ would now be $medium \rightarrow medium\_high$.The value $\$99$ would have a $90\%$ membership to \textit{medium}, a high enough membership that we would use $medium\_high$ as the forecast fuzzy value, which could then be defuzzified to a crisp value.
+Fuzzy time series analysis does not model the time series exactly but allows for a model where patterns that are similar but not identical can be recognised. The Technical Analysis studies which attempt to identify visual patterns have difficulty accounting for these approximations. Some handle the issue by deciding that values within $1.5\%$ of each other are the same, but this crisp system still features an all or nothing membership such that values within $1.499\%$ of each other are considered the same but values $1.501\%$ apart are considered different.
 
-Having fuzzy relationships offers a model which does not model the time series exactly but allows for a time series model where patterns that are similar but not identical can be recognised. Technical Analysis studies which attempt to identify visual patterns have difficulty accounting for these approximations. Some handle the issue by deciding that values within $1.5\%$ of each other are the same, but this crisp system still features an all or nothing membership such that values within $1.499\%$ of each other are considered the same but values $1.501\%$ apart are considered different.
+This is a feature of fuzzy logic and is a crucial component of fuzzy time series modelling. Applying fuzzy time series analysis to a large sample of data often results in points belonging to several fuzzy sets, with many fuzzy logical relationships between these sets. Fuzzy set theory enables observations to belong to many fuzzy sets at once, so that the height $190cm$ might partially belong to fuzzy sets \textit{average} as well as \textit{above\_average}. Fuzzy sets also belong to many fuzzy logical relationships, so $high\_price \rightarrow low\_price$ and $high\_price \rightarrow medium\_price$ may be existing relationships. 
 
-This feature of fuzzy logic is a crucial component of fuzzy time series modelling. Applying fuzzy time series analysis to a large sample of data often results in points belonging to several fuzzy sets, with many fuzzy logical relationships between these sets. Fuzzy set theory enables observations to belong to many fuzzy sets at once, so that the height $190cm$ might partially belong to fuzzy sets \textit{average} as well as \textit{above\_average}. Fuzzy sets also belong to many fuzzy logical relationships, so $high\_price \rightarrow low\_price$ and $high\_price \rightarrow medium\_price$ may be existing relationships. 
+There are various methods of composing and defuzzifying these relationships which can be seen in the literature review. The model proposed in this paper is concerned with determining a probability that a certain pattern will result in a particular result. After analysis of a large sample of financial data various patterns are identified with various different outcomes or movements in price. The random walk hypothesis proposes that these movements will return to the mean, so that any increase in price following an identified pattern will also be met with a decrease in price at another points, making the net result zero. the proposed model aims to find patterns with statistically significant outcomes, indicating that the outcome of a pattern is a function of the market instead of a random movement.
 
-There are various method of composing and defuzzifying these relationships which can be seen in the literature review. The model proposed in this paper is concerned with gaining a confidence level from these relationships that a particular pattern will happen again... [TODO]
-
-%Very few visual chart pattern studies done, which is essentially what I'm finding. Fuzzy logic very applicable
-
-%There are relatively few Technical Analysis studies which identify visual patterns and attempt to evaluate their significance. This is an unexpected phenomenon as so many technical trader rely on visual pattern recognition in their strategy. One reason for this outlined by \cite{2020} is the challenge of ``automatic detection of technical patterns that would be similarly deducted by expert investors''. They make the point that the automated process would need to capture human cognitive abilities, even intuition...
-
-%pattern discovery in time series uses bayes rule to determine probability 
-
-%\cite{taprofitability} also found that different markets were better suited to Technical Analysis, with Foreign Exchange used in just under a third of the studies listed, and just under half of the modern studies listed. Interestingly they find that profits in this market seem to gradually decrease over time. This is also found by \cite{ttrp2006}, who suggest that the Foreign Exchange market has become more efficient in recent times.
+A technical trading strategy is proposed in this paper that uses the patterns that are determined to be statistically significant as trading rules. The strategy uses the proposed fuzzy time series model to analyse historical data and identify patterns where the confidence of an outcome of a pattern is above a certain criterion percentage $\alpha$.
 
 \section{Literature Review}
 
@@ -133,7 +123,7 @@ A fuzzy time series is a model of a time series that uses fuzzy set theory to fi
 The typical use of a fuzzy time series is to forecast observations on the time series using historical data. Studies using fuzzy time series have been carried out on forecasting university enrolment \citep{song1993forecasting, song1994forecasting, chen1996forecasting, tsai2000forecasting, chen2004new, cheng2006trend, lee2006pattern, huarng2006ratio, tsaur2012fuzzy}, Stock Market price \citep{huarng2005type, cheng2006trend, lee2006pattern, huarng2006ratio, Chen2007fib, chu2009fuzzy}, Foreign-Exchange rates \citep{tsaur2012fuzzy}, population change \citep{tsai1999study} and temperature \citep{temperatureprediction2000, lee2006pattern}. 
 
 \subsubsection{Basic Model}
-
+TODO this should be in design
 \cite{song1993forecasting} pioneered the fuzzy time series model providing the definitions for the concept and a method for modelling a time invariant fuzzy time series. The method was shown to be better than the Linear Regression Method for forecasting student enrolments at the University of Alabama. It followed a similar series of steps as the example provided with the definitions, but has the key difference of defining relations between fuzzy values using max-min composition, and thus matrix operations. They also use a simple defuzzification algorithm to interpret the results, to which they claim ``it is not difficult to jump to the conclusion that in the interpretation of the output results, experience knowledge is still needed''. The process is as follows:
 
 \begin{enumerate}
@@ -148,21 +138,23 @@ The typical use of a fuzzy time series is to forecast observations on the time s
 \item[Step 1] Define a universe of discourse over the maximum and minimum values of observations on the time series and partition it into several intervals
 \item[Step 2] Define fuzzy sets on the universe of discourse. These fuzzy sets are composed of each of the defined intervals and their membership in that fuzzy set. Fuzzify the time series into these fuzzy sets
 \item[Step 3] Calculate the maximum membership of the fuzzified data and form fuzzy logical relationships between the fuzzy values of neighbouring observations on the time series
-\item[Step 4] Group the fuzzy logical relationships into groups such that relationships defined as $R(t,t-1)$ have the same fuzzy value for $t-1$. That is, the relationships have the same fuzzy value on the left hand side. These groups are called fuzzy logical relationship groups
+\item[Step 4] Group the fuzzy logical relationships into groups such that relationships defined as $R(t,t-1)$ have the same fuzzy value for $t-1$. That is, the relationships have the same fuzzy value on the left-hand side. These groups are called fuzzy logical relationship groups
 \item[Step 5] Forecast observations. Let the fuzzy value of $F(t)$ be $A_i$. This step is concerned with forecasting the fuzzy value of $F(t+1)$
 \begin{enumerate}
 \item If  $A_i \rightarrow A_k$ is the only fuzzy logical relationship in the fuzzy logical relationship group associated with $A_t$, then $F(t+1)$ is forecast as $A_k$ 
 \item If there are multiple fuzzy logical relationships associated with $A_i$, such that with fuzzy logical relationship group $A_i \rightarrow A_{i}, A_{j}, \ldots, A_{k}$, then $F(t+1)$ is forecast as $A_{i}, A_{j}, \ldots, A_{k}$
 \item If there are no fuzzy logical relationships associated with $A_i$, then $F(t+1)$ is forecast as $A_i$
 \end{enumerate}
-\item[Step 6] Defuzzify the forecast fuzzy set using the Centroid method. Practically, this involves calculating the average of the midpoints of each interval which has a maximum membership in a fuzzy set that is forecast for $F(t+1)$
+\item[Step 6] Defuzzify the forecast fuzzy set using the Centroid method. Practically, this involves calculating the average of the midpoints of each interval which has a maximum membership in a fuzzy set that is forecast for $F(t+1)$ - TODO it's not really the centroid method if multiple forecasts of the same fuzzy set influence the defuzzification
 \end{description}
+
+TODO a type 2 fuzzy time series for stock index forecasting explored fuzzy union vs intersection
 
 \subsubsection{Higher-Order Models}
 
 An $n$th-order or higher-order fuzzy time series is one where where there is a simultaneous relationship between multiple points on the time series, not just adjacent observations. \cite{tsai1999study} found that a second-order fuzzy time series lead to more accurate predictions when forecasting population, particularly when the number of intervals on the fuzzy time series was increased. \cite{tsai2000forecasting} compared the performance of 5 higher order time series models on predicting university enrolments, and found the higher-order models to be more accurate, with the model increasing in accuracy with every increase in the order of the time series, up to a fifth-order time series.
 
-\subsubsection{Interval Selection}
+	\subsubsection{Interval Selection}
 
 Deciding on the size and number of interval partitions on the universe of discourse is an important issue \citep{Huarng2001effective,  huarng2006ratio}. If there are too few intervals, there will be fewer fluctuations in the fuzzy time series \citep{Huarng2001effective}, which results in less precise fuzzy logical relationships. More intervals also result in each fuzzy value representing a small range of values, which result in a more accurate crisp value during defuzzification. However, too many intervals will not be recognised by an expert which negates some of the benefits of using fuzzy logic.
 
@@ -227,12 +219,9 @@ The beginning of the first interval, $lower_1$, is set to MIN$(x_t)-c$ where MIN
 
 \cite{huarng2006ratio} compared the approach to the average- and distribution-based approaches as well as several arbitrarily chosen similarly sized intervals. The ratio based approach resulted in the best accuracy for the methods tested when forecasting university enrolment, TAIEX price and inventory stock. They also found that the optimal interval length changed between data sets from the same data source, and that the ratio based approach was effective at approximating the optimal length.
 
-
 \section{Design}
 
-%I propose a higher-order confidence-weighted time-invariant fuzzy time series of z-score change using ratio-based intervals 
-
-\subsection{Definitions}
+\subsection{Fuzzy Time Series}
 
 The following definitions describe a general model of a fuzzy time series and are provided by \cite{song1993forecasting}, \cite{chen1996forecasting} and \cite{chu2009fuzzy}.
 
@@ -349,6 +338,20 @@ Once all relations are obtained the forecast values for $F(i)$ for each order mo
 \end{table}
 
 Where $F_{im}$ is the $m$th possible fuzzy value for $F(i)$. There are up to $m$ possible values as there will be up to $m$ first-order relations. Since the above relations happen simultaneously, the forecast for $F(i)$ is the intersection of all $F_{ik}$.
+
+\subsection{Higher-Order Model}
+
+\subsection{Confidence-Weighted First-Order Model}
+
+The proposed model is a higher-order fuzzy time series with ratio-based interval lengths. When modelling a large sample of data there will be many relationships with the same left-hand side value. Most fuzzy time series studies, starting with \cite{song1993forecasting}, implement a simple defuzzification methodology when multiple fuzzy values are forecast. The methodology takes the mean of the midpoint of the intervals that the forecast fuzzy values have a maximum membership of.
+
+This is an issue when analysing high volume financial data. Price tends to return to the mean [TODO: citation needed] which means that if a large amount of values were forecast for time $t+1$, the average of their midpoints would be statistically very close to the the value at time $t$. The closer a security is to following a random walk model, the smaller the deviation from the current value when there are many historical relationships and thus many forecast values.
+
+Even when the defuzzified forecast value deviates significantly from the current value, it is not clear whether this is due to a large correlation between the current pattern and the outcome, or if this pattern has simply appeared very few times in the history and there are not enough samples for the value to return to the mean.
+
+\subsection{Probability Theory}
+
+Standard deviation
 
 \section{Implementation}
 
