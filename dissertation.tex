@@ -9,6 +9,8 @@
 \usepackage{cleveref}
 \usepackage{graphicx}
 \usepackage{enumitem}
+\usepackage{tikz} % To generate the plot from csv
+\usepackage{pgfplots}
 \theoremstyle{definition}
 \newtheorem{ftsdef}{Definition}
 \newcolumntype{R}{>{\raggedleft\arraybackslash}l}%
@@ -218,11 +220,32 @@ The following definitions describe a general model of a fuzzy time series.
 \label{def1}
 Let $Y(t)(t= \ldots,0,1,2, \ldots)$, a subset of $\mathbb{R}$, be the universe of discourse on which fuzzy sets $f_i(t)(i=1,2,\ldots)$ are defined and let $F(t)$ be a set of $f_i(t)(i=1,2,\ldots)$. Then $F(t)$ is a fuzzy time series on $Y(t)(t= \ldots,0,1,2, \ldots)$.
 \end{ftsdef}
+
+\begin{ftsdef}
+\label{def2}
+Suppose $F(t)$ is caused by $F(t-1)$ only, then this fuzzy relation can be expressed as $F(t)=F(t-1) \circ R(t,t-1)$, where $R(t,t-1)$ is the fuzzy relationship between $F(t-1)$ and $F(t)$. The model $F(t)=F(t-1) \circ R(t,t-1)$ is called the first order model $F(t)$, where $F(t-1) \rightarrow F(t)$ denotes the fuzzy logical relationships between observations.
+\end{ftsdef}
+
+\begin{ftsdef}
+\label{def3}
+All fuzzy logical relationships in the fuzzy time series can be further grouped together into fuzzy logical relationship groups such that $F(k) \rightarrow F(m), F(n), \ldots, F(l)$ is the collection of fuzzy logical relationships over $F(t)$ with $F(k)$ as the left hand side value and $F(m)$, $F(n)$, \ldots and $F(l)$ as right hand side values.
+\end{ftsdef}
+
+\begin{ftsdef}
+\label{def4}
+Suppose $R(t,t-1)$ is a first order model of $F(t)$. If for any $t$, $R(t,t-1)$ is independent of $t$, that is for any $t$, $R(t,t-1) = R(t-1,t-2)$, then $F(t)$ is called a time-invariant fuzzy time series or else it is called a time-variant fuzzy time series.
+\end{ftsdef}
+
+\begin{ftsdef}
+\label{def5}
+Suppose $F(t)$ is caused by $F(t-1),F(t-2),\ldots,F(t-n)$ simultaneously, then the fuzzy logical relationship, $R$, for $F(t)$ can be represented by $F(t-n)\rightarrow F(t)$, $F(t-2) \rightarrow F(t)$, $\ldots$ and $F(t-1) \rightarrow F(t)$, then F(t) is a higher-order fuzzy time series and is denoted as an $n$th-order fuzzy time series.
+\end{ftsdef}
+
 In \cref{def1}, $Y(t)$ represents a time series, returning a value at different points along time $t$. The range of values in this time series is called the universe of discourse. $f_i(t)$ are fuzzy sets over the universe of discourse, consisting of the all the linguistic terms defined in the universe and the membership of each term in that fuzzy set. $F(t)$ is the collection of all of these fuzzy sets. This collection of fuzzy sets at any point $t$ on a time series is called a fuzzy time series.
 
 As an example, consider a graph of the the daily closing stock price for a company. $Y(t)$ is the closing stock price at any day $t$. The universe of discourse is the range of values you are considering at this time, so if your model was considering the prices over the past 100 days, then your universe of discourse would be the range of numbers between the highest and lowest points in the past 100 days. 
 
-This example considers one linguistic variable which indicates the performance of a stock. The universe of discourse is partitioned into separate intervals, $\left\{u_1, u_2,\ldots,u_k\right\}$. For example, if the universe of discourse was the range in dollars $[100, 200]$, 5 intervals might be used where $u_1 = [100 \ldots 120]$, $u_2 = [120 \ldots 140]$, $u_3 = [140 \ldots 160]$, $u_4 = [160 \ldots 180]$ and $u_5 = [180 \ldots 200]$. Fuzzy sets are then defined which are the linguistic values of the linguistic variable ``performance". For example, 5 fuzzy sets are defined, $very\_low$, $low$, $mid$, $high$ and $very\_high$. These fuzzy sets consist of the grade of membership of each interval in the fuzzy set. For example:
+This example considers one linguistic variable which indicates the performance of a stock. The universe of discourse is partitioned into separate intervals, $\left\{u_1, u_2,\ldots,u_k\right\}$. For example, if the universe of discourse was the range in dollars $[100, 200]$, 5 intervals might be used where $u_1 = [100 \ldots 120]$, $u_2 = [120 \ldots 140]$, $u_3 = [140 \ldots 160]$, $u_4 = [160 \ldots 180]$ and $u_5 = [180 \ldots 200]$. Fuzzy sets are then defined which are the linguistic values of the linguistic variable ``Performance". For example the following fuzzy sets are defined, $very\_low$, $low$, $mid$, $high$ and $very\_high$. These fuzzy sets consist of the grade of membership of each interval in the fuzzy set. For example:
 \begin{description}
 \item[] $very\_low = 1/u_1 + 0.5/u_2 + 0/u_3 + 0/u_4 + 0/u_5$
 \item[] $low = 0.5/u_1 + 1/u_2 + 0.5/u_3 + 0/u_4 + 0/u_5$
@@ -232,60 +255,40 @@ This example considers one linguistic variable which indicates the performance o
 \end{description}
 where the symbol $+$ denotes the union operator. $F(t)$ the time series of these fuzzy sets, and can be regarded as a linguistic variable.
 
-\begin{ftsdef}
-\label{def2}
-Suppose $F(t)$ is caused by $F(t-1)$ only, then this fuzzy relation can be expressed as $F(t)=F(t-1) \circ R(t,t-1)$, where $R(t,t-1)$ is the fuzzy relationship between $F(t-1)$ and $F(t)$. The model $F(t)=F(t-1) \circ R(t,t-1)$ is called the first order model $F(t)$.
-\end{ftsdef}
+\Cref{def1} shows that $F(t)$ is a linguistic variable with fuzzy sets $f_i(t) (i=1,2,\ldots)$ as its linguistic values. \Cref{def2} states that, for a first order fuzzy time series, for every linguistic value in the $F(t)$, there is a relationship $R$ between $F(t-1)$ and $F(t)$. This means that there is a relationship between the linguistic value for every adjacent point in $F(t)$. 
 
-\Cref{def1} shows that $F(t)$ is a linguistic variable with linguistic values $f_i(t) (i=1,2,\ldots)$. \Cref{def2} states that, for a first order fuzzy time series, for every linguistic value in the $F(t)$, there is a relationship $R$ between $F(t-1)$ and $F(t)$. 
 
-This means that there is a relationship between the linguistic value for $F(t)$ at every point in time and the next point in time. Following from the previous example, consider the fuzzy time series $F(t)(t=1,2,\ldots,6)$ where $f(1)=low$, $f(2)=high$, $f(3)=med$, $f(4)=low$, $f(5)=low$ and $f(6)=very\_high$, then the fuzzy logic relationships can be shown as follows: 
+
+Following from the example, consider the fuzzy time series $F(t)(t=1,2,\ldots,5)$ where $f(1)=low$, $f(2)=high$, $f(3)=high$, $f(4)=low$ and $f(5)=very\_high$, then the fuzzy logical relationships can be shown as follows: 
 
 \begin{table}[h]
 	\center
 	\begin{tabular}{ l l l }
   	$low \rightarrow high$  \\
-  	$high \rightarrow med$ \\
-  	$med \rightarrow low$ \\
-  	$low \rightarrow low$ \\
+  	$high \rightarrow high$ \\
+  	$high \rightarrow low$ \\
   	$low \rightarrow very\_high$ \\
 	\end{tabular}
 	\caption{Fuzzy Logical Relationships}
 \end{table}
 
-\begin{ftsdef}
-\label{def3}
-All fuzzy logical relationships in the fuzzy time series can be further grouped together into fuzzy logical relationship groups according to the same left-hand sides of the fuzzy logical relationship.
-\end{ftsdef}
-
-This definition states that for every fuzzy logical relationship between $F(t)$ and $F(t-1)$, as in Definition 2, the relationships over the time series may be grouped in relationships where $F(t-1)$ are the same. The fuzzy logical relationship groups for the example can be shown as follows:
+\Cref{def3} states that for every fuzzy logical relationship between $F(t)$ and $F(t-1)$, as in Definition 2, the relationships over the time series may be grouped in relationships where $F(t-1)$ are the same. The fuzzy logical relationship groups for the example can be shown as follows:
 
 \begin{table}[h]
 	\center
 	\begin{tabular}{ c c c c }
-  	Group 1: & $low$ & $\rightarrow$ & $high, low, very\_high$ \\
-  	Group 2: & $high$ & $\rightarrow$ & $med$ \\
-  	Group 3: & $med$ & $\rightarrow$ & $low$ \\
+  	Group 1: & $low$ & $\rightarrow$ & $high, very\_high$ \\
+  	Group 2: & $high$ & $\rightarrow$ & $low, high$ \\
 	\end{tabular}
 	\caption{Fuzzy Logical Relationship Groups}
 \end{table}
 
 These relationships are then used to forecast observations in time. Taking $t$ as the point in time to be forecast, we can predict $F(t)$ using the fuzzy logic relationship grouping for $F(t-1)$. If there is only 1 fuzzy logic relationship for $F(t-1)$, then that relationship is used for the forecast. Continuing from the example, if $F(t-1)$ is $high$, then Group 2 is referenced, and the only right-hand side value, $med$, is used as the forecast. Various solutions have been proposed in the case that there is more than one outcome on the right-hand side of a fuzzy logical relationship group, as with Group 1, including max-min composition as proposed by \cite{song1993forecasting} and simple arithmetic operations as proposed by \cite{chen1996forecasting}.
 
-\begin{ftsdef}
-\label{def4}
-Suppose $R(t,t-1)$ is a first order model of $F(t)$. If for any $t$, $R(t,t-1)$ is independent of $t$, that is for any $t$, $R(t,t-1) = R(t-1,t-2)$, then $F(t)$ is called a time-invariant fuzzy time series or else it is called a time-variant fuzzy time series.
-\end{ftsdef}
-
-This definition defines a time invariant and a time-variant fuzzy time series. By this definition a time-variant fuzzy time series is one where the relation between values $F(t)$ and $F(t-1)$ is never the same as the relation between $F(t-1)$ and $F(t-2)$. Combining this with Definition 2, a time-variant fuzzy time series is one in which $F(t)$ and $F(t-1)$ never have the same fuzzy values. \cite{song1993forecasting} provides a theorem that implies that ``in the case of a time-invariant, it is very easy and convenient to calculate the first order model''.
+\Cref{def4} defines a time invariant and a time-variant fuzzy time series. By this definition a time-variant fuzzy time series is one where the relation between values $F(t)$ and $F(t-1)$ is never the same as the relation between $F(t-1)$ and $F(t-2)$. Combining this with Definition 2, a time-variant fuzzy time series is one in which $F(t)$ and $F(t-1)$ never have the same fuzzy values. \cite{song1993forecasting} provides a theorem that implies that ``in the case of a time-invariant, it is very easy and convenient to calculate the first order model''.
 
 
-\begin{ftsdef}
-\label{def5}
-Suppose $F(t)$ is caused by $F(t-1),F(t-2),\ldots,F(t-n)$ simultaneously, then the fuzzy logical relationship, $R$, for $F(t)$ can be represented by $F(t-n),\ldots, F(t-2),F(t-1) \rightarrow F(t)$. This is called an $n$th-order fuzzy time series.
-\end{ftsdef}
-
-\cite{tsai1999study} developed a straightforward procedure which maintains the captures of higher-order time series while maintaining the simplicity of first-order calculations.
+\Cref{def5} defines a higher-order fuzzy time series. \cite{tsai1999study} developed a procedure which maintains the captures of higher-order time series while maintaining the simplicity of first-order calculations.
 
 On an $m$-order fuzzy time series, $F(t)$ is caused by $F(t-1)$, $F(t-2)$, $\ldots$, and $F(t-m)$ simultaneously. The $m$ fuzzy logical relationships for $F(t)$ are obtained in the same manner as a first-order model. The relationships can be represented as follows:
 
@@ -327,6 +330,20 @@ Once all relations are obtained the forecast values for $F(i)$ for each order mo
 \end{table}
 
 Where $F_{im}$ is the $m$th possible fuzzy value for $F(i)$. There are up to $m$ possible values as there will be up to $m$ first-order relations. Since the above relations happen simultaneously, the forecast for $F(i)$ is the intersection of all $F_{ik}$.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \subsection{Higher-Order Model}
 
