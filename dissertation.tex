@@ -140,11 +140,11 @@ TODO this should be in design
 
 \subsubsection{Higher-Order Models}
 
-A 1-order time series is described above. Fuzzy relations are defined between each adjacent point and only the most recent value in a time series is used for forecasting.
+A first-order time series is described in \Cref{basic}. Fuzzy relations are defined between each adjacent point and only the most recent value in a time series is used for forecasting.
 
 An $n$th-order or higher-order fuzzy time series is one where where there is a simultaneous relationship between multiple points on the time series, not just adjacent observations. There are fuzzy logical relationship groups defined between all points $1,2,\ldots,n$ spaces in time apart. The most recent $1,2,\ldots,n$ observations are used to forecast fuzzy values, which are then composed and defuzzified.
 
-\cite{tsai1999study} found that a 2-order fuzzy time series lead to more accurate predictions when forecasting population, particularly when the number of intervals on the fuzzy time series was increased. \cite{tsai2000forecasting} compared the performance of 5 higher order time series models on predicting university enrolments, and found the higher-order models to be more accurate, with the model increasing in accuracy with every increase in the order of the time series, up to a fifth-order time series.
+\cite{tsai1999study} found that a second-order fuzzy time series lead to more accurate predictions when forecasting population, particularly when the number of intervals on the fuzzy time series was increased. \cite{tsai2000forecasting} compared the performance of 5 higher-order time series models on predicting university enrolments, and found the higher-order models to be more accurate, with the model increasing in accuracy with every increase in the order of the time series, up to a fifth-order time series.
 
 \subsubsection{Interval Selection}
 
@@ -154,60 +154,11 @@ Many studies use the same, arbitrarily selected interval size such as $1000$ \ci
 
 \cite{Huarng2001effective} empirically study how the length of intervals affects the forecasting results of a fuzzy time series. They examine two approaches, distribution- and average-based interval length. Both of these approaches are derived using the absolute difference of any two consecutive observations, and ensure that at least half of these differences in the time series are reflected by the intervals. 
 
-\begin{table}[H]
-	\center
-	\begin{tabularx}{0.5\textwidth}{ X R }
-  	Range & Base \\
-  	\hline 
-  	\noalign{\smallskip}
-  	$0.1-1.0$ & $0.1$ \\
-  	$1.1-10$ & $1$ \\
-  	$11-100$ & $10$ \\
-  	$101-1000$ & $100$ \\
-	\end{tabularx}
-	\caption{Base Mapping Table for First Differences}
-\end{table}
-
 Both methods utilise a mapping table to approximate the base of the interval based on the average first difference. The distribution-based approach plots the distribution of the first differences using an interval that is derived from the mapping table. The interval on the distribution containing the largest first difference that is at smaller than atleast half the distributions is chosen as the interval for the fuzzy time series. The average-based approach involves deriving the base from the mapping table, calculating half of the average first difference, rounding this value to the derived base and using this value as the interval.
 
-\citep{Huarng2001effective} found that these approaches improved the accuracy over the arbitrarily selected interval used in prior studies, with the average-based approach performing better than the distributions based approach. They compared the results of these approaches with 9 arbitrarily chosen but small interval lengths, and found that the average-based approach resulted in the best and second best predictions for university enrolments and the Taiwan Stock Exchange Weighted Index (TAIEX) respectively. They also found that smaller interval lengths did not always result in a more accurate prediction.
-
-\begin{table}[H]
-	\center
-	\begin{tabularx}{0.5\textwidth}{ X R }
-  	MIN$(r_1,\ldots,r_{n-1})$ & Base\\
-  	\hline 
-  	\noalign{\smallskip}
-	$\leq 0.05\%$ & $0.01\%$ \\
-	$\leq 0.5\%$ & $0.1\%$ \\
-	$\leq 5.0\%$ & $1\%$ \\
-	\ldots & \ldots
-	\end{tabularx}
-	\caption{Base Mapping Table for Ratios}
-\end{table}
+\cite{Huarng2001effective} found that these approaches improved the accuracy over the arbitrarily selected interval used in prior studies, with the average-based approach performing better than the distributions based approach. They compared the results of these approaches with 9 arbitrarily chosen but small interval lengths, and found that the average-based approach resulted in the best and second best predictions for university enrolments and the Taiwan Stock Exchange Weighted Index (TAIEX) respectively. They also found that smaller interval lengths did not always result in a more accurate prediction.
 
 \cite{huarng2006ratio} explored using the ratios between the absolute differences to define intervals. The rationale behind using ratios to determine intervals was that the momentum of the time series oscillates more or less depending on the context. The same source of data, such as a stock price, may have different optimal interval lengths depending on the amount of activity of the time series at that time. Using interval lengths that reflect the relative difference between observations takes this into account without using a secondary data source such as volume.
-
-The proposed method follows similar steps to the distribution-based approach for interval selection, and is summarised as follows
-
-\begin{description}
-\item[Step 1] Calculate the relative difference between adjacent observations such that $r_t=|x_t-x_{t-1}|/x_{t-1}$ for all $t$
-\item[Step 2] Determine the $base$ by mapping MIN$(r_1,\ldots,r_{n-1})$ to the base mapping table
-\item[Step 3] Plot the distribution for all $r_t$ according to the determined $base$
-\item[Step 4] Choose a sample percentile $\alpha$, such as $\alpha=50\%$. Select a $ratio$ which is the smallest relative difference that is larger than $\alpha$
-\item[Step 5] Calculate the intervals 
-
-\begin{table}[H]
-	\center
-	\begin{tabular}{ c }
-	  	$u_1 = [lower_1, upper_1]$ \\
-	  	$u_2 = [lower_2, upper_2]$ \\
-	  	\vdots \\
-	\end{tabular}
-\end{table}
-
-The beginning of the first interval, $lower_1$, is set to MIN$(x_t)-c$ where MIN$(x_t)$ is the lowest observation and c is some small constant. The $interval\_length$ for the time series is set to $lower_1 \times ratio$. The upper bound of the first interval, $upper_1$, is set to $lower_1 + interval\_length$. The remaining intervals are calculated using the formula $[lower_k,upper_k]=[lower_{k-1}+interval\_length+c, upper_{k-1}+interval\_length+c]$ for all $k=(2,3,\ldots)$
-\end{description}
 
 \cite{huarng2006ratio} compared the approach to the average- and distribution-based approaches as well as several arbitrarily chosen similarly sized intervals. The ratio based approach resulted in the best accuracy for the methods tested when forecasting university enrolment, TAIEX price and inventory stock. They also found that the optimal interval length changed between data sets from the same data source, and that the ratio based approach was effective at approximating the optimal length.
 
@@ -347,15 +298,44 @@ The relational function for an expression $F(t-k) \rightarrow F(t)$ is shown as 
 	\caption{Forecast Values for $F(i)$}
 \end{table}
 
-Where $F_{ik}$ is the collection of fuzzy values forecast by the fuzzy logical relationship group $R^{m}_{\ \ k}$. Since the above relations happen simultaneously, the forecast for $F(i)$ is the intersection of all $F_{ik}$, which are the forecast fuzzy values common to all fuzzy logical relationship groups. These values are then defuzzified as in \Cref{fts-design}.
+Where $F_{ik}$ is the collection of fuzzy values forecast by the fuzzy logical relationship group $R^{m}_{\ \ k}$. Since the above relations happen simultaneously, the forecast for $F(i)$ is the intersection of all $F_{ik}$, which are the forecast fuzzy values common to each order of fuzzy logical relationship groups used . These values are then defuzzified as in \Cref{fts-design}.
 
-\subsection{Confidence-Weighted First-Order Model}
+\subsection{Ratio-based Interval Selection}
 
-The proposed model is a higher-order fuzzy time series with ratio-based interval lengths. When modelling a large sample of data there will be many relationships with the same left-hand side value. Most fuzzy time series studies, starting with \cite{song1993forecasting}, implement a simple defuzzification methodology when multiple fuzzy values are forecast. The methodology takes the mean of the midpoint of the intervals that the forecast fuzzy values have a maximum membership of.
+The following method for ratio-based interval selection was studied by \cite{huarng2006ratio}.
 
-This is an issue when analysing high volume financial data. Price tends to return to the mean [TODO: citation needed] which means that if a large amount of values were forecast for time $t+1$, the average of their midpoints would be statistically very close to the the value at time $t$. The closer a security is to following a random walk model, the smaller the deviation from the current value when there are many historical relationships and thus many forecast values.
+\begin{table}[H]
+	\center
+	\begin{tabularx}{0.5\textwidth}{ X R }
+  	MIN$(r_1,\ldots,r_{n-1})$ & Base\\
+  	\hline 
+  	\noalign{\smallskip}
+	$\leq 0.05\%$ & $0.01\%$ \\
+	$\leq 0.5\%$ & $0.1\%$ \\
+	$\leq 5.0\%$ & $1\%$ \\
+	\ldots & \ldots
+	\end{tabularx}
+	\caption{Base Mapping Table for Ratios}
+\end{table}
 
-Even when the defuzzified forecast value deviates significantly from the current value, it is not clear whether this is due to a large correlation between the current pattern and the outcome, or if this pattern has simply appeared very few times in the history and there are not enough samples for the value to return to the mean.
+\begin{description}
+\item[Step 1] Calculate the relative difference between adjacent observations such that $r_t=|x_t-x_{t-1}|/x_{t-1}$ for all $t$
+\item[Step 2] Determine the $base$ by mapping MIN$(r_1,\ldots,r_{n-1})$ to the base mapping table
+\item[Step 3] Plot the distribution for all $r_t$ according to the determined $base$
+\item[Step 4] Choose a sample percentile $\alpha$, such as $\alpha=50\%$. Select a $ratio$ which is the smallest relative difference that is larger than $\alpha$
+\item[Step 5] Calculate the intervals 
+
+\begin{table}[H]
+	\center
+	\begin{tabular}{ c }
+	  	$u_1 = [lower_1, upper_1]$ \\
+	  	$u_2 = [lower_2, upper_2]$ \\
+	  	\vdots \\
+	\end{tabular}
+\end{table}
+
+The beginning of the first interval, $lower_1$, is set to MIN$(x_t)-c$ where MIN$(x_t)$ is the lowest observation and c is some small constant. The $interval\_length$ for the time series is set to $lower_1 \times ratio$. The upper bound of the first interval, $upper_1$, is set to $lower_1 + interval\_length$. The remaining intervals are calculated using the formula $[lower_k,upper_k]=[lower_{k-1}+interval\_length+c, upper_{k-1}+interval\_length+c]$ for all $k=(2,3,\ldots)$
+\end{description}
 
 \section{Implementation}
 
