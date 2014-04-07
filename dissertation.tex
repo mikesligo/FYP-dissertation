@@ -53,7 +53,9 @@ Fuzzy time series analysis identifies fuzzy relationships between points on a ti
     \caption{Moving-Average Cross Indicator}
 \end{figure}
 
-technical analysis is a form of financial analysis where past price behaviour is used to forecast future price in financial markets. \cite{foundations} argued that ``the general goal of technical analysis is to identify regularities in the time series of prices by extracting non-linear patterns from noisy data''. Examples of this form of analysis include identifying trends in a graph of price movement, or concluding that a price is unlikely to go lower than the 52-week low. Specific techniques are discussed in \Cref{app:tatechniques}.
+Technical analysis is a form of financial analysis where past price behaviour is used to forecast future price in financial markets. It is one of several methods of analysing financial securities. Other methods include fundamental analysis, which involves analysing the health of a security by viewing information such as company earnings, and sentiment analysis, performing analysis on written text or speech regarding a financial security or market and extracting the sentiment of the author or the market towards it \citep[p. 2]{ahmad2011affective}.
+
+\cite{foundations} argued that ``the general goal of technical analysis is to identify regularities in the time series of prices by extracting non-linear patterns from noisy data''. Examples of this form of analysis include identifying trends in a graph of price movement, or concluding that a price is unlikely to go lower than the 52-week low. Specific techniques are discussed in \Cref{app:tatechniques}.
 
 \subsubsection{History}
 
@@ -67,17 +69,18 @@ Even with such a diverse history the use of technical analysis is still a hotly 
 
 \subsubsection{Performance of technical analysis}
 
-\cite{taprofitability} performed a survey of 95 studies of technical trading strategies from between 1988 and 2004. Among these, 56 found positive results, 20 obtained negative results and 19 indicated mixed results. Although there is a significant number of studies before this date, they note that prior to \cite{lukac1988} studies suffered from a number of problems, which \cite{brock1992} summarises as:
+\cite{taprofitability} performed a survey of 95 studies of technical trading strategies from between 1988 and 2004. Although there is a significant number of studies before this date, they note that prior to \cite{lukac1988} studies suffered from a number of problems, which \cite{brock1992} summarises as:
 \begin{enumerate}[label=\roman*]
 \item Relatively short time periods being examined 
 \item Studies generally not computing significance levels 
 \item Studies are both designed and tested on the same data
 \end{enumerate}
 
-TODO refactor or remove this section
 In mitigation \cite{taprofitability} argue that modern studies ``typically
 increase the number of trading systems tested, assess risks of trading rules,
 perform statistical tests with either conventional statistical tests or more sophisticated bootstrap methods, or both, and conduct parameter optimization and out-of-sample verification''.
+
+\cite{taprofitability} found that among the studies surveyed, 56 found positive results, 20 obtained negative results and 19 indicated mixed results.`
 
 Almost 30 years ago, \cite{indefenseof} ; with so much positive evidence and theoretical explanations, why is the use of technical analysis still such a controversial issue among professionals and academics? 
 
@@ -91,11 +94,11 @@ Data snooping is a difficult issue to address, but studies more recent than thos
 
 \subsubsection{Econometrical Time Series Analysis}
 
-The Efficient Market Hypothesis claims that the price of a security is extremely efficient at reflecting most of the information about that security. When news is public the market will very efficiently arrive at a price for the security that reflects the impact of the news. This claim has major consequences, that both technical analysis and fundamental analysis, which is analysing the health of a security by viewing information such as company earnings, are unable to help an investor achieve a greater profit than if a random selection of securities were invested in \citep{emhAndCritics}. 
+The Efficient Market Hypothesis claims that the price of a security is extremely efficient at reflecting most of the information about that security. When news is public the market will very efficiently arrive at a price for the security that reflects the impact of the news. This claim has major consequences; that both technical analysis and fundamental analysis are unable to help an investor achieve a greater profit than if a random selection of securities were invested in \citep{emhAndCritics}. 
 
 While there is still a lot of support for this model, strict adherence to it does not offer the complete picture. If the markets were perfectly efficient then the price would simply jump between points as individual news was released. In reality there is a large amount of noise, volatility and uncertainty in the market. Very often it is not clear what impact some news should have. And of course the accuracy of market information and the availability of the information to the public add further uncertainty to the price movement.
 
-The Random Walk Hypothesis says that even with these movements in price the market is still informationally efficient. It proposes that the price of a security represents a 'random walk' around its intrinsic value, and consequently that price movements can not be predicted. \cite{lo1988} reject this hypothesis however, but note that ``this rejection does not necessarily imply the inefficiency of stock-price formulation''.
+The Random Walk Hypothesis says that even with these movements in price the market is still informationally efficient. It proposes that the price of a security represents a 'random walk' around its intrinsic value, and consequently that price movements can not be predicted. \cite{malkiel1970efficient} describes the random walk model as a ``fair game'' model in the conditions of market equilibrium can be stated in terms of expected returns. \cite{lo1988} reject the hypothesis however, but note that ``this rejection does not necessarily imply the inefficiency of stock-price formulation''.
 
 One theory is that these uncertainties in price movement allow technical analysis to be utilised. \cite{indefenseof} show that past prices combined with other information, such as non-public information, can achieve unusual profit. They claim that non-price information creates opportunity that can be efficiently exploited using technical analysis. As non-public information is revealed to an investor, it is unclear as to the extent that this information has been revealed. If the investor knows the behaviour that a market would demonstrate if this information was widely distributed, he or she could examine the past price movements and determine a probability that the information has been revealed, and thus determine if there is still opportunity for a profitable investment.
 
@@ -135,7 +138,7 @@ TODO this should be in design
 \item If there are multiple fuzzy logical relationships associated with $A_i$, such that with fuzzy logical relationship group $A_i \rightarrow A_{i}, A_{j}, \ldots, A_{k}$, then $F(t+1)$ is forecast as $A_{i}, A_{j}, \ldots, A_{k}$
 \item If there are no fuzzy logical relationships associated with $A_i$, then $F(t+1)$ is forecast as $A_i$
 \end{enumerate}
-\item[Step 6] Defuzzify the forecast fuzzy set using the Centroid method. Practically, this involves calculating the average of the midpoints of each interval which has a maximum membership in a fuzzy set that is forecast for $F(t+1)$ - TODO it's not really the centroid method if multiple forecasts of the same fuzzy set influence the defuzzification
+\item[Step 6] Defuzzify the forecast fuzzy set using the Centroid method. Practically, this involves calculating the average of the midpoints of each interval which has a maximum membership in a fuzzy set that is forecast for $F(t+1)$
 \end{description}
 
 \subsubsection{Higher-Order Models}
@@ -154,7 +157,7 @@ Many studies use the same, arbitrarily selected interval size such as $1000$ \ci
 
 \cite{Huarng2001effective} empirically study how the length of intervals affects the forecasting results of a fuzzy time series. They examine two approaches, distribution- and average-based interval length. Both of these approaches are derived using the absolute difference of any two consecutive observations, and ensure that at least half of these differences in the time series are reflected by the intervals. 
 
-Both methods utilise a mapping table to approximate the base of the interval based on the average first difference. The distribution-based approach plots the distribution of the first differences using an interval that is derived from the mapping table. The interval on the distribution containing the largest first difference that is at smaller than atleast half the distributions is chosen as the interval for the fuzzy time series. The average-based approach involves deriving the base from the mapping table, calculating half of the average first difference, rounding this value to the derived base and using this value as the interval.
+Both methods utilise a mapping table to approximate the base of the interval based on the average first difference. The distribution-based approach plots the distribution of the first differences using an interval that is derived from the mapping table. The interval on the distribution containing the largest first difference that is at smaller than at least half the distributions is chosen as the interval for the fuzzy time series. The average-based approach involves deriving the base from the mapping table, calculating half of the average first difference, rounding this value to the derived base and using this value as the interval.
 
 \cite{Huarng2001effective} found that these approaches improved the accuracy over the arbitrarily selected interval used in prior studies, with the average-based approach performing better than the distributions based approach. They compared the results of these approaches with 9 arbitrarily chosen but small interval lengths, and found that the average-based approach resulted in the best and second best predictions for university enrolments and the Taiwan Stock Exchange Weighted Index (TAIEX) respectively. They also found that smaller interval lengths did not always result in a more accurate prediction.
 
@@ -334,16 +337,16 @@ The following method for ratio-based interval selection was studied by \cite{hua
 	\end{tabular}
 \end{table}
 
-The beginning of the first interval, $lower_1$, is set to MIN$(x_t)-c$ where MIN$(x_t)$ is the lowest observation and c is some small constant. The $interval\_length$ for the time series is set to $lower_1 \times ratio$. The upper bound of the first interval, $upper_1$, is set to $lower_1 + interval\_length$. The remaining intervals are calculated using the formula $[lower_k,upper_k]=[lower_{k-1}+interval\_length+c, upper_{k-1}+interval\_length+c]$ for all $k=(2,3,\ldots)$
+The beginning of the first interval, $lower_1$, is set to MIN$(x_t)-c$ where MIN$(x_t)$ is the lowest observation and c is some small constant. The $interval\_length$ for the time series is set to $lower_1 \times ratio$. The upper bound of the first interval, $upper_1$, is set to $lower_1 + interval\_length$. The remaining intervals are calculated using the formula $[lower_k,upper_k]=[lower_{k-1}+interval\_length+c, upper_{k-1}+interval\_length+c]$ for all $k=(2,3,\ldots)$.
 \end{description}
+
+\subsection{Root Mean Squared Error}
+
+
 
 \section{Implementation}
 
-...
-
-\subsection{Optimisation}
-
-alleviate data snooping by considering a diverse set of technical trading systems and conducting parameter optimisation and out of sample verification \citep{taprofitability}.
+\subsection{Comparison Models}
 
 \section{Results}
 
