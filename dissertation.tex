@@ -69,7 +69,8 @@ Even with such a diverse history the use of technical analysis is still a hotly 
 
 \subsubsection{Performance of technical analysis}
 
-\cite{taprofitability} performed a survey of 95 studies of technical trading strategies from between 1988 and 2004. Although there is a significant number of studies before this date, they note that prior to \cite{lukac1988} studies suffered from a number of problems, which \cite{brock1992} summarises as:
+\cite{taprofitability} performed a comprehensive review of 95 studies of technical trading strategies from between 1988 and 2004. Although there is a significant number of studies before this date, they note that prior to \cite{lukac1988} studies suffered from a number of problems, which \cite{brock1992} summarises as:
+
 \begin{enumerate}[label=\roman*]
 \item Relatively short time periods being examined 
 \item Studies generally not computing significance levels 
@@ -80,27 +81,25 @@ In mitigation \cite{taprofitability} argue that modern studies ``typically
 increase the number of trading systems tested, assess risks of trading rules,
 perform statistical tests with either conventional statistical tests or more sophisticated bootstrap methods, or both, and conduct parameter optimization and out-of-sample verification''.
 
-\cite{taprofitability} found that among the studies surveyed, 56 found positive results, 20 obtained negative results and 19 indicated mixed results.`
+\cite{taprofitability} found that of these modern studies, 56 found positive results, 20 obtained negative results and 19 indicated mixed results. 
 
-Almost 30 years ago, \cite{indefenseof} ; with so much positive evidence and theoretical explanations, why is the use of technical analysis still such a controversial issue among professionals and academics? 
+They offered several theoretical explanations for the positive results. Econometric models such as the noisy rational expectations model postulate that the current price does not reveal all information about a security because of noise, and the market shows a systematic slowness in adjusting to new market information, which can be exploited with technical analysis. Behavioural models propose that price is affected by market psychology which can be predicted using technical analysis, akin to the original uses of Technical Analysis. Technical analysis charting methods may also be equivalent to non-linear forecasting methods in chaos theory.
+
+They also offered empirical explanations for the results, such as trends in price before news such as central bank interventions, and order flows where the take profit and stop loss of orders clustering around round numbers. Other empirical explanations offer the possibility of false positive trading profits. Temporary market inefficiencies may occur, where new trading strategies offer short term gains before they become more widely used and cease to offer an advantage. Also market microstructure deficiencies where studies do not adequately take transaction costs and other market factors into account may result in inaccurate results. 
+
+\cite{taprofitability} acknowledge that despite the positive evidence and improved procedures, many academics and professional analysts are sceptical about technical analysis and technical trading strategies. They point to \cite{assetpricing} who says that ``trading rules that reliably survive transactions costs and do not implicitly expose the investor to risk have not yet been reliably demonstrated''. They interpret this to mean that the scepticism is due to data snooping problems, where trading strategies over-fit the testing data, and insignificant profits after taking adjustments for transaction costs and risk.
 
 In the professional world, it could be due to the difficulty in experimentally verifying some technical analysis techniques, many of which rely on visual cues in the eyes of an Expert. The existence of a pattern is subjective. Experts looking at the same data may see different, sometimes contradictory patterns, fuelling a controversy that technical analysis is nothing more than pseudo-analysis. Also with most studies finding some technical trading strategies successful and many unsuccessful, it might be perceived as safer to ignore technical analysis altogether.
 
-In the Academic world, \cite{taprofitability} point to \cite{assetpricing} who says that ``trading rules that reliably survive transactions costs and do not implicitly expose the investor to risk have not yet been reliably demonstrated''. They interpret this to mean that the scepticism is due to data snooping problems, and insignificant profits after taking adjustments for transaction costs and risk.
-
-Data snooping is a difficult issue to address, but studies more recent than those surveyed by \cite{taprofitability} have addressed this issue to some extent.
-
-[Discussion of studies since 2004]
-
 \subsubsection{Econometric Time Series Analysis}
 
-The Efficient Market Hypothesis claims that the price of a security is extremely efficient at reflecting most of the information about that security. When news is public the market will very efficiently arrive at a price for the security that reflects the impact of the news. This claim has major consequences; that both technical analysis and fundamental analysis are unable to help an investor achieve a greater profit than if a random selection of securities were invested in \citep{emhAndCritics}. 
+``I believe there is no other proposition in economics which has more solid empirical evidence supporting it than the Efficient Market Hypothesis'' stated \cite{jensen1978some}. The Efficient Market Hypothesis claims that the price of a security is extremely efficient at reflecting most of the information about that security. When news is public the market will very efficiently arrive at a price for the security that reflects the impact of the news. This claim has major consequences; that both technical analysis and fundamental analysis are unable to help an investor achieve a greater profit than if a random selection of securities were invested in \citep{emhAndCritics}. 
 
 While there is still a lot of support for this model, strict adherence to it does not offer the complete picture. If the markets were perfectly efficient then the price would simply jump between points as individual news was released. In reality there is a large amount of noise, volatility and uncertainty in the market. Very often it is not clear what impact some news should have. And of course the accuracy of market information and the availability of the information to the public add further uncertainty to the price movement. 
 
-\cite{malkiel1970efficient} argue that these issues do not necessarily imply an inefficient market unless there are investors who can consistently make better evaluations of available information. They argue that the hypothesis that the price of a security ``fully reflects'' all available information at any point in time is an extreme null hypothesis, which we do not expect to be literally true. Different efficient market models have been proposed with characteristics that can be evaluated separately, allowing researchers to pinpoint where the hypothesis breaks down. The \textit{weak form} model claims that price reflects all past publicly available information. The \textit{semi-strong form} model claims that the price reflects all past publicly available information and also that price will instantly change as new information is made available. The \textit{strong form} claims that price reflects all public and non-public information. 
+\cite{malkiel1970efficient} argue that these issues do not necessarily imply an inefficient market unless there are investors who can consistently make better evaluations of available information. They argue that the hypothesis that the price of a security ``fully reflects'' all available information at any point in time is an extreme null hypothesis, which we do not expect to be literally true. Different efficient market models have been proposed with characteristics that can be evaluated separately, allowing researchers to pinpoint where the hypothesis breaks down. The \textit{weak form} model claims that price reflects all past publicly available information. The \textit{semi-strong form} model claims that the price reflects all past publicly available information and also that price will instantly change as new information is made available. The \textit{strong form} claims that price reflects all public and non-public information.
 
-The Random Walk Hypothesis says that even with these movements in price the market is still informationally efficient. It proposes that the price of a security represents a 'random walk' around its intrinsic value, and consequently that price movements can not be predicted. \cite{malkiel1970efficient} describes the random walk model as a ``fair game'' model in which the conditions of market equilibrium can be stated in terms of expected returns, but note that an efficient market does not require a random walk. 
+The Random Walk Hypothesis says proposes that the price of a security represents a 'random walk' around its intrinsic value, and consequently that price movements can not be predicted. \cite{malkiel1970efficient} describes the random walk model as a ``fair game'' model in which the conditions of market equilibrium can be stated in terms of expected returns, but note that an efficient market does not require a random walk. 
 
 \cite{lo1988} studied weekly by comparing variance estimators of stock market returns. They argue that if prices are generated by a random walk, then the variance of the monthly sample log-price, i.e.\ the variance of the log of the difference in monthly price, must be 4 times as large as the variance of the weekly sample. Their findings strongly reject the random walk hypothesis, but are careful to note that ``this rejection does not necessarily imply the inefficiency of stock-price formulation''.
 
@@ -345,17 +344,23 @@ The beginning of the first interval, $lower_1$, is set to MIN$(x_t)-c$ where MIN
 
 \subsection{Root Mean Squared Error}
 
-
+%make random walk model heterosedastic, as in stock markets do not follow random walks
 
 \section{Implementation}
 
+\subsection{Framework Development}
+
+\subsection{Fuzzy Logic Toolkit}
+
+\subsection{Optimisation}
+
+\subsubsection{Lazy-evaluation}
+
+\subsubsection{Search optimisations}
+
+\section{Results \& Evaluation}
+
 \subsection{Comparison Models}
-
-%make random walk model heterosedastic, as in stock markets do not follow random walks
-
-\section{Results}
-
-\section{Evaluation}
 
 \section{Conclusion}
 
