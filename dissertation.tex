@@ -49,14 +49,34 @@ Fuzzy time series analysis identifies fuzzy relationships between points on a ti
 
 The digital revolution has changed the way we do things. We no longer rely on human intervention to perform repetitive and monotonous tasks. Computers allow humans to concentrate on areas that we excel at, using our creativity to solve abstract problems, understanding and developing new concepts and ideas, being aware of our existence and finding a way to bypass our limitations. Computers require a process. They require a detailed understanding of the domain they operate in and are typically unable to work outside this. Thankfully, humans are excellent at identifying processes. We are excellent at identifying patterns, correlations, the root cause of some occurrence and the source of our intuitions. The result is that computers perform some tasks very well, and humans are the ones who program them.
 
-But we can program them to learn. The ceiling for the capability of a computer is tied to how well a human can map a process to their domain. Learning is no exception to this. Learning is a process \citep{rescorla1988pavlovian} and the suitability and efficiency of the learning process is left up to the designer. A computer can be taught to analyse, interpret, manipulate and act on data without human intervention and with. They can do it with extreme speed, accuracy and without suffering a humans animal needs.
+But we can program them to learn. The ceiling for the capability of a computer is tied to how well a human can map a process to their domain. Learning is no exception to this. Learning is a process \citep{rescorla1988pavlovian} and the suitability and efficiency of the learning process is left up to the designer. A computer can be taught to analyse, interpret, manipulate and act on data without human intervention and can do it with extreme speed, accuracy and without suffering a humans animal needs.
 
-Economics is an area that the digital revolution has changed substantially. Suddenly a huge amount of financial data was made available, and computer were available to analyse the data. Economic theory that needed to be evaluated manually could now be
+Economics is an area that the digital revolution has changed substantially. In the 1960s a huge amount of financial data suddenly became available. Economic theory that needed to be evaluated manually could now be tested and verified thoroughly and systematically, ``liberating econometricians from their mechanical calculators'' \citep{fama}. Yet despite the means to test and verify financial models, there is still disagreement about economic theory among academics and professionals.
+
+One area of disagreement is the efficient markets model discussed in \cref{emh}. The efficient market hypothesis proposes that the price of a financial security reflects all information publicly available for that security. As a result it is impossible to make a consistent profit by analysing public information, such as identifying poor revenue performance or identifying an upward trend on a chart of price.
+
+Although there is a large body of evidence supporting this model, it's validity is an extremely controversial area in economic science. Behavioural Finance analysts point to bubbles and crashes as evidence against the efficient markets model. They argue that behavioural psychology causes irrational swings in prices away from fundamental values. 
+
+The divide in opinions among this issue can be seen by the results of the 2013 Nobel Prize in Economic Science where 2 of the winners, Eugene Fama and Robert Shiller, were leading figures in these competing fields of Behavioural Finance and Efficient Markets respectively. Eugene Fama commented in his speech ``no available evidence resolves this issue in a way that convinces both sides''.
+
+\Cref{ta} discusses Technical Analysis, a form of financial analysis where past price movements are studied and used to forecast future movements. This includes popular analysis methods such as identifying a trend in a graph and trading based on how close price is to important points such as the 52-week low. As discussed in \cref{tahist}, it began as a way of linking movement patterns in price to certain market sentiment. In its current form it is a mix of old practices, statistical reasoning, empirical observations and intuition. Specific techniques are discussed in \cref{app:tatechniques}.
+
+Technical analysis has also seen a lot of debate in the economic world, largely because it goes directly against the efficient markets model. Yet a significant amount of positive research has emerged as well as many theoretical explanations for its use, discussed in \cref{taperformance} and \cref{tahumanz}.
+
+``You don't remember important facts and you don't remember because nobodies talking about it ... we forget and so we repeat mistakes from the past'' claimed Robert Shiller in his Nobel Prize acceptance speech, shortly after Fama. These repeated mistakes are what interest technical analysts. The goal of technical analysts is to identify any regularities in financial markets that can be used to forecast future price. 
+
+tODO cont
+
+In his acceptance speech for a 2013 Nobel Prize in Economic Science, Robert Shiller commented ``You don't remember important facts and you don't remember because nobodies talking about it ... we forget and so we repeat mistakes from the past''. This was shortly after the acceptance speech by Eugene Fama for the same award for his pioneering work demonstrating the efficient market hypothesis commenting 
+
+Despite this model going against the intuitions of many analysts, that they can outsmart the market for profit, there is a large body of evidence supporting it.
+
+
 
 \section{Literature Review}
 
 \subsection{Emperical Analysis}
-
+\label{ta}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{images/blackwhite.png}
@@ -68,7 +88,7 @@ Technical analysis is a form of financial analysis where past price behaviour is
 \cite{foundations} argued that ``the general goal of technical analysis is to identify regularities in the time series of prices by extracting non-linear patterns from noisy data''. Examples of this form of analysis include identifying trends in a graph of price movement, or concluding that a price is unlikely to go lower than the 52-week low. Specific techniques are discussed in \Cref{app:tatechniques}.
 
 \subsubsection{History}
-
+\label{tahist}
 The use of this form of analysis has been documented for several hundred years. One of the first uses of technical analysis dates back to Japan in the 18th Century. In 1710 Japan's rice market had matured enough to begin use rice coupons instead of trading physical rice. Their receipts were traded constituting the first Futures trades ever recorded \citep[p.15]{jcct1991}. 
 
 Munehisa Homma was a rice merchant in Japan, who amassed great wealth trading these rice coupons and is sometimes credited as the Father of Japanese Candlestick Charting. Although it is unclear whether Homma actually used Japanese Candlestick Charting techniques, it is recorded that he used the history of price movement to gauge the emotions of the market at the time, ``When all are bearish, there is cause for prices to rise. When everyone is bullish, there is cause for the price to fall''. Following Homma different charting techniques were introduced, until the introduction and popularisation of Japanese Candlestick Charting for technical analysis in the mid 19th Century \citep[p.18]{jcct1994}.
@@ -78,7 +98,7 @@ In the west, Dow Theory was developed and expanded on in the early 20th Century,
 Even with such a diverse history the use of technical analysis is still a hotly debated topic. Experts and Academics are divided in its use \citep{foundations}, the influential \textit{A Random Walk down Wall Street} concluding it is as valid as Alchemy when put under scientific scrutiny \cite[p.159]{randomwalk2012}. Nonetheless, it appears a significant number of analysts incorporate technical analysis, with a study by \cite{examininguse1997} finding a mean importance of 35\% was given to technical analysis by respondents in various investment banks, and \cite{cheung2000currency} characterising 30\% of Foreign-Exchange traders as Technical Traders. 
 
 \subsubsection{Performance of technical analysis}
-
+\label{taperformance}
 \cite{taprofitability} performed a comprehensive review of 95 studies of technical trading strategies from between 1988 and 2004. Although there is a significant number of studies before this date, they note that prior to \cite{lukac1988} studies suffered from a number of problems, which \cite{brock1992} summarises as:
 
 \begin{enumerate}[label=\roman*]
@@ -102,7 +122,7 @@ They also offered empirical explanations for the results, such as trends in pric
 In the professional world, it could be due to the difficulty in experimentally verifying some technical analysis techniques, many of which rely on visual cues in the eyes of an Expert. The existence of a pattern is subjective. Experts looking at the same data may see different, sometimes contradictory patterns, fuelling a controversy that technical analysis is nothing more than pseudo-analysis. Also with most studies finding some technical trading strategies successful and many unsuccessful, seemingly without reason, it may be perceived as safer to ignore technical analysis altogether.
 
 \subsubsection{Econometric Time Series Analysis}
-
+\label{emh}
 ``I believe there is no other proposition in economics which has more solid empirical evidence supporting it than the Efficient Market Hypothesis'' stated \cite{jensen1978some}. The Efficient Market Hypothesis claims that the price of a security is extremely efficient at reflecting most of the information about that security. When news is public the market will very efficiently arrive at a price for the security that reflects the impact of the news. This claim has major consequences; that both technical analysis and fundamental analysis are unable to help an investor achieve a greater profit than if a random selection of securities were invested in \citep{emhAndCritics}. 
 
 While there is a lot of support for this model, strict adherence to it does not offer the complete picture. If the markets were perfectly efficient then the price would simply jump between points as news is made available. In reality there is a large amount of noise, volatility and uncertainty in the market. Very often it is not clear what impact some news should have, how accurate information is and whether the price already reflects the news as it's made available.
@@ -118,6 +138,8 @@ Almost 30 years ago, \cite{indefenseof} showed that past prices combined with ot
 While this demonstrates a use for past price data, it only demonstrates use when combined with other valuable information, and thus does not contradict the Efficient Market Hypothesis which only states that attempting to make profits by exploiting currently available information is futile \citep{taprofitability}.
 
 \subsubsection{Human Perception}
+
+\label{tahumanz}
 
 Although the evidence supporting technical analysis is inconclusive, it is still regarded as an important forecasting tool by many analysts. One of several explanations by \cite[p.45-71]{aronson2011evidence} is that humans suffer cognitive biases when determining the significance of visual patterns in their analysis. Many experts believe they can spot visual patterns such as price trends on a graph, and would take the claim that these trends are irrelevant as ridiculous. However when developing or practising a trading system based on patterns, technical analysts can succumb to confirmation bias by giving a higher significance to evidence that supports the pattern they're looking for as opposed to evidence for other patterns that might be available. Also when determining the efficacy of these systems based on past data, hindsight bias can lead to certain patterns appearing obvious after their formation. This leads an expert to think this pattern is easily detectable, even though while the pattern was forming the evidence for that particular pattern was indecisive, and possibly pointed to other, contradictory patterns \cite[p.62]{aronson2011evidence}.
 
@@ -377,6 +399,7 @@ The beginning of the first interval, $lower_1$, is set to MIN$(x_t)-c$ where MIN
 \section{Future work}
 
 \appendix
+
 
 \section{technical analysis Techniques}
 
