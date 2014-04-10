@@ -15,7 +15,7 @@
 \newtheorem{ftsdef}{Definition}
 \newcolumntype{R}{>{\raggedleft\arraybackslash}l}%
 
-\title{Dissertation}
+\title{Econometric Time Series Modelling using Fuzzy Time Series Analysis}
 \author{Michael Gallagher}
 
 \begin{document}
@@ -56,13 +56,25 @@ But the digital revolution has not affected technical analysis as might have bee
 
 Fuzzy logic captures the meaning of human linguistic terms and can express operations in a way humans can easily understand. It understands when values and sets are similar but different, which allows us to fuzzily compare if items are 'kind-of' the same. These 2 features make fuzzy logic excellent for performing visual pattern recognition. It can appreciate the patterns that humans look for as well as allowing for small differences between patterns observed.
 
-\Cref{fts} discusses fuzzy time series analysis. In a fuzzy time series the observation on the time series are fuzzy values, with a degree of membership in fuzzy sets representing different parts of the time-series. Relationships are then defined between the fuzzy values by analysing the changes in the fuzzy time series over time. These relationships are then grouped together and can be used to forecast fuzzy values.
+\Cref{fts} discusses fuzzy time series analysis. In a fuzzy time series the observation on the time series are fuzzy values, with a degree of membership in fuzzy sets representing different parts of the time series. Relationships are then defined between the fuzzy values by analysing the changes in the fuzzy time series over time. These relationships are then grouped together and can be used to forecast fuzzy values.
 
-Forecasting with a fuzzy time series is done under the premise that relationships that changes in the time-series that happened previously are likely to happen again. In the basic fuzzy time series model, discussed in \cref{basic}, observations are grouped together and the movements between one observation and the next are recorded as a 'change'. Relationship groups are formed where the previous fuzzy value in a 'change' are the same, so that when these fuzzy values are seen in forecasting the outcome can be predicted by viewing the outcomes of the 'changes' that happened before.
+Forecasting with a fuzzy time series is done under the premise that relationships that changes in the time series that happened previously are likely to happen again. In the basic fuzzy time series model, discussed in \cref{basic}, observations are grouped together and the movements between one observation and the next are recorded as a 'change'. A change from fuzzy set $a$ to fuzzy set $b$ is denoted as the fuzzy logical relationship $a \rightarrow b$. Relationships with the same left-hand side fuzzy value are grouped together, and when these values are seen during forecasting, the outcomes of all the relationships in the relationship group are used to forecast values.
+
+Many variations of the basic model have been studied in the literature. \Cref{higher} discusses a higher-order fuzzy time series, where the relationship is computed between observations $n$ points in time apart. There are $n$ collections of relationship groups which are used to forecast based on the most recent $n$ observations. A fuzzy intersection is performed on the forecast values, so only fuzzy values that are forecast by all $n$ relationship groups are used in the forecasting. This narrows down the values forecast, resulting in a more accurate model of the time series. It also adds another dimension of fuzziness, such that if the past $n$ observations are composed of 2 or more patterns that have been identified previously, this will be recognised and the outcomes of these patterns will be used for the forecast.
+
+Practical problems for a fuzzy time series have also been studied. \Cref{interval} discusses interval selection in a fuzzy time series. Intervals are division in the time series that allow points in the same interval range to be grouped together. The issue is important as too large intervals result in a poor model and too small intervals lose some the benefit of fuzzy logic.
+
+The design of these features of a fuzzy time series is shown in \cref{design}.
+
+The performance of the model is measured using the root mean square error of the forecasting results, discussed in \cref{rmse}.
+
+\Cref{implementation} discusses how the project was implemented and technical challenges that were overcome, including development of the fuzzy time series framework, developing a basic fuzzy logic toolkit, developing a testing framework and speed optimisations.
+
+\Cref{results} discusses the results of the model using various combinations of features and parameters. It compares the results of these features and evaluates them against the results of models discussed in the literature, as well as naive prediction strategies such as buy and hold and random walk prediction.
 
 \section{Literature Review}
 
-\subsection{Emperical Analysis}
+\subsection{Empirical Analysis}
 \label{ta}
 \begin{figure}[H]
     \centering
@@ -168,6 +180,8 @@ The typical use of a fuzzy time series is to forecast observations on the time s
 
 \subsubsection{Higher-Order Models}
 
+\label{higher}
+
 A first-order time series is described in \Cref{basic}. Fuzzy relations are defined between each adjacent point and only the most recent value in a time series is used for forecasting.
 
 An $n$th-order or higher-order fuzzy time series is one where where there is a simultaneous relationship between multiple points on the time series, not just adjacent observations. There are fuzzy logical relationship groups defined between all points $1,2,\ldots,n$ spaces in time apart. The most recent $n$ observations are used to forecast fuzzy values, which are then composed and defuzzified.
@@ -175,6 +189,8 @@ An $n$th-order or higher-order fuzzy time series is one where where there is a s
 \cite{tsai1999study} found that a second-order fuzzy time series lead to more accurate predictions when forecasting population, particularly when the number of intervals on the fuzzy time series was increased. \cite{tsai2000forecasting} compared the performance of 5 higher-order time series models on predicting university enrolments, and found the higher-order models to be more accurate, with the model increasing in accuracy with every increase in the order of the time series, up to a fifth-order time series.
 
 \subsubsection{Interval Selection}
+
+\label{interval}
 
 Deciding on the size and number of interval partitions on the universe of discourse is an important issue \citep{Huarng2001effective,  huarng2006ratio}. If there are too few intervals, there will be fewer fluctuations in the fuzzy time series \citep{Huarng2001effective}, which results in less precise fuzzy logical relationships. More intervals also result in each fuzzy value representing a small range of values, which result in a more accurate crisp value during defuzzification. However, too many intervals will not be recognised by an expert which negates some of the benefits of using fuzzy logic.
 
@@ -191,6 +207,8 @@ Both methods utilise a mapping table to approximate the base of the interval bas
 \cite{huarng2006ratio} compared the approach to the average- and distribution-based approaches as well as several arbitrarily chosen similarly sized intervals. The ratio based approach resulted in the best accuracy for the methods tested when forecasting university enrolment, TAIEX price and inventory stock. They also found that the optimal interval length changed between data sets from the same data source, and that the ratio based approach was effective at approximating the optimal length.
 
 \section{Design}
+
+\label{design}
 
 \subsection{Fuzzy Time Series}
 \label{fts-design}
@@ -367,10 +385,12 @@ The beginning of the first interval, $lower_1$, is set to MIN$(x_t)-c$ where MIN
 
 \subsection{Root Mean Squared Error}
 
+\label{rmse}
 %make random walk model heterosedastic, as in stock markets do not follow random walks
 
 \section{Implementation}
 
+\label{implementation}
 \subsection{Framework Development}
 
 \subsection{Fuzzy Logic Toolkit}
@@ -382,6 +402,8 @@ The beginning of the first interval, $lower_1$, is set to MIN$(x_t)-c$ where MIN
 \subsubsection{Search optimisations}
 
 \section{Results \& Evaluation}
+
+\label{results}
 
 \subsection{Comparison Models}
 
