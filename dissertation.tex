@@ -29,21 +29,6 @@
 \tableofcontents
 
 \section{Introduction}
-TODO this.
-
-The aim of this project is to explore the applicability of fuzzy logic to time series analysis. This paper examines and compares various fuzzy time series models proposed in the literature.
-
-The debate over the usefulness of technical analysis is still up in the air. There are many studies demonstrating excess returns compared to a uninformed strategies such as buy and hold, even after transaction costs. As shown in the literature review, many aspects and techniques of technical analysis have been studied including visual patterns such as ``Head \& Shoulders'', trend lines, moving averages, Japanese Candlestick Charting and neural networks. Many explanations justifying technical analysis have been proposed including market psychology, market inefficiencies and insider trading. The more recent studies have used well regarded statistical techniques, out of sample verification, parameter optimisation and transaction costs.
-
-The perception of technical analysis among experts varies significantly. The empirical nature of technical analysis makes conclusive evaluation difficult. Data snooping, where different combinations of variables are combined until a model that matches the data is found, is a concern in many studies. The issue is that in a study of 100 random technical patterns, 5 of them will generate statistically significant excess returns. This risk can be reduced by testing the trading strategy against a sample set of data, but the question can linger as to why one technical trading strategy is more effective than another and why is it effective on some sample data but not all. The studies that demonstrate insignificant returns or losses may have been tested against a dataset to which technical analysis doesn't apply, or on the contrary, strategies that demonstrated profit such as a moving average cross may have been tested in a time when the market featured significant trends which the moving average indicator is suited to.
-
-This paper takes a different approach to performing technical analysis. Many studies have been carried out on technical trading strategies that are actively used in the financial industry. Often these strategies have been in use for several decades, discovered out of empirical observation of visual data at a time before it was possible to verify the techniques computationally. However, the market conditions and behaviour may have changed since the discovery of these techniques. Newer markets may have characteristics not reflected by traditional technical analysis. 
-
-The model proposed in this paper aims to derive these characteristics by examining the historical price data of a security using fuzzy time series analysis and identifying statistically significant regularities. 
-
-Fuzzy time series analysis identifies fuzzy relationships between points on a time series and uses these to forecast observations. A time series is a sequence of real numbers that change over time, a graph of price being an example. Fuzzy time series models examine a history of data and the change in price between one point in time and the next. These fluctuations are seen as relationships between those points in time. Fuzzy time series analysis supposes that fluctuations at certain points are likely to happen again, and that relationships obtained when examining past data can be used to predict changes.
-
-\section{Proper introduction}
 
 ``Man is still the most extraordinary computer of all.'' - John F. Kennedy.
 
@@ -63,15 +48,17 @@ The divide in opinions among this issue can be seen by the results of the 2013 N
 
 Technical analysis has also seen a lot of debate in the economic world, largely because it goes directly against the efficient markets model. Yet a significant amount of positive research has emerged as well as many theoretical explanations for its use, discussed in \cref{taperformance} and \cref{tahumanz}.
 
-``You don't remember important facts and you don't remember because nobodies talking about it ... we forget and so we repeat mistakes from the past'' claimed Robert Shiller in his Nobel Prize acceptance speech, shortly after Fama. These repeated mistakes are what interest technical analysts. The goal of technical analysts is to identify any regularities in financial markets that can be used to forecast future price. 
+``You don't remember important facts and you don't remember because nobodies talking about it ... we forget and so we repeat mistakes from the past'' claimed Robert Shiller in his Nobel Prize acceptance speech, shortly after Fama. These repeated mistakes are what interest technical analysts. The goal is to identify any regularities in financial markets that can be used to forecast future price. 
 
-tODO cont
+But the digital revolution has not affected technical analysis as might have been expected. Traders are still using the same techniques that they have been using for the last 70 years and more. Automated technical trading algorithms and artificial intelligence models have been developed and have demonstrated great predictive power. Yet these algorithms create extremely complex trading models which are incomprehensible to a human, so humans use the classic technical trading tools that are intuitive and suited to our visual pattern recognition abilities.
 
-In his acceptance speech for a 2013 Nobel Prize in Economic Science, Robert Shiller commented ``You don't remember important facts and you don't remember because nobodies talking about it ... we forget and so we repeat mistakes from the past''. This was shortly after the acceptance speech by Eugene Fama for the same award for his pioneering work demonstrating the efficient market hypothesis commenting 
+\Cref{fuzzysettheory} discusses fuzzy set theory. This is a branch of set theory used in fuzzy logic where values have a degree of membership in a set, instead of either being in the set or not as in crisp set theory. This adds a degree of fuzziness when using these sets, as values are 'kind-of' in a set to different degrees. Human linguistic map very well to these fuzzy sets. People use linguistic terms such as 'tall' or 'heavy' to describe objects. The boundaries for these terms are fuzzy. A male who is 180cm tall may be described as 'kind-of' tall as well as 'kind-of' average, and he may be described as more tall than average.
 
-Despite this model going against the intuitions of many analysts, that they can outsmart the market for profit, there is a large body of evidence supporting it.
+Fuzzy logic captures the meaning of human linguistic terms and can express operations in a way humans can easily understand. It understands when values and sets are similar but different, which allows us to fuzzily compare if items are 'kind-of' the same. These 2 features make fuzzy logic excellent for performing visual pattern recognition. It can appreciate the patterns that humans look for as well as allowing for small differences between patterns observed.
 
+\Cref{fts} discusses fuzzy time series analysis. In a fuzzy time series the observation on the time series are fuzzy values, with a degree of membership in fuzzy sets representing different parts of the time-series. Relationships are then defined between the fuzzy values by analysing the changes in the fuzzy time series over time. These relationships are then grouped together and can be used to forecast fuzzy values.
 
+Forecasting with a fuzzy time series is done under the premise that relationships that changes in the time-series that happened previously are likely to happen again. In the basic fuzzy time series model, discussed in \cref{basic}, observations are grouped together and the movements between one observation and the next are recorded as a 'change'. Relationship groups are formed where the previous fuzzy value in a 'change' are the same, so that when these fuzzy values are seen in forecasting the outcome can be predicted by viewing the outcomes of the 'changes' that happened before.
 
 \section{Literature Review}
 
@@ -147,7 +134,11 @@ Another explanation is that technical analysis appeals to behavioural psychology
 
 \subsection{Fuzzy Set Theory}
 
+\label{fuzzysettheory}
+
 \subsection{Fuzzy Time Series}
+
+\label{fts}
 
 A time series is a sequence of observations taken sequentially in time. A core characteristic of a time series is that adjacent observations are typically dependent, such that the value of the observation at time $t$ is somewhat dependent on the value at time $t-1$. The practical implications of this feature is that through time series analysis it is possible to model a time series and use this model to forecast observations.
 
