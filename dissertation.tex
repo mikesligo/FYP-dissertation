@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass[10pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[round]{natbib}
 \usepackage{amsthm}
@@ -11,6 +11,16 @@
 \usepackage{enumitem}
 \usepackage{tikz} % To generate the plot from csv
 \usepackage{pgfplots}
+
+\usepackage[T1]{fontenc}
+\usepackage{charter}
+\usepackage[expert]{mathdesign}
+
+\renewcommand{\baselinestretch}{1.0} 
+
+\usepackage{sectsty}
+\chapterfont{\usefont{T1}{qhv}{b}{n}\selectfont\huge}
+
 \theoremstyle{definition}
 \newtheorem{ftsdef}{Definition}
 \newcolumntype{R}{>{\raggedleft\arraybackslash}l}%
@@ -396,13 +406,13 @@ The beginning of the first interval, $lower_1$, is set to MIN$(x_t)-c$ where MIN
 
 \subsection{Initial Implementation}
 
-The project was built in 2 separate iterations. The initial implementation was written in MetaQuotes Language 5 (MQL5), a c-like domain specific language for the electronic trading platform MetaTrader 5 (MT5). This language was initially chosen for several reasons:
+The project was built in 2 separate iterations. The initial implementation was written in MetaQuotes Language 5 (MQL5), a C-like domain specific language for the electronic trading platform MetaTrader 5 (MT5). This language was initially chosen for several reasons:
 
 \begin{enumerate}[label=\roman*]
 \item The trading platform enables testing of automated trading strategies using past price data
 \item Allows drawing overlays onto charts enabling easier visualisation of trading strategy
 \item Active community of developers using MQL5 and the earlier MQL4
-\item Ability to use genetic programming across a network of cloud servers for parameter optimisation
+\item Ability to use genetic programming for parameter optimisation across a cluster of remote servers 
 \end{enumerate}
 
 The initial implementation was concerned with identifying moving window patterns, i.e.\ a particular series of price changes, and the outcome after this pattern. The early design is a simpler model of the design described in \cref{fts-design}.
@@ -418,6 +428,7 @@ The implementation's code was performance-orientated. It uses pointer arithmetic
 The implementation allowed for MQL5 to be evaluated for the purpose of designing a fuzzy time series. It was found to have several shortcomings:
 
 \begin{enumerate}[label=\roman*]
+\label{mql5}
 \item Data selection typically limited to foreign exchange and precious metals
 \item Data in proprietary format and difficult to verify
 \item Very limited standard library and testing frameworks
@@ -426,7 +437,7 @@ The implementation allowed for MQL5 to be evaluated for the purpose of designing
 \item Framework was designed for implementing trading strategies which is not the goal of the project
 \end{enumerate}
 
-In particular, the inability to perform analysis on arbitrary datasets added difficulty to comparing the results of the project to previous studies, as well as verifying the data's integrity. The limited standard library also required a significant amount of code to be hand written which would otherwise be provided, tested and verified by the programming language developers. Finally there was a large overhead when running the implementation due to the proprietary testing data being retrieved from a remote broker each time the program was run.
+In particular, the inability to perform analysis on arbitrary datasets added difficulty to comparing the results of the project to previous studies, as well as verifying the data's integrity. The limited standard library also required a significant amount of code to be hand written which would otherwise be provided, tested and verified by the programming language developers. Finally there was a large overhead when running the implementation due to the proprietary testing data being retrieved from a remote server each time the program was run.
 
 \subsection{Final Implementation}
 
@@ -436,8 +447,24 @@ In particular, the inability to perform analysis on arbitrary datasets added dif
     \caption{UML Class Diagram}
     \label{uml}
 \end{figure}
+\newpage
 
-\Cref{uml} shows the UML class diagram for the final implementation of the design.
+The project was implemented in the python programming language, which was chosen for the following reasons:
+
+\begin{enumerate}[label=\roman*]
+\label{python}
+\item Dynamically typed object-orientated design allows for a clean, compartmentalised codebase
+\item Support for lazy evaluation enabling speed optimisations in code which manipulates large lists
+\item Excellent debugger support for easier development and code verification
+\item Large standard library including statistical packages
+\item Popular in financial institutions
+\end{enumerate}
+
+The code was designed with an object orientated design. The classes of objects, their methods and general interfaces are shown in \cref{uml}. 
+
+The code was written following style guidelines outlined in ``Clean Code: A Handbook of Agile Software Craftsmanship'' by Robert Martin. In this book a set of good programming practices are discussed including regular refactoring of code, methods that ``do one thing'', short purposeful classes, meaningful method and class names and redundancy of comments in well designed code.
+
+The final implementation incorporates the design specified in \cref{design}.
 
 \subsection{Fuzzy Logic Toolkit}
 
