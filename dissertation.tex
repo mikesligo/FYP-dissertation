@@ -15,7 +15,7 @@
 \newtheorem{ftsdef}{Definition}
 \newcolumntype{R}{>{\raggedleft\arraybackslash}l}%
 
-\title{Econometric Time Series Modelling using Fuzzy Time Series Analysis}
+\title{Fuzzy Time Series Analysis}
 \author{Michael Gallagher}
 
 \begin{document}
@@ -58,7 +58,7 @@ Fuzzy logic captures the meaning of human linguistic terms and can express opera
 
 \Cref{fts} discusses fuzzy time series analysis. In a fuzzy time series the observation on the time series are fuzzy values, with a degree of membership in fuzzy sets representing different parts of the time series. Relationships are then defined between the fuzzy values by analysing the changes in the fuzzy time series over time. These relationships are then grouped together and can be used to forecast fuzzy values.
 
-Forecasting with a fuzzy time series is done under the premise that relationships that changes in the time series that happened previously are likely to happen again. In the basic fuzzy time series model, discussed in \cref{basic}, observations are grouped together and the movements between one observation and the next are recorded as a 'change'. A change from fuzzy set $a$ to fuzzy set $b$ is denoted as the fuzzy logical relationship $a \rightarrow b$. Relationships with the same left-hand side fuzzy value are grouped together, and when these values are seen during forecasting, the outcomes of all the relationships in the relationship group are used to forecast values.
+Forecasting with a fuzzy time series is done under the premise that relationships that changes in the time series that happened previously are likely to happen again. In the basic fuzzy time series model, discussed in \cref{basic}, observations are grouped together and the movements between one observation and the next are recorded as a 'change'. If one observation is fuzzified to fuzzy set $a$, and the next observation is fuzzified to fuzzy set $b$, this is recorded as the fuzzy logical relationship $a \rightarrow b$. Relationships with the same left-hand side fuzzy value are grouped together, and when these values are seen during forecasting, the outcomes of all the relationships in the relationship group are used to forecast values.
 
 Many variations of the basic model have been studied in the literature. \Cref{higher} discusses a higher-order fuzzy time series, where the relationship is computed between observations $n$ points in time apart. There are $n$ collections of relationship groups which are used to forecast based on the most recent $n$ observations. A fuzzy intersection is performed on the forecast values, so only fuzzy values that are forecast by all $n$ relationship groups are used in the forecasting. This narrows down the values forecast, resulting in a more accurate model of the time series. It also adds another dimension of fuzziness, such that if the past $n$ observations are composed of 2 or more patterns that have been identified previously, this will be recognised and the outcomes of these patterns will be used for the forecast.
 
@@ -383,6 +383,8 @@ The following method for ratio-based interval selection was studied by \cite{hua
 The beginning of the first interval, $lower_1$, is set to MIN$(x_t)-c$ where MIN$(x_t)$ is the lowest observation and c is some small constant. The $interval\_length$ for the time series is calculated as $interval\_length=(lower_1 \times ratio) - lower_1$. The upper bound of the first interval, $upper_1$, is set to $lower_1 + interval\_length$. The remaining intervals are calculated using the formula $[lower_k,upper_k]=[lower_{k-1}+interval\_length+c, upper_{k-1}+interval\_length+c]$ for all $k=(2,3,\ldots)$.
 \end{description}
 
+\subsection{Moving Window}
+
 \subsection{Root Mean Squared Error}
 
 \label{rmse}
@@ -391,7 +393,51 @@ The beginning of the first interval, $lower_1$, is set to MIN$(x_t)-c$ where MIN
 \section{Implementation}
 
 \label{implementation}
-\subsection{Framework Development}
+
+\subsection{Initial Implementation}
+
+The project was built in 2 separate iterations. The initial implementation was written in MetaQuotes Language 5 (MQL5), a c-like domain specific language for the electronic trading platform MetaTrader 5 (MT5). This language was initially chosen for several reasons:
+
+\begin{enumerate}[label=\roman*]
+\item The trading platform enables testing of automated trading strategies using past price data
+\item Allows drawing overlays onto charts enabling easier visualisation of trading strategy
+\item Active community of developers using MQL5 and the earlier MQL4
+\item Ability to use genetic programming across a network of cloud servers for parameter optimisation
+\end{enumerate}
+
+The initial implementation was concerned with identifying moving window patterns, i.e.\ a particular series of price changes, and the outcome after this pattern. The early design is a simpler model of the design described in \cref{fts-design}.
+
+Initially a new time series was generated consisting of the changes between of each of the points in the original time series. The universe of discourse of these changes were then divided into intervals. The intervals were derived from the standard deviation $\sigma$ of the changes to give meaning to otherwise arbitrarily selected interval lengths. When evaluating foreign exchange currency pairs the interval length $\frac{\sigma}{25}$ was found to result in enough fuzzy logical relationship groups that the time series was closely modelled but few enough that repeated moving window patterns were identified.
+
+A fuzzy time series is generated consisting of the intervals in which the changes in the original time series fall into. Each sequence of $n$ observations on the fuzzy time series is recorded as an $n$ length moving window, where $n$ is a user defined parameter, and the following observation on the time series recorded as the outcome. Multiple instances of patterns in the time series were grouped together and denoted as $pattern \rightarrow \lbrack outcome\rbrack$ where $\lbrack outcome\rbrack$ represents the list of outcomes discovered after instances of $pattern$.
+
+The intention of this design was to identify patterns in which the mean of the identified outcomes deviated a statistically significant amount from 0. These patterns would be used as trading rules for an algorithmic trading program. This design was moved away from in favour of a design derived from the literature.
+
+The implementation's code was performance-orientated. It uses pointer arithmetic wherever possible to avoid memory bottlenecks. This includes moving\_window objects sharing memory addresses to fuzzified points on the time series, and functions defined to work with pointers instead of objects. A custom statistical class was also defined due to limitations of MQL5's standard library.
+
+The implementation allowed for MQL5 to be evaluated for the purpose of designing a fuzzy time series. It was found to have several shortcomings:
+
+\begin{enumerate}[label=\roman*]
+\item Data selection typically limited to foreign exchange and precious metals
+\item Data in proprietary format and difficult to verify
+\item Very limited standard library and testing frameworks
+\item Limited debugging capabilities
+\item Large overhead when initiating testing on past data
+\item Framework was designed for implementing trading strategies which is not the goal of the project
+\end{enumerate}
+
+In particular, the inability to perform analysis on arbitrary datasets added difficulty to comparing the results of the project to previous studies, as well as verifying the data's integrity. The limited standard library also required a significant amount of code to be hand written which would otherwise be provided, tested and verified by the programming language developers. Finally there was a large overhead when running the implementation due to the proprietary testing data being retrieved from a remote broker each time the program was run.
+
+\subsection{Final Implementation}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{images/class_diag_a4_priv.png}
+    \caption{UML Class Diagram}
+    \label{uml}
+\end{figure}
+
+\Cref{uml} shows the UML class diagram for the final implementation of the design.
 
 \subsection{Fuzzy Logic Toolkit}
 
