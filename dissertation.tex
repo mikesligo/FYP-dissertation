@@ -487,17 +487,23 @@ Defuzzification involves taking the mean of the intervals that have a membership
 
 \label{optimisations}
 
+\subsubsection{Fuzzy Logic Toolkit Optimisations}
+
+Many speed optimisations were achieved with a fuzzy toolkit that was designed knowing the constraints with which it would be used. Fuzzification, identifying matching fuzzy logical relationship groups and performing a fuzzy intersection required a large amount of $O(n)$ operations. 
+
+Fuzzification of an observation was implemented by iterating through the calculated intervals and identifying which interval had a range that included the observation. This would also be done for each value on a moving window series. This resulted in $O(n)$ list access times, which in a large time series added a significant overhead. This method was optimised by recognising that by starting at the lowest bound of first interval and counting how many times the $interval\_length$ was added before it was larger than the observation, this count corresponded to the index of the appropriate interval for the observation. This optimised operation resulted in $O(1)$ access times.
+
+It was recognised that most of the operations which involved fuzzy sets only used the interval which had a maximum membership in that fuzzy set. Early implementations iterated through the intervals and queried their membership in the fuzzy set until the maximum member was found. This was a wasteful $O(n)$ operation as most of the intervals have a $0$ membership in a fuzzy set, and only one interval would ever have a maximum membership. To optimise this a reference the interval with a maximum membership in a fuzzy set was stored as an public attribute in the fuzzy set object.
+
+One of the most expensive operations of early implementations was adding and finding the fuzzy logical relationship group for a fuzzy logical relationship during training and forecasting respectively. This operation needed to identify the appropriate fuzzy logical relationship group for the left-hand side of the fuzzy logical relationship and recording the right-hand side as an outcome of that relationship. Initially this involved iterating through the list of fuzzy logical relationship groups and matching until the correct group was found, or creating a new group if one was not found. This $O(n)$ was very costly with more precise fuzzy time series models due to the abundance of fuzzy logical relationships.
+
+The code was optimised by creating a hash table of left-hand side values to a list of outcomes. This was done by creating a hash method for the left-hand side object and using this as a key for a dictionary in python. Checking if an appropriate fuzzy logical relationship group exists could be done querying by querying the ``keys()'' method of the dictionary and the appropriate fuzzy logical relationship group could be accessed directly in $O(1)$ time.
+
 \subsubsection{Lazy-evaluation}
 
 Lazy evaluation is a method of evaluation in programming where an expression isn't evaluated until it's value is required. In python this is achieved with generator expressions and the itertools module. Generator expressions generate values in a list as it is iterated over. Methods can yield a ``generator iterator'' to a list instead of the list itself. These generators only generate objects when needed, and support the lazy form of operations such as ``zip'', ``map'' and ``slice'' with the itertools module in python.
 
 This project primarily implements lazy evaluation as it does not require a list be fully computed before it can be acted on, e.g.\ only the first value in a list would be calculated to obtain the head of a list. The results framework takes advantage of this by forecasting many variations to the fuzzy time series model simultaneously. Higher-order and moving-window time series can take from several seconds up to several minutes to run against the whole testing data. With lazy evaluation the current RMSE of each model at some point, e.g.\ after 100 observations, can be obtained. This aides with finding the optimal combination of parameters of a fuzzy time series model for different datasets.
-
-\subsubsection{Fuzzy Logic Toolkit Optimisations}
-
-Many speed optimisations were achieved with a fuzzy toolkit that was designed knowing the constraints with which it would be used. 
-
-Initially a generic fuzzy logic toolkit was implemented. Fuzzification, identifying matching fuzzy logical relationship groups and fuzzy intersection required a large amount of $O(n)$ operations.
 
 \section{Results \& Evaluation}
 
@@ -512,7 +518,7 @@ Initially a generic fuzzy logic toolkit was implemented. Fuzzification, identify
 \appendix
 
 
-\section{technical analysis Techniques}
+\section{Technical Analysis Techniques}
 
 \label{app:tatechniques}
 
