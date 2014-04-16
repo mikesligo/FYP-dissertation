@@ -1,4 +1,5 @@
-\documentclass[12pt]{article}
+\documentclass[12pt, oneside]{article}
+
 \usepackage[utf8]{inputenc}
 \usepackage[round]{natbib}
 \usepackage{amsthm}
@@ -12,17 +13,21 @@
 \usepackage{tikz} % To generate the plot from csv
 \usepackage{pgfplots}
 
+%fonts
 \usepackage[T1]{fontenc}
 \usepackage{charter}
 \usepackage[expert]{mathdesign}
 
+% page formatting
+\usepackage{titlesec}
+\newcommand{\sectionbreak}{\clearpage}
 \renewcommand{\baselinestretch}{1.2} 
 
 \theoremstyle{definition}
 \newtheorem{ftsdef}{Definition}
 \newcolumntype{R}{>{\raggedleft\arraybackslash}l}%
 
-\title{Econometric Modelling using Fuzzy Time Series Analysis}
+\title{Econometric Modelling using \\Fuzzy Time Series Analysis}
 \author{Michael Gallagher}
 
 \begin{document}
@@ -35,15 +40,13 @@
 
 \tableofcontents
 
+\newpage
+
 \section{Introduction}
 
 ``Man is still the most extraordinary computer of all.'' - John F. Kennedy.
 
-The digital revolution has changed the way we do things. We no longer rely on human intervention to perform repetitive and monotonous tasks. Computers allow humans to concentrate on areas that we excel at, using our creativity to solve abstract problems, understanding and developing new concepts and ideas, being aware of our existence and finding a way to bypass our limitations. Computers require a process. They require a detailed understanding of the domain they operate in and are typically unable to work outside this. Thankfully, humans are excellent at identifying processes. We are excellent at identifying patterns, correlations, the root cause of some occurrence and the source of our intuitions. The result is that computers perform some tasks very well, and humans are the ones who program them.
-
-But we can program them to learn. The ceiling for the capability of a computer is tied to how well a human can map a process to their domain. Learning is no exception to this. Learning is a process \citep{rescorla1988pavlovian} and the suitability and efficiency of the learning process is left up to the designer. A computer can be taught to analyse, interpret, manipulate and act on data without human intervention and can do it with extreme speed, accuracy and without suffering a humans animal needs.
-
-Economics is an area that the digital revolution has changed substantially. In the 1960s a huge amount of financial data suddenly became available. Economic theory that needed to be evaluated manually could now be tested and verified thoroughly and systematically, ``liberating econometricians from their mechanical calculators'' \citep{fama}. Yet despite the means to test and verify financial models, there is still disagreement about economic theory among academics and professionals.
+The digital revolution has changed economics substantially. In the 1960s a huge amount of financial data suddenly became available. Economic theory that needed to be evaluated manually could now be tested and verified thoroughly and systematically, ``liberating econometricians from their mechanical calculators'' \citep{fama}. Yet despite the means to test and verify financial models, there is still disagreement about economic theory among academics and professionals.
 
 One area of disagreement is the efficient markets model discussed in \cref{emh}. The efficient market hypothesis proposes that the price of a financial security reflects all information publicly available for that security. As a result it is impossible to make a consistent profit by analysing public information, such as identifying poor revenue performance or identifying an upward trend on a chart of price.
 
@@ -57,11 +60,13 @@ Technical analysis has also seen a lot of debate in the economic world, partly b
 
 ``You don't remember important facts and you don't remember because nobodies talking about it ... we forget and so we repeat mistakes from the past'' claimed Robert Shiller in his Nobel Prize acceptance speech, shortly after Fama. These repeated mistakes are what interest technical analysts. The goal is to identify any regularities in financial markets that can be used to forecast future price. 
 
-But the digital revolution has not affected technical analysis as might have been expected. Traders are still using the same techniques that they have been using for the last 70 years and more. Automated technical trading algorithms and artificial intelligence models have been developed and have demonstrated great predictive power. Yet these algorithms create extremely complex trading models which are incomprehensible to a human, so humans use the classic technical trading tools that are intuitive and suited to our visual pattern recognition abilities.
+The digital revolution has not affected technical analysis as might have been expected. Traders are still using the same techniques that they have been using for the last 70 years and more. Automated technical trading algorithms and artificial intelligence models have been developed and have demonstrated great predictive power. Yet these algorithms create extremely complex trading models which are incomprehensible to a human, so humans use the classic technical trading tools that are intuitive and suited to our visual pattern recognition abilities.
+
+The goal of this project is to use modern time series analysis methods to identify human readable technical patterns in an econometric time series. This is achieved through the use of fuzzy logic in the time series analysis, known as fuzzy time series analysis.
 
 \Cref{fuzzysettheory} discusses fuzzy set theory. This is a branch of set theory used in fuzzy logic where values have a degree of membership in a set, instead of either being in the set or not as in crisp set theory. This adds a degree of fuzziness when using these sets, as values are 'kind-of' in a set to different degrees. Human linguistic map very well to these fuzzy sets. People use linguistic terms such as 'tall' or 'heavy' to describe objects. The boundaries for these terms are fuzzy. A male who is 180cm tall may be described as 'kind-of' tall as well as 'kind-of' average, and he may be described as more tall than average.
 
-Fuzzy logic captures the meaning of human linguistic terms and can express operations in a way humans can easily understand. It understands when values and sets are similar but different, which allows us to fuzzily compare if items are 'kind-of' the same. These 2 features make fuzzy logic excellent for performing visual pattern recognition. It can appreciate the patterns that humans look for as well as allowing for small differences between patterns observed.
+Fuzzy logic captures the meaning of human linguistic terms and can express operations in a way humans can easily understand. It understands when values and sets are similar but different, which allows us to fuzzily compare if items are 'kind-of' the same. These two features make fuzzy logic excellent for performing visual pattern recognition. It can appreciate the patterns that humans look for as well as allowing for small differences between patterns observed.
 
 \Cref{fts} discusses fuzzy time series analysis. In a fuzzy time series the observation on the time series are fuzzy values, with a degree of membership in fuzzy sets representing different parts of the time series. Relationships are then defined between the fuzzy values by analysing the changes in the fuzzy time series over time. These relationships are then grouped together and can be used to forecast fuzzy values.
 
@@ -71,9 +76,7 @@ Many variations of the basic model have been studied in the literature. \Cref{hi
 
 Practical problems for a fuzzy time series have also been studied. \Cref{interval} discusses interval selection in a fuzzy time series. Intervals are division in the time series that allow points in the same interval range to be grouped together. The issue is important as too large intervals result in a poor model and too small intervals lose some the benefit of fuzzy logic.
 
-The design of these features of a fuzzy time series is shown in \cref{design}.
-
-The performance of the model is measured using the root mean square error of the forecasting results, discussed in \cref{rmse}.
+The design of these features of a fuzzy time series is shown in \cref{design}. The performance of the model is measured using the root mean square error of the forecasting results, discussed in \cref{rmse}.
 
 \Cref{implementation} discusses how the project was implemented and technical challenges that were overcome, including development of the fuzzy time series framework, developing a basic fuzzy logic toolkit, developing a testing framework and speed optimisations.
 
@@ -164,6 +167,8 @@ A time series is a sequence of observations taken sequentially in time. A core c
 A fuzzy time series is a model of a time series that uses fuzzy set theory to find relationships between points on the time series and use these relationships to forecast observations. According to \cite{chen1996forecasting}, "the main difference between a a fuzzy time series and conventional time series is that the values of the former are fuzzy sets and the latter are real numbers".
 
 The typical use of a fuzzy time series is to forecast observations on the time series using historical data. Studies using fuzzy time series have been carried out on forecasting university enrolment \citep{song1993forecasting, song1994forecasting, chen1996forecasting, tsai2000forecasting, chen2004new, cheng2006trend, lee2006pattern, huarng2006ratio, tsaur2012fuzzy}, Stock Market price \citep{huarng2005type, cheng2006trend, lee2006pattern, huarng2006ratio, Chen2007fib, chu2009fuzzy}, Foreign-Exchange rates \citep{tsaur2012fuzzy}, population change \citep{tsai1999study} and temperature \citep{temperatureprediction2000, lee2006pattern}. 
+
+%TODO lo et all candlestick analysis
 
 \subsubsection{Basic Model}
 \label{basic}
@@ -391,12 +396,31 @@ The following method for ratio-based interval selection was studied by \cite{hua
 The beginning of the first interval, $lower_1$, is set to MIN$(x_t)-c$ where MIN$(x_t)$ is the lowest observation and c is some small constant. The $interval\_length$ for the time series is calculated as $interval\_length=(lower_1 \times ratio) - lower_1$. The upper bound of the first interval, $upper_1$, is set to $lower_1 + interval\_length$. The remaining intervals are calculated using the formula $[lower_k,upper_k]=[lower_{k-1}+interval\_length+c, upper_{k-1}+interval\_length+c]$ for all $k=(2,3,\ldots)$.
 \end{description}
 
-\subsection{Moving Window}
-
 \subsection{Root Mean Squared Error}
 
 \label{rmse}
+
+The metric used to measure the forecasting accuracy of time series model is a contentious issue. Inappropriate metrics can give misleading results, yet there is often not a consensus around which measure is appropriate \citep{hyndman2006another}.
+
+This paper measures the accuracy of the proposed model with the Root Mean Squared Error (RMSE) as a performance indicator. The RMSE represents the sample standard deviation of the forecasting error and gives an indication of the variance of the forecasting model. RMSE is the most common performance indicator used in the literature allowing the results of the project to be compared to previous studies. However, it does not support comparing the performance of the model between separate datasets due to RMSE being scale dependent. The formula is as follows:
+
+\begin{figure}[H]
+    \centering
+    $\sqrt{\frac{\sum_{n}^{t=1}|actual(t)-forecast(t)|^{2}}{n}}$
+    \caption{RMSE Formula}
+\end{figure}
+ 
 %make random walk model heterosedastic, as in stock markets do not follow random walks
+
+\subsection{Moving-window}
+
+A higher-order fuzzy time series gives a more precise model of the original time series as a separate list of values are forecast for each of the most recent $n$ observations in an $n$-order fuzzy time series, and only values common to all forecasts are used. This adds another element of fuzziness to the analysis as patterns only need to be partially completed to be identified.
+
+For example, the in a 2-order fuzzy time series
+
+\subsection{Change Analysis}
+
+jhi
 
 \section{Implementation}
 
@@ -508,6 +532,8 @@ This project primarily implements lazy evaluation as it does not require a list 
 \section{Results \& Evaluation}
 
 \label{results}
+
+% The application of neural networks to forecast fuzzy time series has a time breakdown of comparisons!c
 
 \subsection{Comparison Models}
 
