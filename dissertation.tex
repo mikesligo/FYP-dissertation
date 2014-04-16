@@ -1,4 +1,4 @@
-\documentclass[12pt, oneside]{book}
+\documentclass[12pt, oneside, a4paper]{book}
 
 \usepackage[utf8]{inputenc}
 \usepackage[round]{natbib}
@@ -151,7 +151,9 @@ While this demonstrates a use for past price data, it only demonstrates use when
 
 \label{tahumanz}
 
-Although the evidence supporting technical analysis is inconclusive, it is still regarded as an important forecasting tool by many analysts. One of several explanations by \cite[p.45-71]{aronson2011evidence} is that humans suffer cognitive biases when determining the significance of visual patterns in their analysis. Many experts believe they can spot visual patterns such as price trends on a graph, and would take the claim that these trends are irrelevant as ridiculous. However when developing or practising a trading system based on patterns, technical analysts can succumb to confirmation bias by giving a higher significance to evidence that supports the pattern they're looking for as opposed to evidence for other patterns that might be available. Also when determining the efficacy of these systems based on past data, hindsight bias can lead to certain patterns appearing obvious after their formation. This leads an expert to think this pattern is easily detectable, even though while the pattern was forming the evidence for that particular pattern was indecisive, and possibly pointed to other, contradictory patterns \cite[p.62]{aronson2011evidence}.
+Although the evidence supporting technical analysis is inconclusive, it is still regarded as an important forecasting tool by many analysts. One of several explanations by \cite[p.45-71]{aronson2011evidence} is that humans suffer cognitive biases when determining the significance of visual patterns in their analysis. Many experts believe they can spot visual patterns such as price trends on a graph, and would take the claim that these trends are irrelevant as ridiculous. 
+
+However when developing or practising a trading system based on patterns, technical analysts can succumb to confirmation bias by giving a higher significance to evidence that supports the pattern they're looking for as opposed to evidence for other patterns that might be available. Also when determining the efficacy of these systems based on past data, hindsight bias can lead to certain patterns appearing obvious after their formation. This leads an expert to think this pattern is easily detectable, even though while the pattern was forming the evidence for that particular pattern was indecisive, and possibly pointed to other, contradictory patterns \cite[p.62]{aronson2011evidence}.
 
 Another explanation is that technical analysis appeals to behavioural psychology. If a large amount of investors are searching for similar patterns, then the outcome following these patterns may become a self-fulfilling prophecy. A study by \cite{examininguse1997} finds that 49\% of Foreign-Exchange Technical Analysts surveyed explicitly cite this as a reason. These points are disputed by Malkiel however, stating "The problem is that once such a regularity is known to market participants, people will act in a way that prevents it from happening in the future" \cite[p.162]{randomwalk2012}.
 
@@ -474,11 +476,19 @@ In comparison, the fuzzy logical relationship groups For a 2-length moving windo
 
 The most recent 2 observations are taken and matched for the appropriate relationship group which forecasts values. This is different to the 2-order fuzzy time series which would use the values indicated by each set of fuzzy logical relationships as the forecast.
 
-A $n$-length moving window fuzzy time series can also be a $n$-order fuzzy time series by taking multiple moving window sequences on the time series and recording the relationship with the current observation in separate sets of fuzzy logical relationship groups.
+A $n$-length moving window fuzzy time series can also be a $n$-order fuzzy time series. The results from this variation are studied.
 
 \section{Change Analysis}
 
-.
+One of the goals of the project is to identify technical patterns in an econometric time series. Technical patterns are sequences of movements in a time series, typically forming a visual pattern, which are used to forecast price change. 
+
+The proposed fuzzy time series model will recognise technical patterns which consist of the same values, i.e.\ that form technical pattern at the same point along the $y$-axis of a time series. This is useful as it accounts for ``significant'' price levels as discussed in \Cref{app:tatechniques}. 
+
+However this does not identify technical patterns consisting of movements of price, which is essentially what visual patterns are. Identifying changes between observations results in patterns which can be applied to any point on the time series, e.g.\ the pattern $up,up,up,down,up$ with an outcome of $down$.
+
+The proposed model can analyse these patterns using the same fuzzy time series design. By generating a new time series composed of the changes of the original time series, the same steps can be used to identify the relationships between changes and forecast changes instead of a crisp price. The results of analysing a normal time series and analysing changes are studied.
+
+%TODO talk about the drawbacks of ratio based approach with change analysis
 
 \chapter{Implementation}
 
