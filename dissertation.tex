@@ -1,4 +1,4 @@
-\documentclass[12pt, oneside]{article}
+\documentclass[12pt, oneside]{book}
 
 \usepackage[utf8]{inputenc}
 \usepackage[round]{natbib}
@@ -12,6 +12,7 @@
 \usepackage{enumitem}
 \usepackage{tikz} % To generate the plot from csv
 \usepackage{pgfplots}
+\usepackage{multicol}
 
 %fonts
 \usepackage[T1]{fontenc}
@@ -20,7 +21,7 @@
 
 % page formatting
 \usepackage{titlesec}
-\newcommand{\sectionbreak}{\clearpage}
+%\newcommand{\sectionbreak}{\clearpage}
 \renewcommand{\baselinestretch}{1.2} 
 
 \theoremstyle{definition}
@@ -42,7 +43,7 @@
 
 \newpage
 
-\section{Introduction}
+\chapter{Introduction}
 
 ``Man is still the most extraordinary computer of all.'' - John F. Kennedy.
 
@@ -82,9 +83,9 @@ The design of these features of a fuzzy time series is shown in \cref{design}. T
 
 \Cref{results} discusses the results of the model using various combinations of features and parameters. It compares the results of these features and evaluates them against the results of models discussed in the literature, as well as naive prediction strategies such as buy and hold and random walk prediction.
 
-\section{Literature Review}
+\chapter{Literature Review}
 
-\subsection{Empirical Analysis}
+\section{Empirical Analysis}
 \label{ta}
 \begin{figure}[H]
     \centering
@@ -96,7 +97,7 @@ Technical analysis is a form of financial analysis where past price behaviour is
 
 \cite{foundations} argued that ``the general goal of technical analysis is to identify regularities in the time series of prices by extracting non-linear patterns from noisy data''. Examples of this form of analysis include identifying trends in a graph of price movement, or concluding that a price is unlikely to go lower than the 52-week low. Specific techniques are discussed in \Cref{app:tatechniques}.
 
-\subsubsection{History}
+\subsection{History}
 \label{tahist}
 The use of this form of analysis has been documented for several hundred years. One of the first uses of technical analysis dates back to Japan in the 18th Century. In 1710 Japan's rice market had matured enough to begin use rice coupons instead of trading physical rice. Their receipts were traded constituting the first Futures trades ever recorded \citep[p.15]{jcct1991}. 
 
@@ -106,7 +107,7 @@ In the west, Dow Theory was developed and expanded on in the early 20th Century,
 
 Even with such a diverse history the use of technical analysis is still a hotly debated topic. Experts and Academics are divided in its use \citep{foundations}, the influential \textit{A Random Walk down Wall Street} concluding it is as valid as Alchemy when put under scientific scrutiny \cite[p.159]{randomwalk2012}. Nonetheless, it appears a significant number of analysts incorporate technical analysis, with a study by \cite{examininguse1997} finding a mean importance of 35\% was given to technical analysis by respondents in various investment banks, and \cite{cheung2000currency} characterising 30\% of Foreign-Exchange traders as Technical Traders. 
 
-\subsubsection{Performance of technical analysis}
+\subsection{Performance of technical analysis}
 \label{taperformance}
 \cite{taprofitability} performed a comprehensive review of 95 studies of technical trading strategies from between 1988 and 2004. Although there is a significant number of studies before this date, they note that prior to \cite{lukac1988} studies suffered from a number of problems, which \cite{brock1992} summarises as:
 
@@ -130,7 +131,7 @@ They also offered empirical explanations for the results, such as trends in pric
 
 In the professional world, it could be due to the difficulty in experimentally verifying some technical analysis techniques, many of which rely on visual cues in the eyes of an Expert. The existence of a pattern is subjective. Experts looking at the same data may see different, sometimes contradictory patterns, fuelling a controversy that technical analysis is nothing more than pseudo-analysis. Also with most studies finding some technical trading strategies successful and many unsuccessful, seemingly without reason, it may be perceived as safer to ignore technical analysis altogether.
 
-\subsubsection{Econometric Time Series Analysis}
+\subsection{Econometric Time Series Analysis}
 \label{emh}
 ``I believe there is no other proposition in economics which has more solid empirical evidence supporting it than the Efficient Market Hypothesis'' stated \cite{jensen1978some}. The Efficient Market Hypothesis claims that the price of a security is extremely efficient at reflecting most of the information about that security. When news is public the market will very efficiently arrive at a price for the security that reflects the impact of the news. This claim has major consequences; that both technical analysis and fundamental analysis are unable to help an investor achieve a greater profit than if a random selection of securities were invested in \citep{emhAndCritics}. 
 
@@ -146,7 +147,7 @@ Almost 30 years ago, \cite{indefenseof} showed that past prices combined with ot
 
 While this demonstrates a use for past price data, it only demonstrates use when combined with other valuable information, and thus does not contradict the Efficient Market Hypothesis which only states that attempting to make profits by exploiting currently available information is futile \citep{taprofitability}.
 
-\subsubsection{Human Perception}
+\subsection{Human Perception}
 
 \label{tahumanz}
 
@@ -154,11 +155,11 @@ Although the evidence supporting technical analysis is inconclusive, it is still
 
 Another explanation is that technical analysis appeals to behavioural psychology. If a large amount of investors are searching for similar patterns, then the outcome following these patterns may become a self-fulfilling prophecy. A study by \cite{examininguse1997} finds that 49\% of Foreign-Exchange Technical Analysts surveyed explicitly cite this as a reason. These points are disputed by Malkiel however, stating "The problem is that once such a regularity is known to market participants, people will act in a way that prevents it from happening in the future" \cite[p.162]{randomwalk2012}.
 
-\subsection{Fuzzy Set Theory}
+\section{Fuzzy Set Theory}
 
 \label{fuzzysettheory}
 
-\subsection{Fuzzy Time Series}
+\section{Fuzzy Time Series}
 
 \label{fts}
 
@@ -170,7 +171,7 @@ The typical use of a fuzzy time series is to forecast observations on the time s
 
 %TODO lo et all candlestick analysis
 
-\subsubsection{Basic Model}
+\subsection{Basic Model}
 \label{basic}
 \cite{song1993forecasting} pioneered the fuzzy time series model providing the definitions for the concept and a method for modelling a time invariant fuzzy time series. The method was shown to be better than the Linear Regression Method for forecasting student enrolments at the University of Alabama. Their model fuzzified points on the time series into fuzzy sets and defined fuzzy relations between these sets. They use an arithmetic defuzzification algorithm to interpret the results and claim ``it is not difficult to jump to the conclusion that in the interpretation of the output results, experience knowledge is still needed''.
  
@@ -190,7 +191,7 @@ The typical use of a fuzzy time series is to forecast observations on the time s
 \item[Step 6] Defuzzify the forecast fuzzy set using the Centroid method. Practically, this involves calculating the average of the midpoints of each interval which has a maximum membership in each fuzzy set that is forecast for $F(t+1)$
 \end{description}
 
-\subsubsection{Higher-Order Models}
+\subsection{Higher-Order Models}
 
 \label{higher}
 
@@ -200,7 +201,7 @@ An $n$th-order or higher-order fuzzy time series is one where where there is a s
 
 \cite{tsai1999study} found that a second-order fuzzy time series lead to more accurate predictions when forecasting population, particularly when the number of intervals on the fuzzy time series was increased. \cite{tsai2000forecasting} compared the performance of 5 higher-order time series models on predicting university enrolments, and found the higher-order models to be more accurate, with the model increasing in accuracy with every increase in the order of the time series, up to a fifth-order time series.
 
-\subsubsection{Interval Selection}
+\subsection{Interval Selection}
 
 \label{interval}
 
@@ -218,11 +219,11 @@ Both methods utilise a mapping table to approximate the base of the interval bas
 
 \cite{huarng2006ratio} compared the approach to the average- and distribution-based approaches as well as several arbitrarily chosen similarly sized intervals. The ratio based approach resulted in the best accuracy for the methods tested when forecasting university enrolment, TAIEX price and inventory stock. They also found that the optimal interval length changed between data sets from the same data source, and that the ratio based approach was effective at approximating the optimal length.
 
-\section{Design}
+\chapter{Design}
 
 \label{design}
 
-\subsection{Fuzzy Time Series}
+\section{Fuzzy Time Series}
 \label{fts-design}
 The following definitions describe a general model of a fuzzy time series.
 
@@ -308,7 +309,7 @@ The forecast value or values for $F(t+1)$ are defuzzified by taking the mean of 
 
 To illustrate, if $F(t)$ is $med$, then the fuzzy logical relationships group with a matching left-hand side is Group 2. From this the forecast fuzzy values for $F(t+1)$ are $med$ and $very\_high$. The intervals with a maximum membership in these fuzzy sets are $u_3$ and $u_5$ respectively. The midpoint of these intervals are $150$ for $u_3$ and $190$ for $u_5$, with a mean value $\frac{150 + 190}{2}=170$. This crisp value is used as the forecast.
 
-\subsection{Higher-order Fuzzy Time Series}
+\section{Higher-order Fuzzy Time Series}
 \label{higher-order}
 \begin{ftsdef}
 \label{def5}
@@ -359,7 +360,7 @@ The relational function for an expression $F(t-k) \rightarrow F(t)$ is shown as 
 
 Where $F_{ik}$ is the collection of fuzzy values forecast by the fuzzy logical relationship group $R^{m}_{\ \ k}$. Since the above relations happen simultaneously, the forecast for $F(i)$ is the fuzzy intersection of all $F_{ik}$, which are the forecast fuzzy values common to each order of fuzzy logical relationship groups used. These values are then defuzzified as in \Cref{fts-design}.
 
-\subsection{Ratio-based Interval Selection}
+\section{Ratio-based Interval Selection}
 
 The following method for ratio-based interval selection was studied by \cite{huarng2006ratio}.
 
@@ -396,7 +397,7 @@ The following method for ratio-based interval selection was studied by \cite{hua
 The beginning of the first interval, $lower_1$, is set to MIN$(x_t)-c$ where MIN$(x_t)$ is the lowest observation and c is some small constant. The $interval\_length$ for the time series is calculated as $interval\_length=(lower_1 \times ratio) - lower_1$. The upper bound of the first interval, $upper_1$, is set to $lower_1 + interval\_length$. The remaining intervals are calculated using the formula $[lower_k,upper_k]=[lower_{k-1}+interval\_length+c, upper_{k-1}+interval\_length+c]$ for all $k=(2,3,\ldots)$.
 \end{description}
 
-\subsection{Root Mean Squared Error}
+\section{Root Mean Squared Error}
 
 \label{rmse}
 
@@ -412,21 +413,78 @@ This paper measures the accuracy of the proposed model with the Root Mean Square
  
 %make random walk model heterosedastic, as in stock markets do not follow random walks
 
-\subsection{Moving-window}
+\section{Moving-window}
 
 A higher-order fuzzy time series gives a more precise model of the original time series as a separate list of values are forecast for each of the most recent $n$ observations in an $n$-order fuzzy time series, and only values common to all forecasts are used. This adds another element of fuzziness to the analysis as patterns only need to be partially completed to be identified.
 
-For example, the in a 2-order fuzzy time series
+A $n$-length moving window fuzzy time series is one in which the most recent $n$ observations in a time series are treated as one observation. It differs from a higher-order fuzzy time series in that it crisply identifies patterns as being a particular sequence and records the relationship between the entire pattern and the outcome as the fuzzy logical relationship.
 
-\subsection{Change Analysis}
+For illustration, a the fuzzy logical relationships for a 2-order fuzzy time series and a 2-length moving-window fuzzy time series will be compared.
 
-jhi
+Consider the following fuzzy time series sample $F(t)(t=1,2,\ldots,5)$:
 
-\section{Implementation}
+\begin{table}[H]
+	\center
+	\begin{tabular}{ c }
+  	$F(1) = a$ \\
+  	$F(2) = b$ \\
+  	$F(3) = b$ \\
+  	$F(4) = c$ \\
+  	$F(5) = a$ \\
+	\end{tabular}
+	\caption{Fuzzy Time Series Sample}
+\end{table}
+
+where $a$, $b$ and $c$ are fuzzy sets.
+
+In a 2-order time series, there are 2 sets of fuzzy logical relationship groups identified, the relationships between observations 1 and 2 points in time apart:
+
+\begin{multicols}{2}
+\begin{table}[H]
+	\center
+	\begin{tabular}{ c c c c }
+  	Group 1: & $a$ &  $\rightarrow$ & $b$ \\
+  	Group 2: & $b$ & $\rightarrow$ & $b, c$ \\
+  	Group 3: & $c$ &  $\rightarrow$ & $a$ \\
+	\end{tabular}
+	\caption{1-order FLRGs}
+\end{table}
+\columnbreak
+\begin{table}[H]
+	\center
+	\begin{tabular}{ c c c c }
+  	Group 1: & $a$ & $\rightarrow$ & $c$ \\
+  	Group 2: & $b$ & $\rightarrow$ & $c, a$ \\
+	\end{tabular}
+	\caption{2-order FLRGs}
+\end{table}
+\end{multicols}
+
+In comparison, the fuzzy logical relationship groups For a 2-length moving window fuzzy time series are as follows:
+
+\begin{table}[H]
+	\center
+	\begin{tabular}{ c c c c }
+  	Group 1: & $a, b$ & $\rightarrow$ & $b$ \\
+  	Group 2: & $b, b$ & $\rightarrow$ & $c$ \\
+  	Group 3: & $b, c$ & $\rightarrow$ & $a$ \\
+	\end{tabular}
+	\caption{2-length moving window FLRGs}
+\end{table}
+
+The most recent 2 observations are taken and matched for the appropriate relationship group which forecasts values. This is different to the 2-order fuzzy time series which would use the values indicated by each set of fuzzy logical relationships as the forecast.
+
+A $n$-length moving window fuzzy time series can also be a $n$-order fuzzy time series by taking multiple moving window sequences on the time series and recording the relationship with the current observation in separate sets of fuzzy logical relationship groups.
+
+\section{Change Analysis}
+
+.
+
+\chapter{Implementation}
 
 \label{implementation}
 
-\subsection{Initial Implementation}
+\section{Initial Implementation}
 
 The project was built in two separate iterations. The initial implementation was written in MetaQuotes Language 5 (MQL5), a C-like domain specific language for the electronic trading platform MetaTrader 5 (MT5). This language was chosen for the following reasons:
 
@@ -459,7 +517,7 @@ The implementation allowed for MQL5 to be evaluated for the purpose of designing
 
 In particular, it was very difficult to compare the implementation to previous studies due to the inability of the platform to test trading strategies against arbitrary datasets. Also The limited standard library required a significant amount of code to be hand written which would otherwise be provided, tested and verified by the programming language developers. Finally there was a large overhead when running the implementation due to the proprietary testing data being retrieved from a remote server each time the program was run.
 
-\subsection{Final Implementation}
+\section{Final Implementation}
 
 \begin{figure}[H]
     \centering
@@ -494,7 +552,7 @@ The framework features a testing and results suite. It allows for many different
 
 The testing suite can perform comparisons with any model that implements a forecasting interface. Two naive models are included in the project, a ``buy \& hold'' model and a ``random walk'' model. The ``random walk'' model analyses the training data and calculates the standard deviation of changes, and uses this standard deviation to generate a Gaussian distribution which is randomly sampled to obtain a forecast value. The ``buy \& hold'' model uses the observation at time $t$ as the for observation time $t+1$.
 
-\subsection{Fuzzy Logic Toolkit}
+\section{Fuzzy Logic Toolkit}
 
 A minimal fuzzy logic toolkit was written and implemented for the project. While open source fuzzy logic toolkits exist for python, the fuzzy time series model uses only a small subset of operations that exist in fuzzy set theory and writing a bespoke solution offered several advantages for speed and flexibility.
 
@@ -507,11 +565,11 @@ In a higher-order fuzzy time series, there are different managers for each of th
 Defuzzification involves taking the mean of the intervals that have a membership in the forecast fuzzy sets. The final implementation allows for defuzzifying using intervals that have a membership in the forecast fuzzy sets above a user defined threshold $\alpha$. The performance of the models when $\alpha = 1.0$ and $\alpha = 0.5$ is studied.
 % TODO don't forget to actually study them!
 
-\subsection{Optimisation}
+\section{Optimisation}
 
 \label{optimisations}
 
-\subsubsection{Fuzzy Logic Toolkit Optimisations}
+\subsection{Fuzzy Logic Toolkit Optimisations}
 
 Many speed optimisations were achieved with a fuzzy toolkit that was designed knowing the constraints with which it would be used. Fuzzification, identifying matching fuzzy logical relationship groups and performing a fuzzy intersection required a large amount of $O(n)$ operations. 
 
@@ -523,40 +581,40 @@ One of the most expensive operations of early implementations was adding and fin
 
 The code was optimised by creating a hash table of left-hand side values to a list of outcomes. This was done by creating a hash method for the left-hand side object and using this as a key for a dictionary in python. Checking if an appropriate fuzzy logical relationship group exists could be done querying by querying the ``keys()'' method of the dictionary and the appropriate fuzzy logical relationship group could be accessed directly in $O(1)$ time.
 
-\subsubsection{Lazy-evaluation}
+\subsection{Lazy-evaluation}
 
 Lazy evaluation is a method of evaluation in programming where an expression isn't evaluated until it's value is required. In python this is achieved with generator expressions and the itertools module. Generator expressions generate values in a list as it is iterated over. Methods can yield a ``generator iterator'' to a list instead of the list itself. These generators only generate objects when needed, and support the lazy form of operations such as ``zip'', ``map'' and ``slice'' with the itertools module in python.
 
 This project primarily implements lazy evaluation as it does not require a list be fully computed before it can be acted on, e.g.\ only the first value in a list would be calculated to obtain the head of a list. The results framework takes advantage of this by forecasting many variations to the fuzzy time series model simultaneously. Higher-order and moving-window time series can take from several seconds up to several minutes to run against the whole testing data. With lazy evaluation the current RMSE of each model at some point, e.g.\ after 100 observations, can be obtained. This aides with finding the optimal combination of parameters of a fuzzy time series model for different datasets.
 
-\section{Results \& Evaluation}
+\chapter{Results \& Evaluation}
 
 \label{results}
 
 % The application of neural networks to forecast fuzzy time series has a time breakdown of comparisons!c
 
-\subsection{Comparison Models}
+\section{Comparison Models}
 
-\section{Conclusion}
+\chapter{Conclusion}
 
-\section{Future work}
+\chapter{Future work}
 
 \appendix
 
 
-\section{Technical Analysis Techniques}
+\chapter{Technical Analysis Techniques}
 
 \label{app:tatechniques}
 
 There are many trading strategies that use technical analysis. Almost any strategy that uses past price movement or behaviour as an indicator for future price counts as a technical trading strategy. Discussed here are 3 techniques that are seen to be widely used in technical trading strategies.
 
-\subsection{Trend Identification}
+\section{Trend Identification}
 Moving averages are graph lines that indicate the average price over a fixed period. Different functions can also be used such as calculating a weighted moving average. Its purpose is to smooth the noise in a graph and to identify a trend. A moving average cross is where 2 moving averages are used on a graph, generally with one having a short period indicating current trend and one having a long period indicating overall trend. When the line of the short period crosses the line of the long period it is an indication of a change in trend \citep{brock1992}. Moving averages have been used in many studies on technical trading strategies, with generally positive performance. \cite{taprofitability} found moving average rules showed consistently profitable results in the foreign exchange and futures market, and the most reliable performance in the stock market out of the methods tested.
 
-\subsection{Pattern Identification}
+\section{Pattern Identification}
 Technical Patterns are visual patterns that appear in a graph of price movement. A Head-and-Shoulders pattern is one where the price represents a persons head an shoulders, where the price shows an approximately symmetrical sequence of five local extrema which correspond to 2 shoulders, 2 necks and a head. The outcome of this pattern is that the price moves down. \cite{foundations} examined 10 of these patterns and found overwhelming significance for the indicators when applied to the Nasdaq stock index. \cite{chang1999methodical} also find a Head-and-Shoulders pattern was profitable, but was outperformed by simpler trading rules such as a moving average indicator. Japanese Candlestick charting is considered to be identifying technical patterns.
 
-\subsection{Price Levels}
+\section{Price Levels}
 
 \begin{figure}[H]
     \centering
