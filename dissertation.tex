@@ -22,7 +22,7 @@
 % page formatting
 \usepackage{titlesec}
 %\newcommand{\sectionbreak}{\clearpage}
-\renewcommand{\baselinestretch}{1.2} 
+\renewcommand{\baselinestretch}{1.05} 
 
 \theoremstyle{definition}
 \newtheorem{ftsdef}{Definition}
@@ -53,19 +53,19 @@ One area of disagreement is the efficient markets model discussed in \cref{emh}.
 
 Although there is a large body of evidence supporting this model, it's validity is an extremely controversial area in economic science. Behavioural Finance analysts point to bubbles and crashes as evidence against the efficient markets model. They argue that behavioural psychology causes irrational swings in prices away from fundamental values. 
 
-The divide in opinions among this issue can be seen by the results of the 2013 Nobel Prize in Economic Science where 2 of the winners, Eugene Fama and Robert Shiller, were leading figures in these competing fields of Behavioural Finance and Efficient Markets respectively. Eugene Fama commented in his speech ``no available evidence resolves this issue in a way that convinces both sides''.
+The divide in opinions among this issue can be seen by the results of the 2013 Nobel Prize in Economic Science where 2 of the winners, Eugene Fama and Robert Shiller, were leading figures in the competing fields of Behavioural Finance and Efficient Markets respectively. Eugene Fama commented in his speech that ``no available evidence resolves this issue in a way that convinces both sides''.
 
 \Cref{ta} discusses Technical Analysis, a form of financial analysis where past price movements are studied and used to forecast future movements. This includes popular analysis methods such as identifying a trend in a graph and trading based on how close price is to important points such as the 52-week low. As discussed in \cref{tahist}, it began as a way of linking movement patterns in price to certain market sentiment. In its current form it is a mix of old practices, statistical reasoning, empirical observations and intuition. Specific techniques are discussed in \cref{app:tatechniques}.
 
 Technical analysis has also seen a lot of debate in the economic world, partly because it goes directly against the efficient markets model. Yet a significant amount of positive research has emerged as well as many theoretical explanations for its use, discussed in \cref{taperformance} and \cref{tahumanz}.
 
-``You don't remember important facts and you don't remember because nobodies talking about it ... we forget and so we repeat mistakes from the past'' claimed Robert Shiller in his Nobel Prize acceptance speech, shortly after Fama. These repeated mistakes are what interest technical analysts. The goal is to identify any regularities in financial markets that can be used to forecast future price. 
+``You don't remember important facts and you don't remember because nobody is talking about it ... we forget and so we repeat mistakes from the past'' claimed Robert Shiller in his Nobel Prize acceptance speech, shortly after Fama. These repeated mistakes are what interest technical analysts. The goal is to identify any regularities in financial markets that can be used to forecast future price. 
 
 The digital revolution has not affected technical analysis as might have been expected. Traders are still using the same techniques that they have been using for the last 70 years and more. Automated technical trading algorithms and artificial intelligence models have been developed and have demonstrated great predictive power. Yet these algorithms create extremely complex trading models which are incomprehensible to a human, so humans use the classic technical trading tools that are intuitive and suited to our visual pattern recognition abilities.
 
 The goal of this project is to use modern time series analysis methods to identify human readable technical patterns in an econometric time series. This is achieved through the use of fuzzy logic in the time series analysis, known as fuzzy time series analysis.
 
-\Cref{fuzzysettheory} discusses fuzzy set theory. This is a branch of set theory used in fuzzy logic where values have a degree of membership in a set, instead of either being in the set or not as in crisp set theory. This adds a degree of fuzziness when using these sets, as values are 'kind-of' in a set to different degrees. Human linguistic map very well to these fuzzy sets. People use linguistic terms such as 'tall' or 'heavy' to describe objects. The boundaries for these terms are fuzzy. A male who is 180cm tall may be described as 'kind-of' tall as well as 'kind-of' average, and he may be described as more tall than average.
+\Cref{fuzzysettheory} discusses fuzzy set theory. This is a branch of set theory used in fuzzy logic where values have a degree of membership in a set, instead of either being in the set or not as in crisp set theory. This adds a degree of fuzziness when using these sets, as values are 'kind-of' in a set to different degrees. Human linguistics map very well to these fuzzy sets. People use linguistic terms such as 'tall' or 'heavy' to describe objects. The boundaries for these terms are fuzzy. A man who is 180cm tall may be described as 'kind-of' tall as well as 'kind-of' average, and he may be described as more tall than average.
 
 Fuzzy logic captures the meaning of human linguistic terms and can express operations in a way humans can easily understand. It understands when values and sets are similar but different, which allows us to fuzzily compare if items are 'kind-of' the same. These two features make fuzzy logic excellent for performing visual pattern recognition. It can appreciate the patterns that humans look for as well as allowing for small differences between patterns observed.
 
@@ -141,13 +141,13 @@ While there is a lot of support for this model, strict adherence to it does not 
 
 The Random Walk Hypothesis proposes that the price of a security represents a 'random walk' around its intrinsic value, and consequently that price movements can not be predicted. \cite{malkiel1970efficient} describes the random walk model as a ``fair game'' model in which the conditions of market equilibrium can be stated in terms of expected returns, but note that an efficient market does not require a random walk. 
 
-\cite{lo1988} studied weekly by comparing variance estimators of stock market returns. They argue that if prices are generated by a random walk, then the variance of the monthly sample log-price, i.e.\ the variance of the log of the difference in monthly price must be 4 times as large as the variance of the weekly sample. Their findings strongly reject the random walk hypothesis, but are careful to note that ``this rejection does not necessarily imply the inefficiency of stock-price formulation''.
+\cite{lo1988} studied weekly by comparing variance estimators of stock market returns. They argue that if prices are generated by a random walk, then the variance of the monthly sample log-price, i.e.\ the variance of the log of the difference in the monthly price must be 4 times as large as the variance of the weekly sample. Their findings strongly reject the random walk hypothesis, but are careful to note that ``this rejection does not necessarily imply the inefficiency of stock-price formulation''.
 
 Almost 30 years ago, \cite{indefenseof} showed that past prices combined with other information, such as non-public information, can achieve unusual profit. They claim that non-price information creates opportunity that can be efficiently exploited using technical analysis. As non-public information is revealed to an investor, it is unclear as to the extent that this information has been revealed. If the investor knows the behaviour that a market would demonstrate if this information was widely distributed, he or she could examine the past price movements and determine a probability that the information has been revealed, and thus determine if there is still opportunity for a profitable investment.
 
 While this demonstrates a use for past price data, it only demonstrates use when combined with other valuable information, and thus does not contradict the Efficient Market Hypothesis which only states that attempting to make profits by exploiting currently available information is futile \citep{taprofitability}.
 
-\subsection{Human Perception}
+\subsection{Perception}
 
 \label{tahumanz}
 
@@ -155,7 +155,7 @@ Although the evidence supporting technical analysis is inconclusive, it is still
 
 However when developing or practising a trading system based on patterns, technical analysts can succumb to confirmation bias by giving a higher significance to evidence that supports the pattern they're looking for as opposed to evidence for other patterns that might be available. Also when determining the efficacy of these systems based on past data, hindsight bias can lead to certain patterns appearing obvious after their formation. This leads an expert to think this pattern is easily detectable, even though while the pattern was forming the evidence for that particular pattern was indecisive, and possibly pointed to other, contradictory patterns \cite[p.62]{aronson2011evidence}.
 
-Another explanation is that technical analysis appeals to behavioural psychology. If a large amount of investors are searching for similar patterns, then the outcome following these patterns may become a self-fulfilling prophecy. A study by \cite{examininguse1997} finds that 49\% of Foreign-Exchange Technical Analysts surveyed explicitly cite this as a reason. These points are disputed by Malkiel however, stating "The problem is that once such a regularity is known to market participants, people will act in a way that prevents it from happening in the future" \cite[p.162]{randomwalk2012}.
+Another explanation is that technical analysis appeals to behavioural psychology. If a large amount of investors are searching for similar patterns, then the subsequent price movement may become a self-fulfilling prophecy. A study by \cite{examininguse1997} finds that 49\% of Foreign-Exchange Technical Analysts surveyed explicitly cite this as a reason. These points are disputed by Malkiel however, stating "The problem is that once such a regularity is known to market participants, people will act in a way that prevents it from happening in the future" \cite[p.162]{randomwalk2012}.
 
 \section{Fuzzy Set Theory}
 
@@ -177,7 +177,7 @@ The typical use of a fuzzy time series is to forecast observations on the time s
 \label{basic}
 \cite{song1993forecasting} pioneered the fuzzy time series model providing the definitions for the concept and a method for modelling a time invariant fuzzy time series. The method was shown to be better than the Linear Regression Method for forecasting student enrolments at the University of Alabama. Their model fuzzified points on the time series into fuzzy sets and defined fuzzy relations between these sets. They use an arithmetic defuzzification algorithm to interpret the results and claim ``it is not difficult to jump to the conclusion that in the interpretation of the output results, experience knowledge is still needed''.
  
-\cite{chen1996forecasting} made improvements this model by using simplified mathematical operations instead of computationally expensive max-min composition for defining fuzzy relations. This method, while being more efficient, was also shown to be more accurate than the method proposed by \cite{song1993forecasting}. Many future studies follow the proposed method, changing some individual steps in order to improve accuracy. To aid explanation of future studies, the proposed algorithm is summarised as follows:
+\cite{chen1996forecasting} improved this model by using simplified mathematical operations instead of computationally expensive max-min composition for defining fuzzy relations. This method, while being more efficient, was also shown to be more accurate than the method proposed by \cite{song1993forecasting}. To aid explanation of future studies, many of which use a variation of the method, the algorithm is summarised as follows:
 
 \begin{description}
 \item[Step 1] Define a universe of discourse over the maximum and minimum values of observations on the time series and partition it into several intervals
@@ -207,7 +207,7 @@ An $n$th-order or higher-order fuzzy time series is one where where there is a s
 
 \label{interval}
 
-Deciding on the size and number of interval partitions on the universe of discourse is an important issue \citep{Huarng2001effective,  huarng2006ratio}. If there are too few intervals, there will be fewer fluctuations in the fuzzy time series \citep{Huarng2001effective}, which results in less precise fuzzy logical relationships. More intervals also result in each fuzzy value representing a small range of values, which result in a more accurate crisp value during defuzzification. However, too many intervals will not be recognised by an expert which negates some of the benefits of using fuzzy logic.
+Deciding on the size and number of interval partitions on the universe of discourse is an important issue \citep{Huarng2001effective,  huarng2006ratio}. If there are too few intervals, there will be fewer fluctuations in the fuzzy time series \citep{Huarng2001effective}, which results in less precise fuzzy logical relationships. More intervals result in each fuzzy value representing a small range of values, which result in a more accurate crisp value during defuzzification. However, too many intervals will not be recognised by an expert which negates some of the benefits of using fuzzy logic.
 
 Many studies use the same, arbitrarily selected interval size such as $1000$ \citep{song1993forecasting, song1994forecasting, chen1996forecasting, tsai2000forecasting, chen2004new}. However, several studies have demonstrated that using more intervals can improve accuracy. \citep{tsai2000forecasting} shows that when modelling a higher-order fuzzy time series, increasing the number of intervals dramatically improved results. They found that by increasing the number of intervals from $7$ to $19$, the root mean square error of the forecast results fell from $609.22$ to $199.32$. \cite{tsai1999study} also found a similar improvement when increasing the number of intervals, for both first-order and higher-order time series. \cite{chen2004new} proposed a method for forecasting university enrolments which used 13 intervals instead of the usual 7, and an extra step which further divided each interval into 4 parts in order to detect a trend of movement. Although this can not be attributed solely to increasing the number of intervals, it also demonstrated significantly improved forecasting accuracy. 	
 
@@ -307,7 +307,7 @@ Following from the example, $Y(t)$ is mapped to the fuzzy time series $F(t)$ whe
 
 These relationships are then used to forecast observations in time. Taking $t+1$ as the point in time to be forecast, we forecast a fuzzy value $F(t+1)$ using the fuzzy logic relationship grouping where the left-hand side is $F(t)$. If there is no fuzzy logical relationship group for $F(t)$, then $F(t)$ is forecast.
 
-The forecast value or values for $F(t+1)$ are defuzzified by taking the mean of the midpoints of the intervals which have a maximum membership in the forecast fuzzy sets. This crisp value forecast for $Y(t+1)$.
+The forecast value or values for $F(t+1)$ are defuzzified by taking the mean of the midpoints of the intervals which have a maximum membership in the forecast fuzzy sets. This crisp value is forecast for $Y(t+1)$.
 
 To illustrate, if $F(t)$ is $med$, then the fuzzy logical relationships group with a matching left-hand side is Group 2. From this the forecast fuzzy values for $F(t+1)$ are $med$ and $very\_high$. The intervals with a maximum membership in these fuzzy sets are $u_3$ and $u_5$ respectively. The midpoint of these intervals are $150$ for $u_3$ and $190$ for $u_5$, with a mean value $\frac{150 + 190}{2}=170$. This crisp value is used as the forecast.
 
@@ -525,7 +525,7 @@ The implementation allowed for MQL5 to be evaluated for the purpose of designing
 \item Framework was designed for implementing trading strategies which is not the goal of the project
 \end{enumerate}
 
-In particular, it was very difficult to compare the implementation to previous studies due to the inability of the platform to test trading strategies against arbitrary datasets. Also The limited standard library required a significant amount of code to be hand written which would otherwise be provided, tested and verified by the programming language developers. Finally there was a large overhead when running the implementation due to the proprietary testing data being retrieved from a remote server each time the program was run.
+In particular, it was very difficult to compare the implementation to previous studies due to the inability of the platform to test trading strategies against arbitrary datasets. The limited standard library also required a significant amount of code to be hand written which would otherwise be provided, tested and verified by the programming language developers. Finally there was a large overhead when running the implementation due to the proprietary testing data being retrieved from a remote server each time the program was run.
 
 \section{Final Implementation}
 
@@ -595,7 +595,7 @@ The code was optimised by creating a hash table of left-hand side values to a li
 
 Lazy evaluation is a method of evaluation in programming where an expression isn't evaluated until it's value is required. In python this is achieved with generator expressions and the itertools module. Generator expressions generate values in a list as it is iterated over. Methods can yield a ``generator iterator'' to a list instead of the list itself. These generators only generate objects when needed, and support the lazy form of operations such as ``zip'', ``map'' and ``slice'' with the itertools module in python.
 
-This project primarily implements lazy evaluation as it does not require a list be fully computed before it can be acted on, e.g.\ only the first value in a list would be calculated to obtain the head of a list. The results framework takes advantage of this by forecasting many variations to the fuzzy time series model simultaneously. Higher-order and moving-window time series can take from several seconds up to several minutes to run against the whole testing data. With lazy evaluation the current RMSE of each model at some point, e.g.\ after 100 observations, can be obtained. This aides with finding the optimal combination of parameters of a fuzzy time series model for different datasets.
+This project primarily implements lazy evaluation as it does not require a list be fully computed before it can be acted on, e.g.\ only the first value in a list would be calculated to obtain the head of a list. The results framework takes advantage of this by forecasting many variations to the fuzzy time series model simultaneously. Higher-order and moving-window time series can take from several seconds up to several minutes to run against the whole testing data. With lazy evaluation the current RMSE of each model at some point, e.g.\ after 100 observations, can be obtained. This greatly speeds the process of finding the optimal combination of parameters of a fuzzy time series model for different datasets.
 
 \chapter{Results \& Evaluation}
 
