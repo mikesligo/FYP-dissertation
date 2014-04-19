@@ -1,4 +1,4 @@
-\documentclass[12pt, oneside, a4paper]{book}
+\documentclass[10pt, oneside, a4paper]{book}
 
 \usepackage[utf8]{inputenc}
 \usepackage[round]{natbib}
@@ -22,7 +22,7 @@
 % page formatting
 \usepackage{titlesec}
 %\newcommand{\sectionbreak}{\clearpage}
-\renewcommand{\baselinestretch}{1.05} 
+\renewcommand{\baselinestretch}{1.2} 
 
 \theoremstyle{definition}
 \newtheorem{ftsdef}{Definition}
@@ -30,6 +30,8 @@
 
 \title{Econometric Modelling using \\Fuzzy Time Series Analysis}
 \author{Michael Gallagher}
+
+% thank khurshid, brian, sam, probably mick
 
 \begin{document}
 
@@ -47,7 +49,7 @@
 
 %``Man is still the most extraordinary computer of all.'' - John F. Kennedy.
 
-The goal of the project is to explore the performance of various fuzzy time series models when used for forecasting financial time series. The project examines several models proposed in the literature and evaluates their performance. Variations to these models are proposed as a results of research into the technical analysis of financial markets. A framework is developed for developing, modifying and testing these models.
+The goal of the project is to explore the performance of various fuzzy time series models when used for forecasting financial time series. The project examines several models proposed in the literature and evaluates their performance. Variations to these models are proposed as a result of research on technical analysis in financial markets. A framework is developed for developing, modifying and testing these models.
 
 The digital revolution has changed economics substantially. In the 1960s a huge amount of financial data suddenly became available. Economic theory that needed to be evaluated manually could now be tested and verified thoroughly and systematically, ``liberating econometricians from their mechanical calculators'' \citep{fama}. Yet despite the means to test and verify financial models, there is still disagreement about economic theory among academics and professionals.
 
@@ -492,7 +494,7 @@ The proposed model can analyse these patterns using the same fuzzy time series d
 
 \section{Initial Implementation}
 
-The project was built in two separate iterations. The initial implementation was written in MetaQuotes Language 5 (MQL5), a C-like domain specific language for the electronic trading platform MetaTrader 5 (MT5). This language was chosen for the following reasons:
+The code for the project was built in two separate iterations. The initial implementation was written in MetaQuotes Language 5 (MQL5), a C-like domain specific language for the electronic trading platform MetaTrader 5 (MT5). This language was chosen for the following reasons:
 
 \begin{enumerate}[label=\roman*]
 \item The trading platform enables the testing of automated trading strategies using past price data
@@ -501,11 +503,13 @@ The project was built in two separate iterations. The initial implementation was
 \item The platform offers the ability to use genetic programming for parameter optimisation across a cluster of remote servers 
 \end{enumerate}
 
-The initial implementation was concerned with identifying moving window patterns, i.e.\ a particular series of price changes, and the outcome after this pattern. The design differed from the model outlined in \cref{fts-design}. It was aimed at analysing foreign exchange currency pairs, where typically very small changes would occur between points on the time series. Initially a new time series was generated consisting of these changes. The universe of discourse over this time series was then divided into intervals. The intervals were derived from the standard deviation $\sigma$ of the time series to give meaning to otherwise arbitrarily selected interval lengths. When evaluating foreign exchange currency pairs the interval length $\frac{\sigma}{25}$ was found to result in enough fuzzy logical relationship groups that the time series was closely modelled but few enough that repeated moving window patterns were identified.
+The initial implementation was concerned with identifying moving window patterns, i.e.\ a particular series of price changes, and the outcome after this pattern. The design was inspired by initial research into technical analysis and fuzzy time series analysis but did not follow the literature as closely as the models outline in \cref{design}.
+
+It was aimed at analysing foreign exchange currency pairs, where typically very small changes would occur between points on the time series. Initially a new time series was generated consisting of these changes. The universe of discourse over this time series was then divided into intervals. The intervals were derived from the standard deviation $\sigma$ of the time series to give meaning to otherwise arbitrarily selected interval lengths. When evaluating foreign exchange currency pairs the interval length $\frac{\sigma}{25}$ was found to result in enough fuzzy logical relationship groups that the time series was closely modelled but few enough that repeated moving window patterns were identified.
 
 A fuzzy time series is generated consisting of the series of intervals which contained the points on the time series of changes. Each sequence of $n$ observations on the fuzzy time series is recorded as an $n$ length moving window, where $n$ is a user defined parameter, and the following observation on the time series recorded as the outcome. Multiple instances of patterns in the time series were grouped together and denoted as $pattern \rightarrow \lbrack outcome\rbrack$ where $\lbrack outcome\rbrack$ represents the list of outcomes discovered after instances of $pattern$.
 
-The intention of this design was to identify patterns in which the mean of the identified outcomes deviated a statistically significant amount from 0. These patterns would be used as trading rules for an algorithmic trading program. This design was moved away from in favour of a design derived from the literature.
+The intention of this design was to identify moving-window patterns in which the mean of the identified outcomes deviated a statistically significant amount from 0. These patterns would be used as trading rules for an algorithmic trading program. This design was moved away from in favour of a fuzzy logic based approach which appeared to be much more flexible at adapting to different time series.
 
 The code for the implementation was written in a performance-orientated manner. It uses pointer arithmetic wherever possible to avoid memory bottlenecks. This includes ``moving window'' objects sharing memory addresses to fuzzified points on the time series, and functions defined to work with pointers instead of objects. A custom statistical class was also defined due to limitations of MQL5's standard library.
 
@@ -532,7 +536,7 @@ In particular, it was very difficult to compare the implementation to previous s
 \end{figure}
 \newpage
 
-The final implementation of the project was written in the python programming language, which was chosen for the following reasons:
+The final implementation of the fuzzy time series framework was written in the python programming language, which was chosen for the following reasons:
 
 \begin{enumerate}[label=\roman*]
 \label{python}
@@ -547,7 +551,7 @@ The code was designed with an object-orientated design. The classes of objects, 
 
 The code was written following style guidelines outlined in ``Clean Code: A Handbook of Agile Software Craftsmanship'' by Robert Martin. In this book a set of good programming practices are discussed including regular refactoring of code, methods that ``do one thing'', short purposeful classes, meaningful method and class names and redundancy of comments in well designed code.
 
-The final implementation incorporates the design specified in \cref{design}. The project is designed to act as a framework for developing, modifying and testing different fuzzy time series models. The implementation compartmentalises the different steps involved in designing a fuzzy time series. A general interface describing ``ticks'' on the time series allows the model to take ``builder'' functions and generate a time series that can be interpreted by the application. It can also be instructed to analyse the changes between points on the time series instead of the time series itself. This design allows the rest of the application to function while remaining naive to the original format of the dataset.
+The final implementation incorporates the design specified in \cref{design}. The project involves creating a framework for developing and evaluating different fuzzy time series models. The implementation compartmentalises the different steps involved in designing a fuzzy time series. A general interface describing ``ticks'' on the time series allows the model to take ``builder'' functions and generate a time series that can be interpreted by the application. It can also be instructed to analyse the changes between points on the time series instead of the time series itself. This design allows the rest of the application to function while remaining naive to the original format of the dataset.
 
 Intervals are derived from the generated time series using the algorithms defined in the \cref{interval}. The interval calculation code consists of a series of utility methods which perform individual steps for the interval calculation, allowing the algorithm to be modified easily.
 
