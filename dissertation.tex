@@ -12,6 +12,7 @@
 \usepackage{enumitem}
 \usepackage{tikz} % To generate the plot from csv
 \usepackage{pgfplots}
+\usepackage{tabulary}
 \usepackage{multicol}
 
 %fonts
@@ -203,29 +204,29 @@ The typical use of a fuzzy time series is to forecast observations on the time s
 
 \label{higher}
 
-A first-order time series is described in \Cref{basic}. Fuzzy relations are defined between each adjacent point and only the most recent value in a time series is used for forecasting.
+In a first-order time series, described in \Cref{basic}, fuzzy relations are defined between each adjacent point and only the most recent value in a time series is used for forecasting.
 
-An $n$th-order or higher-order fuzzy time series is one where where there is a simultaneous relationship between multiple points on the time series, not just adjacent observations. There are fuzzy logical relationship groups defined between all points $1,2,\ldots,n$ spaces in time apart. The most recent $n$ observations are used to forecast fuzzy values, which are then composed and defuzzified.
+An $nth$-order or higher-order fuzzy time series is one where where there is a simultaneous relationship between multiple points on the time series, not just adjacent observations. There are fuzzy logical relationship groups defined between all points $1,2,\ldots,n$ spaces in time apart. The most recent $n$ observations are used to forecast fuzzy values, which are then composed and defuzzified.
 
-\cite{tsai1999study} found that a second-order fuzzy time series led to more accurate predictions when forecasting population, particularly when the number of intervals on the fuzzy time series was increased. \cite{tsai2000forecasting} compared the performance of 5 higher-order time series models on predicting university enrolments, and found the higher-order models to be more accurate, with the model increasing in accuracy with every increase in the order of the time series, up to a fifth-order time series.
+\cite{tsai1999study} found that a second-order fuzzy time series led to more accurate predictions when forecasting population, particularly when the number of intervals on the fuzzy time series was increased. \cite{tsai2000forecasting} compared the performance of 5 higher-order time series models for predicting university enrolments. They found the higher-order models to be more accurate, with the model increasing in accuracy with every increase in the order of the time series, up to a fifth-order time series.
 
 \subsection{Interval Selection}
 
 \label{interval}
 
-Deciding on the size and number of interval partitions on the universe of discourse is an important issue \citep{Huarng2001effective,  huarng2006ratio}. If there are too few intervals, there will be fewer fluctuations in the fuzzy time series \citep{Huarng2001effective}, which results in less precise fuzzy logical relationships. More intervals result in each fuzzy value representing a small range of values, which result in a more accurate crisp value during defuzzification. However, too many intervals will not be recognised by an expert which negates some of the benefits of using fuzzy logic.
+Deciding on the size and number of interval partitions on the universe of discourse is an important issue \citep{Huarng2001effective,  huarng2006ratio}. If there are too few intervals, there will be fewer fluctuations in the fuzzy time series \citep{Huarng2001effective} which results in less precise fuzzy logical relationships. Too many intervals can lose some of the benefits of fuzziness with similar patterns not being grouped together.
 
-Many studies use the same, arbitrarily selected interval size such as $1000$ \citep{song1993forecasting, song1994forecasting, chen1996forecasting, tsai2000forecasting, chen2004new}. However, several studies have demonstrated that using more intervals can improve accuracy. \cite{tsai2000forecasting} show that when modelling a higher-order fuzzy time series, increasing the number of intervals dramatically improved results. They found that by increasing the number of intervals from $7$ to $19$, the root mean square error of the forecast results fell from $609.22$ to $199.32$. \cite{tsai1999study} also found a similar improvement when increasing the number of intervals, for both first-order and higher-order time series. \cite{chen2004new} proposed a method for forecasting university enrolments which used 13 intervals instead of the usual 7, and an extra step which further divided each interval into 4 parts in order to detect a trend of movement. Although this can not be attributed solely to increasing the number of intervals, it also demonstrated significantly improved forecasting accuracy. 	
+Many studies use an arbitrarily selected interval size \citep{song1993forecasting, song1994forecasting, chen1996forecasting, tsai2000forecasting, chen2004new}. \cite{tsai2000forecasting} show that when modelling a higher-order fuzzy time series, increasing the number of intervals dramatically improved results. They found that by increasing the number of intervals from $7$ to $19$, the root mean square error of the forecast results fell from $609.22$ to $199.32$. \cite{tsai1999study} found similar improvements when increasing the number of intervals, for both first-order and higher-order fuzzy time series. \cite{chen2004new} proposed a method for forecasting university enrolments which used 13 intervals instead of the usual 7, and an extra step which further divided each interval into 4 parts in order to detect a trend of movement. Although this can not be attributed solely to increasing the number of intervals, it also demonstrated significantly improved forecasting accuracy. 	
 
-\cite{Huarng2001effective} empirically study how the length of intervals affects the forecasting results of a fuzzy time series. They examine two approaches, distribution- and average-based interval length. Both of these approaches are derived using the absolute difference of any two consecutive observations, and ensure that at least half of these differences in the time series are reflected by the intervals. 
+\cite{Huarng2001effective} examined a distribution-based and average-based approach for selecting interval length. Both of these approaches derive the interval length using the absolute difference of any two consecutive observations, and ensure that at least half of these differences in the time series are reflected by the intervals. 
 
-Both methods utilise a mapping table to approximate the base of the interval based on the average first difference. The distribution-based approach plots the distribution of the first differences using an interval that is derived from the mapping table. The interval of the distribution containing the largest first difference that is smaller than at least half the distributions is chosen as the interval for the fuzzy time series. The average-based approach involves deriving the base from the mapping table, calculating half of the average first difference, rounding this value to the derived base and using this value as the interval.
+Both methods utilise a mapping table to approximate the approximate the interval size to the nearest 10. This is called the \textit{base} and is derived from the average first difference. The distribution-based approach plots the distribution of the first differences according to multiples of this \textit{base}. The multiple the largest first difference that is smaller than at least half the distributions is chosen as the interval. The average-based approach involves calculating half of the average first difference, rounding this value to the \textit{base} and using this as the interval.
 
-\cite{Huarng2001effective} found that these approaches improved the accuracy over the arbitrarily selected interval used in prior studies, with the average-based approach performing better than the distributions based approach. They compared the results of these approaches with 9 arbitrarily chosen but small interval lengths, and found that the average-based approach resulted in the best and second best predictions for university enrolments and the Taiwan Stock Exchange Weighted Index (TAIEX) respectively. They also found that smaller interval lengths did not always result in a more accurate prediction.
+\cite{Huarng2001effective} found that these approaches resulted in improved the accuracy compared to the arbitrarily selected intervals used in prior studies, with the average-based approach performing better than the distribution-based approach. They compared the results of both approaches with 9 arbitrarily chosen but small interval lengths, and found that the average-based approach resulted in the best and second best predictions for university enrolments and the Taiwan Stock Exchange Weighted Index (TAIEX) respectively. They also found that smaller interval lengths did not always result in a more accurate prediction.
 
 \cite{huarng2006ratio} explored using the ratios between the absolute differences to define intervals. The rationale behind using ratios to determine intervals was that the momentum of the time series oscillates more or less depending on the context. The same source of data, such as a stock price, may have different optimal interval lengths depending on the amount of activity of the time series at that time. Using interval lengths that reflect the relative difference between observations takes this into account without using a secondary data source such as volume.
 
-\cite{huarng2006ratio} compared the approach to the average- and distribution-based approaches as well as several arbitrarily chosen similarly sized intervals. The ratio based approach resulted in the best accuracy for the methods tested when forecasting university enrolment, TAIEX price and inventory stock. They also found that the optimal interval length changed between data sets from the same data source, and that the ratio based approach was effective at approximating the optimal length.
+The ratio-based approach was evaluated using the same methodology as \cite{Huarng2001effective}. It resulted in the best accuracy for the methods tested when forecasting university enrolment, TAIEX price and inventory stock. It was also found that the optimal interval length changed between data sets from the same data source, and that the ratio-based approach was effective at approximating the optimal length.
 
 \chapter{Design}
 
@@ -237,29 +238,25 @@ The following definitions describe a general model of a fuzzy time series.
 
 \begin{ftsdef}
 \label{def1}
-Let $Y(t)(t= \ldots,0,1,2, \ldots)$, a subset of $\mathbb{R}$, be the universe of discourse on which fuzzy sets $f_i(t)(i=1,2,\ldots)$ are defined and let $F(t)$ be a set of $f_i(t)(i=1,2,\ldots)$. Then $F(t)$ is a fuzzy time series on $Y(t)(t= \ldots,0,1,2, \ldots)$.
+Let $Y(t)(t= \ldots,0,1,2, \ldots)$, a subset of $\mathbb{R}$, be the universe of discourse on which fuzzy sets $f_i(t)(i=1,2,\ldots)$ are defined and let $F(t)$ be the set of $f_i(t)(i=1,2,\ldots)$. Then $F(t)$ is a fuzzy time series on $Y(t)(t= \ldots,0,1,2, \ldots)$.
 \end{ftsdef}
 
 \begin{ftsdef}
 \label{def2}
-Suppose $F(t)$ is caused by $F(t-1)$ only, then this fuzzy relation can be expressed as $F(t)=F(t-1) \circ R(t,t-1)$, where $R(t,t-1)$ is the fuzzy relationship between $F(t-1)$ and $F(t)$. The model $F(t)=F(t-1) \circ R(t,t-1)$ is called the first order model $F(t)$, where $F(t-1) \rightarrow F(t)$ denotes the fuzzy logical relationships between observations.
+Suppose $F(t)$ is caused by $F(t-1)$, then this relation can be expressed as $F(t)=F(t-1) \circ R(t,t-1)$, where $R(t,t-1)$ is the fuzzy logical relationship between $F(t-1)$ and $F(t)$, denoted as $F(t-1) \rightarrow F(t)$.
 \end{ftsdef}
 
 \begin{ftsdef}
 \label{def3}
-All fuzzy logical relationships in the fuzzy time series can be further grouped together into fuzzy logical relationship groups such that $F(k) \rightarrow F(m), F(n), \ldots, F(l)$ is the collection of fuzzy logical relationships over $F(t)$ with $F(k)$ as the left hand side value and $F(m)$, $F(n)$, \ldots and $F(l)$ as right hand side values.
+All fuzzy logical relationships in a fuzzy time series can be grouped into fuzzy logical relationship groups based on their left-hand side value. These groups are denoted as $F(k) \rightarrow F(m), F(n), \ldots, F(l)$
 \end{ftsdef}
 
-\begin{ftsdef}
-\label{def4}
-Suppose $R(t,t-1)$ is a first order model of $F(t)$. If for any $t$, $R(t,t-1)$ is independent of $t$, that is for any $t$, $R(t,t-1) = R(t-1,t-2)$, then $F(t)$ is called a time-invariant fuzzy time series or else it is called a time-variant fuzzy time series.
-\end{ftsdef}
+In \cref{def1}, $Y(t)$ represents a time series. The range of the observations in this time series is called the universe of discourse. $f_i(t)$ are fuzzy sets over the universe of discourse, consisting of the all the intervals defined on the universe and the membership of each interval in that fuzzy set. $F(t)$ is the collection of all of these fuzzy sets. This collection of fuzzy sets at any point $t$ on a time series is called a fuzzy time series.
 
-In \cref{def1}, $Y(t)$ represents a time series, returning a value at different points along time $t$. The range of values in this time series is called the universe of discourse. $f_i(t)$ are fuzzy sets over the universe of discourse, consisting of the all the linguistic terms defined in the universe and the membership of each term in that fuzzy set. $F(t)$ is the collection of all of these fuzzy sets. This collection of fuzzy sets at any point $t$ on a time series is called a fuzzy time series.
-
-\begin{center}
+\begin{figure}[H]
+	\centering
 	\begin{tikzpicture} 
-		\begin{axis}[xlabel=Day,ylabel=Price (\$), ymajorgrids, title=5-day closing stock price Y(t)] 
+		\begin{axis}[xlabel=Day,ylabel=Price (\$), ymajorgrids, trim axis left, trim axis right] 
 			\addplot coordinates { 
 				(1,110) 
 				(2,165) 
@@ -269,24 +266,47 @@ In \cref{def1}, $Y(t)$ represents a time series, returning a value at different 
 			}; 
 		\end{axis} 
 	\end{tikzpicture}
-\end{center}
+	\caption{5-day closing stock price Y(t)}
+	\label{graph}
+\end{figure}
 
-Consider the the daily closing stock price for a company, $Y(t)(t=1,2,\ldots,5)$, such that $Y(1) = 110$, $Y(2) = 165$, $Y(3) = 145$, $Y(4) = 150$ and $Y(5) = 190$. The universe of discourse needs to cover the range of between the highest and lowest values you are considering, which in this case is $110$ and $190$. To aide explanation of the example the universe of discourse is set as the range $[100,200]$.
+Consider the the daily closing stock price for a company $Y(t)(t=1,2,\ldots,5)$, such that $Y(1) = 110$, $Y(2) = 165$, $Y(3) = 145$, $Y(4) = 150$ and $Y(5) = 190$. A graph of the time series is shown in \cref{graph}.
 
-This example considers one linguistic variable which indicates the performance of a stock. The universe of discourse is partitioned into equal length intervals, $\left\{u_1, u_2,\ldots,u_k\right\}$, such that $u_1 = [100 \ldots 120]$, $u_2 = [120 \ldots 140]$, $u_3 = [140 \ldots 160]$, $u_4 = [160 \ldots 180]$ and $u_5 = [180 \ldots 200]$. Fuzzy sets are then defined which are the linguistic values of the linguistic variable ``Performance", $very\_low$, $low$, $mid$, $high$ and $very\_high$. These fuzzy sets consist of the grade of membership of each interval in the fuzzy set. For example:
-\begin{description}
-\label{fuzzy_sets}
-\item[] $very\_low = 1/u_1 + 0.5/u_2 + 0/u_3 + 0/u_4 + 0/u_5$
-\item[] $low = 0.5/u_1 + 1/u_2 + 0.5/u_3 + 0/u_4 + 0/u_5$
-\item[] $med = 0/u_1 + 0.5/u_2 + 1/u_3 + 0.5/u_4 + 0/u_5$
-\item[] $high = 0/u_1 + 0/u_2 + 0.5/u_3 + 1/u_4 + 0.5/u_5$
-\item[] $very\_high = 0/u_1 + 0/u_2 + 0/u_3 + 0.5/u_4 + 1/u_5$
-\end{description}
-where the symbol $+$ denotes the union operator.
+The universe of discourse needs to cover the range of between the highest and lowest values you are considering, which in this case is $110$ and $190$. To simplify the explanation of the example, $[100 \ldots 200]$ is used as the universe of discourse.
 
-From \Cref{def1} we say that $F(t)$, derived from $Y(t)$, is a fuzzy time series of the linguistic variable ``Performance'' with fuzzy sets $f_i(t) (i=1,2,\ldots)$ as its linguistic values. \Cref{def2} states that, for a first order fuzzy time series, there is a relationship $R$ between $F(t-1)$ and $F(t)$ for all time $t$ in the time series. This is called a fuzzy logical relationship and is denoted as $F(t-1) \rightarrow f(t)$.
+This example considers one linguistic variable which indicates the performance of a stock. The universe of discourse is partitioned into equal length intervals, $\left\{u_1, u_2,\ldots,u_k\right\}$, shown in \cref{int}.
+%TODO could really do with explanaing ``membership''
+\begin{table}[H]
+	\center
+	\begin{tabulary}{1.0\textwidth}{ LCL }
+	$u_1$ & $=$ & $[100 \ldots 120]$ \\
+	$u_2$ & $=$ & $[120 \ldots 140]$ \\
+	$u_3$ & $=$ & $[140 \ldots 160]$ \\
+	$u_4$ & $=$ & $[160 \ldots 180]$ \\
+	$u_5$ & $=$ & $[180 \ldots 200]$ \\
+	\end{tabulary}
+	\caption{Intervals}
+	\label{int}
+\end{table}
 
-Following from the example, $Y(t)$ is mapped to the fuzzy time series $F(t)$ where $F(1)=low$, $F(2)=high$, $F(3)=med$, $F(4)=med$ and $F(5)=very\_high$. The fuzzy logical relationships can be shown as follows: 
+Fuzzy sets are then defined which are the values of the linguistic variable ``Performance", $very\_low$, $low$, $mid$, $high$ and $very\_high$. These fuzzy sets consist each interval and its grade of membership in the fuzzy set, shown in \cref{fuzzy_sets}.
+
+\begin{table}[H]
+	\center
+	\begin{tabulary}{1.0\textwidth}{ LCL }
+	$very\_low$ & $=$  & $1/u_1 + 0.5/u_2 + 0/u_3 + 0/u_4 + 0/u_5$ \\
+	$low$ & $=$ & $0.5/u_1 + 1/u_2 + 0.5/u_3 + 0/u_4 + 0/u_5$ \\ 
+	$med$ & $=$ & $0/u_1 + 0.5/u_2 + 1/u_3 + 0.5/u_4 + 0/u_5$ \\
+	$high$ & $=$ & $0/u_1 + 0/u_2 + 0.5/u_3 + 1/u_4 + 0.5/u_5$ \\
+	$very\_high$ & $=$ & $0/u_1 + 0/u_2 + 0/u_3 + 0.5/u_4 + 1/u_5$ 
+	\end{tabulary}
+	\caption{Fuzzy Sets}
+	\label{fuzzy_sets}
+\end{table}
+
+From \Cref{def1} we say that $F(t)$, derived from $Y(t)$, is a fuzzy time series of the linguistic variable ``Performance'' with fuzzy sets $f_i(t) (i=1,2,\ldots)$ as its values. \Cref{def2} states that, for a first order fuzzy time series, there is a relationship $R$ between $F(t-1)$ and $F(t)$ for any time $t$ in the time series. This is called a fuzzy logical relationship and is denoted as $F(t-1) \rightarrow F(t)$.
+
+Following from the example, $Y(t)$ is mapped to the fuzzy time series $F(t)$. Each observation in the time series is mapped a fuzzy set based on the interval that the observation falls into having a maximum membership in that fuzzy set. Using the fuzzy sets defined in \cref{fuzzy_sets}, the fuzzy mappings for the time series are $F(1)=low$, $F(2)=high$, $F(3)=med$, $F(4)=med$ and $F(5)=very\_high$. The fuzzy logical relationships can be shown as follows: 
 
 \begin{table}[h]
 	\center
@@ -311,7 +331,7 @@ Following from the example, $Y(t)$ is mapped to the fuzzy time series $F(t)$ whe
 	\caption{Fuzzy Logical Relationship Groups}
 \end{table}
 
-These relationships are then used to forecast observations in time. Taking $t+1$ as the point in time to be forecast, we forecast a fuzzy value $F(t+1)$ using the fuzzy logic relationship grouping where the left-hand side is $F(t)$. If there is no fuzzy logical relationship group for $F(t)$, then $F(t)$ is forecast.
+These relationships are used to forecast observations in time. Taking $t+1$ as the point in time to be forecast, we forecast a fuzzy value for $F(t+1)$ using the fuzzy logic relationship grouping where the left-hand side is $F(t)$. If there is no matching fuzzy logical relationship group for $F(t)$, then $F(t)$ is forecast.
 
 The forecast value or values for $F(t+1)$ are defuzzified by taking the mean of the midpoints of the intervals which have a maximum membership in the forecast fuzzy sets. This crisp value is forecast for $Y(t+1)$.
 
@@ -369,6 +389,9 @@ The relational function for an expression $F(t-k) \rightarrow F(t)$ is shown as 
 Where $F_{ik}$ is the collection of fuzzy values forecast by the fuzzy logical relationship group $R^{m}_{\ \ k}$. Since the above relations happen simultaneously, the forecast for $F(i)$ is the fuzzy intersection of all $F_{ik}$, which are the forecast fuzzy values common to each order of fuzzy logical relationship groups used. These values are then defuzzified as in \Cref{fts-design}.
 
 \section{Ratio-based Interval Selection}
+\label{ratio}
+
+%TODO move models to top of design
 
 The following method for ratio-based interval selection was studied by \cite{huarng2006ratio}.
 
