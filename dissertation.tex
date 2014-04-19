@@ -232,9 +232,9 @@ The ratio-based approach was evaluated using the same methodology as \cite{Huarn
 
 \label{design}
 
-\section{Fuzzy Time Series}
+\section{Basic Fuzzy Time Series Model}
 \label{fts-design}
-The following definitions describe a general model of a fuzzy time series.
+This section provides the definitions for a basic fuzzy time series model and an illustration of the steps involved. This model is used as a base from which other models are defined. It is derived from the literature discussed in \cref{basic}, and uses the ratio-based interval selection algorithm to define interval lengths, shown in \cref{ratio}.
 
 \begin{ftsdef}
 \label{def1}
@@ -337,16 +337,19 @@ The forecast value or values for $F(t+1)$ are defuzzified by taking the mean of 
 
 To illustrate, if $F(t)$ is $med$, then the fuzzy logical relationships group with a matching left-hand side is Group 2. From this the forecast fuzzy values for $F(t+1)$ are $med$ and $very\_high$. The intervals with a maximum membership in these fuzzy sets are $u_3$ and $u_5$ respectively. The midpoint of these intervals are $150$ for $u_3$ and $190$ for $u_5$, with a mean value $\frac{150 + 190}{2}=170$. This crisp value is used as the forecast.
 
-\section{Higher-order Fuzzy Time Series}
+\section{Higher-order Fuzzy Time Series Model}
 \label{higher-order}
+
+This section defines a higher-order fuzzy time series and a formal method forecasting using this model. A higher-order fuzzy time series, discussed in \cref{higher}, is an extension to the basic model. It is a more precise as a separate list of values are forecast for each of the most recent $n$ observations in an $n$-order fuzzy time series, and only values common to all forecasts are used. It also adds another element of fuzziness to the analysis as patterns only need to be partially completed to be identified.
+
 \begin{ftsdef}
 \label{def5}
-Suppose $F(t)$ is caused by $F(t-1),F(t-2),\ldots,F(t-n)$ simultaneously, then the fuzzy logical relationship, $R$, for $F(t)$ can be represented by $F(t-n)\rightarrow F(t)$, $F(t-2) \rightarrow F(t)$, $\ldots$ and $F(t-1) \rightarrow F(t)$, then F(t) is a higher-order fuzzy time series and is denoted as an $n$th-order fuzzy time series.
+Let $F(t)(t=1,2,\ldots)$ be a fuzzy time series. Suppose $F(t)$ is caused by $F(t-1),F(t-2),\ldots,F(t-n)$ simultaneously, then $F(t)$ is a higher order, $n$-order, fuzzy time series and the fuzzy logical relationships are denoted as $F(t-n), \ldots, F(t-2), F(t-1) \rightarrow F(t)$.
 \end{ftsdef}
 
 \Cref{def5} defines a higher-order fuzzy time series. \cite{tsai1999study} developed a procedure which captures the essence of a higher-order fuzzy time series while maintaining the simplicity of first-order calculations.
 
-On an $m$-order fuzzy time series, $F(t)$ is caused by $F(t-1)$, $F(t-2)$, $\ldots$, and $F(t-m)$ simultaneously. The $m$ fuzzy logical relationships for $F(t)$ are obtained in the same manner as a first-order model. The relationships can be represented as follows:
+In an $n$-order fuzzy time series, $F(t)$ is caused by $F(t-1)$, $F(t-2)$, $\ldots$, and $F(t-m)$ simultaneously. The $n$ fuzzy logical relationships for $F(t)$ are obtained in the same manner as a first-order model. The relationships can be represented as follows:
 
 \begin{table}[H]
 	\center
@@ -354,12 +357,14 @@ On an $m$-order fuzzy time series, $F(t)$ is caused by $F(t-1)$, $F(t-2)$, $\ldo
   	$F(t-1) \rightarrow F(t)$ \\
   	$F(t-2) \rightarrow F(t)$ \\
   	\vdots \\
-  	$F(t-m) \rightarrow F(t)$ \\
+  	$F(t-n) \rightarrow F(t)$ \\
 	\end{tabular}
 	\caption{Higher-Order Fuzzy Logical Relationships}
 \end{table}
 
-The relational function for an expression $F(t-k) \rightarrow F(t)$ is shown as $R^{m}_{k}(t)$. In an $m$-order fuzzy time series, for any forecast $F(t)$, there are $m$ relational functions $R^{m}_{\ \ 1}, R^{m}_{\ \ 2}, \ldots, R^{m}_{\ \ m}$ where $R^{m}_{\ \ k}=R(t,t-k)$. In $R^{m}_{\ \ k}$, the $m$ indicates what order model the relation is for the $i$ represents the first-order fuzzy relation between $F(t-k)$ and $F(k)$, for all $k={1,2,\ldots,m}$. For example, the relational matrix representing the fuzzy logical relationships between observations 2 points in time apart on a third-order fuzzy time series could be shown as:
+The relational function for a fuzzy logical relationship $F(t-k) \rightarrow F(t)$ is expressed as $R^{n}_{k}(t)$. In an $n$-order fuzzy time series, for any forecast $F(t)$, there are $n$ relational functions $R^{n}_{\ \ 1}, R^{n}_{\ \ 2}, \ldots, R^{n}_{\ \ n}$ where $R^{n}_{\ \ k}=R(t,t-k)$. Note that in $R^{n}_{\ \ k}$, the $n$ indicates what order model the relation is for. The $k$ represents the fuzzy relation between $F(t-k)$ and $F(k)$, for all $k={1,2,\ldots,n}$. 
+
+For example, the relational matrix representing the fuzzy logical relationships between observations 2 points in time apart on a third-order fuzzy time series could be shown as in \cref{2-order-rels}.
 
 \begin{table}[H]
 	\center
@@ -369,88 +374,33 @@ The relational function for an expression $F(t-k) \rightarrow F(t)$ is shown as 
   	\vdots \\
   	$R^{3}_{\ \ 2}(k) = F(k) \times F(k-2)$ \\
 	\end{tabular}
-	\caption{Second-Order Fuzzy Logical Relationships}
-	\label{second-order-rels}
+	\caption{2-Order Fuzzy Logical Relationships}
+	\label{2-order-rels}
 \end{table}
 
-\Cref{second-order-rels} shows the equations for the second-order fuzzy logical relationships. For a third-order fuzzy time series, the fuzzy logical relationships for $R^{3}_{\ \ 1}(t)$ and $R^{3}_{\ \ 3}(t)$ will also need to be computed for all times $t$. Once these values are obtained, $R^{m}_{\ \ n}$ represents the set of $n$-order fuzzy logical relationship groups. The forecast values for $F(i)$ can be found from each fuzzy logical relationship group:
+\Cref{2-order-rels} shows the equations for the 2-order fuzzy logical relationships. For a 3-order fuzzy time series, the fuzzy logical relationships for $R^{3}_{\ \ 1}(t)$ and $R^{3}_{\ \ 3}(t)$ will also need to be computed for all times $t$. Once these values are obtained, $R^{n}_{\ \ m}(m=1,2,\ldots)$ represents the set of $n$ fuzzy time series models which were calculated by analysing observations at different points in time apart. Each of these contains a set of $m$ fuzzy logical relationship groups which are used simultaneously for forecasting. d
 
 \begin{table}[H]
 	\center
 	\begin{tabular}{ c }
-  	$F_{i1} = F_{i-1} \circ R^{m}_{\ \ 1}$ \\
-  	$F_{i2} = F_{i-2} \circ R^{m}_{\ \ 2}$ \\
+  	$F_{i1} = F_{i-1} \circ R^{n}_{\ \ 1}$ \\
+  	$F_{i2} = F_{i-2} \circ R^{n}_{\ \ 2}$ \\
   	\vdots \\
-  	$F_{im} = F_{i-m} \circ R^{m}_{\ \ m}$ \\
+  	$F_{in} = F_{i-n} \circ R^{n}_{\ \ n}$ \\
 	\end{tabular}
 	\caption{Forecast Values for $F(i)$}
+	\label{forecasting}
 \end{table}
 
-Where $F_{ik}$ is the collection of fuzzy values forecast by the fuzzy logical relationship group $R^{m}_{\ \ k}$. Since the above relations happen simultaneously, the forecast for $F(i)$ is the fuzzy intersection of all $F_{ik}$, which are the forecast fuzzy values common to each order of fuzzy logical relationship groups used. These values are then defuzzified as in \Cref{fts-design}.
+In \cref{forecasting} $F_{ik}$ is the collection of fuzzy values forecast by the fuzzy logical relationship group $R^{m}_{\ \ k}$. Since the above relations happen simultaneously, the forecast for $F(i)$ is the fuzzy intersection of all $F_{ik}$, which are the forecast fuzzy values common to each order of fuzzy logical relationship groups used. These values are then defuzzified as in \Cref{fts-design}.
 
-\section{Ratio-based Interval Selection}
-\label{ratio}
+\section{Moving-window Model}
 
-%TODO move models to top of design
-
-The following method for ratio-based interval selection was studied by \cite{huarng2006ratio}.
-
-\begin{table}[H]
-	\center
-	\begin{tabularx}{0.5\textwidth}{ X R }
-  	MIN$(r_1,\ldots,r_{n-1})$ & Base\\
-  	\hline 
-  	\noalign{\smallskip}
-	$\leq 0.05\%$ & $0.01\%$ \\
-	$\leq 0.5\%$ & $0.1\%$ \\
-	$\leq 5.0\%$ & $1\%$ \\
-	\ldots & \ldots
-	\end{tabularx}
-	\caption{Base Mapping Table for Ratios}
-\end{table}
-
-\begin{description}
-\item[Step 1] Calculate the relative difference between adjacent observations such that $r_t=|x_t-x_{t-1}|/x_{t-1}$ for all $t$
-\item[Step 2] Determine the $base$ by mapping MIN$(r_1,\ldots,r_{n-1})$ to the base mapping table
-\item[Step 3] Plot the distribution for all $r_t$ according to the determined $base$
-\item[Step 4] Choose a sample percentile $\alpha$, such as $\alpha=50\%$. Select a $ratio$ which is the smallest relative difference that is larger than $\alpha$
-\item[Step 5] Calculate the intervals 
-
-\begin{table}[H]
-	\center
-	\begin{tabular}{ c }
-	  	$u_1 = [lower_1, upper_1]$ \\
-	  	$u_2 = [lower_2, upper_2]$ \\
-	  	\vdots \\
-	\end{tabular}
-\end{table}
-
-The beginning of the first interval, $lower_1$, is set to MIN$(x_t)-c$ where MIN$(x_t)$ is the lowest observation and c is some small constant. The $interval\_length$ for the time series is calculated as $interval\_length=(lower_1 \times ratio) - lower_1$. The upper bound of the first interval, $upper_1$, is set to $lower_1 + interval\_length$. The remaining intervals are calculated using the formula $[lower_k,upper_k]=[lower_{k-1}+interval\_length+c, upper_{k-1}+interval\_length+c]$ for all $k=(2,3,\ldots)$.
-\end{description}
-
-\section{Root Mean Squared Error}
-
-\label{rmse}
-
-The metric used to measure the forecasting accuracy of time series model is a contentious issue. Inappropriate metrics can give misleading results, yet there is often not a consensus around which measure is appropriate \citep{hyndman2006another}.
-
-This paper measures the accuracy of the proposed model with the Root Mean Squared Error (RMSE) as a performance indicator. The RMSE represents the sample standard deviation of the forecasting error and gives an indication of the variance of the forecasting model. RMSE is the most common performance indicator used in the literature allowing the results of the project to be compared to previous studies. However, it does not support comparing the performance of the model between separate datasets due to RMSE being scale dependent. The formula is as follows:
-
-\begin{figure}[H]
-    \centering
-    $\sqrt{\frac{\sum_{n}^{t=1}|actual(t)-forecast(t)|^{2}}{n}}$
-    \caption{RMSE Formula}
-\end{figure}
- 
-%make random walk model heterosedastic, as in stock markets do not follow random walks
-
-\section{Moving-window}
-
-A higher-order fuzzy time series gives a more precise model of the original time series as a separate list of values are forecast for each of the most recent $n$ observations in an $n$-order fuzzy time series, and only values common to all forecasts are used. This adds another element of fuzziness to the analysis as patterns only need to be partially completed to be identified.
+This section describes... It is designed... (section in progress)
 
 A $n$-length moving window fuzzy time series is one in which the most recent $n$ observations in a time series are treated as one observation. It differs from a higher-order fuzzy time series in that it crisply identifies patterns as being a particular sequence and records the relationship between the entire pattern and the outcome as the fuzzy logical relationship.
 
-For illustration, a the fuzzy logical relationships for a 2-order fuzzy time series and a 2-length moving-window fuzzy time series will be compared.
+For illustration, a the fuzzy logical relationships for a $2$-order fuzzy time series and a $2$-length moving-window fuzzy time series will be compared.
 
 Consider the following fuzzy time series sample $F(t)(t=1,2,\ldots,5)$:
 
@@ -503,21 +453,80 @@ In comparison, the fuzzy logical relationship groups For a 2-length moving windo
 	\caption{2-length moving window FLRGs}
 \end{table}
 
-The most recent 2 observations are taken and matched for the appropriate relationship group which forecasts values. This is different to the 2-order fuzzy time series which would use the values indicated by each set of fuzzy logical relationships as the forecast.
+The most recent 2 observations are taken and matched to the appropriate relationship group which is used to forecasts values. This is different to the 2-order fuzzy time series which would use the fuzzy intersection of the values forecast by each set of fuzzy logical relationships as the forecast.
 
 A $n$-length moving window fuzzy time series can also be a $n$-order fuzzy time series. The results from this variation are studied.
 
-\section{Change Analysis}
+\section{Change-analysis Model}
+%TODO diagram of differentiated price
+This section describes... It is designed... (section in progress)
 
 One of the goals of the project is to identify technical patterns in an econometric time series. Technical patterns are sequences of movements in a time series, typically forming a visual pattern, which are used to forecast price change. 
 
 The proposed fuzzy time series model will recognise technical patterns which consist of the same values, i.e.\ that form technical pattern at the same point along the $y$-axis of a time series. This is useful as it accounts for ``significant'' price levels as discussed in \Cref{app:tatechniques}. 
 
-However this does not identify technical patterns consisting of movements of price, which is essentially what visual patterns are. Identifying changes between observations results in patterns which can be applied to any point on the time series, e.g.\ the pattern $up,up,up,down,up$ with an outcome of $down$.
+However this does not identify technical patterns consisting of movements of price, which is what many visual patterns are. Identifying changes between observations results in patterns which can be applied to any point on the time series, e.g.\ the pattern $up,up,up,down,up$.
 
-The proposed model can analyse these patterns using the same fuzzy time series design. By generating a new time series composed of the changes of the original time series, the same steps can be used to identify the relationships between changes and forecast changes instead of a crisp price. The results of analysing a normal time series and analysing changes are studied.
+The change-analysis model uses other time series models to perform analysis. This model is differentiated by virtue that it analyses the changes of the time series instead of the time series itself. By generating a new time series composed of the changes of the original time series, the same steps can be used to identify the relationships between changes and forecast changes instead of a crisp price.
 
 %TODO talk about the drawbacks of ratio based approach with change analysis
+
+\section{Ratio-based Interval Selection}
+\label{ratio}
+
+%TODO move models to top of design
+
+The following method for ratio-based interval selection was studied by \cite{huarng2006ratio}.
+
+\begin{table}[H]
+	\center
+	\begin{tabularx}{0.5\textwidth}{ X R }
+  	MIN$(r_1,\ldots,r_{n-1})$ & Base\\
+  	\hline 
+  	\noalign{\smallskip}
+	$\leq 0.05\%$ & $0.01\%$ \\
+	$\leq 0.5\%$ & $0.1\%$ \\
+	$\leq 5.0\%$ & $1\%$ \\
+	\ldots & \ldots
+	\end{tabularx}
+	\caption{Base Mapping Table for Ratios}
+\end{table}
+
+\begin{description}
+\item[Step 1] Calculate the relative difference between adjacent observations such that $r_t=|x_t-x_{t-1}|/x_{t-1}$ for all $t$
+\item[Step 2] Determine the $base$ by mapping MIN$(r_1,\ldots,r_{n-1})$ to the base mapping table
+\item[Step 3] Plot the distribution for all $r_t$ according to the determined $base$
+\item[Step 4] Choose a sample percentile of the relative differences $\alpha$, such as $\alpha=50\%$. Select a $ratio$ which is the smallest relative difference that is larger than $\alpha$
+\item[Step 5] Calculate the intervals 
+
+\begin{table}[H]
+	\center
+	\begin{tabular}{ c }
+	  	$u_1 = [lower_1, upper_1]$ \\
+	  	$u_2 = [lower_2, upper_2]$ \\
+	  	\vdots \\
+	\end{tabular}
+\end{table}
+
+The beginning of the first interval, $lower_1$, is set to MIN$(x_t)-c$ where MIN$(x_t)$ is the lowest observation and c is some small constant. The $interval\_length$ for the time series is calculated as $interval\_length=(lower_1 \times ratio) - lower_1$. The upper bound of the first interval, $upper_1$, is set to $lower_1 + interval\_length$. The remaining intervals are calculated using the formula $[lower_k,upper_k]=[lower_{k-1}+interval\_length+c, upper_{k-1}+interval\_length+c]$ for all $k=(2,3,\ldots)$.
+\end{description}
+
+\section{Root Mean Squared Error}
+
+\label{rmse}
+
+The metric used to measure the forecasting accuracy of time series models is a contentious issue. There is often not a consensus around which metric is appropriate \citep{hyndman2006another}.
+
+This paper measures the accuracy of the proposed model with the Root Mean Squared Error (RMSE) as a performance indicator. The RMSE represents the sample standard deviation of the forecasting error and gives an indication of the variance of the forecasting model. RMSE is the most common performance indicator used in the literature allowing the performance of the proposed models to be compared to previous studies. However, it does not support comparing the performance of a model when using different datasets due to RMSE being scale dependent. The formula is as follows:
+
+\begin{figure}[H]
+    \centering
+    $\sqrt{\frac{\sum_{n}^{t=1}|actual(t)-forecast(t)|^{2}}{n}}$
+    \caption{RMSE Formula}
+\end{figure}
+ 
+%make random walk model heterosedastic, as in stock markets do not follow random walks
+
 
 \chapter{Implementation}
 
@@ -534,11 +543,11 @@ The code for the project was built in two separate iterations. The initial imple
 \item The platform offers the ability to use genetic programming for parameter optimisation across a cluster of remote servers 
 \end{enumerate}
 
-The initial implementation was concerned with identifying moving window patterns, i.e.\ a particular series of price changes, and the outcome after this pattern. The design was inspired by initial research into technical analysis and fuzzy time series analysis but did not follow the literature as closely as the models outline in \cref{design}.
+The initial implementation was concerned with identifying moving window patterns, i.e.\ a particular series of price changes, and the outcome after these patterns. The design was inspired by initial research into technical analysis and fuzzy time series analysis but did not follow the literature as closely as the models outline in \cref{design}. It was aimed at analysing foreign exchange currency pairs, where typically very small changes would occur between points on the time series. An outline of the method is as follows.
 
-It was aimed at analysing foreign exchange currency pairs, where typically very small changes would occur between points on the time series. Initially a new time series was generated consisting of these changes. The universe of discourse over this time series was then divided into intervals. The intervals were derived from the standard deviation $\sigma$ of the time series to give meaning to otherwise arbitrarily selected interval lengths. When evaluating foreign exchange currency pairs the interval length $\frac{\sigma}{25}$ was found to result in enough fuzzy logical relationship groups that the time series was closely modelled but few enough that repeated moving window patterns were identified.
+Initially a new time series was generated consisting of the changes between observations. The universe of discourse over this new time series was then divided into intervals. The intervals were derived from the standard deviation $\sigma$ of the time series to give meaning to otherwise arbitrarily selected interval lengths. When evaluating foreign exchange currency pairs the interval length $\frac{\sigma}{25}$ was found to result in enough fuzzy logical relationship groups that the time series was closely modelled but few enough that repeated moving window patterns were identified.
 
-A fuzzy time series is generated consisting of the series of intervals which contained the points on the time series of changes. Each sequence of $n$ observations on the fuzzy time series is recorded as an $n$ length moving window, where $n$ is a user defined parameter, and the following observation on the time series recorded as the outcome. Multiple instances of patterns in the time series were grouped together and denoted as $pattern \rightarrow \lbrack outcome\rbrack$ where $\lbrack outcome\rbrack$ represents the list of outcomes discovered after instances of $pattern$.
+A fuzzy time series was generated where each observation was the interval which contained a point on the time series of changes. Each sequence of $n$ observations on the fuzzy time series is recorded as an $n$ length moving window, where $n$ is a user defined parameter, and the subsequent observation on the time series recorded as the outcome. Multiple instances of patterns in the time series were grouped together and denoted as $pattern \rightarrow \lbrack outcome\rbrack$ where $\lbrack outcome\rbrack$ represents the list of outcomes discovered after instances of $pattern$.
 
 The intention of this design was to identify moving-window patterns in which the mean of the identified outcomes deviated a statistically significant amount from 0. These patterns would be used as trading rules for an algorithmic trading program. This design was moved away from in favour of a fuzzy logic based approach which appeared to be much more flexible at adapting to different time series.
 
@@ -555,7 +564,7 @@ The implementation allowed for MQL5 to be evaluated for the purpose of designing
 \item Large overhead when initiating testing on past data
 \end{enumerate}
 
-In particular, it was very difficult to compare the implementation to previous studies due to the inability of the platform to test trading strategies against arbitrary datasets. The limited standard library also required a significant amount of code to be hand written which would otherwise be provided, tested and verified by the programming language developers. Finally there was a large overhead when running the implementation due to the proprietary testing data being retrieved from a remote server each time the program was run.
+In particular, it was very difficult to compare the implementation to previous studies due to the platform not supporting testing against arbitrary datasets. The limited standard library also required a significant amount of code to be hand written which would otherwise be provided by the programming language developers. Finally there was a large overhead when running the implementation due to the proprietary testing data being retrieved from a remote server each time the program was run.
 
 \section{Final Implementation}
 
