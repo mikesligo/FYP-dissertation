@@ -22,15 +22,17 @@
 \usepackage{charter}
 \usepackage[expert]{mathdesign}
 
-\usepackage{float}
-\floatstyle{plaintop}
-\restylefloat{table}
-
 % page formatting
 \usepackage{titlesec}
 \newcommand{\sectionbreak}{\clearpage}
 \renewcommand{\baselinestretch}{1.5} 
 \captionsetup{labelsep=newline}
+
+% make captions on top
+\usepackage{float}
+\floatstyle{plaintop}
+\restylefloat{table}
+
 
 \theoremstyle{definition}
 \newtheorem{ftsdef}{Definition}
@@ -45,9 +47,9 @@
 
 \maketitle
 
-%\listoffigures
+\listoffigures
 
-%\listoftables
+\listoftables
 
 \tableofcontents
 
@@ -85,7 +87,7 @@ Changes from one fuzzy set to another are recorded as a relationship between the
 
 Forecasting with a fuzzy time series is done under the premise that changes in the time series that happened previously are likely to happen again. In the basic fuzzy time series model, discussed in \cref{basic}, observations are grouped together and the movements between one observation and the next are recorded as a 'change'. If one observation is fuzzified to fuzzy set $a$, and the next observation is fuzzified to fuzzy set $b$, this is recorded as the fuzzy logical relationship $a \rightarrow b$. Relationships with the same left-hand side fuzzy value are grouped together, and when these values are seen during forecasting, the outcomes of all the relationships in the relationship group are used to forecast values.
 
-Many variations of the basic model have been identified in the literature. \Cref{higher} discusses a higher-order fuzzy time series, where the relationships are computed between observations that are multiple points in time apart. In a $n$-order There are $n$ sets of relationship groups which are used to forecast based on the most recent $n$ observations. A fuzzy intersection is performed on the forecast values, so only fuzzy values that are forecast by all relationship groups are used in the forecasting. This narrows down the values forecast, resulting in a more accurate model of the time series. It also adds another dimension of fuzziness, such that if the past $n$ observations are composed of two or more patterns that have been identified previously, this will be recognised and the outcomes of these patterns will be used for the forecast.
+Many variations of the basic model have been identified in the literature. \Cref{higher} discusses a higher-order fuzzy time series, where the relationships are computed between observations that are multiple points in time apart. In a $n$-order There are $n$ sets of relationship groups which are used to forecast based on the $n$ most recent observations. A fuzzy intersection is performed on the forecast values, so only fuzzy values that are forecast by all relationship groups are used in the forecasting. This narrows down the values forecast, resulting in a more accurate model of the time series. It also adds another dimension of fuzziness, such that if the past $n$ observations are composed of two or more patterns that have been identified previously, this will be recognised and the outcomes of these patterns will be used for the forecast.
 
 Practical problems for a fuzzy time series have also been examined. \Cref{interval} discusses interval selection in a fuzzy time series. Intervals are divisions in the time series that allow points in the same interval range to be grouped together. The size of intervals is important as too large intervals result in a poor model and too small intervals lose some of the benefit of fuzzy logic.
 
@@ -159,8 +161,6 @@ Although the evidence supporting technical analysis as a tool for forecasting th
 However when developing or practising a trading system based on patterns, technical analysts can succumb to confirmation bias by giving a higher significance to evidence that supports the pattern they're looking for as opposed to evidence for other patterns that might be available. When determining the efficacy of these systems based on past data, hindsight bias can lead to certain patterns appearing obvious after their formation. This leads an expert to think this pattern is easily detectable, even though while the pattern was forming the evidence for that particular pattern was inconclusive, and possibly pointed to other, contradictory patterns \cite[p.~62]{aronson2011evidence}.
 
 Another explanation is that technical analysis appeals to behavioural psychology. If a large amount of investors are searching for similar patterns, then the subsequent price movement may become a self-fulfilling prophecy. A study by \cite{examininguse1997} finds that 49\% of Foreign-Exchange Technical Analysts surveyed explicitly cite this as a reason. These points are disputed by \cite[p.~162]{randomwalk2012} who states "The problem is that once such a regularity is known to market participants, people will act in a way that prevents it from happening in the future" .
-
-%TODO fix randomwalk2012 to its real date
 
 \subsection{Fuzzy Time Series}
 
@@ -265,7 +265,7 @@ In \cref{def1}, $Y(t)$ represents a time series. The range of the observations i
 	\label{graph}
 \end{figure}
 
-Consider the the daily closing stock price for a company $Y(t)(t=1,2,\ldots,5)$, such that $Y(1) = 110$, $Y(2) = 165$, $Y(3) = 145$, $Y(4) = 150$ and $Y(5) = 190$. A graph of the time series is shown in \cref{graph}.
+Consider the daily closing stock price for a company $Y(t)(t=1,2,\ldots,5)$, such that $Y(1) = 110$, $Y(2) = 165$, $Y(3) = 145$, $Y(4) = 150$ and $Y(5) = 190$. A graph of the time series is shown in \cref{graph}.
 
 The universe of discourse needs to cover the range between the highest and lowest values that are being considered, which in this case is $110$ and $190$. To simplify the explanation of the example, $[100 \ldots 200]$ is used as the universe of discourse.
 
@@ -385,7 +385,7 @@ For example, the relational matrix representing the fuzzy logical relationships 
 	\label{2-order-rels}
 \end{table}
 
-\Cref{2-order-rels} shows the equations for the 2-order fuzzy logical relationships. For a 3-order fuzzy time series, the fuzzy logical relationships for $R^{3}_{\ \ 1}(t)$ and $R^{3}_{\ \ 3}(t)$ will also need to be computed for all times $t$. Once these values are obtained, $R^{n}_{\ \ m}(m=1,2,\ldots)$ represents the set of $n$ fuzzy time series models which were calculated by analysing observations at different points in time apart. Each of these contains a set of $m$ fuzzy logical relationship groups which are used simultaneously for forecasting. d
+\Cref{2-order-rels} shows the equations for the 2-order fuzzy logical relationships. For a 3-order fuzzy time series, the fuzzy logical relationships for $R^{3}_{\ \ 1}(t)$ and $R^{3}_{\ \ 3}(t)$ will also need to be computed for all times $t$. Once these values are obtained, $R^{n}_{\ \ m}(m=1,2,\ldots)$ represents the set of $n$ fuzzy time series models which were calculated by analysing observations at different points in time apart. Each of these contains a set of $m$ fuzzy logical relationship groups which are used simultaneously for forecasting. 
 
 \begin{table}[H]
 	\center
@@ -397,17 +397,17 @@ For example, the relational matrix representing the fuzzy logical relationships 
   	$F_{in} = F_{i-n} \circ R^{n}_{\ \ n}$ \\
   	\hline
 	\end{tabular}
-	\caption{Forecast Values for $F(i)$}
+	\caption{Forecast Values}
 	\label{forecasting}
 \end{table}
 
-In \cref{forecasting} $F_{ik}$ is the collection of fuzzy values forecast by the fuzzy logical relationship group $R^{m}_{\ \ k}$. Since the above relations happen simultaneously, the forecast for $F(i)$ is the fuzzy intersection of all $F_{ik}$, which are the forecast fuzzy values common to each order of fuzzy logical relationship groups used. These values are then defuzzified as in \Cref{fts-design}.
+\Cref{forecasting} shows the collection of fuzzy values forecast by the fuzzy logical relationship group $R^{m}_{\ \ k}$ at time $i$ for all $k=1,2,\ldots,n$. Since the above relations happen simultaneously, the forecast for $F(i)$ is the fuzzy intersection of all $F_{ik}$, which are the forecast fuzzy values common to each order of fuzzy logical relationship groups used. These values are then defuzzified as in \Cref{fts-design}.
 
 \subsection{Moving-window Model}
 
 This section describes... It is designed... (section in progress)
 
-A $n$-length moving window fuzzy time series is one in which the most recent $n$ observations in a time series are treated as one observation. It differs from a higher-order fuzzy time series in that it crisply identifies patterns as being a particular sequence and records the relationship between the entire pattern and the outcome as the fuzzy logical relationship.
+A $n$-length moving window fuzzy time series is one in which the $n$ most recent observations in a time series are treated as one observation. It differs from a higher-order fuzzy time series in that it crisply identifies patterns as being a particular sequence and records the relationship between the entire pattern and the outcome as the fuzzy logical relationship.
 
 For illustration, a the fuzzy logical relationships for a $2$-order fuzzy time series and a $2$-length moving-window fuzzy time series will be compared.
 
@@ -470,12 +470,12 @@ In comparison, the fuzzy logical relationship groups For a 2-length moving windo
 	\caption{2-length moving window FLRGs}
 \end{table}
 
-The most recent 2 observations are taken and matched to the appropriate relationship group which is used to forecasts values. This is different to the 2-order fuzzy time series which would use the fuzzy intersection of the values forecast by each set of fuzzy logical relationships as the forecast.
+The 2 most recent observations are taken and matched to the appropriate relationship group which is used to forecasts values. This is different to the 2-order fuzzy time series which would use the fuzzy intersection of the values forecast by each set of fuzzy logical relationships as the forecast.
 
 A $n$-length moving window fuzzy time series can also be a $n$-order fuzzy time series. The results from this variation are studied.
 
 \subsection{Change-analysis Model}
-%TODO diagram of differentiated price
+
 This section describes... It is designed... (section in progress)
 
 One of the goals of the project is to identify technical patterns in an econometric time series. Technical patterns are sequences of movements in a time series, typically forming a visual pattern, which are used to forecast price change. 
@@ -485,6 +485,25 @@ The proposed fuzzy time series model will recognise technical patterns which con
 However this does not identify technical patterns consisting of movements of price, which is what many visual patterns are. Identifying changes between observations results in patterns which can be applied to any point on the time series, e.g.\ the pattern $up,up,up,down,up$.
 
 The change-analysis model uses other time series models to perform analysis. This model is differentiated by virtue that it analyses the changes of the time series instead of the time series itself. By generating a new time series composed of the changes of the original time series, the same steps can be used to identify the relationships between changes and forecast changes instead of a crisp price.
+
+To illustrate, \cref{changes} shows a time-series of the changes of \cref{graph}.
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture} 
+		\begin{axis}[xlabel=Day,ylabel=Price (\$), ymajorgrids, trim axis left, trim axis right] 
+			\addplot coordinates { 
+				(1,0) 
+				(2,55) 
+				(3,-20) 
+				(4,5) 
+				(5,40) 
+			}; 
+		\end{axis} 
+	\end{tikzpicture}
+	\caption{5-day change of price Y(t)}
+	\label{changes}
+\end{figure}
 
 %TODO talk about the drawbacks of ratio based approach with change analysis
 
@@ -538,12 +557,13 @@ The beginning of the first interval, $lower_1$, is set to MIN$(x_t)-c$ where MIN
 
 The metric used to measure the forecasting accuracy of time series models is a contentious issue. There is often not a consensus around which metric is appropriate \citep{hyndman2006another}.
 
-This paper measures the accuracy of the proposed model with the Root Mean Squared Error (RMSE) as a performance indicator. The RMSE represents the sample standard deviation of the forecasting error and gives an indication of the variance of the forecasting model. RMSE is the most common performance indicator used in the literature allowing the performance of the proposed models to be compared to previous studies. However, it does not support comparing the performance of a model when using different datasets due to RMSE being scale dependent. The formula is as follows:
+This paper measures the accuracy of the proposed model with the Root Mean Squared Error (RMSE) as a performance indicator. The RMSE represents the sample standard deviation of the forecasting error and gives an indication of the variance of the forecasting model. RMSE is the most common performance indicator used in the literature allowing the performance of the proposed models to be compared to previous studies. However, it does not support comparing the performance of a model when using different datasets due to RMSE being scale dependent. The formula is given in \cref{rmse}.
 
 \begin{figure}[H]
     \centering
-    $\sqrt{\frac{\sum_{n}^{t=1}|actual(t)-forecast(t)|^{2}}{n}}$
     \caption{RMSE Formula}
+    $\sqrt{\frac{\sum_{n}^{t=1}|actual(t)-forecast(t)|^{2}}{n}}$
+    \label{rmse}
 \end{figure}
  
 %make random walk model heterosedastic, as in stock markets do not follow random walks
@@ -566,7 +586,7 @@ The code for the project was built in two separate iterations. The initial imple
 
 The initial implementation was concerned with identifying moving window patterns, i.e.\ a particular series of price changes, and the outcome after these patterns. The design was inspired by initial research into technical analysis and fuzzy time series analysis but did not follow the literature as closely as the models outline in \cref{design}. It was aimed at analysing foreign exchange currency pairs, where typically very small changes would occur between points on the time series. An outline of the method is as follows.
 
-Initially a new time series was generated consisting of the changes between observations. The universe of discourse over this new time series was then divided into intervals. The intervals were derived from the standard deviation $\sigma$ of the time series to give meaning to otherwise arbitrarily selected interval lengths. When evaluating foreign exchange currency pairs the interval length $\frac{\sigma}{25}$ was found to result in enough fuzzy logical relationship groups that the time series was closely modelled but few enough that repeated moving window patterns were identified.
+Initially a new time series was generated consisting of the changes between observations. The universe of discourse over this new time series was then divided into intervals. The intervals were derived from the standard deviation $\sigma$ of the time series to give meaning to otherwise arbitrarily selected interval lengths. When evaluating foreign exchange currency pairs the interval length $\frac{\sigma}{25}$ was found to result in the appropriate amount of fuzzy logical relationships groups to adequately model the data.
 
 A fuzzy time series was generated where each observation was the interval which contained a point on the time series of changes. Each sequence of $n$ observations on the fuzzy time series is recorded as an $n$ length moving window, where $n$ is a user defined parameter, and the subsequent observation on the time series recorded as the outcome. Multiple instances of patterns in the time series were grouped together and denoted as $pattern \rightarrow \lbrack outcome\rbrack$ where $\lbrack outcome\rbrack$ represents the list of outcomes discovered after instances of $pattern$.
 
@@ -582,20 +602,12 @@ The implementation allowed for MQL5 to be evaluated for the purpose of designing
 \item Data in proprietary format and difficult to verify
 \item Very limited standard library and testing frameworks
 \item Limited debugging capabilities
-\item Large overhead when initiating testing on past data
+\item Large overheads when initiating testing on past data
 \end{enumerate}
 
 In particular, it was very difficult to compare the implementation to previous studies due to the platform not supporting testing against arbitrary datasets. The limited standard library also required a significant amount of code to be hand written which would otherwise be provided by the programming language developers. Finally there was a large overhead when running the implementation due to the proprietary testing data being retrieved from a remote server each time the program was run.
 
 \subsection{Final Implementation}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1.0\textwidth]{images/class_diag_a4_priv.png}
-    \caption{UML Class Diagram}
-    \label{uml}
-\end{figure}
-\newpage
 
 The final implementation of the fuzzy time series framework was written in the python programming language, which was chosen for the following reasons:
 
@@ -608,19 +620,28 @@ The final implementation of the fuzzy time series framework was written in the p
 \item Popular in financial institutions
 \end{enumerate}
 
-The code was designed with an object-orientated design. The classes of objects, their methods and general interfaces are shown in \cref{uml}. 
-
-The code was written following style guidelines outlined in ``Clean Code: A Handbook of Agile Software Craftsmanship'' by Robert Martin. In this book a set of good programming practices are discussed including regular refactoring of code, methods that ``do one thing'', short purposeful classes, meaningful method and class names and redundancy of comments in well designed code.
-
 The final implementation incorporates the design specified in \cref{design}. The project involves creating a framework for developing and evaluating different fuzzy time series models. The implementation compartmentalises the different steps involved in designing a fuzzy time series. A general interface describing ``ticks'' on the time series allows the model to take ``builder'' functions and generate a time series that can be interpreted by the application. It can also be instructed to analyse the changes between points on the time series instead of the time series itself. This design allows the rest of the application to function while remaining naive to the original format of the dataset.
 
-Intervals are derived from the generated time series using the algorithms defined in the \cref{interval}. The interval calculation code consists of a series of utility methods which perform individual steps for the interval calculation, allowing the algorithm to be modified easily.
+Intervals are derived from the generated time series using the algorithms defined in \cref{interval}. The interval calculation code consists of a series of utility methods which perform individual steps for the interval calculation, allowing the algorithm to be modified easily.
 
 The framework supports several variations of the basic fuzzy time series model. It allows for easy development of a higher-order fuzzy time series by treating all fuzzy time series as a higher-order model. It also supports identifying moving-window patterns on the time series and forecasting using these. These models can be converted into higher-order moving-window models. Different composition methods such as fuzzy intersection and fuzzy union can be used when forecasting the results of the higher-order models.
 
-The framework features a testing and results suite. It allows for many different variations to the model to be evaluated simultaneously, including changes to the order of the time series and changes to moving-window length. The simultaneous evaluation is made possible by utilising lazy evaluation in the forecasting code. The results suite evaluates the desired models and outputs the state of the forecasting with each tick on the time series, including the current RMSE, the current mean percentage error, the previous observation in the time series, the current observation in the time series and the forecast value for the current observation. These results are outputted to a spreadsheet so the performance of each model over time can be graphed and examined.
+The framework features a testing and results suite. It allows for many different variations to the model to be evaluated simultaneously, including changes to the order of the time series and changes to moving-window length. The simultaneous evaluation is made possible by utilising lazy evaluation in the forecasting code. The results suite evaluates the desired models and outputs information about the forecasting after every tick, including the current RMSE, current mean percentage error, previous observation in the time series, current observation in the time series and the forecast value. These results are outputted to a spreadsheet so the performance of each model over time can be graphed and examined.
 
 The testing suite can perform comparisons with any model that implements a forecasting interface. Two naive models are included in the project, a ``buy \& hold'' model and a ``random walk'' model. The ``random walk'' model analyses the training data and calculates the standard deviation of changes, and uses this standard deviation to generate a Gaussian distribution which is randomly sampled to obtain a forecast value. The ``buy \& hold'' model uses the observation at time $t$ as the forecast for observation time $t+1$.
+
+The code was designed with an object-orientated design. The classes of objects, their methods and general interfaces are shown in \cref{uml}. 
+
+The code was written following style guidelines outlined by \cite{bobmartin}. The project followed good programming practices from this book including regular refactoring of code, methods that ``do one thing'', short purposeful classes, meaningful method and class names and designing code such that comments are made redundant.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{images/class_diag_a4_priv.png}
+    \caption{UML Class Diagram}
+    \label{uml}
+\end{figure}
+\newpage
+
 
 \subsection{Fuzzy Logic Toolkit}
 
@@ -645,11 +666,11 @@ Many speed optimisations were achieved with a fuzzy toolkit that was designed kn
 
 Fuzzification of an observation was implemented by iterating through the calculated intervals and identifying which interval had a range that included the observation. This would also be done for each value on a moving-window series. This resulted in $O(n)$ list access times, which in a large time series added a significant overhead. This method was optimised by recognising that by starting at the lowest bound of first interval and counting how many times the $interval\_length$ was added before it was larger than the observation, this count corresponded to the index of the appropriate interval for the observation. This optimised operation resulted in $O(1)$ access times.
 
-It was recognised that most of the operations which involved fuzzy sets only used the interval which had a maximum membership in that fuzzy set. Early implementations iterated through the intervals and queried their membership in the fuzzy set until the maximum member was found. This was a wasteful $O(n)$ operation as most of the intervals have a $0$ membership in a fuzzy set, and only one interval would ever have a maximum membership. To optimise this a reference to the interval with a maximum membership in a fuzzy set was stored as an public attribute in the fuzzy set object.
+It was recognised that most of the operations which involved fuzzy sets only used the interval which had a maximum membership in that fuzzy set. Early implementations iterated through the intervals and queried their membership in the fuzzy set until the maximum member was found. This was a wasteful $O(n)$ operation as most of the intervals have a $0$ membership in a fuzzy set, and only one interval would ever have a maximum membership. In order to optimise this a reference to the interval with a maximum membership in a fuzzy set was stored as a public attribute in the fuzzy set object.
 
-One of the most expensive operations of early implementations was adding and finding the fuzzy logical relationship group for a fuzzy logical relationship during training and forecasting respectively. This operation needed to identify the appropriate fuzzy logical relationship group for the left-hand side of the fuzzy logical relationship and recording the right-hand side as an outcome of that relationship. Initially this involved iterating through the list of fuzzy logical relationship groups and matching until the correct group was found, or creating a new group if one was not found. This $O(n)$ was very costly with more precise fuzzy time series models due to the abundance of fuzzy logical relationships.
+One of the most expensive operations of early implementations was adding and finding the fuzzy logical relationship group for a fuzzy logical relationship during training and forecasting respectively. This operation identified the appropriate fuzzy logical relationship group for the left-hand side of a fuzzy logical relationship and recorded the right-hand side as an outcome of that relationship. Initially this involved iterating through the list of fuzzy logical relationship groups and matching until the correct group was found, or creating a new group if one was not found. This $O(n)$ was very costly with more precise fuzzy time series models due to the abundance of fuzzy logical relationships. 
 
-The code was optimised by creating a hash table of left-hand side values to a list of outcomes. This was done by creating a hash method for the left-hand side object and using this as a key for a dictionary in python. Checking if an appropriate fuzzy logical relationship group exists could be done by querying the ``keys'' method of the dictionary and the appropriate fuzzy logical relationship group could be accessed directly in $O(1)$ time.
+The code was optimised by creating a hash map using the left-hand side values of the fuzzy logical relationships as the ``key'' in the hash map and the a right-hand side as the ``value''. This was done by creating a hash method for the left-hand side object and using this as a key for a dictionary in python. Checking if an appropriate fuzzy logical relationship group exists could be done by querying the ``keys'' method of the dictionary and the appropriate fuzzy logical relationship group could be accessed directly in $O(1)$ time.
 
 \subsubsection{Lazy-evaluation}
 
