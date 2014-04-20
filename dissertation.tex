@@ -14,6 +14,7 @@
 \usepackage{pgfplots}
 \usepackage{tabulary}
 \usepackage{multicol}
+\usepackage{caption}
 %\usepackage[nottoc,notlot,notlof]{tocbibind}
 
 %fonts
@@ -21,10 +22,15 @@
 \usepackage{charter}
 \usepackage[expert]{mathdesign}
 
+\usepackage{float}
+\floatstyle{plaintop}
+\restylefloat{table}
+
 % page formatting
 \usepackage{titlesec}
 \newcommand{\sectionbreak}{\clearpage}
 \renewcommand{\baselinestretch}{1.5} 
+\captionsetup{labelsep=newline}
 
 \theoremstyle{definition}
 \newtheorem{ftsdef}{Definition}
@@ -223,7 +229,7 @@ The ratio-based approach was evaluated using the same methodology as used by \ci
 
 \subsection{Basic Fuzzy Time Series Model}
 \label{fts-design}
-This section provides the definitions for a basic fuzzy time series model and an illustration of the steps involved. This model is used as a base from which other models are defined. It is derived from the literature discussed in \cref{basic}, and uses the ratio-based interval selection algorithm to define interval lengths, shown in \cref{ratio}.
+This section provides the definitions for a basic fuzzy time series model and provides the steps involved for building the model. This model is used as a base from which other models are defined. It is derived from the literature discussed in \cref{basic}, and uses the ratio-based interval selection algorithm to define interval lengths, shown in \cref{ratio}.
 
 \begin{ftsdef}
 \label{def1}
@@ -261,18 +267,20 @@ In \cref{def1}, $Y(t)$ represents a time series. The range of the observations i
 
 Consider the the daily closing stock price for a company $Y(t)(t=1,2,\ldots,5)$, such that $Y(1) = 110$, $Y(2) = 165$, $Y(3) = 145$, $Y(4) = 150$ and $Y(5) = 190$. A graph of the time series is shown in \cref{graph}.
 
-The universe of discourse needs to cover the range of between the highest and lowest values you are considering, which in this case is $110$ and $190$. To simplify the explanation of the example, $[100 \ldots 200]$ is used as the universe of discourse.
+The universe of discourse needs to cover the range between the highest and lowest values that are being considered, which in this case is $110$ and $190$. To simplify the explanation of the example, $[100 \ldots 200]$ is used as the universe of discourse.
 
 This example considers one linguistic variable which indicates the performance of a stock. The universe of discourse is partitioned into equal length intervals, $\left\{u_1, u_2,\ldots,u_k\right\}$, shown in \cref{int}.
 %TODO could really do with explanaing ``membership''
 \begin{table}[H]
 	\center
 	\begin{tabulary}{1.0\textwidth}{ LCL }
+	\hline
 	$u_1$ & $=$ & $[100 \ldots 120]$ \\
 	$u_2$ & $=$ & $[120 \ldots 140]$ \\
 	$u_3$ & $=$ & $[140 \ldots 160]$ \\
 	$u_4$ & $=$ & $[160 \ldots 180]$ \\
 	$u_5$ & $=$ & $[180 \ldots 200]$ \\
+	\hline
 	\end{tabulary}
 	\caption{Intervals}
 	\label{int}
@@ -283,11 +291,13 @@ Fuzzy sets are then defined which are the values of the linguistic variable ``Pe
 \begin{table}[H]
 	\center
 	\begin{tabulary}{1.0\textwidth}{ LCL }
+	\hline
 	$very\_low$ & $=$  & $1/u_1 + 0.5/u_2 + 0/u_3 + 0/u_4 + 0/u_5$ \\
 	$low$ & $=$ & $0.5/u_1 + 1/u_2 + 0.5/u_3 + 0/u_4 + 0/u_5$ \\ 
 	$med$ & $=$ & $0/u_1 + 0.5/u_2 + 1/u_3 + 0.5/u_4 + 0/u_5$ \\
 	$high$ & $=$ & $0/u_1 + 0/u_2 + 0.5/u_3 + 1/u_4 + 0.5/u_5$ \\
-	$very\_high$ & $=$ & $0/u_1 + 0/u_2 + 0/u_3 + 0.5/u_4 + 1/u_5$ 
+	$very\_high$ & $=$ & $0/u_1 + 0/u_2 + 0/u_3 + 0.5/u_4 + 1/u_5$ \\
+	\hline
 	\end{tabulary}
 	\caption{Fuzzy Sets}
 	\label{fuzzy_sets}
@@ -300,22 +310,26 @@ Following from the example, $Y(t)$ is mapped to the fuzzy time series $F(t)$. Ea
 \begin{table}[h]
 	\center
 	\begin{tabular}{ l l l }
+	\hline
   	$low \rightarrow high$  \\
   	$high \rightarrow med$ \\
   	$med \rightarrow med$ \\
   	$med \rightarrow very\_high$ \\
+  	\hline
 	\end{tabular}
 	\caption{Fuzzy Logical Relationships}
 \end{table}
 
-\Cref{def3} states fuzzy logical relationships that share the same left-hand side value may be grouped into fuzzy logical relationships groups. The fuzzy logical relationship groups for the example are as follows:
+\Cref{def3} states that fuzzy logical relationships which share the same left-hand side value may be grouped into fuzzy logical relationships groups. The fuzzy logical relationship groups for the example are as follows:
 
 \begin{table}[h]
 	\center
 	\begin{tabular}{ c c c c }
+	\hline
   	Group 1: & $low$ & $\rightarrow$ & $high$ \\
   	Group 2: & $med$ & $\rightarrow$ & $med, very\_high$ \\
   	Group 3: & $high$ & $\rightarrow$ & $med$ \\
+  	\hline
 	\end{tabular}
 	\caption{Fuzzy Logical Relationship Groups}
 \end{table}
@@ -329,7 +343,7 @@ To illustrate, if $F(t)$ is $med$, then the fuzzy logical relationships group wi
 \subsection{Higher-order Fuzzy Time Series Model}
 \label{higher-order}
 
-This section defines a higher-order fuzzy time series and a formal method forecasting using this model. A higher-order fuzzy time series, discussed in \cref{higher}, is an extension to the basic model. It is a more precise as a separate list of values are forecast for each of the most recent $n$ observations in an $n$-order fuzzy time series, and only values common to all forecasts are used. It also adds another element of fuzziness to the analysis as patterns only need to be partially completed to be identified.
+This section defines a higher-order fuzzy time series and a formal method forecasting using this model. A higher-order fuzzy time series, discussed in \cref{higher}, is an extension of the basic model. It is a more precise as a separate list of values are forecast for each of the most recent $n$ observations in an $n$-order fuzzy time series, and only values common to all forecasts are used. It also adds another element of fuzziness to the analysis as patterns only need to be partially completed to be identified.
 
 \begin{ftsdef}
 \label{def5}
@@ -343,10 +357,12 @@ In an $n$-order fuzzy time series, $F(t)$ is caused by $F(t-1)$, $F(t-2)$, $\ldo
 \begin{table}[H]
 	\center
 	\begin{tabular}{ c }
+	\hline
   	$F(t-1) \rightarrow F(t)$ \\
   	$F(t-2) \rightarrow F(t)$ \\
   	\vdots \\
   	$F(t-n) \rightarrow F(t)$ \\
+  	\hline
 	\end{tabular}
 	\caption{Higher-Order Fuzzy Logical Relationships}
 \end{table}
@@ -358,10 +374,12 @@ For example, the relational matrix representing the fuzzy logical relationships 
 \begin{table}[H]
 	\center
 	\begin{tabular}{ c }
+	\hline
   	$R^{3}_{\ \ 2}(1) = F(1) \times F(3)$ \\
   	$R^{3}_{\ \ 2}(2) = F(2) \times F(4)$ \\
   	\vdots \\
   	$R^{3}_{\ \ 2}(k) = F(k) \times F(k-2)$ \\
+  	\hline
 	\end{tabular}
 	\caption{2-Order Fuzzy Logical Relationships}
 	\label{2-order-rels}
@@ -372,10 +390,12 @@ For example, the relational matrix representing the fuzzy logical relationships 
 \begin{table}[H]
 	\center
 	\begin{tabular}{ c }
+	\hline
   	$F_{i1} = F_{i-1} \circ R^{n}_{\ \ 1}$ \\
   	$F_{i2} = F_{i-2} \circ R^{n}_{\ \ 2}$ \\
   	\vdots \\
   	$F_{in} = F_{i-n} \circ R^{n}_{\ \ n}$ \\
+  	\hline
 	\end{tabular}
 	\caption{Forecast Values for $F(i)$}
 	\label{forecasting}
@@ -396,11 +416,13 @@ Consider the following fuzzy time series sample $F(t)(t=1,2,\ldots,5)$:
 \begin{table}[H]
 	\center
 	\begin{tabular}{ c }
+	\hline
   	$F(1) = a$ \\
   	$F(2) = b$ \\
   	$F(3) = b$ \\
   	$F(4) = c$ \\
   	$F(5) = a$ \\
+  	\hline
 	\end{tabular}
 	\caption{Fuzzy Time Series Sample}
 \end{table}
@@ -413,9 +435,11 @@ In a 2-order time series, there are 2 sets of fuzzy logical relationship groups 
 \begin{table}[H]
 	\center
 	\begin{tabular}{ c c c c }
+	\hline
   	Group 1: & $a$ &  $\rightarrow$ & $b$ \\
   	Group 2: & $b$ & $\rightarrow$ & $b, c$ \\
   	Group 3: & $c$ &  $\rightarrow$ & $a$ \\
+  	\hline
 	\end{tabular}
 	\caption{1-order FLRGs}
 \end{table}
@@ -423,8 +447,10 @@ In a 2-order time series, there are 2 sets of fuzzy logical relationship groups 
 \begin{table}[H]
 	\center
 	\begin{tabular}{ c c c c }
+	\hline
   	Group 1: & $a$ & $\rightarrow$ & $c$ \\
   	Group 2: & $b$ & $\rightarrow$ & $c, a$ \\
+  	\hline
 	\end{tabular}
 	\caption{2-order FLRGs}
 \end{table}
@@ -435,9 +461,11 @@ In comparison, the fuzzy logical relationship groups For a 2-length moving windo
 \begin{table}[H]
 	\center
 	\begin{tabular}{ c c c c }
+	\hline
   	Group 1: & $a, b$ & $\rightarrow$ & $b$ \\
   	Group 2: & $b, b$ & $\rightarrow$ & $c$ \\
   	Group 3: & $b, c$ & $\rightarrow$ & $a$ \\
+  	\hline
 	\end{tabular}
 	\caption{2-length moving window FLRGs}
 \end{table}
@@ -470,13 +498,15 @@ The following method for ratio-based interval selection was studied by \cite{hua
 \begin{table}[H]
 	\center
 	\begin{tabularx}{0.5\textwidth}{ X R }
+	\hline
   	MIN$(r_1,\ldots,r_{n-1})$ & Base\\
   	\hline 
   	\noalign{\smallskip}
 	$\leq 0.05\%$ & $0.01\%$ \\
 	$\leq 0.5\%$ & $0.1\%$ \\
 	$\leq 5.0\%$ & $1\%$ \\
-	\ldots & \ldots
+	\ldots & \ldots \\
+	\hline
 	\end{tabularx}
 	\caption{Base Mapping Table for Ratios}
 \end{table}
@@ -491,9 +521,11 @@ The following method for ratio-based interval selection was studied by \cite{hua
 \begin{table}[H]
 	\center
 	\begin{tabular}{ c }
+		\hline
 	  	$u_1 = [lower_1, upper_1]$ \\
 	  	$u_2 = [lower_2, upper_2]$ \\
 	  	\vdots \\
+	  	\hline
 	\end{tabular}
 \end{table}
 
