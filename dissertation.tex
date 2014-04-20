@@ -59,7 +59,13 @@
 
 %``Man is still the most extraordinary computer of all.'' - John F. Kennedy.
 
-The goal of the project is to explore the performance of various fuzzy time series models when used for forecasting financial time series. The project examines several models proposed in the literature and evaluates their performance. Variations to these models are proposed as a result of research on technical analysis in financial markets. A framework is developed for developing, modifying and testing these models.
+This project explores the use of fuzzy logic to perform technical analysis on a financial time series. Technical analysis is financial analysis where past price is used to forecast future price movements. It is a widely used but controversial form of analysis. Econometric theories such as the efficient-market hypothesis claim that the price of a security reflects all currently available information about that security, and making investment decisions based on past data can not achieve greater than average returns. In mitigation, a review of the literature indicates that trading strategies that implement technical analysis can consistently generate profits. However, many of the techniques identified have been in use for more than 50 years. Although algorithmic trading has taken hold in finance, new technical analysis techniques which can be easily understood by analysts have not emerged.
+
+This project evaluates the performance of several fuzzy time series models when used for forecasting financial time series. These models are expressed using linguistic terms which can be understood by an expert. They utilise fuzzy time series analysis in their design, which identifies regular patterns in a time series and uses these to forecast observations. The models which are studied are derived from the literature. Variations to these models are introduced as a result of research on technical analysis in financial markets. Naive time series forecasting models are also evaluated for comparison. The design of each model is found in \cref{design}.
+
+A fuzzy time series framework is developed for designing, modifying and testing the proposed fuzzy time series models. \Cref{implementation} discusses the technical implementation of this framework. \Cref{results} evaluates the performance of the models.
+
+\section{Literature Review}
 
 The digital revolution has changed economics substantially. In the 1960s a huge amount of financial data suddenly became available. Economic theory which needed to be evaluated manually could now be tested and verified thoroughly and systematically, ``liberating econometricians from their mechanical calculators'' \citep{fama}. Yet despite the means to test and verify financial models, there is still disagreement about economic theory among academics and professionals.
 
@@ -75,8 +81,8 @@ Technical analysis has also seen a lot of debate in the economic world, partly b
 
 ``You don't remember important facts and you don't remember because nobody is talking about it ... we forget and so we repeat mistakes from the past'' claimed Robert Shiller in his Nobel Prize acceptance speech, shortly after Fama. These repeated mistakes are what interest technical analysts. The goal is to identify any regularities in financial markets that can be used to forecast future price. 
 
-The digital revolution has not affected technical analysis as much as might have been expected. Automated technical trading algorithms and artificial intelligence models have been developed and have demonstrated great predictive power. Yet these algorithms create extremely complex trading models which are incomprehensible to a human, so human traders use the classic technical trading tools that are intuitive and suited to our visual pattern recognition abilities.
 
+The digital revolution has not affected technical analysis as much as might have been expected. Automated technical trading algorithms and artificial intelligence models have been developed and have demonstrated great predictive power. Yet these algorithms create extremely complex trading models which are incomprehensible to a human, so human traders use the classic technical trading tools that are intuitive and suited to our visual pattern recognition abilities.
 
 The models studied in this project are intended to be easier understood by an analyst. The models utilise fuzzy logic and fuzzy set theory in which complex models are reasoned using human linguistic terms. Fuzzy set theory is a branch of set theory used in fuzzy logic where values have a degree of membership in a set, instead of either being in the set or not as in classic set theory. This adds a degree of fuzziness when using these sets, as values are 'kind-of' in a set to different degrees. Human linguistics map very well to these fuzzy sets. People use linguistic terms such as 'tall' or 'heavy' to describe objects. The boundaries for these terms are fuzzy. For example, a man who is $180cm$ tall may be described as 'kind-of' tall as well as 'kind-of' average, and he may be described as more tall than average.
 
@@ -90,14 +96,6 @@ Forecasting with a fuzzy time series is done under the premise that changes in t
 Many variations of the basic model have been identified in the literature. \Cref{higher} discusses a higher-order fuzzy time series, where the relationships are computed between observations that are multiple points in time apart. In a $n$-order There are $n$ sets of relationship groups which are used to forecast based on the $n$ most recent observations. A fuzzy intersection is performed on the forecast values, so only fuzzy values that are forecast by all relationship groups are used in the forecasting. This narrows down the values forecast, resulting in a more accurate model of the time series. It also adds another dimension of fuzziness, such that if the past $n$ observations are composed of two or more patterns that have been identified previously, this will be recognised and the outcomes of these patterns will be used for the forecast.
 
 Practical problems for a fuzzy time series have also been examined. \Cref{interval} discusses interval selection in a fuzzy time series. Intervals are divisions in the time series that allow points in the same interval range to be grouped together. The size of intervals is important as too large intervals result in a poor model and too small intervals lose some of the benefit of fuzzy logic.
-
-The fuzzy time series models evaluated by this project are defined in \cref{design}. The performance of these models are measured by calculating the root mean square error of the forecasting results. This is discussed in \cref{rmse}.
-
-\Cref{implementation} discusses how the project was implemented and technical challenges that were overcome, including development of the fuzzy time series framework and the implementation of specific models.
-
-\Cref{results} discusses the performance of the proposed models.
-
-\section{Literature Review}
 
 \subsection{Technical Analysis}
 \label{ta}
@@ -507,10 +505,12 @@ To illustrate, \cref{changes} shows a time-series of the changes of \cref{graph}
 
 %TODO talk about the drawbacks of ratio based approach with change analysis
 
+\subsection{Naive models}
+\subsubsection{Buy \& Hold}
+\subsubsection{Random Walk}
+
 \subsection{Ratio-based Interval Selection}
 \label{ratio}
-
-%TODO move models to top of design
 
 The following method for ratio-based interval selection was studied by \cite{huarng2006ratio}.
 
