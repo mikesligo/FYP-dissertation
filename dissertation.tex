@@ -16,9 +16,6 @@
 \usepackage{multicol}
 \usepackage{caption}
 %\usepackage[nottoc,notlot,notlof]{tocbibind}
-\usepackage{titling}
-
-\setlength{\droptitle}{-100em}   % This is your set screw
 
 %fonts
 \usepackage[T1]{fontenc}
@@ -60,19 +57,19 @@
 
 \section{Introduction}
 
-Technical analysis is a form of financial analysis where past price is studied and used to forecast future price. Technical analysts look for specific patterns, trends and price points when making investment decisions. It is a widely used but controversial form of analysis \citep{foundations}. Econometric theories such as the efficient-market hypothesis claim that the price of a security reflects all currently available information about that security, and making investment decisions based on past data cannot achieve greater than average returns. However, a review of the literature indicates that trading strategies that implement technical analysis can consistently generate profits \cite{taprofitability}.
+Technical analysis is a form of financial analysis where past price is studied and used to forecast future price. Technical analysts look for specific patterns, trends and price points when making investment decisions. It is a widely used but controversial form of analysis \citep{foundations}. Econometric theories such as the efficient-market hypothesis claim that the price of a security reflects all currently available information about that security, and making investment decisions based on past data cannot achieve greater than average returns. However, a review of the literature indicates that trading strategies that implement technical analysis can consistently generate profits \citep{taprofitability}.
 
-Technical analysis originates from the perception that market psychology causes certain patterns to emerge in a financial time series. Many of the techniques in use today were identified more than 50 years ago. Although the digital revolution has improved the process of technical analysis, with algorithmic trading being widespread in finance, new techniques which can be easily understood by analysts have not emerged.
+Technical analysis originates from the perception that market psychology causes certain patterns to emerge in a financial time series. Many of the techniques in use today were identified more than 50 years ago. Although the digital revolution has improved the process of technical analysis, new techniques which can be easily understood by analysts have not emerged.
 
 This project explores the use of fuzzy logic to perform technical analysis. It evaluates the performance of several fuzzy time series models when used for forecasting on a financial time series. These models are more easily understood by an expert as they utilise fuzzy set theory, allowing complex models to be expressed using linguistic terms. Fuzzy sets are sets whose elements have degrees of membership. For example, the fuzzy sets $tall$ and $average$ describe height. A man who is $180cm$ tall may be described as ``kind-of'' tall as well as ``kind-of' average. He has a membership in both fuzzy sets, but he may have a larger membership in $tall$ than $average$.
 
-The models evaluated in this project use fuzzy time series analysis. Two such models which are examined in this project are a basic fuzzy time series model and a higher-order fuzzy time series model. In a basic fuzzy time series model, observations on a time series are mapped onto fuzzy sets, each set representing a range of values on the time series to different degrees of membership. Changes from one fuzzy set to another are recorded as a relationship between these fuzzy sets. Once all the desired relationships are identified they are grouped together and used for forecasting. In a higher-order fuzzy time series the relationships between observations that are multiple points in time apart are computed. It offers a more precise model of the original time series as multiple sets of fuzzy logical relationship groups need to agree on the forecast. It also adds another dimension of fuzziness, such that partially completed patterns will be recognised. 
+The models evaluated in this project use fuzzy time series analysis. Two such models which are examined in this project are a basic fuzzy time series model and a higher-order fuzzy time series model. In a basic fuzzy time series model, observations on a time series are mapped onto fuzzy sets, each set representing a range of values on the time series to different degrees of membership. Changes from one fuzzy set to another are recorded as a relationship between these fuzzy sets. Once all the desired relationships are identified they are grouped together and used for forecasting. In a higher-order fuzzy time series the relationships between observations that are multiple points in time apart are identified. It offers a more precise model of the original time series as multiple sets of fuzzy logical relationship groups need to agree on the forecast. It also adds another dimension of fuzziness, such that partially completed patterns will be recognised. 
 
-A moving-window model and a change-analysis model are proposed as alterations to these models. A moving-window model is a stricter form of the higher-order fuzzy time series and forecasts based on complete patterns that have been identified in the training data. A change analysis model performs fuzzy time series analysis on the changes in a time series and identifies technical patterns based on the movement of price instead of the position of price. Naive time series forecasting models are also evaluated for comparison. 
+A moving-window model and a change-analysis model are proposed as alterations to these models. A moving-window model is a stricter form of the higher-order fuzzy time series model and forecasts based on complete patterns that have been identified in the training data. A change analysis model performs fuzzy time series analysis on the changes in a time series and identifies technical patterns based on the movement of price instead of the position of price. Naive time series forecasting models are also evaluated for comparison. 
 
-Interval selection algorithms which can cause practical problems in a fuzzy time series have also been examined and discussed in \cref{interval}
+Interval selection algorithms which can cause practical problems in a fuzzy time series have also been examined and are discussed in \cref{interval}.
 
-The definitions and steps involved in producing the models are outlined in \cref{design}.
+\cref{design} outlines the definitions and steps involved in producing the models.
 
 \Cref{implementation} discusses the development of a fuzzy time series framework. This framework was used for developing, modifying and testing the fuzzy time series models. \Cref{results} provides an evaluation of the models.
 
@@ -80,11 +77,6 @@ The definitions and steps involved in producing the models are outlined in \cref
 
 \subsection{Technical Analysis}
 \label{ta}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{images/blackwhite.png}
-    \caption{Moving-Average Cross Indicator}
-\end{figure}
 
 Technical analysis is a form of financial analysis where past price behaviour is used to forecast future price in financial markets. It is one of several methods of analysing financial securities. Other methods include fundamental analysis, which involves analysing the health of a security by viewing information such as company earnings, and sentiment analysis, performing analysis on written text or speech regarding a financial security or market and extracting the sentiment of the author or the market towards it \citep{ahmad2011affective}.
 
@@ -92,8 +84,6 @@ Technical analysis is a form of financial analysis where past price behaviour is
 
 \cite{foundations} argue that ``the general goal of technical analysis is to identify regularities in the time series of prices by extracting non-linear patterns from noisy data''. Examples of this form of analysis include identifying trends in a graph of price movement, or concluding that a price is unlikely to go lower than the 52-week low. Specific techniques are discussed in \Cref{app:tatechniques}.
 
-\subsubsection{History of Technical Analysis}
-\label{tahist}
 The use of this form of analysis has been documented for several hundred years. One of the first uses of technical analysis dates back to Japan in the 18th Century. In 1710 Japan's rice market had matured enough to begin using rice coupons instead of trading physical rice. Their receipts were traded constituting the first Futures trades ever recorded \citep[p.~15]{jcct1991}. 
 
 Munehisa Homma was a rice merchant in Japan, who amassed great wealth trading these rice coupons and is sometimes credited as the Father of Japanese Candlestick Charting. Although it is unclear whether Homma actually used Japanese Candlestick Charting techniques, it is recorded that he used the history of price movement to gauge the emotions of the market at the time, ``When all are bearish, there is cause for prices to rise. When everyone is bullish, there is cause for the price to fall''. Following Homma different charting techniques were introduced, until the introduction and popularisation of Japanese Candlestick Charting for technical analysis in the mid 19th Century \citep[p.~18]{jcct1994}.
