@@ -196,7 +196,7 @@ The ratio-based approach was evaluated using the same methodology as used by \ci
 
 %TODO credit chen for the model
 
-\subsection{Basic Fuzzy Time Series Model}
+\subsection{Basic Model}
 \label{fts-design}
 This section provides the definitions for a basic fuzzy time series model and provides the steps involved for building the model. This model is used as a base from which other models are defined. It is derived from the literature discussed in \cref{basic}, and uses the ratio-based interval selection algorithm to define interval lengths, shown in \cref{ratio}.
 
@@ -309,7 +309,7 @@ The forecast value or values for $F(t+1)$ are defuzzified by taking the mean of 
 
 To illustrate, if $F(t)$ is $med$, then the fuzzy logical relationships group with a matching left-hand side is Group 2. From this the forecast fuzzy values for $F(t+1)$ are $med$ and $very\_high$. The intervals with a maximum membership in these fuzzy sets are $u_3$ and $u_5$ respectively. The midpoint of these intervals are $150$ for $u_3$ and $190$ for $u_5$, with a mean value $\frac{150 + 190}{2}=170$. This crisp value is used as the forecast.
 
-\subsection{Higher-order Fuzzy Time Series Model}
+\subsection{Higher-order Model}
 \label{higher-order}
 
 This section defines a higher-order fuzzy time series and a formal method forecasting using this model. A higher-order fuzzy time series, discussed in \cref{higher}, is an extension of the basic model. It is a more precise as a separate list of values are forecast for each of the most recent $n$ observations in an $n$-order fuzzy time series, and only values common to all forecasts are used. It also adds another element of fuzziness to the analysis as patterns only need to be partially completed to be identified.
@@ -466,11 +466,20 @@ The change-analysis uses the methodology of other models which identify a sequen
 
 Naive models are designed and evaluated to offer a comparison to the fuzzy time series models. They follow a simple set of rules when forecasting and do not perform advance analysis of the training data.
 
-\subsubsection{Buy \& Hold}
+\subsubsection{Buy \& Hold Model}
 
-The buy \& hold model
+The buy \& hold model follows a rule that the next observation will be the same as the current observation. Let $Y(t)(t=1,2,\ldots)$ be a time series. The buy \& hold model use the value of $Y(t)$ as the forecast value for $Y(t+1)$ for any time $t$.
 
-\subsubsection{Random Walk}
+\subsubsection{Random Walk Model}
+
+The random walk model forecasts a Gaussian distribution of random changes between points on a time series. The model analyses the training data and calculates the standard deviation, $\sigma$, of changes between observations. The formula for calculating the standard deviation is shown in \cref{stdev}. A Gaussian distribution is generated using this $\sigma$ which is sampled during forecasting. The sampled change is added to the current observation and used as the forecast observation.
+
+\begin{figure}[H]
+    \centering
+    \caption{Sample Standard Deviation Formula}
+    $\sqrt{\frac{1}{N-1} \sum_{i=1}^N (x_i - \overline{x})^2}$
+    \label{stdev}
+\end{figure}
 
 \subsection{Ratio-based Interval Selection}
 \label{ratio}
