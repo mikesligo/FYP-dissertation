@@ -139,8 +139,6 @@ A fuzzy time series is a model of a time series that uses fuzzy set theory to fi
 
 The typical use of a fuzzy time series is to forecast observations on the time series using historical data. Studies using fuzzy time series have been carried out on forecasting university enrolment \citep{song1993forecasting, song1994forecasting, chen1996forecasting, tsai2000forecasting, chen2004new, cheng2006trend, lee2006pattern, huarng2006ratio, tsaur2012fuzzy}, Stock Market price \citep{huarng2005type, cheng2006trend, lee2006pattern, huarng2006ratio, Chen2007fib, chu2009fuzzy}, Foreign-Exchange rates \citep{tsaur2012fuzzy}, population change \citep{tsai1999study} and temperature \citep{temperatureprediction2000, lee2006pattern}. 
 
-%TODO lo et all candlestick analysis
-
 \subsubsection{Basic Model}
 \label{basic}
 \cite{song1993forecasting} pioneered the fuzzy time series model providing the definitions for the concept and a method for modelling a time invariant fuzzy time series. The method was shown to be better than the Linear Regression Method for forecasting student enrolments at the University of Alabama. The model fuzzified points on the time series into fuzzy sets and defined fuzzy relations between these sets. They use an arithmetic defuzzification algorithm to interpret the results and claim that ``it is not difficult to jump to the conclusion that in the interpretation of the output results, experience knowledge is still needed''.
@@ -194,11 +192,15 @@ The ratio-based approach was evaluated using the same methodology as used by \ci
 
 \label{design}
 
-%TODO credit chen for the model
+This section provides a description of each of the models evaluated in this project. Four of these models are fuzzy time series models: The basic model identifies relationships between adjacent points on a time series and uses these to forecast observations. The higher-order model identifies relationships between multiple points on the time series and forecasts multiple observations which must all agree. The moving-window model identifies relationships between patterns on the time series and the subsequent observation. The change-analysis model identifies changes by analysing price movement instead of price value, it utilises other fuzzy time series models to identify relationships. 
+
+Two naive models are described: The buy \& hold model forecasts that the next observation on a time series will be the same as the current observation. The random walk model forecasts that prices change randomly according to a Gaussian distribution. 
+
+This section also provides the methodology used for measuring the performance of the models and the ratio-based approach to interval calculation.
 
 \subsection{Basic Model}
 \label{fts-design}
-This section provides the definitions for a basic fuzzy time series model and provides the steps involved for building the model. This model is used as a base from which other models are defined. It is derived from the literature discussed in \cref{basic}, and uses the ratio-based interval selection algorithm to define interval lengths, shown in \cref{ratio}.
+This section provides the definitions for a basic fuzzy time series model and provides the steps involved for building the model. This model is used as a base from which other models are defined. It follows a model design outlined by \cite{chen1996forecasting} and uses the ratio-based interval selection algorithm to define interval lengths, shown in \cref{ratio}.
 
 \begin{ftsdef}
 \label{def1}
@@ -625,7 +627,8 @@ It provides models for fuzzy sets, fuzzy logical relationships and fuzzy logical
 
 In a higher-order fuzzy time series, there are different managers for each of the orders. These manage their own set of fuzzy logical relationship groups and each forecast a list of fuzzy values independently. The fuzzy logic toolkit supports performing a fuzzy intersection on these sets as outlined in \cref{higher-order}.
 
-Defuzzification involves taking the mean of the intervals that have a membership in the forecast fuzzy sets. The final implementation allows for defuzzifying using intervals that have a membership in the forecast fuzzy sets above a user defined threshold $\alpha$. The performance of the models when $\alpha = 1.0$ and $\alpha = 0.5$ is studied.
+Defuzzification involves taking the mean of the intervals that have a membership in the forecast fuzzy sets. The final implementation allows for defuzzifying using intervals that have a membership in the forecast fuzzy sets above a user defined threshold $\alpha$. 
+% The performance of the models when $\alpha = 1.0$ and $\alpha = 0.5$ is studied.
 % TODO don't forget to actually study them!
 
 \subsection{Optimisation}
@@ -654,28 +657,20 @@ This project primarily implements lazy evaluation as it does not require a list 
 
 \label{results}
 
-
-\begin{figure}[H]
-	\centering
-	\begin{tikzpicture}
-	  \begin{axis}[
-	    ybar,
-	    enlargelimits=0.15,
-	    legend style={at={(0.5,-0.2)},
-	      anchor=north,legend columns=-1},
-	    ylabel={RMSE},
-	    symbolic x coords={excellent,good,neutral, %
-			not good,poor},
-	    xtick=data,
-	    nodes near coords, 
-		nodes near coords align={vertical},
-	    x tick label style={rotate=45,anchor=east},
-	    ]
-	    \addplot coordinates {(excellent,0) (good,8) 
-			(neutral,2) (not good,0) (poor,0)};
-	  \end{axis}
-	\end{tikzpicture}
-\end{figure}
+\begin{tikzpicture}
+    \begin{axis}[
+        symbolic x coords={Basic, Higher-Order (n=5), Moving-window (n=5)},
+        xtick=data,
+        ylabel=RMSE,
+        ymajorgrids, trim axis left, trim axis right
+      ]
+        \addplot[ybar,fill=blue] coordinates {
+            (Basic,   42)
+            (Higher-Order (n=5),  50)
+            (Moving-window (n=5),   80)
+        };
+    \end{axis}
+\end{tikzpicture}
 
 .
 
