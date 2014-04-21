@@ -225,6 +225,8 @@ The ratio-based approach was evaluated using the same methodology as used by \ci
 
 \label{design}
 
+%TODO credit chen for the model
+
 \subsection{Basic Fuzzy Time Series Model}
 \label{fts-design}
 This section provides the definitions for a basic fuzzy time series model and provides the steps involved for building the model. This model is used as a base from which other models are defined. It is derived from the literature discussed in \cref{basic}, and uses the ratio-based interval selection algorithm to define interval lengths, shown in \cref{ratio}.
@@ -681,6 +683,31 @@ This project primarily implements lazy evaluation as it does not require a list 
 \section{Results \& Evaluation}
 
 \label{results}
+
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}
+	  \begin{axis}[
+	    ybar,
+	    enlargelimits=0.15,
+	    legend style={at={(0.5,-0.2)},
+	      anchor=north,legend columns=-1},
+	    ylabel={RMSE},
+	    symbolic x coords={excellent,good,neutral, %
+			not good,poor},
+	    xtick=data,
+	    nodes near coords, 
+		nodes near coords align={vertical},
+	    x tick label style={rotate=45,anchor=east},
+	    ]
+	    \addplot coordinates {(excellent,0) (good,8) 
+			(neutral,2) (not good,0) (poor,0)};
+	  \end{axis}
+	\end{tikzpicture}
+\end{figure}
+
+% show the moving window and changes models with higher orders
 
 % The application of neural networks to forecast fuzzy time series has a time breakdown of comparisons!c
 
