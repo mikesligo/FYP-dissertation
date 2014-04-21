@@ -80,8 +80,6 @@ Interval selection algorithms which can cause practical problems in a fuzzy time
 
 Technical analysis is a form of financial analysis where past price behaviour is used to forecast future price in financial markets. It is one of several methods of analysing financial securities. Other methods include fundamental analysis, which involves analysing the health of a security by viewing information such as company earnings, and sentiment analysis, performing analysis on written text or speech regarding a financial security or market and extracting the sentiment of the author or the market towards it \citep{ahmad2011affective}.
 
-%TODO Technical analysis is studied in this paper for a few reasons...
-
 \cite{foundations} argue that ``the general goal of technical analysis is to identify regularities in the time series of prices by extracting non-linear patterns from noisy data''. Examples of this form of analysis include identifying trends in a graph of price movement, or concluding that a price is unlikely to go lower than the 52-week low. Specific techniques are discussed in \Cref{app:tatechniques}.
 
 The use of this form of analysis has been documented for several hundred years. One of the first uses of technical analysis dates back to Japan in the 18th Century. In 1710 Japan's rice market had matured enough to begin using rice coupons instead of trading physical rice. Their receipts were traded constituting the first Futures trades ever recorded \citep[p.~15]{jcct1991}. 
@@ -90,7 +88,7 @@ Munehisa Homma was a rice merchant in Japan, who amassed great wealth trading th
 
 In the west, Dow Theory was developed and expanded on in the early 20th Century, leading to works such as those by \cite{edwards1948technical} that directly influence technical analysis today.
 
-Even with such a diverse history the use of technical analysis is still a hotly debated topic. Experts and Academics are divided in its use \citep{foundations}, the influential \textit{A Random Walk Down Wall Street} concluding it is as valid as Alchemy when put under scientific scrutiny \cite[p.~159]{randomwalk2012}. Nonetheless, it appears that a significant number of analysts incorporate technical analysis, with a study by \cite{examininguse1997} finding that a mean importance of 35\% was given to technical analysis by respondents in various investment banks and \cite{cheung2000currency} characterising 30\% of Foreign-Exchange traders as Technical Traders. 
+Even with such a diverse history the use of technical analysis is still a hotly debated topic. Experts and Academics are divided in its use \citep{foundations}, the influential \textit{A Random Walk Down Wall Street} concluding it is as valid as alchemy when put under scientific scrutiny \cite[p.~159]{randomwalk2012}. Nonetheless, it appears that a significant number of analysts incorporate technical analysis, with a study by \cite{examininguse1997} finding that a mean importance of 35\% was given to technical analysis by respondents in various investment banks and \cite{cheung2000currency} characterising 30\% of Foreign-Exchange traders as Technical Traders. 
 
 \subsubsection{Performance of Technical Analysis}
 \label{taperformance}
@@ -101,9 +99,9 @@ perform statistical tests with either conventional statistical tests or more sop
 
 They offered several theoretical explanations for the positive results. Econometric models such as the noisy rational expectations model postulate that the current price does not reveal all information about a security because of noise, and the market shows a systematic slowness in adjusting to new market information which may be exploited with technical analysis. Behavioural models propose that price is affected by market psychology which can be predicted using technical analysis akin to the original use of technical analysis. Technical analysis charting methods may also be equivalent to non-linear forecasting methods in chaos theory.
 
-They also offered empirical explanations for the results, such as trends in price before news such as central bank interventions, and order flows where the ``take profit'' and ``stop loss'' of orders clusters around round numbers. Other empirical explanations offer the possibility of false positive trading profits. Temporary market inefficiencies may occur, where new trading strategies offer short term gains before they become more widely used and cease to offer an advantage. Also market microstructure deficiencies where studies do not adequately take transaction costs and other market factors into account may lead to inaccurate results. 
+They also offered empirical explanations for the results, such as trends in price before news such as central bank interventions, and order flows where the ``take profit'' and ``stop loss'' of orders clusters around round numbers. Other empirical explanations offer the possibility of false positive trading profits. Temporary market inefficiencies may occur, where new trading strategies offer short term gains before they become more widely used and cease to offer an advantage. In addition, market microstructure deficiencies where studies do not adequately take transaction costs and other market factors into account may lead to inaccurate results. 
 
-\cite{taprofitability} acknowledge that despite the positive evidence and improved procedures, many academics and professional analysts are sceptical about technical analysis and technical trading strategies which utilise it. They point to \cite[p.~25]{assetpricing} who argues that ``trading rules that reliably survive transactions costs and do not implicitly expose the investor to risk have not yet been reliably demonstrated''. Park and Irwin interpret this to mean that the scepticism is due to data snooping problems, where trading strategies over-fit the testing data, and insignificant profits are obtained after making adjustments for transaction costs and risk.
+\cite{taprofitability} acknowledge that despite the positive evidence and improved procedures, many academics and professional analysts are sceptical about technical analysis and technical trading strategies which utilise it. They point to \citet[p.~25]{assetpricing} who argues that ``trading rules that reliably survive transactions costs and do not implicitly expose the investor to risk have not yet been reliably demonstrated''. Park and Irwin interpret this to mean that the scepticism is due to data snooping problems, where trading strategies over-fit the testing data, and insignificant profits are obtained after making adjustments for transaction costs and risk.
 
 In the professional world, it could be due to the difficulty in experimentally verifying some technical analysis techniques, many of which rely on visual cues in the eyes of an expert. The existence of a pattern is subjective. Experts looking at the same data may see different, sometimes contradictory patterns, fuelling a controversy that technical analysis is nothing more than pseudo-analysis. Also with most studies finding some technical trading strategies successful and many unsuccessful, seemingly without reason, it may be perceived as safer to ignore technical analysis altogether.
 
@@ -209,12 +207,12 @@ Let $Y(t)(t= \ldots,0,1,2, \ldots)$, a subset of $\mathbb{R}$, be the universe o
 
 \begin{ftsdef}
 \label{def2}
-Suppose $F(t)$ is caused by $F(t-1)$, then this relation can be expressed as $F(t)=F(t-1) \circ R(t,t-1)$, where $R(t,t-1)$ is the fuzzy logical relationship between $F(t-1)$ and $F(t)$, denoted as $F(t-1) \rightarrow F(t)$.
+Suppose $F(t)$ is caused by $F(t-1)$, then this relation can be expressed as $F(t)=F(t-1) \circ R(t,t-1)$, where $R(t,t-1)$ is the fuzzy logical relationship between $F(t-1)$ and $F(t)$, denoted as $F(t-1) \rightarrow F(t)$. In this relationship $F(t)$ is called the \textit{outcome}.
 \end{ftsdef}
 
 \begin{ftsdef}
 \label{def3}
-All fuzzy logical relationships in a fuzzy time series can be grouped into fuzzy logical relationship groups based on their left-hand side value. These groups are denoted as $F(k) \rightarrow F(m), F(n), \ldots, F(l)$
+All fuzzy logical relationships in a fuzzy time series can be grouped into fuzzy logical relationship groups based on their left-hand side value. These groups are denoted as $F(k) \rightarrow F(m), F(n), \ldots, F(l)$.
 \end{ftsdef}
 
 In \cref{def1}, $Y(t)$ represents a time series. The range of the observations in this time series is called the universe of discourse. $f_i(t)$ are fuzzy sets over the universe of discourse, consisting of the all the intervals defined on the universe and the membership of each interval in that fuzzy set. $F(t)$ is the collection of all of these fuzzy sets. This collection of fuzzy sets at any point $t$ on a time series is called a fuzzy time series.
@@ -376,13 +374,9 @@ For example, the relational matrix representing the fuzzy logical relationships 
 
 \subsection{Moving-window Model}
 
-This section describes... It is designed... (section in progress)
+The moving-window model is a proposed variation of the basic fuzzy time series model. It identifies patterns consisting of multiple sequential points on a time series. Unlike a the higher-order fuzzy time series model, it does not allow for partial patterns. The design is inspired by the literature on technical analysis which indicates that certain set patterns are prevalent in the market.
 
-A $n$-length moving window fuzzy time series is one in which the $n$ most recent observations in a time series are treated as one observation. It differs from a higher-order fuzzy time series in that it crisply identifies patterns as being a particular sequence and records the relationship between the entire pattern and the outcome as the fuzzy logical relationship.
-
-For illustration, a the fuzzy logical relationships for a $2$-order fuzzy time series and a $2$-length moving-window fuzzy time series will be compared.
-
-Consider the following fuzzy time series sample $F(t)(t=1,2,\ldots,5)$:
+In a $n$-length moving window fuzzy time series, the $n$ most recent observations in a time series are treated as a pattern. It records the relationship between the entire pattern and the outcome as the fuzzy logical relationship. For illustration, a the fuzzy logical relationships for a $2$-order fuzzy time series and a $2$-length moving-window fuzzy time series will be compared. Consider the following fuzzy time series sample $F(t)(t=1,2,\ldots,5)$:
 
 \begin{table}[H]
 	\center
@@ -400,7 +394,7 @@ Consider the following fuzzy time series sample $F(t)(t=1,2,\ldots,5)$:
 
 where $a$, $b$ and $c$ are fuzzy sets.
 
-In a 2-order time series, there are 2 sets of fuzzy logical relationship groups identified, the relationships between observations 1 and 2 points in time apart:
+In a 2-order fuzzy time series, there are 2 sets of fuzzy logical relationship groups identified, the relationships between observations 1 and 2 points in time apart:
 
 \begin{multicols}{2}
 \begin{table}[H]
@@ -427,7 +421,7 @@ In a 2-order time series, there are 2 sets of fuzzy logical relationship groups 
 \end{table}
 \end{multicols}
 
-In comparison, the fuzzy logical relationship groups For a 2-length moving window fuzzy time series are as follows:
+In comparison, the fuzzy logical relationship groups for a 2-length moving window fuzzy time series are as follows:
 
 \begin{table}[H]
 	\center
@@ -441,23 +435,15 @@ In comparison, the fuzzy logical relationship groups For a 2-length moving windo
 	\caption{2-length moving window FLRGs}
 \end{table}
 
-The 2 most recent observations are taken and matched to the appropriate relationship group which is used to forecasts values. This is different to the 2-order fuzzy time series which would use the fuzzy intersection of the values forecast by each set of fuzzy logical relationships as the forecast.
-
-A $n$-length moving window fuzzy time series can also be a $n$-order fuzzy time series. The results from this variation are studied.
+The 2 most recent observations are identified as a pattern and matched to the appropriate relationship group which is used to forecasts values. This is different to the 2-order fuzzy time series which would use the fuzzy intersection of the values forecast by each set of fuzzy logical relationships as the forecast.
 
 \subsection{Change-analysis Model}
 
-This section describes... It is designed... (section in progress)
+A review of the literature indicated that technical analysts look for patterns in an econometric time series. Technical patterns are sequences of movements in a time series, typically forming a visual pattern, which are used to forecast price change. The change-analysis model identifies a sequence of changes on a time series. To illustrate, \cref{changes} shows the sequence of changes of \cref{graph}. 
 
-One of the goals of the project is to identify technical patterns in an econometric time series. Technical patterns are sequences of movements in a time series, typically forming a visual pattern, which are used to forecast price change. 
+When evaluating a financial time series the basic, higher-order and moving-window fuzzy time series models will recognise technical patterns which consist of the same values, i.e.\ that form a technical pattern at the same point along the $y$-axis of a time series. This is useful as it accounts for ``significant'' price levels as discussed in \Cref{app:tatechniques}. However this does not identify technical patterns consisting of movements of price, which is what many visual patterns are. Identifying changes between observations results in patterns which can be applied to any point on the time series, e.g.\ the pattern $up,up,up,down,up$.
 
-The proposed fuzzy time series model will recognise technical patterns which consist of the same values, i.e.\ that form technical pattern at the same point along the $y$-axis of a time series. This is useful as it accounts for ``significant'' price levels as discussed in \Cref{app:tatechniques}. 
-
-However this does not identify technical patterns consisting of movements of price, which is what many visual patterns are. Identifying changes between observations results in patterns which can be applied to any point on the time series, e.g.\ the pattern $up,up,up,down,up$.
-
-The change-analysis model uses other time series models to perform analysis. This model is differentiated by virtue that it analyses the changes of the time series instead of the time series itself. By generating a new time series composed of the changes of the original time series, the same steps can be used to identify the relationships between changes and forecast changes instead of a crisp price.
-
-To illustrate, \cref{changes} shows a time-series of the changes of \cref{graph}.
+The change-analysis uses the methodology of other models which identify a sequence. This project examines the forecasting performance of the change-analysis model when using the methodology from the higher-order model and the moving-window model. It was found that the ratio-based interval selection method used in other models was incompatible with the change-analysis model. The ratio-based approach is not suited to the large relative changes in the time series of changes. For this reason, the interval selection method for the change-analysis model arbitrarily creates $200$ equal length intervals over the time series. This number of intervals was found to offer a good model of the changes of a financial time series during testing.
 
 \begin{figure}[H]
 	\centering
@@ -476,10 +462,14 @@ To illustrate, \cref{changes} shows a time-series of the changes of \cref{graph}
 	\label{changes}
 \end{figure}
 
-%TODO talk about the drawbacks of ratio based approach with change analysis
-
 \subsection{Naive models}
+
+Naive models are designed and evaluated to offer a comparison to the fuzzy time series models. They follow a simple set of rules when forecasting and do not perform advance analysis of the training data.
+
 \subsubsection{Buy \& Hold}
+
+The buy \& hold model
+
 \subsubsection{Random Walk}
 
 \subsection{Ratio-based Interval Selection}
@@ -678,18 +668,20 @@ This project primarily implements lazy evaluation as it does not require a list 
 	\end{tikzpicture}
 \end{figure}
 
+.
+
 % show the moving window and changes models with higher orders
 
 % The application of neural networks to forecast fuzzy time series has a time breakdown of comparisons!c
 
-\subsection{Comparison Models}
+\section{Concluding Remarks}
+.
 
-\section{Conclusion}
+\subsection{Future work}
 
-\section{Future work}
-
+.
 \appendix
-
+\begin{appendices}
 
 \section{Technical Analysis Techniques}
 
@@ -698,7 +690,15 @@ This project primarily implements lazy evaluation as it does not require a list 
 There are many trading strategies that use technical analysis. Almost any strategy that uses past price movement or behaviour as an indicator for future price counts as a technical trading strategy. Discussed here are 3 techniques that are seen to be widely used in technical trading strategies.
 
 \subsection{Trend Identification}
-Moving averages are graph lines that indicate the average price over a fixed period. Different functions can also be used such as calculating a weighted moving average. Its purpose is to smooth the noise in a graph and to identify a trend. A moving average cross is where 2 moving averages are used on a graph, generally with one having a short period indicating current trend and one having a long period indicating overall trend. When the line of the short period crosses the line of the long period it is an indication of a change in trend \citep{brock1992}. Moving averages have been used in many studies on technical trading strategies, with generally positive performance. \cite{taprofitability} found moving average rules showed consistently profitable results in the foreign exchange and futures market, and the most reliable performance in the stock market out of the methods tested.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/blackwhite.png}
+    \caption{Moving Average Cross Indicator}
+    \label{ma}
+\end{figure}
+
+Moving averages are graph lines that indicate the average price over a fixed period. Different functions can also be used such as calculating a weighted moving average. Its purpose is to smooth the noise in a graph and to identify a trend. A moving average cross is where 2 moving averages are used on a graph, generally with one having a short period indicating current trend and one having a long period indicating overall trend. When the line of the short period crosses the line of the long period it is an indication of a change in trend \citep{brock1992}. Moving averages have been used in many studies on technical trading strategies, with generally positive performance. \cite{taprofitability} found moving average rules showed consistently profitable results in the foreign exchange and futures market, and the most reliable performance in the stock market out of the methods tested. An example of a chart featuring two moving average indicators is shown in \cref{ma}.
 
 \subsection{Pattern Identification}
 Technical Patterns are visual patterns that appear in a graph of price movement. A Head-and-Shoulders pattern is one where the price represents a persons head and shoulders, where the price shows an approximately symmetrical sequence of five local extrema which correspond to 2 shoulders, 2 necks and a head. The outcome of this pattern is that the price moves down. \cite{foundations} examined 10 of these patterns and found overwhelming significance for the indicators when applied to the Nasdaq stock index. \cite{chang1999methodical} also find a Head-and-Shoulders pattern was profitable, but was outperformed by simpler trading rules such as a moving average indicator. Japanese Candlestick charting is considered to be identifying technical patterns.
@@ -712,7 +712,7 @@ Technical Patterns are visual patterns that appear in a graph of price movement.
 \end{figure}
 
 Pivot points, Support and Resistance price levels which are very commonly calculated in industry but have not received significant academic attention \citep[p.~55]{osler2000support}. According to \cite{murphy1999technical}, a support level is ``a level or area on the chart under the market where buying interest is sufficiently strong to overcome selling pressure. As a result, a decline is halted and prices turn back up again''. Resistance is the opposite of support. Often they are levels where the price has had difficulty breaking before, either as static price points (such as the weekly low price) or points where the price meets a trend line that it appears to be bounding off. \cite{brock1992} found strong support for this style of trading strategy.
-
+\end{appendices}
 % \clearpage
 
 \addcontentsline{toc}{section}{References}
