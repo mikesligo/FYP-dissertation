@@ -670,9 +670,7 @@ In this section, three financial datasets are used as experimental datasets:
 \item A four-year period of the stock price for Google Inc (GOOG). The models were trained with data from $2010/04/23$ to $2013/4/22$ and tested using data from $2013/04/23$ to $2014/04/21$.
 \end{enumerate}
 
-The models outlined in \cref{design} are studied. Several of the models take user defined parameters. The change-analysis model implements the analysis methodology of other models. The models and the parameters that were tested are shown in \cref{params}.
-
-To measure the forecasting performance of the models the root mean square error (RMSE) is employed as a performance indicator.
+The forecasting performance of the models outlined in \cref{design} are studied. The root mean square error (RMSE) is employed as a performance indicator. Several models take user defined parameters and the change-analysis model implements the analysis methodology of other models. The models and the parameters that were tested are shown in \cref{params}.
 
 The results for the models when used for forecasting EURUSD are shown in \cref{eurusdresults} and a bar chart of the results is shown in \cref{eurusdbar}. 
 
@@ -682,7 +680,7 @@ The results for GOOG forecasting are shown in \cref{googresults} and a bar chart
 
 \begin{table}[H]
 	\center
-	\begin{tabulary}{1.0\textwidth}{C|C}
+	\begin{tabulary}{1.0\textwidth}{L|L}
 	\toprule[.15em]
 	Model & Description \\
 	\toprule[.15em]
@@ -827,12 +825,28 @@ The results for GOOG forecasting are shown in \cref{googresults} and a bar chart
 	\label{googresults}
 \end{table}
 
+\newpage
+
+\subsection{Evaluation}
+
+This section discusses the results. The results indicate mixed performance from the fuzzy time series models when used for forecasting. The basic fuzzy time series model performed poor in the tests, but was generally better than the random walk model.
+
+The higher-order models performed worse than half the models in all tests. The performance of the higher-order models compared to the basic model is worse than indicated by the literature. This is likely because the higher-order fuzzy time series literature which was reviewed during this project trains and tests the models on the same data. This suggests that a time series that featured more changes would benefit from a higher-order time series.
+
+The moving-window model also offered mixed results. The 3-length moving window model performed consistently worse than the 5-length model. This result should be evaluated with an understanding of the fuzzy time series methodology. In a 5-length model, if the fuzzy sets for the most recent 5 observations were not found in the training data then the fuzzy set for the current observation is forecast. This results in behaviour similar to the buy \& hold model. This behaviour will occur more frequently with a 5-length moving window than a 3-length moving window, which explains why the performance 5-length moving window model is similar to the buy \& hold model.
+
+The change-analysis model offered strong results. The change analysis model implements the methodology of three models in the tests. None of the methods implemented perform consistently better than the others. 
+
+The buy \& hold model showed consistently good forecasting accuracy. The random walk model offered poor results.
+
 \section{Concluding Remarks}
-.
+
+This project tested the performance of four fuzzy time series models and two naive models when forecasting financial time series. The fuzzy time series models demonstrated mix forecasting performance. 
 
 \subsection{Future work}
 
 .
+\newpage
 \appendix
 \begin{appendices}
 
