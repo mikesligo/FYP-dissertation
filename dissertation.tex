@@ -49,12 +49,12 @@
 \begin{document}
 
 \maketitle
+%TODO add lof and lot to toc
+\tableofcontents
 
 \listoffigures
 
 \listoftables
-
-\tableofcontents
 
 \newpage
 
@@ -72,7 +72,7 @@ A moving-window model and a change-analysis model are proposed as alterations to
 
 Interval selection algorithms which can cause practical problems in a fuzzy time series have also been examined and are discussed in \cref{interval}.
 
-\cref{design} outlines the definitions and steps involved in producing the models.
+\Cref{design} outlines the definitions and steps involved in producing the models.
 
 \Cref{implementation} discusses the development of a fuzzy time series framework. This framework was used for developing, modifying and testing the fuzzy time series models. \Cref{results} provides an evaluation of the models.
 
@@ -829,15 +829,27 @@ The results for GOOG forecasting are shown in \cref{googresults} and a bar chart
 
 \subsection{Evaluation}
 
-This section discusses the results. The results indicate mixed performance from the fuzzy time series models when used for forecasting. The basic fuzzy time series model performed poor in the tests, but was generally better than the random walk model.
+This section evaluates the results. The results indicate mixed performance from the fuzzy time series models when used for forecasting. The fuzzy time series models generally outperform the random walk model, but are generally less accurate than the buy \& hold model. None of the models consistently outperform the others. The Change-analysis model implements the methodology of the three other fuzzy time series models and generally offers better results than the original models. This indicates that better forecasting performance can be achieved by analysing the changes on a time series.
 
-The higher-order models performed worse than half the models in all tests. The performance of the higher-order models compared to the basic model is worse than indicated by the literature. This is likely because the higher-order fuzzy time series literature which was reviewed during this project trains and tests the models on the same data. This suggests that a time series that featured more changes would benefit from a higher-order time series.
+\subsubsection{Basic Model}
 
-The moving-window model also offered mixed results. The 3-length moving window model performed consistently worse than the 5-length model. This result should be evaluated with an understanding of the fuzzy time series methodology. In a 5-length model, if the fuzzy sets for the most recent 5 observations were not found in the training data then the fuzzy set for the current observation is forecast. This results in behaviour similar to the buy \& hold model. This behaviour will occur more frequently with a 5-length moving window than a 3-length moving window, which explains why the performance 5-length moving window model is similar to the buy \& hold model.
+The basic fuzzy time series model performed poorly compared to the other models. It consistently score worse than half the models tested. However, it was generally more accurate than the random walk model.
 
-The change-analysis model offered strong results. The change analysis model implements the methodology of three models in the tests. None of the methods implemented perform consistently better than the others. 
+\subsubsection{Higher-order Model}
 
-The buy \& hold model showed consistently good forecasting accuracy. The random walk model offered poor results.
+The higher-order models performed worse than at least half the models for all datasets. In contrast to the literature, the higher-order models did not consistently outperform the basic model. In addition, a 10-order model did not perform consistently higher than the 5-order model. The discrepancy between the results and the literature is likely caused by different testing methods in the literature. The higher-order fuzzy time series models in the literature were trained and tested on the same data.
+
+\subsubsection{Moving-window Model}
+
+The moving-window model offered mixed results. The 3-length moving window model performed consistently worse than the 5-length model. These results should be evaluated with an understanding of the fuzzy time series methodology. In a $n$-length moving window model, if the fuzzy sets for the most recent $n$ observations were not found in the training data then the fuzzy set for the current observation is forecast. This results in behaviour similar to the buy \& hold model. This behaviour will occur more frequently with a 5-length moving window than a 3-length moving window, which explains why the performance 5-length moving window model is similar to the buy \& hold model.
+
+\subsubsection{Change-analysis Model}
+
+The change-analysis model offered strong results. The change analysis model implements the methodology of three models in the tests. None of the methods implemented perform consistently better than the others. The three methodologies generally performed better than half the models tested. This indicates that identifying the relationships between changes on a financial time series is a more effective analysis tool.
+
+\subsubsection{Naive Models}
+
+The buy \& hold model showed consistently good forecasting accuracy. The random walk model offered poor results. It should be noted that the random walk model produces a different result with each forecast. The compensate for this, the random walk model was evaluated three times for each dataset and the average of the results was used.
 
 \section{Concluding Remarks}
 
