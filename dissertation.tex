@@ -45,7 +45,8 @@
 \title{Econometric Modelling using \\Fuzzy Time Series Analysis}
 \author{Michael Gallagher}
 \date{}
-% thank khurshid, brian, sam, probably mick
+
+%TODO font of front cover
 
 \begin{document}
 
@@ -910,7 +911,7 @@ This section evaluates the results. The results indicate mixed performance from 
 
 \subsubsection{Basic Model}
 
-The basic fuzzy time series model performed poorly compared to the other models. It consistently score worse than half the models tested. However, it was generally more accurate than the random walk model.
+The basic fuzzy time series model performed poorly compared to the other models. It consistently performed worse than half the models tested. However, it was generally more accurate than the random walk model.
 
 \subsubsection{Higher-order Model}
 
@@ -922,7 +923,7 @@ The moving-window model offered mixed results. The 3-length moving window model 
 
 \subsubsection{Change-analysis Model}
 
-The change-analysis model offered strong results. The change analysis model implements the methodology of three models in the tests. None of the methods implemented perform consistently better than the others. The three methodologies generally performed better than half the models tested. This indicates that identifying the relationships between changes on a financial time series is a more effective analysis tool.
+The change-analysis model offered strong results. The change analysis model implements the methodology of three models in the tests. None of the methods implemented perform consistently better than the others. The three methodologies generally performed better than half the models tested. This indicates that performing fuzzy time series analysis on the changes of a time series can offer better results that analysing the original time series.
 
 \subsubsection{Naive Models}
 
@@ -932,11 +933,11 @@ The buy \& hold model showed consistently good forecasting accuracy. The random 
 
 %TODO proofread this
 
-This project explored the use of fuzzy time series analysis to model and forecast an econometric time series. Literature was reviewed on technical analysis and the evidence surrounding the use of past price to forecast future price. It emerged that the use of technical analysis is controversial. The efficient market hypothesis claims that the price of a security already reflects all information about that security and analysing past price in order to forecast future price is futile. However, positive evidence was found for trading strategies which implemented technical analysis. Several theoretical and empirical explanations for this were outlined.
+This project explored the use of fuzzy time series analysis to model and forecast an econometric time series. The a review was carried out on the literature studying technical analysis and the evidence surrounding the use of past price to forecast future price. It emerged that the use of technical analysis is controversial. The efficient market hypothesis claims that the price of a security already reflects all information about that security and analysing past price in order to forecast future price is futile. However, positive evidence was found for trading strategies which implemented technical analysis. Several theoretical and empirical explanations for this were outlined.
 
 Fuzzy time series analysis was used by the models in this project. Fuzzy time series analysis involves representing a time series with fuzzy sets and identifying the relationships between these fuzzy sets. These fuzzy sets can be expressed with linguistic terms which can be understood by an expert. A review of the literature found good time series forecasting performance. Variations to the basic fuzzy time series model were identified and approaches to calculating the optimal interval length were examined.
 
-Four fuzzy time series models were evaluated. The basic and higher-order models were identified in the literature. The basic model records the relationships between adjacent observations and uses these to forecast. The higher-order model identifies the relationship between multiple observations on the time series and allowed for partially complete patterns during forecasting. Moving-window and change-analysis models were proposed as a result of research into technical analysis techniques. The moving-window model identified complete pattern on the time series. The change-analysis model analyses the changes between observations on a time series and implements the methodology from other models to identify relationships.
+Four fuzzy time series models were evaluated. The basic and higher-order models were identified in the literature. The basic model records the relationships between adjacent observations and uses these to forecast. The higher-order model identifies the relationship between multiple observations on the time series and allowed for partially complete patterns during forecasting. Moving-window and change-analysis models were proposed as a result of research into technical analysis techniques. The moving-window model identified complete patterns on a time series. The change-analysis model analyses the changes between observations on a time series and implements the methodology from other models to identify relationships.
 
 A fuzzy time series framework was developed to evaluate the models. This framework was built in two iterations. The final implementation supports the evaluation of arbitrary datasets and the development of new models. It features a results suite to evaluate the performance of models simultaneously. This was achieved as a result of several speed optimisations and a custom fuzzy logic toolkit.
 
