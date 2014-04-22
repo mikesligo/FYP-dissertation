@@ -1,3 +1,4 @@
+\PassOptionsToPackage{table}{xcolor}
 \documentclass[12pt, oneside, a4paper]{article}
 
 \usepackage[utf8]{inputenc}
@@ -15,6 +16,8 @@
 \usepackage{tabulary}
 \usepackage{multicol}
 \usepackage{caption}
+\usepackage{xcolor}
+\usepackage{booktabs}
 %\usepackage[nottoc,notlot,notlof]{tocbibind}
 
 %fonts
@@ -653,28 +656,52 @@ Lazy evaluation is a method of evaluation in programming where an expression isn
 
 This project primarily implements lazy evaluation as it does not require a list be fully computed before it can be acted on, e.g.\ only the first value in a list would be calculated to obtain the head of a list. The results framework takes advantage of this by forecasting many variations to the fuzzy time series model simultaneously. Higher-order and moving-window time series can take from several seconds up to several minutes to run against the whole testing data. With lazy evaluation the current RMSE of each model at some point, e.g.\ after 100 observations, can be obtained. This greatly speeds the process of finding the optimal combination of parameters of a fuzzy time series model for different datasets.
 
-\section{Results \& Evaluation}
+\section{Results}
 
 \label{results}
 
-\begin{tikzpicture}
-    \begin{axis}[
-        symbolic x coords={Basic, Higher-Order (n=5), Moving-window (n=5)},
-        xtick=data,
-        ylabel=RMSE,
-        ymajorgrids, trim axis left, trim axis right
-      ]
-        \addplot[ybar,fill=blue] coordinates {
-            (Basic,   42)
-            (Higher-Order (n=5),  50)
-            (Moving-window (n=5),   80)
-        };
-    \end{axis}
-\end{tikzpicture}
+In this section, three financial datasets are used as experimental datasets:
 
-.
+\begin{enumerate}
+\item A fourteen-year period of EURUSD (Euro against the United States Dollar daily closing price.
+\item A four-year period of TAIEX (Taiwan stock exchange capitalization weighted stock index).
+\item A four-year period of the stock price for Google Inc.
+\end{enumerate}
 
-% show the moving window and changes models with higher orders
+The models outlines in \cref{design} are studied. Several of the models take user defined parameters. The change-analysis model implements the analysis methodology of other models. The models and the parameters that were tested are as follows:
+
+\begin{enumerate}[label=\roman*]
+\item Basic Model.
+\item Higher-order Model (n=5): 5-order fuzzy time series model.
+\item Higher-order Model (n=10): 10-order fuzzy time series model.
+\item Moving-window Model (n=3): 3-length moving-window model.
+\item Moving-window Model (n=5): 5-length moving-window model.
+\item Change-analysis - Basic: Change analysis model implementing a basic fuzzy time series model.
+\item Change-analysis - Higher-order (n=5): Change analysis model implementing a 5-order fuzzy time series model.
+\item Change-analysis - Moving-window (n=3): Change analysis model implementing a 3-length moving-window model.
+\item Random Walk Model.
+\item Buy \& Hold Model.
+\end{enumerate}
+
+To measure the forecasting performance of the models the root mean square error (RMSE) is employed as a performance indicator.
+
+\subsection{EURUSD}
+
+Evaluation was performed on the EURUSD dataset as a result of findings by \cite{taprofitability} that technical analysis is more suited to the foreign exchange market and that a large percentage of foreign exchange analysts utilised technical analysis.
+
+The data from $2001/01/03$ to $2009/12/31$ was chosen to train the models. The forecasting performance of the models was tested on the data from $2010/01/04$ to $2014/02/21$. 
+
+
+\begin{table}[H]
+	\center
+	\begin{tabulary}{1.0\textwidth}{@{}CC@{}}
+	\toprule[.15em]
+
+	RMSE  & & & & & & & & & &ta \\
+  	\toprule[.15em]
+	\end{tabulary}
+	\caption{EURUSD Forecasting Results}
+\end{table}
 
 % The application of neural networks to forecast fuzzy time series has a time breakdown of comparisons!c
 
