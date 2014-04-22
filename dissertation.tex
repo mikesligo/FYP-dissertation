@@ -62,7 +62,7 @@
 
 Technical analysis is a form of financial analysis where past price is studied and used to forecast future price. Technical analysts look for specific patterns, trends and price points when making investment decisions. It is a widely used but controversial form of analysis \citep{foundations}. Econometric theories such as the efficient-market hypothesis claim that the price of a security reflects all currently available information about that security, and making investment decisions based on past data cannot achieve greater than average returns. However, a review of the literature indicates that trading strategies that implement technical analysis can consistently generate profits \citep{taprofitability}.
 
-Technical analysis originates from the perception that market psychology causes certain patterns to emerge in a financial time series. Many of the techniques in use today were identified more than 50 years ago. Although the digital revolution has improved the process of technical analysis, new techniques which can be easily understood by analysts have not emerged.
+Technical analysis originates from the perception that market psychology causes certain patterns to emerge in a financial time series. Many of the techniques in use today were identified more than 50 years ago. Although the digital revolution has improved the process of technical analysis, few techniques which can be easily understood by analysts have not emerged.
 
 This project explores the use of fuzzy logic to perform technical analysis. It evaluates the performance of several fuzzy time series models when used for forecasting on a financial time series. These models are more easily understood by an expert as they utilise fuzzy set theory, allowing complex models to be expressed using linguistic terms. Fuzzy sets are sets whose elements have degrees of membership. For example, the fuzzy sets $tall$ and $average$ describe height. A man who is $180cm$ tall may be described as ``kind-of'' tall as well as ``kind-of' average. He has a membership in both fuzzy sets, but he may have a larger membership in $tall$ than $average$.
 
@@ -72,9 +72,7 @@ A moving-window model and a change-analysis model are proposed as alterations to
 
 Interval selection algorithms which can cause practical problems in a fuzzy time series have also been examined and are discussed in \cref{interval}.
 
-\Cref{design} outlines the definitions and steps involved in producing the models.
-
-\Cref{implementation} discusses the development of a fuzzy time series framework. This framework was used for developing, modifying and testing the fuzzy time series models. \Cref{results} provides an evaluation of the models.
+\Cref{design} outlines the definitions and steps involved in producing the models. \Cref{implementation} discusses the development of a fuzzy time series framework. This framework was used for developing, modifying and testing the fuzzy time series models. \Cref{results} provides an evaluation of the models.
 
 \section{Literature Review}
 
@@ -853,9 +851,19 @@ The buy \& hold model showed consistently good forecasting accuracy. The random 
 
 \section{Concluding Remarks}
 
+This project explored the use of fuzzy time series analysis to model and forecast an econometric time series. 
+
 This project tested the performance of four fuzzy time series models and two naive models when forecasting financial time series. The fuzzy time series models demonstrated mix forecasting performance. 
 
+\subsection{Limitations}
+
 \subsection{Future work}
+
+Use models to display patterns
+
+More datasets
+
+More combinations and parameters
 
 .
 \newpage
