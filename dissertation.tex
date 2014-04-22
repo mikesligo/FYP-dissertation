@@ -827,7 +827,7 @@ The results for GOOG forecasting are shown in \cref{googresults} and a bar chart
 
 \subsection{Evaluation}
 
-This section evaluates the results. The results indicate mixed performance from the fuzzy time series models when used for forecasting. The fuzzy time series models generally outperform the random walk model, but are generally less accurate than the buy \& hold model. None of the models consistently outperform the others. The Change-analysis model implements the methodology of the three other fuzzy time series models and generally offers better results than the original models. This indicates that better forecasting performance can be achieved by analysing the changes on a time series.
+This section evaluates the results. The results indicate mixed performance from the fuzzy time series models when used for forecasting. The fuzzy time series models generally outperform the random walk model, but are generally less accurate than the buy \& hold model. None of the models consistently outperform the others. The change-analysis model implements the methodology of the three other fuzzy time series models and generally offers better results than the original models. This indicates that better forecasting performance can be achieved by analysing the changes on a time series.
 
 \subsubsection{Basic Model}
 
@@ -859,9 +859,7 @@ Four fuzzy time series models were evaluated. The basic and higher-order models 
 
 A fuzzy time series framework was developed to evaluate the models. This framework was built in two iterations. The final implementation supports the evaluation of arbitrary datasets and the development of new models. It features a results suite to evaluate the performance of models simultaneously. This was achieved as a result of several speed optimisations and a custom fuzzy logic toolkit.
 
-The models were evaluated using the root mean squared error as a performance indicator. Three financial datasets were used as experimental datasets. Several models were evaluated with different sets of parameters. Two naive models were also tested for comparison. 
-
-This project tested the performance of four fuzzy time series models and two naive models when forecasting financial time series. The fuzzy time series models demonstrated mix forecasting performance. 
+The models were evaluated using the root mean squared error as a performance indicator. Three financial datasets were used as experimental datasets. Several models were evaluated with different sets of parameters. Two naive models were also tested for comparison. The fuzzy time series models were found to offer mixed results. The results of each model were evaluated individually. The basic and higher-order model performed poorly. The moving-window model offered mixed results. The change-analysis model, which implements the other models, performed better than the models which it implemented. This indicates that future work involving analysing the changes on a time series using fuzzy time series analysis is warranted.
 
 \subsection{Limitations}
 
