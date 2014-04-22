@@ -694,29 +694,29 @@ The data from $2001/01/03$ to $2009/12/31$ was chosen to train the models. The f
 
 \begin{table}[H]
 	\center
-	\begin{tabulary}{1.0\textwidth}{@{}CC@{}}
+	\begin{tabulary}{1.0\textwidth}{CC}
 	\toprule[.15em]
 	Model & RMSE \\
-	\hline
+	\toprule[.15em]
 	Basic Model & 0.00893 \\
 	\hline
-	Higher-order Model (n=5) & \\
+	Higher-order Model (n=5) & 0.00975\\
 	\hline
-	Higher-order Model (n=10) & \\
+	Higher-order Model (n=10) & 0.00877\\
 	\hline
-	Moving-window Model (n=3) & \\
+	Moving-window Model (n=3) & 0.00899\\
 	\hline
-	Moving-window Model (n=5) & \\
+	Moving-window Model (n=5) & 0.00838\\
 	\hline
-	Change-analysis - Basic & \\
+	Change-analysis - Basic & 0.00893\\
 	\hline
-	Change-analysis - Higher-order (n=5) & \\
+	Change-analysis - Higher-order (n=5) & 0.00846\\
 	\hline
-	Change-analysis - Moving-window (n=3) & \\
+	Change-analysis - Moving-window (n=3) & 0.00840\\
 	\hline
-	Random Walk Model & \\
+	Random Walk Model & 0.00993\\
 	\hline
-	Buy \& Hold Model & \\
+	Buy \& Hold Model & 0.00832\\
   	\toprule[.15em]
 	\end{tabulary}
 	\caption{EURUSD Forecasting Results}
