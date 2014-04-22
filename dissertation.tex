@@ -687,10 +687,16 @@ To measure the forecasting performance of the models the root mean square error 
 
 \subsection{EURUSD}
 
-Evaluation was performed on the EURUSD dataset as a result of findings by \cite{taprofitability} that technical analysis is more suited to the foreign exchange market and that a large percentage of foreign exchange analysts utilised technical analysis.
+EURUSD is chosen as a dataset to test the performance of the models as a result of findings by \cite{taprofitability} that a large percentage of foreign exchange analysts utilise technical analysis.
 
-The data from $2001/01/03$ to $2009/12/31$ was chosen to train the models. The forecasting performance of the models was tested on the data from $2010/01/04$ to $2014/02/21$. 
+The models were trained with data from $2001/01/03$ to $2009/12/31$ and were tested using data from $2010/01/04$ to $2014/02/21$. The results of the forecasting are shown in \cref{eurusdresults}. A bar chart of the results is shown in \cref{eurusdbar}.
 
+\begin{figure}[H]
+    \centering
+    \caption{EURUSD Forecasting Results Bar Chart}
+    \includegraphics[width=0.85\textwidth]{images/eurusdbar.png}
+    \label{eurusdbar}
+\end{figure}
 
 \begin{table}[H]
 	\center
@@ -720,9 +726,96 @@ The data from $2001/01/03$ to $2009/12/31$ was chosen to train the models. The f
   	\toprule[.15em]
 	\end{tabulary}
 	\caption{EURUSD Forecasting Results}
+	\label{eurusdresults}
 \end{table}
 
-% The application of neural networks to forecast fuzzy time series has a time breakdown of comparisons!c
+\subsection{TAIEX}
+
+The TAIEX dataset was chosen as it is used in several of the fuzzy time series studied reviewed in the literature.
+
+The models were trained with data from $2000/01/05$ to $2002/11/18$ and were tested using data from $2003/01/28$ to $2004/11/22$. The results of the forecasting are shown in \cref{taiexresults}. A bar chart of the results is shown in \cref{taiexbar}.
+
+\begin{figure}[H]
+    \centering
+    \caption{TAIEX Forecasting Results Bar Chart}
+    \includegraphics[width=0.85\textwidth]{images/taiexbar.png}
+    \label{taiexbar}
+\end{figure}
+
+\begin{table}[H]
+	\center
+	\begin{tabulary}{1.0\textwidth}{CC}
+	\toprule[.15em]
+	Model & RMSE \\
+	\toprule[.15em]
+	Basic Model & 199.36 \\
+	\hline
+	Higher-order Model (n=5) & 215.02\\
+	\hline
+	Higher-order Model (n=10) & 237.09\\
+	\hline
+	Moving-window Model (n=3) & 240.79\\
+	\hline
+	Moving-window Model (n=5) & 215.02\\
+	\hline
+	Change-analysis - Basic & 157.26\\
+	\hline
+	Change-analysis - Higher-order (n=5) & 156.97\\
+	\hline
+	Change-analysis - Moving-window (n=3) & 185.33\\
+	\hline
+	Random Walk Model & 452.57\\
+	\hline
+	Buy \& Hold Model & 160.32\\
+  	\toprule[.15em]
+	\end{tabulary}
+	\caption{TAIEX Forecasting Results}
+	\label{taiexresults}
+\end{table}
+
+\subsection{GOOG}
+
+The GOOG dataset was chosen for testing as it was a high volume stock.
+
+The models were trained with data from $2010/04/23$ to $2013/4/22$ and were tested using data from $2013/04/23$ to $2014/04/21$. The results of the forecasting are shown in \cref{googresults}. A bar chart of the results is shown in \cref{googbar}.
+
+\begin{figure}[H]
+    \centering
+    \caption{GOOG Forecasting Results Bar Chart}
+    \includegraphics[width=0.85\textwidth]{images/googbar.png}
+    \label{googbar}
+\end{figure}
+
+\begin{table}[H]
+	\center
+	\begin{tabulary}{1.0\textwidth}{CC}
+	\toprule[.15em]
+	Model & RMSE \\
+	\toprule[.15em]
+	Basic Model & 10.083 \\
+	\hline
+	Higher-order Model (n=5) & 8.084\\
+	\hline
+	Higher-order Model (n=10) & 7.615\\
+	\hline
+	Moving-window Model (n=3) & 7.227\\
+	\hline
+	Moving-window Model (n=5) & 7.077\\
+	\hline
+	Change-analysis - Basic & 7.561\\
+	\hline
+	Change-analysis - Higher-order (n=5) & 7.358\\
+	\hline
+	Change-analysis - Moving-window (n=3) & 7.227\\
+	\hline
+	Random Walk Model & 8.976\\
+	\hline
+	Buy \& Hold Model & 7.161\\
+  	\toprule[.15em]
+	\end{tabulary}
+	\caption{GOOG Forecasting Results}
+	\label{googresults}
+\end{table}
 
 \section{Concluding Remarks}
 .
