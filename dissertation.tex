@@ -158,7 +158,7 @@ The typical use of a fuzzy time series is to forecast observations on the time s
 \item If there are multiple fuzzy logical relationships associated with $A_i$ such that $A_i \rightarrow A_{i}, A_{j}, \ldots, A_{k}$, then $F(t+1)$ is forecast as $A_{i}, A_{j}, \ldots, A_{k}$
 \item If there are no fuzzy logical relationships associated with $A_i$, then $F(t+1)$ is forecast as $A_i$
 \end{enumerate}
-\item[Step 6] Defuzzify the forecast fuzzy set using the Centroid method. Practically, this involves calculating the average of the midpoints of each interval which has a maximum membership in each fuzzy set that is forecast for $F(t+1)$
+\item[Step 6] Defuzzify the forecast fuzzy set using the Centroid method. Practically, this involves calculating the average of the midpoints of each interval which has a maximum membership in each fuzzy set that is forecast for $F(t+1)$.
 \end{description}
 
 \subsubsection{Higher-Order Models}
@@ -193,9 +193,9 @@ The ratio-based approach was evaluated using the same methodology as used by \ci
 
 \label{design}
 
-This section provides a description of each of the models evaluated in this project. Four of these models are fuzzy time series models: The basic model identifies relationships between adjacent points on a time series and uses these to forecast observations. The higher-order model identifies relationships between multiple points on the time series and forecasts multiple observations which must all agree. The moving-window model identifies relationships between patterns on the time series and the subsequent observation. The change-analysis model identifies changes by analysing price movement instead of price value, it utilises other fuzzy time series models to identify relationships. 
+This section provides a description of each of the models evaluated in this project. Four of these models are fuzzy time series models. The basic model identifies relationships between adjacent points on a time series and uses these to forecast observations. The higher-order model identifies relationships between multiple points on the time series and forecasts multiple observations which must all agree. The moving-window model identifies relationships between patterns on the time series and the subsequent observation. The change-analysis model identifies changes by analysing price movement instead of price value, it utilises other fuzzy time series models to identify relationships. 
 
-Two naive models are described: The buy \& hold model forecasts that the next observation on a time series will be the same as the current observation. The random walk model forecasts that prices change randomly according to a Gaussian distribution. 
+Two naive models are described. The buy \& hold model forecasts that the next observation on a time series will be the same as the current observation. The random walk model forecasts that prices change randomly according to a Gaussian distribution. 
 
 This section also provides the methodology used for measuring the performance of the models and the ratio-based approach to interval calculation.
 
@@ -222,6 +222,7 @@ In \cref{def1}, $Y(t)$ represents a time series. The range of the observations i
 
 \begin{figure}[H]
 	\centering
+	\caption{5-day closing stock price Y(t)}
 	\begin{tikzpicture} 
 		\begin{axis}[xlabel=Day,ylabel=Price (\$), ymajorgrids, trim axis left, trim axis right] 
 			\addplot coordinates { 
@@ -233,7 +234,6 @@ In \cref{def1}, $Y(t)$ represents a time series. The range of the observations i
 			}; 
 		\end{axis} 
 	\end{tikzpicture}
-	\caption{5-day closing stock price Y(t)}
 	\label{graph}
 \end{figure}
 
@@ -450,6 +450,7 @@ The change-analysis uses the methodology of other models which identify a sequen
 
 \begin{figure}[H]
 	\centering
+	\caption{5-day change of price Y(t)}
 	\begin{tikzpicture} 
 		\begin{axis}[xlabel=Day,ylabel=Price (\$), ymajorgrids, trim axis left, trim axis right] 
 			\addplot coordinates { 
@@ -461,7 +462,6 @@ The change-analysis uses the methodology of other models which identify a sequen
 			}; 
 		\end{axis} 
 	\end{tikzpicture}
-	\caption{5-day change of price Y(t)}
 	\label{changes}
 \end{figure}
 
@@ -605,14 +605,14 @@ The framework features a testing and results suite. It allows for many different
 
 The testing suite can perform comparisons with any model that implements a forecasting interface. Two naive models are included in the project, a ``buy \& hold'' model and a ``random walk'' model. The ``random walk'' model analyses the training data and calculates the standard deviation of changes, and uses this standard deviation to generate a Gaussian distribution which is randomly sampled to obtain a forecast value. The ``buy \& hold'' model uses the observation at time $t$ as the forecast for observation time $t+1$.
 
-The code was designed with an object-orientated design. The classes of objects, their methods and general interfaces are shown in \cref{uml}. 
+The code was designed with an object-orientated design. The classes of objects, their methods and general interfaces are shown in \cref{uml} below. 
 
 The code was written following style guidelines outlined by \cite{bobmartin}. The project followed good programming practices from this book including regular refactoring of code, methods that ``do one thing'', short purposeful classes, meaningful method and class names and designing code such that comments are made redundant.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\textwidth]{images/class_diag_a4_priv.png}
     \caption{UML Class Diagram}
+    \includegraphics[width=1.0\textwidth]{images/class_diag_a4_priv.png}
     \label{uml}
 \end{figure}
 \newpage
@@ -867,17 +867,15 @@ Several models studied in the project take user defined parameters. The change-a
 
 The models were tested using three financial datasets. No models consistently outperformed the others. Evaluating the performance of the models using more datasets may indicate that certain models are more suited to particular types of financial data.
 
-The RMSE performance indicate does not indicate how a model would perform under trading conditions. The RMSE performance indicator give the sample standard deviation of the forecasting error. It is used to measure the variance of a time series forecasting tool.
+The RMSE performance indicator does not indicate how a model would perform under trading conditions. The RMSE performance indicator gives the sample standard deviation of the forecasting error. It is used to measure the variance of the forecasting results. 
+%TODO above
 
 \subsection{Future work}
 
-Use models to display patterns
+Further work should be carried out to fully evaluate the models. Evaluations should be carried out using a larger range of datasets. The forecasting performance of different parameters and model combinations should also be evaluated.
 
-More datasets
+The higher-order and moving-window fuzzy time series models identify regular patterns in a time series. These patterns can be expressed using linguistic terms. Further work could be done to extract recurring patterns from the models in a form that could be used by an analyst for forecasting.
 
-More combinations and parameters
-
-.
 \newpage
 \appendix
 \begin{appendices}
@@ -892,8 +890,8 @@ There are many trading strategies that use technical analysis. Almost any strate
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/blackwhite.png}
     \caption{Moving Average Cross Indicator}
+    \includegraphics[width=0.8\textwidth]{images/blackwhite.png}
     \label{ma}
 \end{figure}
 
@@ -906,11 +904,11 @@ Technical Patterns are visual patterns that appear in a graph of price movement.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/uptrend.png}
     \caption{Visual Support Line}
+    \includegraphics[width=0.8\textwidth]{images/uptrend.png}
 \end{figure}
 
-Pivot points, Support and Resistance price levels which are very commonly calculated in industry but have not received significant academic attention \citep[p.~55]{osler2000support}. According to \cite{murphy1999technical}, a support level is ``a level or area on the chart under the market where buying interest is sufficiently strong to overcome selling pressure. As a result, a decline is halted and prices turn back up again''. Resistance is the opposite of support. Often they are levels where the price has had difficulty breaking before, either as static price points (such as the weekly low price) or points where the price meets a trend line that it appears to be bounding off. \cite{brock1992} found strong support for this style of trading strategy.
+Pivot points, Support and Resistance price levels are very commonly calculated in industry but have not received significant academic attention \citep[p.~55]{osler2000support}. According to \cite{murphy1999technical}, a support level is ``a level or area on the chart under the market where buying interest is sufficiently strong to overcome selling pressure. As a result, a decline is halted and prices turn back up again''. Resistance is the opposite of support. Often they are levels where the price has had difficulty breaking before, either as static price points (such as the weekly low price) or points where the price meets a trend line that it appears to be bounding off. \cite{brock1992} found strong support for this style of trading strategy.
 \end{appendices}
 % \clearpage
 
