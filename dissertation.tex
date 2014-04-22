@@ -663,12 +663,14 @@ This project primarily implements lazy evaluation as it does not require a list 
 In this section, three financial datasets are used as experimental datasets:
 
 \begin{enumerate}
-\item A fourteen-year period of EURUSD (Euro against the United States Dollar daily closing price.
-\item A four-year period of TAIEX (Taiwan stock exchange capitalization weighted stock index).
-\item A four-year period of the stock price for Google Inc.
+\item A fourteen-year period of EURUSD (Euro against the United States Dollar) daily closing price. EURUSD is chosen as a result of findings by \cite{taprofitability} that a large percentage of foreign exchange analysts utilise technical analysis. The models were trained with data from $2001/01/03$ to $2009/12/31$ and tested using data from $2010/01/04$ to $2014/02/21$.
+
+\item A four-year period of TAIEX (Taiwan stock exchange capitalization weighted stock index). This dataset was chosen as it is used in several of the fuzzy time series studied reviewed in the literature. The models were trained with data from $2000/01/05$ to $2002/11/18$ and tested using data from $2003/01/28$ to $2004/11/22$. 
+
+\item A four-year period of the stock price for Google Inc (GOOG). The GOOG dataset was chosen for testing as it was a high volume stock. The models were trained with data from $2010/04/23$ to $2013/4/22$ and tested using data from $2013/04/23$ to $2014/04/21$.
 \end{enumerate}
 
-The models outlines in \cref{design} are studied. Several of the models take user defined parameters. The change-analysis model implements the analysis methodology of other models. The models and the parameters that were tested are as follows:
+The models outlined in \cref{design} are studied. Several of the models take user defined parameters. The change-analysis model implements the analysis methodology of other models. The models and the parameters that were tested are as follows:
 
 \begin{enumerate}[label=\roman*]
 \item Basic Model.
@@ -685,11 +687,11 @@ The models outlines in \cref{design} are studied. Several of the models take use
 
 To measure the forecasting performance of the models the root mean square error (RMSE) is employed as a performance indicator.
 
-\subsection{EURUSD}
+The results for the models when used for forecasting EURUSD are shown in \cref{eurusdresults} and a bar chart of the results is shown in \cref{eurusdbar}. 
+The results for TAIEX forecasting are shown in \cref{taiexresults} and a bar chart of the results is shown in \cref{taiexbar}. 
+The results for GOOG forecasting are shown in \cref{googresults} and a bar chart of the results is shown in \cref{googbar}.
 
-EURUSD is chosen as a dataset to test the performance of the models as a result of findings by \cite{taprofitability} that a large percentage of foreign exchange analysts utilise technical analysis.
-
-The models were trained with data from $2001/01/03$ to $2009/12/31$ and were tested using data from $2010/01/04$ to $2014/02/21$. The results of the forecasting are shown in \cref{eurusdresults}. A bar chart of the results is shown in \cref{eurusdbar}.
+\newpage
 
 \begin{figure}[H]
     \centering
@@ -729,12 +731,6 @@ The models were trained with data from $2001/01/03$ to $2009/12/31$ and were tes
 	\label{eurusdresults}
 \end{table}
 
-\subsection{TAIEX}
-
-The TAIEX dataset was chosen as it is used in several of the fuzzy time series studied reviewed in the literature.
-
-The models were trained with data from $2000/01/05$ to $2002/11/18$ and were tested using data from $2003/01/28$ to $2004/11/22$. The results of the forecasting are shown in \cref{taiexresults}. A bar chart of the results is shown in \cref{taiexbar}.
-
 \begin{figure}[H]
     \centering
     \caption{TAIEX Forecasting Results Bar Chart}
@@ -772,12 +768,6 @@ The models were trained with data from $2000/01/05$ to $2002/11/18$ and were tes
 	\caption{TAIEX Forecasting Results}
 	\label{taiexresults}
 \end{table}
-
-\subsection{GOOG}
-
-The GOOG dataset was chosen for testing as it was a high volume stock.
-
-The models were trained with data from $2010/04/23$ to $2013/4/22$ and were tested using data from $2013/04/23$ to $2014/04/21$. The results of the forecasting are shown in \cref{googresults}. A bar chart of the results is shown in \cref{googbar}.
 
 \begin{figure}[H]
     \centering
