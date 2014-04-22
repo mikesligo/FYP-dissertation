@@ -859,9 +859,13 @@ Four fuzzy time series models were evaluated. The basic and higher-order models 
 
 A fuzzy time series framework was developed to evaluate the models. This framework was built in two iterations. The final implementation supports the evaluation of arbitrary datasets and the development of new models. It features a results suite to evaluate the performance of models simultaneously. This was achieved as a result of several speed optimisations and a custom fuzzy logic toolkit.
 
-The models were evaluated using the root mean squared error as a performance indicator. Three financial datasets were used as experimental datasets. Several models were evaluated with different sets of parameters. Two naive models were also tested for comparison. The fuzzy time series models were found to offer mixed results. The results of each model were evaluated individually. The basic and higher-order model performed poorly. The moving-window model offered mixed results. The change-analysis model, which implements the other models, performed better than the models which it implemented. This indicates that future work involving analysing the changes on a time series using fuzzy time series analysis is warranted.
+The models were evaluated using the root mean squared error as a performance indicator. Three financial datasets were used as experimental datasets. Several models were evaluated with different sets of parameters. Two naive models were also tested for comparison. The fuzzy time series models were found to offer mixed results. The results of each model were evaluated individually. The basic and higher-order model performed poorly. The moving-window model offered mixed results. The change-analysis model, which implements the other models, performed better than the models which it implemented. This indicates that future fuzzy time series studies should perform evaluations using the changes of a time series.
 
 \subsection{Limitations}
+
+Several models studied in the project take user defined parameters. The change-analysis model implements the methodology of other models to perform analysis. This project evaluates the performance of the models using a subset of the combinations of models and parameters possible. This may result in misleading results.
+
+The models were tested using three financial datasets. No models consistently outperformed the others. Evaluating the models against more datasets may indicate superior performance of an individual model.
 
 \subsection{Future work}
 
