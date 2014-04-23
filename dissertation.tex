@@ -46,13 +46,11 @@
 \author{Michael Gallagher}
 \date{}
 
-%TODO font of front cover
-
 \begin{document}
 
 % % % % % % % % % % % %
 \thispagestyle{empty}
-\centerline{\huge{University of Dublin}} 
+\centerline{\LARGE{University of Dublin}} 
 
 \vspace{5mm}
 
@@ -62,7 +60,7 @@
 
 \vspace{5mm}
 
-\centerline{\LARGE{TRINITY COLLEGE}} 
+\centerline{\Huge{TRINITY COLLEGE}} 
 
 \vspace{10mm}
 
@@ -142,16 +140,14 @@ This project explores the use of fuzzy logic to perform technical analysis on a 
 
 Technical analysis is a form of financial analysis where past price is studied and used to forecast future price. Technical analysts look for specific patterns, trends and price points when making investment decisions. It is a widely used but controversial form of analysis \citep{foundations}. Econometric theories such as the efficient-market hypothesis claim that the price of a security reflects all currently available information about that security, and making investment decisions based on past data cannot achieve greater than average returns. However, a review of the literature indicates that trading strategies that implement technical analysis can consistently generate profits \citep{taprofitability}.
 
-Technical analysis originates from the perception that market psychology causes certain patterns to emerge in a financial time series. Many of the techniques in use today were identified more than 50 years ago. Although the digital revolution has improved the process of technical analysis, few techniques which can be easily understood by analysts have not emerged.
+This project explores the use of fuzzy logic to perform technical analysis. It evaluates the performance of several fuzzy time series models when used for forecasting on a financial time series. These models utilise fuzzy set theory, allowing them to be expressed using linguistic terms which are more easily understood by an expert. Fuzzy sets are sets whose elements have degrees of membership. For example, the fuzzy sets $tall$ and $average$ describe height. A man who is $180cm$ tall may be described as ``kind-of'' tall as well as ``kind-of' average. He has a membership in both fuzzy sets, but he may have a larger membership in $tall$ than $average$.
 
-This project explores the use of fuzzy logic to perform technical analysis. It evaluates the performance of several fuzzy time series models when used for forecasting on a financial time series. These models are more easily understood by an expert as they utilise fuzzy set theory, allowing complex models to be expressed using linguistic terms. Fuzzy sets are sets whose elements have degrees of membership. For example, the fuzzy sets $tall$ and $average$ describe height. A man who is $180cm$ tall may be described as ``kind-of'' tall as well as ``kind-of' average. He has a membership in both fuzzy sets, but he may have a larger membership in $tall$ than $average$.
+The models evaluated in this project use fuzzy time series analysis. Two such models which are examined in this project are a basic fuzzy time series model and a higher-order fuzzy time series model. With the basic model observations on a time series are mapped onto fuzzy sets, each set representing a range of values on the time series to different degrees of membership. Changes from one fuzzy set to another are recorded as a relationship between these fuzzy sets. Once all the desired relationships are identified they are grouped together and used for forecasting. The higher-order model identifies the relationships between observations that are multiple points in time apart. It offers a more precise model of the original time series as multiple sets of fuzzy logical relationship groups need to agree on the forecast. It also adds another dimension of fuzziness, such that partially completed patterns will be recognised. 
 
-The models evaluated in this project use fuzzy time series analysis. Two such models which are examined in this project are a basic fuzzy time series model and a higher-order fuzzy time series model. In a basic fuzzy time series model, observations on a time series are mapped onto fuzzy sets, each set representing a range of values on the time series to different degrees of membership. Changes from one fuzzy set to another are recorded as a relationship between these fuzzy sets. Once all the desired relationships are identified they are grouped together and used for forecasting. In a higher-order fuzzy time series the relationships between observations that are multiple points in time apart are identified. It offers a more precise model of the original time series as multiple sets of fuzzy logical relationship groups need to agree on the forecast. It also adds another dimension of fuzziness, such that partially completed patterns will be recognised. 
-
-A moving-window model and a change-analysis model are proposed as alterations to these models. A moving-window model is a stricter form of the higher-order fuzzy time series model and forecasts based on complete patterns that have been identified in the training data. A change analysis model performs fuzzy time series analysis on the changes in a time series and identifies technical patterns based on the movement of price instead of the position of price. Naive time series forecasting models are also evaluated for comparison. 
+Two variations of these models are proposed, a moving-window model and a change-analysis model. The moving-window model is a stricter form of the higher-order model and forecasts using complete patterns that have been identified in the training data. The change analysis model performs fuzzy time series analysis on the changes in a time series and identifies technical patterns based on the movement of price instead of the position of price. Naive time series forecasting models are also evaluated for comparison. 
 
 Interval selection algorithms which can cause practical problems in a fuzzy time series have also been examined and are discussed in \cref{interval}.
-
+\noindent
 \Cref{design} outlines the definitions and steps involved in producing the models. \Cref{implementation} discusses the development of a fuzzy time series framework. This framework was used for developing, modifying and testing the fuzzy time series models. \Cref{results} provides an evaluation of the models.
 
 \section{Literature Review}
