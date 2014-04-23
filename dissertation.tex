@@ -120,13 +120,15 @@ Michael Gallagher, \today
 \section*{Acknowledgements}
 \thispagestyle{empty}
 \noindent
-I'd like to to thank my supervisor, Prof. Khurshid Ahmad, for engaging my enthusiasm from the beginning, introducing me to new areas of research and making sure I stayed on track. I'd like to thank my Uncles, Michael Burke and Brian Leavy for providing invaluable feedback on the content and structure of the final report. I'd also like to thank my friend, Samuel Mardirosian, for helping proofread the report. Finally I'd like to thank Kevin Bluett for his wonderful espresso machine.
+I'd like to to thank my supervisor, Prof. Khurshid Ahmad, for engaging my enthusiasm from the beginning, introducing me to new areas of research and making sure I stayed on track. 
+
+I'd like to thank my Uncles, Michael Burke and Brian Leavy for providing invaluable feedback on the content and structure of the final report. I'd also like to thank my friend, Samuel Mardirosian, for helping proofread the report. Finally I'd like to thank Kevin Bluett for the use of his wonderful espresso machine.
 %TODO review this
 \newpage
 
 \begin{abstract}
 \noindent
-This project explores the use of fuzzy logic to perform technical analysis on a financial time series. Technical analysis is financial analysis where past price is used to forecast future price movements. It is a widely used but controversial form of analysis. This project evaluates the performance of several fuzzy time series models when used for forecasting econometric time series. The models utilise fuzzy time series analysis in their design, which identifies regular patterns in a time series and uses these to forecast observations. The models which are studied are derived from the literature. Variations to these models are introduced as a result of research into technical analysis in financial markets. Naive time series forecasting models are also evaluated for comparison. A fuzzy time series framework is developed for designing, modifying and testing the proposed fuzzy time series models.
+This project evaluates the performance of several fuzzy time series models when used for forecasting econometric time series. The models utilise fuzzy time series analysis in their design, which identifies regular patterns in a time series and uses these to forecast observations. The models which are studied are derived from the literature. Variations to these models are proposed as a result of research into technical analysis in financial markets. Naive time series forecasting models are also evaluated for comparison. A fuzzy time series framework is developed for designing, modifying and testing the proposed fuzzy time series models.
 
 \end{abstract}
 
@@ -741,10 +743,10 @@ In this section, three financial datasets are used as experimental datasets:
 
 \item A four-year period of TAIEX (Taiwan stock exchange capitalization weighted stock index). The models were trained with data from $2000/01/05$ to $2002/11/18$ and tested using data from $2003/01/28$ to $2004/11/22$. 
 
-\item A four-year period of the stock price for Google Inc (GOOG). The models were trained with data from $2010/04/23$ to $2013/4/22$ and tested using data from $2013/04/23$ to $2014/04/21$.
+\item A four-year period of the stock price for Google Inc.\ (GOOG). The models were trained with data from $2010/04/23$ to $2013/4/22$ and tested using data from $2013/04/23$ to $2014/04/21$.
 \end{enumerate}
 
-The forecasting performance of the models outlined in \cref{design} are studied. The root mean square error (RMSE) is employed as a performance indicator. Several models take user defined parameters and the change-analysis model implements the analysis methodology of other models. The models and the parameters that were tested are shown in \cref{params}.
+The forecasting performance of the models outlined in \cref{design} is studied. The root mean square error (RMSE) is employed as a performance indicator. Several models take user defined parameters and the change-analysis model implements the analysis methodology of other models. The models and the parameters that were tested are shown in \cref{params}.
 
 The results for the models when used for forecasting EURUSD are shown in \cref{eurusdresults} and a bar chart of the results is shown in \cref{eurusdbar}. 
 
@@ -903,19 +905,19 @@ The results for GOOG forecasting are shown in \cref{googresults} and a bar chart
 
 \subsection{Evaluation}
 
-This section evaluates the results. The results indicate mixed performance from the fuzzy time series models when used for forecasting. The fuzzy time series models generally outperform the random walk model, but are generally less accurate than the buy \& hold model. None of the models consistently outperform the others. The change-analysis model implements the methodology of the three other fuzzy time series models and generally offers better results than the original models. This indicates that better forecasting performance can be achieved by analysing the changes on a time series.
+This section evaluates the results. The results indicate mixed performance from the fuzzy time series models when used for forecasting. The fuzzy time series models generally outperform the random walk model, but are generally less accurate than the buy \& hold model. None of the models consistently outperform the others. The change-analysis model implements the methodology of the three other fuzzy time series models and generally offers better results than the original models. This indicates that better forecasting accuracy can be achieved by analysing the changes on a time series.
 
 \subsubsection{Basic Model}
 
-The basic fuzzy time series model performed poorly compared to the other models. It consistently performed worse than half the models tested. However, it was generally more accurate than the random walk model.
+The basic fuzzy time series model performed poorly compared to the other models. It consistently performed worse than half the models in any test. However, it was generally more accurate than the random walk model.
 
 \subsubsection{Higher-order Model}
 
-The higher-order models performed worse than at least half the models for all datasets. In contrast to the literature, the higher-order models did not consistently outperform the basic model. In addition, a 10-order model did not perform consistently higher than the 5-order model. The discrepancy between the results and the literature is likely caused by different testing methods in the literature. The higher-order fuzzy time series models in the literature were trained and tested on the same data.
+The higher-order models performed worse than at least half the models for all datasets. In contrast to the literature, the higher-order models did not consistently outperform the basic model. In addition, a 10-order model did not perform consistently higher than the 5-order model. The discrepancy between the results and the literature is likely caused by the different testing methods used. The higher-order fuzzy time series models in the literature were trained and tested on the same data.
 
 \subsubsection{Moving-window Model}
 
-The moving-window model offered mixed results. The 3-length moving window model performed consistently worse than the 5-length model. These results should be evaluated with an understanding of the fuzzy time series methodology. In a $n$-length moving window model, if the fuzzy sets for the most recent $n$ observations were not found in the training data then the fuzzy set for the current observation is forecast. This results in behaviour similar to the buy \& hold model. This behaviour will occur more frequently with a 5-length moving window than a 3-length moving window, which explains why the performance 5-length moving window model is similar to the buy \& hold model.
+The moving-window model offered mixed results. The 3-length moving window model performed consistently worse than the 5-length moving window model. These results should be evaluated with an understanding of the fuzzy time series methodology. In a $n$-length moving window model, if the fuzzy sets for the most recent $n$ observations were not found in the training data then the fuzzy set for the current observation is forecast. This results in behaviour similar to the buy \& hold model. This behaviour will occur more frequently with a 5-length moving window than a 3-length moving window, which explains why the performance 5-length moving window model is more similar to the buy \& hold model.
 
 \subsubsection{Change-analysis Model}
 
@@ -923,37 +925,34 @@ The change-analysis model offered strong results. The change analysis model impl
 
 \subsubsection{Naive Models}
 
-The buy \& hold model showed consistently good forecasting accuracy. The random walk model offered poor results. It should be noted that the random walk model produces a different result with each forecast. The compensate for this, the random walk model was evaluated three times for each dataset and the average of the results was used.
+The buy \& hold model showed consistently good forecasting accuracy. The random walk model offered poor results. It should be noted that the random walk model produces a different result with each forecast. To compensate for this, the random walk model was evaluated three times for each dataset and the average of the results was used.
 
 \section{Concluding Remarks}
 
 %TODO proofread this
 
-This project explored the use of fuzzy time series analysis to model and forecast an econometric time series. The a review was carried out on the literature studying technical analysis and the evidence surrounding the use of past price to forecast future price. It emerged that the use of technical analysis is controversial. The efficient market hypothesis claims that the price of a security already reflects all information about that security and analysing past price in order to forecast future price is futile. However, positive evidence was found for trading strategies which implemented technical analysis. Several theoretical and empirical explanations for this were outlined.
+This project explored the use of fuzzy time series analysis to model and forecast an econometric time series. A review of the literature found that the use of technical analysis is controversial. The efficient market hypothesis claims that the price of a security already reflects all information about that security and analysing past price in order to forecast future price is futile. However, positive evidence was found for trading strategies which implemented technical analysis. Several theoretical and empirical explanations for this were outlined.
 
-Fuzzy time series analysis was used by the models in this project. Fuzzy time series analysis involves representing a time series with fuzzy sets and identifying the relationships between these fuzzy sets. These fuzzy sets can be expressed with linguistic terms which can be understood by an expert. A review of the literature found good time series forecasting performance. Variations to the basic fuzzy time series model were identified and approaches to calculating the optimal interval length were examined.
+The models in this project used fuzzy time series analysis. Fuzzy time series analysis involves representing a time series with fuzzy sets and identifying the relationships between these fuzzy sets. These fuzzy sets can be expressed with linguistic terms which can be understood by an expert. A review of the literature found good time series forecasting performance. Variations to the basic fuzzy time series model were identified and approaches to calculating the optimal interval length were examined.
 
-Four fuzzy time series models were evaluated. The basic and higher-order models were identified in the literature. The basic model records the relationships between adjacent observations and uses these to forecast. The higher-order model identifies the relationship between multiple observations on the time series and allowed for partially complete patterns during forecasting. Moving-window and change-analysis models were proposed as a result of research into technical analysis techniques. The moving-window model identified complete patterns on a time series. The change-analysis model analyses the changes between observations on a time series and implements the methodology from other models to identify relationships.
+Four fuzzy time series models were evaluated. The basic and higher-order models were identified in the literature. The basic model records the relationships between adjacent observations and uses these to forecast. The higher-order model identifies the relationship between multiple observations on the time series and allows for partially completed patterns during forecasting. Moving-window and change-analysis models were proposed as a result of research into technical analysis techniques. The moving-window model identifies complete patterns on a time series. The change-analysis model analyses the changes between observations on a time series and implements the methodology from other models to identify relationships between observations.
 
-A fuzzy time series framework was developed to evaluate the models. This framework was built in two iterations. The final implementation supports the evaluation of arbitrary datasets and the development of new models. It features a results suite to evaluate the performance of models simultaneously. This was achieved as a result of several speed optimisations and a custom fuzzy logic toolkit.
+A fuzzy time series framework was developed to evaluate the models. This framework was built in two iterations. The final implementation supports the evaluation of arbitrary datasets and the development of new fuzzy time series models. It features a results suite to evaluate the performance of the models simultaneously. This was achieved as a result of several speed optimisations and a custom fuzzy logic toolkit.
 
-The models were evaluated using the root mean squared error as a performance indicator. Three financial datasets were used as experimental datasets. Several models were evaluated with different sets of parameters. Two naive models were also tested for comparison. The fuzzy time series models were found to offer mixed results. The results of each model were evaluated individually. The basic and higher-order model performed poorly. The moving-window model offered mixed results. The change-analysis model, which implements the other models, performed better than the models which it implemented. This indicates that future fuzzy time series studies should perform evaluations using the changes of a time series.
+The models were evaluated using the root mean squared error as a performance indicator. Three financial datasets were used as experimental datasets. Several models were evaluated with different sets of parameters. Two naive models were also tested for comparison. The fuzzy time series models were found to offer mixed results. The results for each model were evaluated individually. The basic and higher-order model performed poorly. The moving-window model offered mixed results. The change-analysis model, which implements the other models, performed better than the models which it implemented. This indicates that future fuzzy time series studies should perform evaluations using the changes of a time series.
 
 \subsection{Limitations}
 
-Several models studied in the project take user defined parameters. The change-analysis model implements the methodology of other models to perform analysis. This project evaluates the performance of the models using a subset of the combinations of models and parameters possible. This may result in misleading results.
+Several models studied in the project take user defined parameters. The change-analysis model implements the methodology of other models to perform analysis. This project evaluates the performance of the models using a subset of the combinations of models and parameters possible. This may result in misleading results about the suitability of a model to a dataset.
 
 The models were tested using three financial datasets. No models consistently outperformed the others. Evaluating the performance of the models using more datasets may indicate that certain models are more suited to particular types of financial data.
-
-The RMSE performance indicator does not indicate how a model would perform under trading conditions. The RMSE performance indicator gives the sample standard deviation of the forecasting error. It is used to measure the variance of the forecasting results. 
-%TODO above
 
 \subsection{Future work}
 
 Further work should be carried out to fully evaluate the models. Evaluations should be carried out using a larger range of datasets. The forecasting performance of different parameters and model combinations should also be evaluated.
 
 The higher-order and moving-window fuzzy time series models identify regular patterns in a time series. These patterns can be expressed using linguistic terms. Further work could be done to extract recurring patterns from the models in a form that could be used by an analyst for forecasting.
-%TODO proofread this
+
 \newpage
 \addcontentsline{toc}{section}{References}
 \bibliographystyle{apa}
